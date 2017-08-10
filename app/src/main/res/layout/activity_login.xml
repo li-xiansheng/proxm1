@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grayBgLight">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp40"
+        >
+
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/etTel"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:background="@color/white"
+             android:drawablePadding="@dimen/dp8"
+            android:hint="请输入手机号"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:paddingLeft="@dimen/dp40"
+            android:paddingRight="@dimen/dp10"
+            android:textSize="@dimen/sp16" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:background="@color/grayLine"
+            android:layout_marginLeft="@dimen/dp20"/>
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/etPwd"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+
+            android:background="@color/white"
+             android:drawablePadding="@dimen/dp8"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:maxLength="20"
+            android:paddingLeft="@dimen/dp40"
+            android:paddingRight="@dimen/dp10"
+            android:textSize="@dimen/sp16" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp40"
+            android:paddingTop="@dimen/dp10">
+
+        </LinearLayout>
+
+        <com.cpcp.loto.view.SelectedLayerTextView
+            android:id="@+id/tvLogin"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@drawable/shape_border_rect_gray"
+            android:gravity="center"
+            android:text="登 录"
+            android:textColor="@color/red"
+            android:textSize="@dimen/sp18" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp16"
+            android:layout_marginRight="@dimen/dp16"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp180">
+
+            <com.cpcp.loto.view.SelectedLayerTextView
+                android:id="@+id/tvRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp30"
+                android:gravity="center_vertical"
+                android:text="点击注册账号"
+                android:textColor="@color/red"
+                android:textSize="@dimen/sp16" />
+
+            <com.cpcp.loto.view.SelectedLayerTextView
+                android:id="@+id/tvForgetPwd"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp30"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:text="忘记密码？"
+                android:textColor="@color/red" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</FrameLayout>

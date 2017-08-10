@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.cpcp.loto.view.PullToRefreshRecyclerView xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/pullToRefreshRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        ptr:ptrAnimationStyle="flip"
+        ptr:ptrDrawable="@drawable/arrow_down"
+        ptr:ptrHeaderBackground="@color/grayText"
+        ptr:ptrHeaderTextColor="@color/grayText"
+        ptr:ptrMode="both"
+        ptr:ptrOverScroll="false"
+        ptr:ptrShowIndicator="false" />
+
+</LinearLayout>

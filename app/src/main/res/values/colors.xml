@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--状态栏，标题栏-->
+    <color name="colorPrimary">#37A7D7</color>
+    <color name="colorPrimaryDark">#37A7D7</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--基础纯色color-->
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="red">#FFFF0000</color>
+    <color name="orange">#FFFF8000</color>
+    <color name="yellow">#FFFFFF00</color>
+    <color name="green">#FF00FF00</color>
+    <color name="cyan">#FF00FFFF</color>
+    <color name="blue">#FF0000FF</color>
+    <color name="purple">#FFFF00FF</color>
+    <color name="gray">#FF666666</color>
+    <color name="pink">#f29cb1</color>
+    <!--其他色彩-->
+    <color name="grayLight">#FFACACAC</color>
+    <color name="grayDark">#FF505050</color>
+    <color name="grayLine">#FFB6B6B6</color>
+    <color name="grayBg">#FFDCDCDC</color>
+    <color name="grayBgLight">#FFEEEEEE</color>
+    <color name="grayTab">#FFDDDDDD</color>
+    <color name="yellowTab">#FFFEE832</color>
+    <!--黑色透明-->
+    <color name="transparentHalfAlpha20">#20000000</color>
+    <color name="transparentHalfAlpha50">#50000000</color>
+    <color name="transparentHalfAlpha90">#90000000</color>
+    <color name="transparentHalfAlphaAA">#AA000000</color>
+    <!--白色透明-->
+    <color name="whiteAlphaBB">#BBFFFFFF</color>
+    <color name="whiteAlpha20">#20FFFFFF</color>
+    <color name="whiteTab">#FFFFFFFE</color>
+    <!--雅黑色-->
+    <color name="blackText">#FF000022</color>
+
+
+    <!--程序底部tab色-->
+    <color name="tabHomeBg">#37A7D7</color>
+    <!--主色调背景-->
+    <color name="homeBg">#2278B3</color>
+    <color name="contentBg">#FF2C3242</color>
+    <color name="redCircle">#FFDC0008</color>
+    <color name="blueCircle">#FF0078FF</color>
+    <color name="yellowText">#FFF2BD04</color>
+    <color name="homeBgLight">#FF405066</color>
+    <color name="blueLineLight">#FF3684BA</color>
+    <color name="tabBlueBg">#FFA8B8D0</color>
+    <color name="tabBlueBgSelected">#FF80A2D0</color>
+    <color name="tabBlackBg">#FF1F232F</color>
+    <color name="tabTobBlueBg">#FF7FA1CF</color>
+
+    <!--退出-->
+    <color name="btnGrayBg">#FFA8B8D0</color>
+    <!--退出-->
+    <color name="btnRedBg">#FFE96165</color>
+
+    <!--灰色透明90-->
+    <color name="grayBgLightAlpha30">#30EEEEEE</color>
+    <color name="grayText">#FFB3B3B3</color>
+    <color name="grayRecyclerItemLine">#FF3D455A</color>
+
+    <color name="itemGrayLine">#FF838681</color>
+    <color name="communityBlueTop">#FF80A2D0</color>
+    <color name="communityBlackBottom">#FF202431</color>
+    <color name="collectionRed">#FFFF387A</color>
+
+    <!---->
+    <color name="titleTabRed">#FFF14C30</color>
+
+
+</resources>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/lilLotoKing"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp130"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lilWinning"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp130"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lilMyAttention"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp130"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lilSendXinShui"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp130"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp10"
+            android:text="说明：高手资料为第三方入驻平台，只提供资料参考信息，不提供任何服务！资料内容与本软件无关，不代表本软件的观点" />
+    </LinearLayout>
+</ScrollView>

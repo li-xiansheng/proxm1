@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:minWidth="@dimen/dp80"
+    android:minHeight="@dimen/dp80"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:background="@color/white"
+    android:orientation="horizontal">
+    <ProgressBar
+        android:id="@+id/progress_wheel"
+        android:layout_width="@dimen/dp40"
+        android:layout_height="@dimen/dp40"/>
+  <!--
+    <com.pnikosis.materialishprogress.ProgressWheel
+        android:id="@+id/progress_wheel"
+        android:layout_width="@dimen/dp40"
+        android:layout_height="@dimen/dp40"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        app:matProg_barColor="@color/blue"
+        app:matProg_barWidth="@dimen/dp6"
+        app:matProg_circleRadius="@dimen/dp40"
+        app:matProg_progressIndeterminate="true" />-->
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp14"
+        android:visibility="gone"
+        android:text="正在加载……"/>
+</LinearLayout>

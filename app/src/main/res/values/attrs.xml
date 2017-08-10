@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--圆形控件自定义属性-->
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <attr name="civ_fill_color" format="color" />
+    </declare-styleable>
+
+    <!--
+        &lt;!&ndash; 弹出窗口下拉动画，上滑动画，用于Fragment和View &ndash;&gt;
+        <style name="AnimationPull">
+            <item name="android:windowEnterAnimation">@anim/pull_in</item>
+            <item name="android:windowExitAnimation">@anim/pull_out</item>
+        </style>
+        &lt;!&ndash;选择框&ndash;&gt;
+        <style name="MyCheckBox" parent="Theme.AppCompat.Light">
+            <item name="colorControlNormal">@color/greySwitch</item>
+            <item name="colorControlActivated">@color/greySwitch</item>
+        </style>
+        &lt;!&ndash;switch开关&ndash;&gt;
+        <style name="mySwitch" parent="Theme.AppCompat.Light">
+            &lt;!&ndash; Active thumb color & Active track color(30% transparency) switch 打开时的拇指按钮的颜色 轨迹颜色默认为30%这个颜色 &ndash;&gt;
+            <item name="colorControlActivated">@color/green</item>
+            &lt;!&ndash; Inactive thumb color switch关闭时的拇指按钮的颜色 &ndash;&gt;
+            <item name="colorSwitchThumbNormal">@color/greySwitch</item>
+            &lt;!&ndash; Inactive track color(30% transparency) switch关闭时的轨迹的颜色  30%这个颜色 &ndash;&gt;
+            <item name="android:colorForeground">@color/greySwitch99</item>
+        </style>
+        &lt;!&ndash; 弹出窗口淡入淡出动画-下面出 &ndash;&gt;
+        <style name="AnimationFadeButtom">
+            <item name="android:windowEnterAnimation">@anim/pull_in</item>
+            <item name="android:windowExitAnimation">@anim/pull_out</item>
+        </style>-->
+    <!--可改变Drawable大小的TextView-->
+    <declare-styleable name="DrawableTextView">
+        <attr name="drawableWidth" format="dimension|reference" />
+        <attr name="drawableHeight" format="dimension|reference" />
+        <attr name="isChangeColor" format="boolean|reference" />
+        <attr name="isChangeColorMatrix" format="boolean|reference" />
+    </declare-styleable>
+    <!--轻量滚轮-->
+    <declare-styleable name="EasyPickerView">
+        <attr name="epvTextSize" format="dimension"/>
+        <attr name="epvTextColor" format="color"/>
+        <attr name="epvTextPadding" format="dimension"/>
+        <attr name="epvTextMaxScale" format="float"/>
+        <attr name="epvTextMinAlpha" format="float"/>
+        <attr name="epvRecycleMode" format="boolean"/>
+        <attr name="epvMaxShowNum" format="integer"/>
+    </declare-styleable>
+</resources>

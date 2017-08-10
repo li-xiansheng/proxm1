@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fillViewport="true">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <com.cpcp.loto.view.convenientbanner.ConvenientBanner xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/convenientBanner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp120"
+            app:canLoop="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp30"
+            android:background="@color/grayBg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp16">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_lingsheng" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/dp10"
+                android:text="六合直通车消息传递最新内容轮播详细资料   " />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp130"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/lilLotteryLive"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_transparent_black_half_transparent"
+                    android:gravity="center">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:drawableLeft="@drawable/icon_lottery_live"
+                        android:drawablePadding="@dimen/dp4"
+                        android:gravity="center"
+                        android:text="开奖直播"
+                        android:textSize="@dimen/sp18" />
+                </LinearLayout>
+
+                <include layout="@layout/view_gray_line" />
+
+                <LinearLayout
+                    android:id="@+id/lilHailiao"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_transparent_black_half_transparent"
+                    android:gravity="center">
+
+                    <android.support.v7.widget.AppCompatTextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+
+                        android:drawableLeft="@drawable/icon_haitao"
+                        android:drawablePadding="@dimen/dp4"
+                        android:gravity="center"
+                        android:text="淘料市场"
+                        android:textSize="@dimen/sp18" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/dp0p1"
+                android:layout_height="match_parent"
+                android:background="@color/grayLine" />
+
+            <LinearLayout
+                android:id="@+id/lilGetRedPacket"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="@drawable/selector_transparent_black_half_transparent"
+                android:gravity="center">
+
+                <android.support.v7.widget.AppCompatTextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/dp4"
+                    android:drawableTop="@drawable/icon_get_red_packet"
+                    android:gravity="center"
+                    android:text="领取红包"
+                    android:textSize="@dimen/sp18" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp4"
+            android:background="@color/grayBg" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>
+

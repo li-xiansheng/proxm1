@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/ivRedPacket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/icon_default_head"
+        />
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp50"
+        android:layout_below="@+id/ivRedPacket"
+        android:text="温馨提示：\n1、领取的积分可以在高手资料用来查看高手发布的心水\n2、领取的积分可在个人中心的马上转换页面转换到其他平台"/>
+</RelativeLayout>

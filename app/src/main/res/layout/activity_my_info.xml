@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/grayBgLight"
+    android:orientation="vertical"
+    tools:context=".activity.MyInfoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/lilUpdateHead"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp70"
+            android:background="@drawable/selector_transparent_black_half_transparent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp16"
+            android:paddingRight="@dimen/dp10">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="头像"
+
+                />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/ivHead"
+                android:layout_width="@dimen/dp60"
+                android:layout_height="@dimen/dp60"
+                android:src="@drawable/icon_default_head" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_next_gray" />
+        </LinearLayout>
+
+        <include layout="@layout/view_gray_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp16"
+            android:paddingRight="@dimen/dp10">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="昵称"
+
+                />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvNickName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_default_head"
+                android:text="------" />
+
+        </LinearLayout>
+
+        <include layout="@layout/view_gray_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp16"
+            android:paddingRight="@dimen/dp10">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="手机号"
+
+                />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvTel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_default_head"
+                android:text="------" />
+
+        </LinearLayout>
+
+        <include layout="@layout/view_gray_line" />
+
+        <LinearLayout
+            android:id="@+id/lilChangePwd"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:background="@drawable/selector_transparent_black_half_transparent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp16"
+            android:paddingRight="@dimen/dp10">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="修改密码"
+
+                />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_next_gray" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.cpcp.loto.view.SelectedLayerTextView
+        android:id="@+id/tvLogout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:layout_margin="@dimen/dp20"
+        android:background="@drawable/shape_arc4_white"
+        android:gravity="center"
+        android:text="退出登录"
+        android:textColor="@color/red" />
+
+</LinearLayout>

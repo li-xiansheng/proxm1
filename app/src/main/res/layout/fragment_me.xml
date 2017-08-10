@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grayBg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:id="@+id/relMyInfo"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp260"
+            android:background="@color/white">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="center"
+                android:src="@drawable/img_me_bg" />
+
+            <com.cpcp.loto.view.SelectedLayerTextView
+                android:id="@+id/tvSetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="@dimen/dp10"
+                android:text="设置"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp18" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/ivHead"
+                android:layout_width="@dimen/dp100"
+                android:layout_height="@dimen/dp100"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp40"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_default_head" />
+
+            <LinearLayout
+                android:id="@+id/lilLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivHead"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp10"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tvNickName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="------"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp18" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tvIntegral"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:background="@drawable/shape_border_arc6_white"
+                    android:drawableLeft="@drawable/icon_integral"
+                    android:drawablePadding="@dimen/dp8"
+                    android:gravity="center_vertical"
+                    android:text="总积分："
+                    android:paddingLeft="@dimen/dp6"
+                    android:paddingRight="@dimen/dp6"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp14" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lilNotLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivHead"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp10"
+                android:gravity="center"
+                android:visibility="gone">
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btnLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp18"
+                    android:text="登 录"
+                    android:background="@drawable/shape_arc8_white"
+                    android:textColor="@color/red"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp40"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/lilRich"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                     android:gravity="center">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_rich" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp10"
+                        android:text="致富"
+                        android:textSize="@dimen/sp24" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/dp0p1"
+                    android:layout_height="@dimen/dp30"
+                    android:layout_gravity="center"
+                    android:background="@color/grayLine" />
+
+                <LinearLayout
+                    android:id="@+id/lilChange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                     android:gravity="center">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_change" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp10"
+                        android:text="转换"
+                        android:textSize="@dimen/sp24" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <View
+           android:layout_width="match_parent"
+            android:layout_height="@dimen/dp6"
+            android:background="@color/grayBgLight"/>
+
+        <LinearLayout
+            android:id="@+id/lilSalary"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp10">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/item_icon_salary"
+                android:drawablePadding="@dimen/dp10"
+                android:text="我的薪水"
+                android:textSize="@dimen/sp18" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_next_gray" />
+        </LinearLayout>
+
+        <include layout="@layout/view_gray_line" />
+
+        <LinearLayout
+            android:id="@+id/lilAttention"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp10">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/item_icon_attention"
+                android:drawablePadding="@dimen/dp10"
+                android:text="我的关注"
+                android:textSize="@dimen/sp18" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_next_gray" />
+        </LinearLayout>
+
+        <include layout="@layout/view_gray_line" />
+
+        <LinearLayout
+            android:id="@+id/lilFans"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp10">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/item_icon_fans"
+                android:drawablePadding="@dimen/dp10"
+                android:text="我的粉丝"
+                android:textSize="@dimen/sp18" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_next_gray" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp6"
+            android:background="@color/grayBgLight"/>
+
+        <LinearLayout
+            android:id="@+id/lilBuyRecord"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp10">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/item_icon_buy_record"
+                android:drawablePadding="@dimen/dp10"
+                android:text="购买记录"
+                android:textSize="@dimen/sp18" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_next_gray" />
+        </LinearLayout>
+
+        <include layout="@layout/view_gray_line" />
+
+        <LinearLayout
+            android:id="@+id/lilChangeRecord"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp10">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/item_icon_change_record"
+                android:drawablePadding="@dimen/dp10"
+                android:text="转换记录"
+                android:textSize="@dimen/sp18" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_next_gray" />
+        </LinearLayout>
+
+        <include layout="@layout/view_gray_line" />
+
+        <LinearLayout
+            android:id="@+id/lilWithDrawRecord"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp10">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/item_icon_withdraw_record"
+                android:drawablePadding="@dimen/dp10"
+                android:text="提现记录"
+                android:textSize="@dimen/sp18" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_next_gray" />
+        </LinearLayout>
+
+        <include layout="@layout/view_gray_line" />
+    </LinearLayout>
+
+</ScrollView>
