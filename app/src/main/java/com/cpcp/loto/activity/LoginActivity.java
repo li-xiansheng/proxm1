@@ -2,14 +2,12 @@ package com.cpcp.loto.activity;
 
 
 import android.app.Activity;
-import android.content.Intent;
-import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 
 import com.cpcp.loto.MApplication;
-import com.cpcp.loto.MainActivity;
 import com.cpcp.loto.R;
 import com.cpcp.loto.base.BaseActivity;
 import com.cpcp.loto.config.Constants;
@@ -73,7 +71,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-
+        Log.i(TAG,"这是ct-develop中新添加的一条检测语句");
     }
 
 
