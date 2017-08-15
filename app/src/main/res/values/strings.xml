@@ -3,4 +3,14 @@
 
     //
     <string name="empty_msg">暂无数据</string>
+    <string name="invite_code_tip">&#x0009;&#x0009;您可以将您的邀请码分享给朋友或其他人，对方注册的时候输入您的邀请码，
+        主要注册成功，就有积分相送，积分可以在高手资料查看专家发布的心水</string>
+    <string name="introduce_tip1">指在六合彩方面有专门研究或特长得人，利用好您的经验即可成为专家，只要成绩好，月赚百万不是梦</string>
+    <string name="introduce_tip2">做专家有什么好处?</string>
+    <string name="introduce_tip3">专家可以在高手资料发布心水，由用户查看货购买心水即可得到相应的积分，专家的收益是用户消费的积分数量的70%，例如：用户消费10积分购买您的心水，您可获得的收益是7积分，相当于0.7元人民币，赚到积分并且达到2000积分即可在个人中心体现页面申请提现。</string>
+    <string name="introduce_tip4">注：开奖当天晚上8:30&#8211;9:45禁止发布心水资料</string>
+
+    <string name="transform_tip1">说明:本平台的积分可转换到其他平台继续使用,10积分可兑换人民币1元,积分达到2000才能兑换</string>
+    <string name="transform_tip2">重要说明:如您在其他平台有账户，为了保证资金安全和顺利到账,请先点击去登录,能登录成功表示您确实在平台上有账户,可以放心的输入账户名</string>
+
 </resources>
