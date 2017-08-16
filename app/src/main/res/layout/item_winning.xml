@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp80"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/dp10"
+    android:paddingRight="@dimen/dp10">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/ivAvatar"
+        android:layout_width="@dimen/dp50"
+        android:layout_height="@dimen/dp50" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dp4"
+        android:paddingLeft="@dimen/dp10"
+        android:paddingRight="@dimen/dp4"
+        android:paddingTop="@dimen/dp4">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvNickName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="1"
+            android:text="名称"
+            android:textColor="@color/blackText" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="1"
+            android:text="类型" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvWinning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="1"
+
+            android:text="连胜-"
+            android:textColor="@color/red" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_arc6_red"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dp2"
+            android:paddingLeft="@dimen/dp4"
+            android:paddingRight="@dimen/dp4"
+            android:paddingTop="@dimen/dp2"
+            android:text="类型"
+            android:textColor="@color/white" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="@dimen/dp50"
+            android:layout_height="@dimen/dp30"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/dp20"
+            android:background="@drawable/shape_border_arc2_red"
+            android:gravity="center"
+            android:text="查看"
+
+            android:textColor="@color/red" />
+
+    </RelativeLayout>
+
+</LinearLayout>

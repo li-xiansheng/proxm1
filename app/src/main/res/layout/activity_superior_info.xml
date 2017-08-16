@@ -13,7 +13,8 @@
             android:id="@+id/lilLotoKing"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp130"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/item_liuhewang">
 
         </LinearLayout>
 
@@ -21,7 +22,7 @@
             android:id="@+id/lilWinning"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp130"
-            android:orientation="vertical">
+            android:orientation="vertical"  android:background="@drawable/item_lianshengbang">
 
         </LinearLayout>
 
@@ -29,7 +30,7 @@
             android:id="@+id/lilMyAttention"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp130"
-            android:orientation="vertical">
+            android:orientation="vertical"  android:background="@drawable/item_my_attention">
 
         </LinearLayout>
 
@@ -37,7 +38,7 @@
             android:id="@+id/lilSendXinShui"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp130"
-            android:orientation="vertical">
+            android:orientation="vertical"  android:background="@drawable/item_send_xinshui">
 
         </LinearLayout>
 

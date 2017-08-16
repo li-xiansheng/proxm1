@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_xuanjijinnang"/>
 
+    <com.cpcp.loto.view.SelectedLayerTextView
+        android:id="@+id/tvOpen"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp30"
+        android:layout_margin="@dimen/dp20"
+         android:text="立即拆开锦囊"
+        android:gravity="center"
+        android:background="@color/red"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp16"/>
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp20"
+        android:text="温馨提示：打开锦囊将获取本期一道六合谜题，参透谜题将获得本期中奖号码，快来开启你的玄机之旅吧！"/>
 </LinearLayout>

@@ -69,6 +69,10 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     protected boolean isFullScreen = false;
     /**
+     * 是否内容布局占用状态栏-true为不占用
+     */
+    protected boolean isFitsSystemWindows = true;
+    /**
      * 是否添加ToolBar
      */
     protected boolean isShowToolBar = true;
@@ -226,9 +230,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void setContentView(@LayoutRes int layoutResID) {
 
         getLayoutInflater().inflate(layoutResID, mContentView);
-        mDecorView.setFitsSystemWindows(true);//保证沉浸式窗体，状态栏和标题栏不重叠
-        super.setContentView(mDecorView);
+        if(isFitsSystemWindows){
+            mDecorView.setFitsSystemWindows(true);//保证沉浸式窗体，状态栏和标题栏不重叠
+        }else{
+            mDecorView.setFitsSystemWindows(false);//内容布局顶出状态栏
+        }
 
+        super.setContentView(mDecorView);
 
     }
 

@@ -1,25 +1,112 @@
 package com.cpcp.loto.activity;
 
+import android.graphics.Color;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.IdRes;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.RadioGroup;
+
 import com.cpcp.loto.R;
+import com.cpcp.loto.adapter.TabFragmentAdapter;
 import com.cpcp.loto.base.BaseActivity;
+import com.cpcp.loto.base.BaseFragment;
+import com.cpcp.loto.fragment.bet.BetChildFragment;
+import com.cpcp.loto.fragment.lotoking.LotoKingFragment;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * 功能描述：六合王
  */
 
 public class LotoKingActivity extends BaseActivity {
+
+    @BindView(R.id.radioGroup)
+    public RadioGroup radioGroup;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.tabLayout)
+    public TabLayout tabLayout;
+    @BindView(R.id.viewPager)
+    ViewPager viewPager;
+
+
+    private List<BaseFragment> fragments;
+
+    @Override
+    protected void initBase(Bundle savedInstanceState) {
+        isShowToolBar = false;
+        super.initBase(savedInstanceState);
+    }
+
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_loto_king;
     }
 
+
     @Override
     protected void initView() {
-        setTitle("六合王");
+
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        String[] titles = {"单双", "大小", "生肖", "号码"};
+        fragments = new ArrayList<>();
+
+
+        for (int i = 0; i < titles.length; i++) {
+            LotoKingFragment fragment = new LotoKingFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("text", titles[i]);
+            fragment.setArguments(bundle);
+            fragments.add(fragment);
+        }
+        viewPager.setOffscreenPageLimit(3);
+        viewPager.setAdapter(new TabFragmentAdapter(fragments, titles, getSupportFragmentManager(), mContext));
+        tabLayout.setTabMode(tabLayout.MODE_FIXED);
+        // 将ViewPager和TabLayout绑定
+        tabLayout.setupWithViewPager(viewPager);
+        // 设置tab文本的没有选中（第一个参数）和选中（第二个参数）的颜色
+        tabLayout.setTabTextColors(Color.BLACK, Color.RED);
+        //主动调取第一个页面可见执行懒加载
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                fragments.get(0).setUserVisibleHint(true);
+            }
+        }, 1000);
+
+    }
+
+    @Override
+    protected void initListener() {
+        super.initListener();
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                ((LotoKingFragment) fragments.get(viewPager.getCurrentItem())).getData();
+            }
+        });
     }
 
     @Override
     protected void initData() {
 
     }
+
+
 }

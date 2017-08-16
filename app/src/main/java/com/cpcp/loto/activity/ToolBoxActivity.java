@@ -1,6 +1,7 @@
 package com.cpcp.loto.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -10,6 +11,7 @@ import com.cpcp.loto.adapter.HomeGridRecyclerAdapter;
 import com.cpcp.loto.adapter.ToolBoxGridRecyclerAdapter;
 import com.cpcp.loto.base.BaseActivity;
 import com.cpcp.loto.listener.OnItemClickListener;
+import com.cpcp.loto.net.HttpService;
 import com.cpcp.loto.uihelper.ScrollGridLayoutManager;
 import com.cpcp.loto.view.DividerItemDecorationGridHome;
 
@@ -32,6 +34,7 @@ public class ToolBoxActivity extends BaseActivity {
 
     private ToolBoxGridRecyclerAdapter toolBoxGridRecyclerAdapter;
     private List<Map<String, Object>> data;
+
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_tool_box;
@@ -39,6 +42,7 @@ public class ToolBoxActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        setTitle("六合宝箱");
         initGridData();
     }
 
@@ -105,9 +109,17 @@ public class ToolBoxActivity extends BaseActivity {
             @Override
             public void onItemClick(View view, int position) {
 
+                Class aClass = (Class<?>) data.get(position).get("uri");
+                String name = (String) data.get(position).get("name");
+                if ("查询助手".equals(name)) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("name", "查询助手");
+                    bundle.putString("url", HttpService.queryHelper);
+                    ((BaseActivity) mActivity).jumpToActivity(WebCommonPageActivity.class, bundle, false);
+                } else {
                     Intent intent = new Intent((BaseActivity) mActivity, (Class<?>) data.get(position).get("uri"));
                     startActivity(intent);
-
+                }
 
 
             }

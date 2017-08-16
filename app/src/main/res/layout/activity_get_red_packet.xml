@@ -1,19 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
 
-    <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/ivRedPacket"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:src="@drawable/icon_default_head"
-        />
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/ivRedPacket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/img_red_packet_close" />
+
+        <LinearLayout
+            android:id="@+id/lilScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/dp30"
+            android:visibility="gone">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0分"
+                android:textColor="@color/yellow"
+                android:textSize="@dimen/sp18" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvHint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="@dimen/dp40"
+                android:text="恭喜你获得"
+                android:textColor="@color/yellow"
+                android:textSize="@dimen/sp12" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <com.cpcp.loto.view.SelectedLayerTextView
+        android:id="@+id/tvGet"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp30"
+        android:layout_marginLeft="@dimen/dp80"
+        android:layout_marginRight="@dimen/dp80"
+        android:background="@drawable/shape_arc6_red"
+        android:gravity="center"
+        android:text="赶快戳红包领取"
+        android:textColor="@color/white" />
+
     <android.support.v7.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp50"
-        android:layout_below="@+id/ivRedPacket"
-        android:text="温馨提示：\n1、领取的积分可以在高手资料用来查看高手发布的心水\n2、领取的积分可在个人中心的马上转换页面转换到其他平台"/>
-</RelativeLayout>
+        android:layout_margin="@dimen/dp40"
+
+        android:text="温馨提示：\n1、领取的积分可以在高手资料用来查看高手发布的心水\n2、领取的积分可在个人中心的马上转换页面转换到其他平台" />
+</LinearLayout>

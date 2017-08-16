@@ -11,6 +11,7 @@ import android.widget.ScrollView;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.cpcp.loto.MainActivity;
 import com.cpcp.loto.R;
+import com.cpcp.loto.activity.GetRedPacketActivity;
 import com.cpcp.loto.activity.SuperiorInfoActivity;
 import com.cpcp.loto.activity.WebCommonPageActivity;
 import com.cpcp.loto.activity.CommunicationForumActivity;
@@ -260,6 +261,8 @@ public class HomeFragment extends BaseFragment {
                 ((BaseActivity) mActivity).jumpToActivity(SuperiorInfoActivity.class, false);
                 break;
             case R.id.lilGetRedPacket:
+                ((BaseActivity) mActivity).jumpToActivity(GetRedPacketActivity.class, false);
+
                 break;
         }
     }

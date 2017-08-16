@@ -15,6 +15,8 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <!---->
     <uses-permission android:name="android.permission.CAMERA" />
+    <!--震动权限-->
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <!--bugly权限-->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -123,7 +125,9 @@
         <activity
             android:name=".activity.SendXinShuiActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".activity.OpenLotteryLiveActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".activity.QueryHelperActivity"

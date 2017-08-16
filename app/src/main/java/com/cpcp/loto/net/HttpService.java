@@ -6,8 +6,13 @@ import com.cpcp.loto.entity.BaseResponse2Entity;
 import com.cpcp.loto.entity.BaseResponseEntity;
 import com.cpcp.loto.entity.BaseResponseListEntity;
 import com.cpcp.loto.entity.ImgResponseEntity;
+import com.cpcp.loto.entity.LotoKingEntity;
+import com.cpcp.loto.entity.RedPacketEntity;
+import com.cpcp.loto.entity.TrendAnalysisEntity;
 import com.cpcp.loto.entity.UserInfoEntity;
+import com.cpcp.loto.entity.WinningEntity;
 
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.RequestBody;
@@ -38,10 +43,9 @@ public interface HttpService {
     Observable<BaseResponse1Entity<Object>> login(@FieldMap Map<String, String> map);
 
 
-
     /**
      * 注册
-     *index.php?g=user&m=register&a=doregister
+     * index.php?g=user&m=register&a=doregister
      *
      * @param map
      * @return
@@ -85,30 +89,166 @@ public interface HttpService {
     Observable<BaseResponse2Entity<ImgResponseEntity>> uploadPicToMine(@PartMap Map<String, RequestBody> params);
 
     /**
+     * 领取红包
+     *
+     * @param params 上传参数组
+     * @return 转成一个Rxjava被观察者
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=get_redpacket")
+    Observable<BaseResponse2Entity<RedPacketEntity>> getRedPacket(@FieldMap Map<String, String> params);
+
+    /**
+     * 玄机锦囊
+     *
+     * @return 转成一个Rxjava被观察者
+     */
+    @POST("index.php?g=portal&m=article&a=xunjijinnang")
+    Observable<BaseResponse2Entity<String>> getXuanJiPacket();
+
+    /**
+     * 获取高手资料-周榜-月榜信息
+     *
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=liuhewang")
+    Observable<BaseResponse2Entity<List<LotoKingEntity>>> getLotoKing(@FieldMap Map<String, String> map);
+
+    /**
+     * 获取高手资料-连胜榜
+     *
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=lianshengbang")
+    Observable<BaseResponse2Entity<List<WinningEntity>>> getWinning(@FieldMap Map<String, String> map);
+
+    /**
+     * 发布心水
+     *
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=add_xinshui")
+    Observable<BaseResponse2Entity<Object>> sendXinShui(@FieldMap Map<String, String> map);
+
+    /**
+     * 走势分析
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=zoushifenxi")
+    Observable<BaseResponse2Entity<List<TrendAnalysisEntity>>> getTrend(@FieldMap Map<String, String> map);
+
+
+
+
+    /**
      * 开奖直播地址
      */
-    public static String lotteryLive="http://lac.83gw.com/index.php?g=portal&m=Index&a=sskj";
+    public static String lotteryLive = "http://lac.83gw.com/index.php?g=portal&m=Index&a=sskj";
     /**
      * 六合图库
      */
-    public static String lotoPictures="http://lac.83gw.com/index.php?g=portal&m=Index&a=lhtk";
+    public static String lotoPictures = "http://lac.83gw.com/index.php?g=portal&m=Index&a=lhtk";
     /**
      * 历史开奖
      */
-    public static String historyLottery="http://lac.83gw.com/index.php?g=portal&m=Index&a=kaijianglishi";
+    public static String historyLottery = "http://lac.83gw.com/index.php?g=portal&m=Index&a=kaijianglishi";
 
     /**
      * 查询助手
      */
-    public static String queryHelper="http://lac.83gw.com/index.php?g=portal&m=Index&a=chaxunzhushou";
+    public static String queryHelper = "http://lac.83gw.com/index.php?g=portal&m=Index&a=chaxunzhushou";
 
     /**
      * 六合资料
      */
-    public static String lotoInfo="http://lac.83gw.com/index.php?g=portal&m=Index&a=liuheziliao1";
+    public static String lotoInfo = "http://lac.83gw.com/index.php?g=portal&m=Index&a=liuheziliao1";
     /**
      * 六合统计
      */
-    public static String lotoStatistics="http://lac.83gw.com/index.php?g=portal&m=article&a=liuhetongji&type=50";
+    public static String lotoStatistics = "http://lac.83gw.com/index.php?g=portal&m=article&a=liuhetongji&type=50";
+
+    /**
+     * 属性参照
+     */
+    public static String attributeReference = "http://lac.83gw.com/index.php?g=portal&m=article&a=shuxingcanzhao";
+    /**
+     * 特码历史
+     */
+    public static String temaHistory = "http://lac.83gw.com/index.php?g=portal&m=article&a=temalishi&type=50";
+
+    /**
+     * 正码历史
+     */
+    public static String orthocodeHistory = "http://lac.83gw.com/index.php?g=portal&m=article&a=zhengmalishi&type=50";
+
+    /**
+     * 尾数大小
+     */
+    public static String tailSize = "http://lac.83gw.com/index.php?g=portal&m=article&a=weishudaxiao&type=2017";
+
+    /**
+     * 生肖特码
+     */
+    public static String animalTema = "http://lac.83gw.com/index.php?g=portal&m=article&a=shengxiaotemalengretu&type=50";
+
+    /**
+     * 生肖正码
+     */
+    public static String animalOrthocode = "http://lac.83gw.com/index.php?g=portal&m=article&a=shengxiaozhengmalengretu&type=50";
+    /**
+     * 波色特码
+     */
+    public static String boseTema = "http://lac.83gw.com/index.php?g=portal&m=article&a=bosetema&type=50";
+    /**
+     * 波色正码
+     */
+    public static String boseOrthocode = "http://lac.83gw.com/index.php?g=portal&m=article&a=bosezhengma&type=50";
+    /**
+     * 特码两面
+     */
+    public static String TemaBothSides = "http://lac.83gw.com/index.php?g=portal&m=article&a=temaliangmian&type=50";
+
+    /**
+     * 特码尾数
+     */
+    public static String TemaMantissa = "http://lac.83gw.com/index.php?g=portal&m=article&a=temaweishu&type=50";
+
+    /**
+     * 正码尾数
+     */
+    public static String OrthocodeMantissa = "http://lac.83gw.com/index.php?g=portal&m=article&a=zhengmaweishu&type=50";
+
+    /**
+     * 正码总分
+     */
+    public static String OrthocodeTotal = "http://lac.83gw.com/index.php?g=portal&m=article&a=zhengmazongfen&type=50";
+    /**
+     * 号码波段
+     */
+    public static String numberBand = "http://lac.83gw.com/index.php?g=portal&m=article&a=haomaboduan&type=50";
+
+    /**
+     * 家禽野兽
+     */
+    public static String animal = "http://lac.83gw.com/index.php?g=portal&m=article&a=jiaqinyeshou&type=2017";
+
+    /**
+     * 连码走势
+     */
+    public static String jointMark = "http://lac.83gw.com/index.php?g=portal&m=article&a=lianmazoushi&type=2017";
+    /**
+     * 连肖走势
+     */
+    public static String lianxiao = "http://lac.83gw.com/index.php?g=portal&m=article&a=lianxiaozoushi&type=2017";
+
+
 
 }

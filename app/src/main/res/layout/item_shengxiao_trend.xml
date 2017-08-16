@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp30"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvNo"
+            android:layout_width="@dimen/dp30"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="-" />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvTema"
+            android:layout_width="@dimen/dp30"
+            android:layout_height="wrap_content"
+
+            android:gravity="center"
+            android:text="-" />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvShu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+             />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvNiu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+             />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvHu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+             />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvTu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+             />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvLong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+             />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvShe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+              />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvMa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+            />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvYang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+            />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvHou"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+            />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvJi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-" />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvGou"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+            />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvZhu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+             />
+    </LinearLayout>
+
+    <include layout="@layout/view_gray_line" />
+</LinearLayout>

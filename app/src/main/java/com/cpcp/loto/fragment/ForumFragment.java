@@ -29,7 +29,6 @@ public class ForumFragment extends BasePullRefreshFragment {
     @Override
     protected void initListener() {
         super.initListener();
-
     }
 
     @Override

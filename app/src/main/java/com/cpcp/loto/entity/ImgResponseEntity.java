@@ -1,8 +1,6 @@
 package com.cpcp.loto.entity;
 
 /**
- * Created by lichuanbei on 2017/8/8.
- * <p>
  * 功能描述：
  */
 
