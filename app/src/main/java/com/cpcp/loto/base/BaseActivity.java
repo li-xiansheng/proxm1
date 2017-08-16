@@ -25,15 +25,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-
-import butterknife.ButterKnife;
-
 import com.cpcp.loto.R;
 import com.cpcp.loto.uihelper.StatusBar;
 import com.cpcp.loto.util.ClickEventUtils;
 import com.cpcp.loto.util.KeyBoardUtils;
 import com.cpcp.loto.util.LogUtils;
 
+import butterknife.ButterKnife;
 import rx.Subscription;
 
 /**
@@ -435,7 +433,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         //初始化设置 Toolbar
         setSupportActionBar(mToolBar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
     }
 
     /**
