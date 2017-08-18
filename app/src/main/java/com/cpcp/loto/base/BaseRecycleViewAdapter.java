@@ -42,6 +42,11 @@ abstract public class BaseRecycleViewAdapter extends RecyclerView.Adapter<Recycl
 
     }
 
+    public void addData(List<?> data){
+        mListData.clear();
+        this.mListData = data;
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 

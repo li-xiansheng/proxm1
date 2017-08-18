@@ -305,6 +305,9 @@
             android:value="8bfd2cd3d71ca511e41abf1e" /> <!-- </>值来自开发者平台取得的AppKey -->
         <!-- **********************************极光结束*************************************************************** -->
 
+        <activity
+            android:name=".activity.DetailActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

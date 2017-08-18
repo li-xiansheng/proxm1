@@ -1,10 +1,12 @@
 package com.cpcp.loto.fragment;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -22,7 +24,6 @@ import com.cpcp.loto.activity.MyInfoActivity;
 import com.cpcp.loto.activity.RichActivity;
 import com.cpcp.loto.activity.SalaryActivity;
 import com.cpcp.loto.activity.SettingActivity;
-import com.cpcp.loto.activity.WithDrawRecordActivity;
 import com.cpcp.loto.base.BaseActivity;
 import com.cpcp.loto.base.BaseFragment;
 import com.cpcp.loto.config.Constants;
@@ -75,8 +76,6 @@ public class MeFragment extends BaseFragment {
     LinearLayout lilBuyRecord;
     @BindView(R.id.lilChangeRecord)
     LinearLayout lilChangeRecord;
-    @BindView(R.id.lilWithDrawRecord)
-    LinearLayout lilWithDrawRecord;
     @BindView(R.id.lilLogin)
     LinearLayout lilLogin;
     @BindView(R.id.lilNotLogin)
@@ -164,13 +163,14 @@ public class MeFragment extends BaseFragment {
                             String avatar = entity.getAvatar();
                             String score = entity.getScore();
                             nickName = nickName == null ? "" : nickName;
-                            avatar = avatar == null ? "" : avatar;
+                            avatar = avatar == null ? "" : "http://"+avatar;
                             score = score == null ? "" : score;
 
+                            Log.i(TAG,"getUserInfo avatar = " +avatar);
                             SPUtil sp = new SPUtil(MApplication.applicationContext, Constants.USER_TABLE);
                             sp.putString(UserDB.NAME, nickName);
-                            sp.getString(UserDB.AVATAR, avatar);
-                            sp.getString(UserDB.SCORE, score);
+                            sp.putString(UserDB.AVATAR, avatar);
+                            sp.putString(UserDB.SCORE, score);
 
                             tvNickName.setText(nickName);
                             tvIntegral.setText("总积分："+score);
@@ -191,7 +191,7 @@ public class MeFragment extends BaseFragment {
 
     @OnClick({R.id.tvSetting, R.id.lilRich, R.id.lilChange, R.id.relMyInfo, R.id.lilSalary,
             R.id.lilAttention, R.id.lilFans, R.id.lilBuyRecord, R.id.lilChangeRecord,
-            R.id.lilWithDrawRecord, R.id.btnLogin})
+            R.id.btnLogin})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvSetting:
@@ -207,7 +207,15 @@ public class MeFragment extends BaseFragment {
                 ((BaseActivity) mActivity).jumpToActivity(MyInfoActivity.class, false);
                 break;
             case R.id.lilSalary:
-                ((BaseActivity) mActivity).jumpToActivity(SalaryActivity.class, false);
+                SPUtil sp = new SPUtil(MApplication.applicationContext, Constants.USER_TABLE);
+                String nickname = sp.getString(UserDB.NAME, "");
+                String avatar = sp.getString(UserDB.AVATAR, "");
+                String mobile = sp.getString(UserDB.TEL, "");
+                Bundle bundle = new Bundle();
+                bundle.putString("nickname",nickname);
+                bundle.putString("avatar",avatar);
+                bundle.putString("mobile",mobile);
+                ((BaseActivity) mActivity).jumpToActivity(SalaryActivity.class,bundle,false);
                 break;
             case R.id.lilAttention:
                 ((BaseActivity) mActivity).jumpToActivity(AttentionActivity.class, false);
@@ -220,9 +228,6 @@ public class MeFragment extends BaseFragment {
                 break;
             case R.id.lilChangeRecord:
                 ((BaseActivity) mActivity).jumpToActivity(ChangeRecordActivity.class, false);
-                break;
-            case R.id.lilWithDrawRecord:
-                ((BaseActivity) mActivity).jumpToActivity(WithDrawRecordActivity.class, false);
                 break;
             case R.id.btnLogin:
                 ((BaseActivity) mActivity).jumpToActivity(LoginActivity.class, false);

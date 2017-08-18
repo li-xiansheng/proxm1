@@ -1,5 +1,6 @@
 package com.cpcp.loto.fragment.publish;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -43,8 +44,8 @@ public class DaxiaoFragment extends BaseFragment {
     @BindView(R.id.daxiao_xiao_txt)
     TextView daxiaoXiaoTxt;
 
-    int chooseRec;
-    int chooseCir;
+    String chooseRec;
+    String chooseCir;
 
     String type;
 
@@ -56,7 +57,7 @@ public class DaxiaoFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        type = getArguments().getString("type");
+//        type = getArguments().getString("type");
         if ("大小".equals(type)) {
             daxiaoDaTxt.setText("大");
             daxiaoXiaoTxt.setText("小");
@@ -64,6 +65,13 @@ public class DaxiaoFragment extends BaseFragment {
             daxiaoDaTxt.setText("单");
             daxiaoXiaoTxt.setText("双");
         }
+    }
+
+    @Override
+    protected void getIntentData() {
+        super.getIntentData();
+        Bundle bundle = getArguments();
+        type = bundle.getString("type");
     }
 
     @OnClick({R.id.daxiao_choose1, R.id.daxiao_choose2, R.id.daxiao_choose3, R.id.daxiao_choose4,
@@ -78,7 +86,7 @@ public class DaxiaoFragment extends BaseFragment {
                 daxiaoChoose5.setSelected(false);
                 daxiaoChoose6.setSelected(false);
                 daxiaoChoose7.setSelected(false);
-                chooseRec = 1;
+                chooseRec = daxiaoChoose1.getText().toString();
                 break;
             case R.id.daxiao_choose2:
                 daxiaoChoose1.setSelected(false);
@@ -88,7 +96,8 @@ public class DaxiaoFragment extends BaseFragment {
                 daxiaoChoose5.setSelected(false);
                 daxiaoChoose6.setSelected(false);
                 daxiaoChoose7.setSelected(false);
-                chooseRec = 2;
+                chooseRec = daxiaoChoose2.getText().toString();
+
                 break;
             case R.id.daxiao_choose3:
                 daxiaoChoose1.setSelected(false);
@@ -98,7 +107,8 @@ public class DaxiaoFragment extends BaseFragment {
                 daxiaoChoose5.setSelected(false);
                 daxiaoChoose6.setSelected(false);
                 daxiaoChoose7.setSelected(false);
-                chooseRec = 3;
+                chooseRec = daxiaoChoose3.getText().toString();
+
                 break;
             case R.id.daxiao_choose4:
                 daxiaoChoose1.setSelected(false);
@@ -108,7 +118,8 @@ public class DaxiaoFragment extends BaseFragment {
                 daxiaoChoose5.setSelected(false);
                 daxiaoChoose6.setSelected(false);
                 daxiaoChoose7.setSelected(false);
-                chooseRec = 4;
+                chooseRec = daxiaoChoose4.getText().toString();
+
                 break;
             case R.id.daxiao_choose5:
                 daxiaoChoose1.setSelected(false);
@@ -118,7 +129,8 @@ public class DaxiaoFragment extends BaseFragment {
                 daxiaoChoose5.setSelected(true);
                 daxiaoChoose6.setSelected(false);
                 daxiaoChoose7.setSelected(false);
-                chooseRec = 5;
+                chooseRec = daxiaoChoose5.getText().toString();
+
                 break;
             case R.id.daxiao_choose6:
                 daxiaoChoose1.setSelected(false);
@@ -128,7 +140,8 @@ public class DaxiaoFragment extends BaseFragment {
                 daxiaoChoose5.setSelected(false);
                 daxiaoChoose6.setSelected(true);
                 daxiaoChoose7.setSelected(false);
-                chooseRec = 6;
+                chooseRec = daxiaoChoose6.getText().toString();
+
                 break;
             case R.id.daxiao_choose7:
                 daxiaoChoose1.setSelected(false);
@@ -138,17 +151,18 @@ public class DaxiaoFragment extends BaseFragment {
                 daxiaoChoose5.setSelected(false);
                 daxiaoChoose6.setSelected(false);
                 daxiaoChoose7.setSelected(true);
-                chooseRec = 7;
+                chooseRec = daxiaoChoose7.getText().toString();
+
                 break;
             case R.id.daxiao_da:
                 daxiaoDa.setSelected(true);
                 daxiaoXiao.setSelected(false);
-                chooseCir = 1;
+                chooseCir = daxiaoDaTxt.getText().toString();
                 break;
             case R.id.daxiao_xiao:
                 daxiaoDa.setSelected(false);
                 daxiaoXiao.setSelected(true);
-                chooseCir = 2;
+                chooseCir = daxiaoDaTxt.getText().toString();
                 break;
 
         }
@@ -158,4 +172,21 @@ public class DaxiaoFragment extends BaseFragment {
     public void onLazyLoadData() {
 
     }
+
+    public String getTitle(){
+        return daxiaoTitle.getText().toString();
+    }
+
+    public String getPoints(){
+        return daxiaoCount.getText().toString();
+    }
+
+    public String getChooseRec(){
+        return chooseRec;
+    }
+
+    public String getChooseCir(){
+        return chooseCir;
+    }
 }
+
