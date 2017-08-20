@@ -39,16 +39,16 @@ public class ChangeRecordRecyclerAdapter extends BaseRecycleViewAdapter {
     protected void bindView(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ViewHolder) {
             ViewHolder viewHolder = (ViewHolder) holder;
-            String date = ((ChangeRecordBean) mListData.get(position)).date;
-            String number = ((ChangeRecordBean) mListData.get(position)).number;
-            String jifen = ((ChangeRecordBean) mListData.get(position)).jifen;
-            String platform = ((ChangeRecordBean) mListData.get(position)).platform;
-            String jine = ((ChangeRecordBean) mListData.get(position)).jine;
+            String date = ((ChangeRecordBean) mListData.get(position)).createtime;
+            String number = ((ChangeRecordBean) mListData.get(position)).order_id;
+            String jifen = ((ChangeRecordBean) mListData.get(position)).points;
+            String platform = ((ChangeRecordBean) mListData.get(position)).pingtainame;
+            String jine = (Integer.parseInt(jifen)/10)+"";
             viewHolder.date.setText(" "+date);
             viewHolder.number.setText(" "+number);
-            viewHolder.jifen.setText(" "+jifen);
+            viewHolder.jifen.setText(" -"+jifen+"积分");
             viewHolder.platform.setText(" "+platform);
-            viewHolder.jine.setText(" "+jine);
+            viewHolder.jine.setText(" "+jine+"元");
         }
     }
 

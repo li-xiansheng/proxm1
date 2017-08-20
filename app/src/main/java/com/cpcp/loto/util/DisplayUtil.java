@@ -93,4 +93,12 @@ public class DisplayUtil {
 
 
     }
+
+    /**
+     * @param context
+     * @return
+     */
+    public static float getDensity(Context context) {
+        return context.getResources().getDisplayMetrics().density;
+    }
 }

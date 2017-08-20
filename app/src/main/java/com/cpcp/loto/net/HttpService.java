@@ -200,29 +200,211 @@ public interface HttpService {
     /**
      * 开奖直播地址
      */
-    public static String lotteryLive = "http://lac.83gw.com/index.php?g=portal&m=Index&a=sskj";
+    public static String lotteryLive="http://lac.83gw.com/index.php?g=portal&m=Index&a=sskj";
     /**
      * 六合图库
      */
-    public static String lotoPictures = "http://lac.83gw.com/index.php?g=portal&m=Index&a=lhtk";
+    public static String lotoPictures="http://lac.83gw.com/index.php?g=portal&m=Index&a=lhtk";
     /**
      * 历史开奖
      */
-    public static String historyLottery = "http://lac.83gw.com/index.php?g=portal&m=Index&a=kaijianglishi";
+    public static String historyLottery="http://lac.83gw.com/index.php?g=portal&m=Index&a=kaijianglishi";
 
     /**
      * 查询助手
      */
-    public static String queryHelper = "http://lac.83gw.com/index.php?g=portal&m=Index&a=chaxunzhushou";
+    public static String queryHelper="http://lac.83gw.com/index.php?g=portal&m=Index&a=chaxunzhushou";
 
     /**
      * 六合资料
      */
-    public static String lotoInfo = "http://lac.83gw.com/index.php?g=portal&m=Index&a=liuheziliao1";
+    public static String lotoInfo="http://lac.83gw.com/index.php?g=portal&m=Index&a=liuheziliao1";
     /**
      * 六合统计
      */
-    public static String lotoStatistics = "http://lac.83gw.com/index.php?g=portal&m=article&a=liuhetongji&type=50";
+    public static String lotoStatistics="http://lac.83gw.com/index.php?g=portal&m=article&a=liuhetongji&type=50";
+    /**
+     * 属性参照
+     */
+    public static String attributeReference = "http://lac.83gw.com/index.php?g=portal&m=article&a=shuxingcanzhao";
+    /**
+     * 特码历史
+     */
+    public static String temaHistory = "http://lac.83gw.com/index.php?g=portal&m=article&a=temalishi&type=50";
+
+    /**
+     * 正码历史
+     */
+    public static String orthocodeHistory = "http://lac.83gw.com/index.php?g=portal&m=article&a=zhengmalishi&type=50";
+
+    /**
+     * 尾数大小
+     */
+    public static String tailSize = "http://lac.83gw.com/index.php?g=portal&m=article&a=weishudaxiao&type=2017";
+
+    /**
+     * 生肖特码
+     */
+    public static String animalTema = "http://lac.83gw.com/index.php?g=portal&m=article&a=shengxiaotemalengretu&type=50";
+
+    /**
+     * 生肖正码
+     */
+    public static String animalOrthocode = "http://lac.83gw.com/index.php?g=portal&m=article&a=shengxiaozhengmalengretu&type=50";
+    /**
+     * 波色特码
+     */
+    public static String boseTema = "http://lac.83gw.com/index.php?g=portal&m=article&a=bosetema&type=50";
+    /**
+     * 波色正码
+     */
+    public static String boseOrthocode = "http://lac.83gw.com/index.php?g=portal&m=article&a=bosezhengma&type=50";
+    /**
+     * 特码两面
+     */
+    public static String TemaBothSides = "http://lac.83gw.com/index.php?g=portal&m=article&a=temaliangmian&type=50";
+
+    /**
+     * 特码尾数
+     */
+    public static String TemaMantissa = "http://lac.83gw.com/index.php?g=portal&m=article&a=temaweishu&type=50";
+
+    /**
+     * 正码尾数
+     */
+    public static String OrthocodeMantissa = "http://lac.83gw.com/index.php?g=portal&m=article&a=zhengmaweishu&type=50";
+
+    /**
+     * 正码总分
+     */
+    public static String OrthocodeTotal = "http://lac.83gw.com/index.php?g=portal&m=article&a=zhengmazongfen&type=50";
+    /**
+     * 号码波段
+     */
+    public static String numberBand = "http://lac.83gw.com/index.php?g=portal&m=article&a=haomaboduan&type=50";
+
+    /**
+     * 家禽野兽
+     */
+    public static String animal = "http://lac.83gw.com/index.php?g=portal&m=article&a=jiaqinyeshou&type=2017";
+
+    /**
+     * 连码走势
+     */
+    public static String jointMark = "http://lac.83gw.com/index.php?g=portal&m=article&a=lianmazoushi&type=2017";
+    /**
+     * 连肖走势
+     */
+    public static String lianxiao = "http://lac.83gw.com/index.php?g=portal&m=article&a=lianxiaozoushi&type=2017";
+
+
+
+
+    /**
+     * 获取我的关注列表
+     * index.php?g=portal&m=article&a=del_friend
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=del_friend")
+    Observable<BaseResponse2Entity<String>> cancelAttention(@FieldMap Map<String, String> map);
+
+    /**
+     * 取消关注
+     * index.php?g=portal&m=article&a=myfriends
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=myfriends")
+    Observable<BaseResponse2Entity<String>> getMyAttention(@FieldMap Map<String, String> map);
+
+    /**
+     * 获取我的购买记录
+     * index.php?g=portal&m=article&a=buy_log
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=buy_log")
+    Observable<BaseResponse2Entity<String>> getBuyRecord(@FieldMap Map<String, String> map);
+
+    /**
+     * 获取我的转换记录
+     * index.php?g=portal&m=article&a=duihuan_log
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=duihuan_log")
+    Observable<BaseResponse2Entity<String>> getChangeRecord(@FieldMap Map<String, String> map);
+
+    /**
+     * 获取本期推荐
+     * index.php?g=portal&m=article&a=current_recommendation
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=current_recommendation")
+    Observable<BaseResponse2Entity<String>> getCurrentRecommend(@FieldMap Map<String, String> map);
+
+    /**
+     * 查看本期推荐
+     * index.php?g=portal&m=article&a=see_current_recommendation
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=see_current_recommendation")
+    Observable<BaseResponse2Entity<String>> seeCurrentRecommend(@FieldMap Map<String, String> map);
+
+    /**
+     * 获取历史推荐
+     * index.php?g=portal&m=article&a=historical_recommendation
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=historical_recommendation")
+    Observable<BaseResponse2Entity<String>> getHistoryRecommend(@FieldMap Map<String, String> map);
+//    index.php?g=portal&m=article&a=historical_recommendation
+
+
+    /**
+     * 查看历史推荐
+     * index.php?g=portal&m=article&a=see_historical_recommendation
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=see_historical_recommendation")
+    Observable<BaseResponse2Entity<String>> seeHistoryRecommend(@FieldMap Map<String, String> map);
+
+    /**
+     * 我的财神
+     * index.php?g=portal&m=article&a=mymammon
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=mymammon")
+    Observable<BaseResponse2Entity<String>> getMyMammom(@FieldMap Map<String, String> map);
+
+    /**
+     * 发布心水
+     * index.php?g=portal&m=article&a=add_xinshui
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=add_xinshui")
+    Observable<BaseResponse2Entity<String>> publicXinShui(@FieldMap Map<String, String> map);
+
+    /**
+     * 我的粉丝
+     * index.php?g=portal&m=article&a=myfensi
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=myfensi")
+    Observable<BaseResponse2Entity<String>> getMyFensi(@FieldMap Map<String, String> map);
+
+    /**
+     * 提交转换
+     * index.php?g=portal&m=article&a=add_duihuan
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=add_duihuan")
+    Observable<BaseResponse2Entity<String>> submitChange(@FieldMap Map<String, String> map);
+
+    /**
+     * 获取转换平台名称等信息
+     * index.php?g=portal&m=article&a=get_pingtai
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=get_pingtai")
+    Observable<BaseResponse2Entity<String>> getPingTaiInfo(@FieldMap Map<String, String> map);
 
     /**
      * 属性参照

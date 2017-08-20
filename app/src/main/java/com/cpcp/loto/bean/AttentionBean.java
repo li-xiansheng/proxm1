@@ -6,8 +6,10 @@ package com.cpcp.loto.bean;
 
 public class AttentionBean {
 
-    public String headUrl;
-    public String name;
+    public String user_nicename;
+    public String mobile;
+    public String avatar;
     public String total;
-    public String shengfu;
+    public String success;
+    public String fail;
 }

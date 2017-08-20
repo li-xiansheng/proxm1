@@ -6,8 +6,8 @@ package com.cpcp.loto.bean;
 
 public class BuyRecordBean {
 
-    public String headUrl;
-    public String date;
-    public String chakan;
-    public String jifen;
+    public String time;
+    public String avatar;
+    public String points;
+    public String title;
 }

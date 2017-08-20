@@ -2,23 +2,101 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:gravity="center_vertical"
     android:background="@color/white"
-    android:padding="20dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
     android:layout_marginTop="15dp">
 
-    <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:src="@drawable/jifen"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/liangsheng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="单双(最近已连胜0)"
+            android:textColor="@color/grayText"
+            android:textSize="16sp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/shengfu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="总:1胜:0负:1胜率:0%"
+            android:textColor="@color/grayText"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="2017-04-11 第042期"
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        android:layout_marginLeft="15dp"/>
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/leixing"
+            android:layout_width="24dp"
+            android:layout_height="50dp"
+            android:text="1码"
+            android:ems="1"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:background="@color/red"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="35dp"
+            android:layout_centerVertical="true">
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="测试大小"
+                android:textSize="15sp"
+                android:textColor="@color/blackText"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/points"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="积分1 查看数:0"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="5dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/chakan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查看"
+            android:textSize="16sp"
+            android:textColor="@color/colorDeepOrangePrimary"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/aa_publish_bg_rec_normal"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+            />
+    </RelativeLayout>
+
+
 </LinearLayout>

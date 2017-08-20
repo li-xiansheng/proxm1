@@ -10,11 +10,14 @@
     <color name="black">#FF000000</color>
     <color name="transparent">#00000000</color>
     <color name="red">#FFFF0000</color>
+    <color name="red2">#ec4848</color>
     <color name="orange">#FFFF8000</color>
     <color name="yellow">#FFFFFF00</color>
     <color name="green">#79BE00</color>
+    <color name="gree2">#668b26</color>
     <color name="cyan">#FF00FFFF</color>
     <color name="blue">#FF0000FF</color>
+    <color name="blue2">#0fb5f7</color>
     <color name="purple">#FFFF00FF</color>
     <color name="gray">#FF666666</color>
     <color name="pink">#f29cb1</color>

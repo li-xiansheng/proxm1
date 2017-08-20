@@ -5,6 +5,13 @@ import android.app.Activity;
 import android.net.ParseException;
 
 import com.alibaba.fastjson.JSON;
+import com.cpcp.loto.MApplication;
+import com.cpcp.loto.config.ApiConstants;
+import com.cpcp.loto.exception.ApiException;
+import com.cpcp.loto.uihelper.LoadingDialog;
+import com.cpcp.loto.util.LogUtils;
+import com.cpcp.loto.util.NetworkUtil;
+import com.cpcp.loto.util.ToastUtils;
 
 import org.json.JSONException;
 
@@ -15,14 +22,6 @@ import java.net.UnknownHostException;
 import java.util.List;
 
 import javax.net.ssl.SSLHandshakeException;
-
-import com.cpcp.loto.MApplication;
-import com.cpcp.loto.config.ApiConstants;
-import com.cpcp.loto.exception.ApiException;
-import com.cpcp.loto.uihelper.LoadingDialog;
-import com.cpcp.loto.util.LogUtils;
-import com.cpcp.loto.util.NetworkUtil;
-import com.cpcp.loto.util.ToastUtils;
 
 import retrofit2.HttpException;
 import rx.Subscriber;
@@ -150,7 +149,7 @@ public abstract class RxSubscriber<T> extends Subscriber<T> {
         } else {
             ex = new ApiException(e, ApiConstants.UNKNOWN);
             ex.msg = "请求失败，未知错误";          //未知错误
-            onErrorBase(ex);
+//            onErrorBase(ex);
         }
     }
 

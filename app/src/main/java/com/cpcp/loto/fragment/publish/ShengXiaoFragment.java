@@ -1,5 +1,6 @@
 package com.cpcp.loto.fragment.publish;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -10,6 +11,9 @@ import com.cpcp.loto.base.BaseFragment;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
+
+import java.util.Iterator;
+import java.util.Set;
 
 import butterknife.BindView;
 
@@ -29,7 +33,7 @@ public class ShengXiaoFragment extends BaseFragment {
     private String[] mVals = new String[]
             {"鼠", "牛", "虎", "兔", "龙", "蛇",
                     "马", "羊", "猴", "鸡", "狗",
-                    "猪",};
+                    "猪"};
 
     @Override
     protected int getLayoutResId() {
@@ -52,6 +56,17 @@ public class ShengXiaoFragment extends BaseFragment {
             }
         });
 
+//        shengxiaoFlowlayout.setOnSelectListener(new TagFlowLayout.OnSelectListener()
+//        {
+//            @Override
+//            public void onSelected(Set<Integer> selectPosSet)
+//            {
+//                ToastUtils.show(selectPosSet.toString());
+//                LogUtils.i("PublishXinShuiActivity");
+////                getActivity().setTitle("choose:" + selectPosSet.toString());
+//            }
+//        });
+
         shengxiaoFlowlayout.setSelected(true);
 
     }
@@ -59,5 +74,30 @@ public class ShengXiaoFragment extends BaseFragment {
     @Override
     public void onLazyLoadData() {
 
+    }
+
+    public String getTitle(){
+        return shengxiaoTitle.getText().toString();
+    }
+
+    public String getPoints(){
+        return shengxiaoCount.getText().toString();
+    }
+
+    public String getChooseCir(){
+        Set<Integer> posSet = shengxiaoFlowlayout.getSelectedList();
+        Iterator<Integer> i = posSet.iterator();//先迭代出来
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("[");
+        while(i.hasNext()){//遍历
+            int str = i.next();
+            builder.append(mVals[str]+",");
+        }
+        builder.deleteCharAt(builder.length()-1);
+        builder.append("]");
+        Log.i("PublishXinShuiActivity","builder = " + builder.toString());
+
+        return builder.toString();
     }
 }

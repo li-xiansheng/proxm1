@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.cpcp.loto.activity.TransformActivity">
+    tools:context="com.cpcp.loto.activity.ChangeActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,6 +30,7 @@
                     android:layout_height="20dp"
                     android:src="@drawable/jifen"/>
                 <TextView
+                    android:id="@+id/total_points"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="总积分:0"
@@ -57,6 +58,7 @@
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/pingtai_rl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -73,7 +75,7 @@
                     android:textSize="16sp"
                     />
                 <TextView
-                    android:id="@+id/trans_pingtai"
+                    android:id="@+id/pingtai_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="请选择"
@@ -145,7 +147,7 @@
                     android:layout_centerVertical="true"
                     android:background="@null"
                     android:cursorVisible="true"
-                    android:hint="兑换的积分(当前0)"
+                    android:hint="兑换的积分"
                     android:gravity="right"
                     android:paddingTop="3dp"
                     android:paddingBottom="3dp"
@@ -184,7 +186,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/introduce_rl"
+                android:id="@+id/submit_rl"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
@@ -195,7 +197,6 @@
                 android:background="@drawable/aa_btn_back_selector">
 
                 <TextView
-                    android:id="@+id/login_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_centerInParent="true"

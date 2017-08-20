@@ -6,9 +6,10 @@ package com.cpcp.loto.bean;
 
 public class ChangeRecordBean {
 
-    public String number;
-    public String date;
-    public String platform;
-    public String jifen;
-    public String jine;
+
+    public String order_id;
+    public String createtime;
+    public String pingtainame;
+    public String points;
+//    public String jine;
 }
