@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/tabTobBlueBg"
+        android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -20,14 +20,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:tabIndicatorColor="@color/tabHomeBg"
+            app:tabIndicatorColor="@color/colorPrimary"
             app:tabIndicatorHeight="@dimen/dp2"
             app:tabMode="scrollable"
             app:tabTextAppearance="@android:style/TextAppearance.Holo.Small" />
-
-
-
     </LinearLayout>
+
+    <include layout="@layout/view_gray_line" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"

@@ -9,16 +9,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatRadioButton;
 import android.text.TextUtils;
 
-import com.cpcp.loto.MApplication;
 import com.cpcp.loto.R;
 import com.cpcp.loto.adapter.TabFragmentAdapter;
 import com.cpcp.loto.base.BaseActivity;
 import com.cpcp.loto.base.BaseFragment;
 import com.cpcp.loto.config.Constants;
-import com.cpcp.loto.entity.BaseResponse1Entity;
 import com.cpcp.loto.entity.BaseResponse2Entity;
 import com.cpcp.loto.entity.UserDB;
-import com.cpcp.loto.fragment.bet.BetChildFragment;
 import com.cpcp.loto.fragment.sendxinshui.DaXiaoFragment;
 import com.cpcp.loto.fragment.sendxinshui.DanShuangFragment;
 import com.cpcp.loto.fragment.sendxinshui.HaoMaFragment;
@@ -27,7 +24,6 @@ import com.cpcp.loto.net.HttpRequest;
 import com.cpcp.loto.net.HttpService;
 import com.cpcp.loto.net.RxSchedulersHelper;
 import com.cpcp.loto.net.RxSubscriber;
-import com.cpcp.loto.uihelper.LoadingDialog;
 import com.cpcp.loto.util.SPUtil;
 import com.cpcp.loto.util.ToastUtils;
 

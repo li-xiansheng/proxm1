@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <include layout="@layout/view_gray_line" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp30"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="@dimen/dp34"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="期数" />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="@dimen/dp34"
+            android:layout_height="wrap_content"
+
+            android:gravity="center"
+            android:text="特码" />
+
+        <include layout="@layout/view_vertical_line" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="特头走势" />
+            <include layout="@layout/view_vertical_line" />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:gravity="center"
+                android:text="特头单双" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <include layout="@layout/view_gray_line" />
+    <include layout="@layout/view_gray_line" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp30"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="@dimen/dp68"
+            android:layout_height="wrap_content"
+            android:text="no"
+            android:textColor="@color/transparent" />
+
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0头" />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="1头" />
+
+        <include layout="@layout/view_vertical_line" />
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="2头" />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="3头" />
+
+        <include layout="@layout/view_vertical_line" />
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="4头" />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="双头" />
+
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="单头" />
+
+
+    </LinearLayout>
+
+    <include layout="@layout/view_gray_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp30"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="@dimen/dp68"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="次数"
+            android:textColor="@color/red" />
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvZero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="@color/red" />
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="@color/red" />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="@color/red" />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvThree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="@color/red" />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvFour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="@color/red" />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvDouble"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="@color/red" />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvSingle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="@color/red" />
+
+
+    </LinearLayout>
+
+    <include layout="@layout/view_gray_line" />
+</LinearLayout>

@@ -76,15 +76,28 @@
 
     <include layout="@layout/view_gray_line" />
 
-    <com.cpcp.loto.view.PullToRefreshRecyclerView xmlns:ptr="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/pullToRefreshRecyclerView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        ptr:ptrAnimationStyle="flip"
-        ptr:ptrDrawable="@drawable/arrow_down"
-        ptr:ptrHeaderBackground="@color/white"
-        ptr:ptrHeaderTextColor="@color/grayText"
-        ptr:ptrMode="both"
-        ptr:ptrOverScroll="false"
-        ptr:ptrShowIndicator="false" />
+        android:layout_height="match_parent">
+
+        <com.cpcp.loto.view.PullToRefreshRecyclerView xmlns:ptr="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/pullToRefreshRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            ptr:ptrAnimationStyle="flip"
+            ptr:ptrDrawable="@drawable/arrow_down"
+            ptr:ptrHeaderBackground="@color/white"
+            ptr:ptrHeaderTextColor="@color/grayText"
+            ptr:ptrMode="both"
+            ptr:ptrOverScroll="false"
+            ptr:ptrShowIndicator="false" />
+        <com.cpcp.loto.view.SelectedLayerImageView
+            android:id="@+id/ivSendArticle"
+            android:layout_width="@dimen/dp50"
+            android:layout_height="@dimen/dp50"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/dp20"
+            android:src="@drawable/icon_send_article"/>
+    </RelativeLayout>
 </LinearLayout>

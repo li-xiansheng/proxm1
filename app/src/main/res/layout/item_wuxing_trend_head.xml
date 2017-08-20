@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <include layout="@layout/view_gray_line" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp30"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="@dimen/dp40"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="期数" />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="@dimen/dp40"
+            android:layout_height="wrap_content"
+
+            android:gravity="center"
+            android:text="特码" />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="@dimen/dp40"
+            android:layout_height="wrap_content"
+
+            android:gravity="center"
+            android:text="五行" />
+
+        <include layout="@layout/view_vertical_line" />
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="金" />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="木" />
+
+        <include layout="@layout/view_vertical_line" />
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="水" />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="火" />
+
+        <include layout="@layout/view_vertical_line" />
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="土" />
+
+
+    </LinearLayout>
+
+    <include layout="@layout/view_gray_line" />
+
+    <include layout="@layout/view_gray_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp30"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="@dimen/dp120"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="次数"
+            android:textColor="@color/red" />
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvJin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="@color/red" />
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvMu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="@color/red" />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvShui"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="@color/red" />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvHuo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="@color/red" />
+
+        <include layout="@layout/view_vertical_line" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvTu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="@color/red" />
+
+
+
+    </LinearLayout>
+
+    <include layout="@layout/view_gray_line" />
+</LinearLayout>

@@ -3,8 +3,8 @@ package com.cpcp.loto.net;
 
 import com.cpcp.loto.entity.BaseResponse1Entity;
 import com.cpcp.loto.entity.BaseResponse2Entity;
-import com.cpcp.loto.entity.BaseResponseEntity;
-import com.cpcp.loto.entity.BaseResponseListEntity;
+import com.cpcp.loto.entity.ForumDetailEntity;
+import com.cpcp.loto.entity.ForumEntity;
 import com.cpcp.loto.entity.ImgResponseEntity;
 import com.cpcp.loto.entity.LotoKingEntity;
 import com.cpcp.loto.entity.RedPacketEntity;
@@ -18,11 +18,9 @@ import java.util.Map;
 import okhttp3.RequestBody;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PartMap;
-import retrofit2.http.QueryMap;
 import rx.Observable;
 
 /**
@@ -145,6 +143,57 @@ public interface HttpService {
     @POST("index.php?g=portal&m=article&a=zoushifenxi")
     Observable<BaseResponse2Entity<List<TrendAnalysisEntity>>> getTrend(@FieldMap Map<String, String> map);
 
+    /**
+     * 论坛信息
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=forum")
+    Observable<BaseResponse2Entity<List<ForumEntity>>> getForumInfo(@FieldMap Map<String, String> map);
+
+    /**
+     * 论坛帖子详细
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=postdetail")
+    Observable<BaseResponse2Entity<ForumDetailEntity>> getForumInfoDetail(@FieldMap Map<String, String> map);
+    /**
+     * 我的帖子详细
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=mypost")
+    Observable<BaseResponse2Entity<List<ForumEntity>>> getMyForumInfo(@FieldMap Map<String, String> map);
+
+    /**
+     * 回复帖子
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=add_guest_reply")
+    Observable<BaseResponse2Entity<Object>> replayInfo(@FieldMap Map<String, String> map);
+    /**
+     * 发布帖子-添加留言
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=add_guest")
+    Observable<BaseResponse2Entity<Object>> releaseInfo(@FieldMap Map<String, String> map);
+
+    /**
+     * 帖子举报
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=jubao")
+    Observable<BaseResponse2Entity<Object>> report(@FieldMap Map<String, String> map);
 
 
 
@@ -248,7 +297,6 @@ public interface HttpService {
      * 连肖走势
      */
     public static String lianxiao = "http://lac.83gw.com/index.php?g=portal&m=article&a=lianxiaozoushi&type=2017";
-
 
 
 }

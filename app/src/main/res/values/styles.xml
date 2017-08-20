@@ -19,7 +19,7 @@
     </style>
     <!--toolbar menu字体大小-->
     <style name="MenuTextStyle">
-        <item name="android:textSize">@dimen/sp18</item>
+        <item name="android:textSize">@dimen/sp16</item>
     </style>
 
 

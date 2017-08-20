@@ -1,17 +1,12 @@
 package com.cpcp.loto.fragment.trend;
 
 import android.app.Activity;
-import android.view.View;
 
 import com.cpcp.loto.R;
-import com.cpcp.loto.activity.LotoKingActivity;
-import com.cpcp.loto.adapter.LotoKingRecyclerAdapter;
 import com.cpcp.loto.adapter.ShengXiaoTrendRecyclerAdapter;
 import com.cpcp.loto.base.BasePullRefreshFragment;
 import com.cpcp.loto.entity.BaseResponse2Entity;
-import com.cpcp.loto.entity.LotoKingEntity;
 import com.cpcp.loto.entity.TrendAnalysisEntity;
-import com.cpcp.loto.listener.OnItemClickListener;
 import com.cpcp.loto.net.HttpRequest;
 import com.cpcp.loto.net.HttpService;
 import com.cpcp.loto.net.RxSchedulersHelper;
@@ -38,7 +33,7 @@ public class ShengXiaoTrendFragment extends BasePullRefreshFragment {
 
     @Override
     protected int getChildLayoutResId() {
-        return R.layout.fragment_loto_king;
+        return R.layout.fragment_trend;
     }
 
     @Override
@@ -80,26 +75,11 @@ public class ShengXiaoTrendFragment extends BasePullRefreshFragment {
 
     private void getLotoLottery() {
 
-        String type = "";
-        if ("生肖走势".equals(title)) {
-            type = "shengxiao";
-        } else if ("波色走势".equals(title)) {
-            type = "bose";
-        } else if ("单双走势".equals(title)) {
-            type = "danshuang";
-        } else if ("段位走势".equals(title)) {
-            type = "duanwei";
-        }else if ("头数走势".equals(title)) {
-            type = "toushu";
-        }else if ("尾数走势".equals(title)) {
-            type = "weishu";
-        }else if ("五行走势".equals(title)) {
-            type = "wuxing";
-        }
+
 
         Map<String, String> map = new HashMap<>();
 
-        map.put("type", type);
+        map.put("type", "shengxiao");
         map.put("page", currentPage+"");
         map.put("year","2017");
         HttpService httpService = HttpRequest.provideClientApi();

@@ -3,7 +3,7 @@ package com.cpcp.loto.entity;
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
- * 功能描述：走势分析
+ * 功能描述：走势分析--生肖
  */
 
 public class TrendAnalysisEntity {
@@ -14,6 +14,10 @@ public class TrendAnalysisEntity {
      * tema : 39
      * shengxiao : 羊
      * yanse : lv
+     *
+     * "wei": "0",
+     "daxiao": "小",
+     wuxing :土
      */
     @JSONField(name="日期")
     private String date;
@@ -23,6 +27,10 @@ public class TrendAnalysisEntity {
     private String tema;
     private String shengxiao;
     private String yanse;
+    private String danshuang;
+    private String wei;
+    private String daxiao;
+    private String wuxing;
 
     public String getDate() {
         return date;
@@ -56,11 +64,44 @@ public class TrendAnalysisEntity {
         this.shengxiao = shengxiao;
     }
 
+
+    public String getDanshuang() {
+        return danshuang;
+    }
+
+    public void setDanshuang(String danshuang) {
+        this.danshuang = danshuang;
+    }
+
     public String getYanse() {
         return yanse;
     }
 
     public void setYanse(String yanse) {
         this.yanse = yanse;
+    }
+
+    public String getWei() {
+        return wei;
+    }
+
+    public void setWei(String wei) {
+        this.wei = wei;
+    }
+
+    public String getDaxiao() {
+        return daxiao;
+    }
+
+    public void setDaxiao(String daxiao) {
+        this.daxiao = daxiao;
+    }
+
+    public String getWuxing() {
+        return wuxing;
+    }
+
+    public void setWuxing(String wuxing) {
+        this.wuxing = wuxing;
     }
 }

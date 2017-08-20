@@ -5,7 +5,6 @@ import android.os.Handler;
 
 import com.cpcp.loto.R;
 import com.cpcp.loto.adapter.ShengXiaoTrendRecyclerAdapter;
-import com.cpcp.loto.base.BaseActivity;
 import com.cpcp.loto.base.BasePullRefreshActivity;
 import com.cpcp.loto.entity.BaseResponse2Entity;
 import com.cpcp.loto.entity.TrendAnalysisEntity;

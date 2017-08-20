@@ -44,8 +44,7 @@ public class GetRedPacketActivity extends BaseActivity {
     AppCompatImageView ivRedPacket;
     @BindView(R.id.tvScore)
     AppCompatTextView tvScore;
-    @BindView(R.id.tvHint)
-    AppCompatTextView tvHint;
+
     @BindView(R.id.lilScore)
     LinearLayout lilScore;
     @BindView(R.id.tvGet)
@@ -103,16 +102,31 @@ public class GetRedPacketActivity extends BaseActivity {
                     public void _onNext(int status, BaseResponse2Entity<RedPacketEntity> response) {
 
 
-                        ivRedPacket.setImageResource(R.drawable.img_red_packet_open);
+
                         lilScore.setVisibility(View.VISIBLE);
                         if (response.getFlag() == 1) {
                             if (response.getData() != null) {
-                                tvScore.setText(response.getData().getScore() + "分");
+
+                                String socre=response.getData().getScore();
+                                if("0".equals(socre)){
+                                    ivRedPacket.setImageResource(R.drawable.img_red_packet_open_not);
+                                    tvScore.setText("");
+                                }else{
+                                    ivRedPacket.setImageResource(R.drawable.img_red_packet_open);
+                                    tvScore.setText( socre+ "分");
+                                }
+
+                            }else{
+                                ivRedPacket.setImageResource(R.drawable.img_red_packet_open_tomorrow);
+                                ToastUtils.show(response.getErrmsg() + "");
+                                tvScore.setText("");
+
                             }
                         } else {
+                            ivRedPacket.setImageResource(R.drawable.img_red_packet_open_tomorrow);
                             ToastUtils.show(response.getErrmsg() + "");
-                            tvScore.setText("明日再来");
-                            tvHint.setText(response.getErrmsg() + "");
+                            tvScore.setText("");
+
                         }
                     }
                 });

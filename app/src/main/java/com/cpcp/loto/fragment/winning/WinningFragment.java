@@ -1,10 +1,12 @@
 package com.cpcp.loto.fragment.winning;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.View;
 
 import com.cpcp.loto.R;
 import com.cpcp.loto.activity.LotoKingActivity;
+import com.cpcp.loto.activity.SalaryActivity;
 import com.cpcp.loto.adapter.LotoKingRecyclerAdapter;
 import com.cpcp.loto.adapter.WinningRecyclerAdapter;
 import com.cpcp.loto.base.BasePullRefreshFragment;
@@ -60,11 +62,14 @@ public class WinningFragment extends BasePullRefreshFragment {
         mBaseRecycleViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-//                LotoKingEntity bean = mList.get(position);
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("bean", bean);
-//                bundle.putString("type", title);
-//                mActivity.jumpToActivity(CommunityDetailActivity.class, bundle, false);
+                WinningEntity bean = mList.get(position);
+                Bundle bundle = new Bundle();
+                String username = "";
+                if (bean.getUserinfo() != null) {
+                    username = bean.getUserinfo().getUser_nicename();
+                }
+                bundle.putString("username", username);
+                mActivity.jumpToActivity(SalaryActivity.class, bundle, false);
             }
         });
     }

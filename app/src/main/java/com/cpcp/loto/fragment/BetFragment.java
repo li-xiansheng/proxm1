@@ -9,7 +9,10 @@ import android.support.v4.view.ViewPager;
 import com.cpcp.loto.R;
 import com.cpcp.loto.adapter.TabFragmentAdapter;
 import com.cpcp.loto.base.BaseFragment;
-import com.cpcp.loto.fragment.bet.BetChildFragment;
+import com.cpcp.loto.fragment.bet.BoSeBetFragment;
+import com.cpcp.loto.fragment.bet.DaXiaoBetFragment;
+import com.cpcp.loto.fragment.bet.DanShuangBetFragment;
+import com.cpcp.loto.fragment.bet.ShengxiaoBetFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,9 +56,19 @@ public class BetFragment extends BaseFragment {
         String[] titles = {"波色投票", "大小投票", "单双投票", "生肖投票"};
         final List<BaseFragment> fragments = new ArrayList<>();
 
-
+        BaseFragment fragment;
         for (int i = 0; i < titles.length; i++) {
-            BetChildFragment fragment = new BetChildFragment();
+            if (i == 0) {
+                fragment = new BoSeBetFragment();
+            } else if (i == 1) {
+                fragment = new DaXiaoBetFragment();
+            } else if (i == 2) {
+                fragment = new DanShuangBetFragment();
+            } else if (i == 3) {
+                fragment = new ShengxiaoBetFragment();
+            } else {
+                break;
+            }
             Bundle bundle = new Bundle();
             bundle.putString("text", titles[i]);
             fragment.setArguments(bundle);
@@ -67,7 +80,7 @@ public class BetFragment extends BaseFragment {
         // 将ViewPager和TabLayout绑定
         tabLayout.setupWithViewPager(viewPager);
         // 设置tab文本的没有选中（第一个参数）和选中（第二个参数）的颜色
-        tabLayout.setTabTextColors(Color.BLACK, Color.BLUE);
+        tabLayout.setTabTextColors(Color.BLACK, R.color.colorPrimary);
         tabLayout.setTabMode(tabLayout.MODE_FIXED);
         //主动调取第一个页面可见执行懒加载
         new Handler().postDelayed(new Runnable() {
@@ -76,14 +89,6 @@ public class BetFragment extends BaseFragment {
                 fragments.get(0).setUserVisibleHint(true);
             }
         }, 1000);
-//        //view加载完成时回调
-//        viewPager.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-//            @Override
-//            public void onGlobalLayout() {
-//                fragments.get(0).setUserVisibleHint(true);
-//
-//            }
-//        });
     }
 
 

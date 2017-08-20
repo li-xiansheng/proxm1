@@ -72,305 +72,61 @@ public class ShengXiaoTrendRecyclerAdapter extends BaseRecycleViewAdapter {
                     color = mContext.getResources().getColor(R.color.grayText);
                 }
                 viewHolder.tvTema.setTextColor(color);
+                //
+                setUI(viewHolder, color, grayColor);
                 if ("鼠".equals(name)) {
                     viewHolder.tvShu.setText("鼠");
                     viewHolder.tvShu.setTextColor(color);
-                    viewHolder.tvNiu.setText("--");
-                    viewHolder.tvNiu.setTextColor(grayColor);
-                    viewHolder.tvHu.setText("--");
-                    viewHolder.tvHu.setTextColor(grayColor);
-                    viewHolder.tvTu.setText("--");
-                    viewHolder.tvTu.setTextColor(grayColor);
-                    viewHolder.tvLong.setText("--");
-                    viewHolder.tvLong.setTextColor(grayColor);
-                    viewHolder.tvShe.setText("--");
-                    viewHolder.tvShe.setTextColor(grayColor);
-                    viewHolder.tvMa.setText("--");
-                    viewHolder.tvMa.setTextColor(grayColor);
-                    viewHolder.tvYang.setText("--");
-                    viewHolder.tvYang.setTextColor(grayColor);
-                    viewHolder.tvHou.setText("--");
-                    viewHolder.tvHou.setTextColor(grayColor);
-                    viewHolder.tvJi.setText("--");
-                    viewHolder.tvJi.setTextColor(grayColor);
-                    viewHolder.tvGou.setText("--");
-                    viewHolder.tvGou.setTextColor(grayColor);
-                    viewHolder.tvZhu.setText("--");
-                    viewHolder.tvZhu.setTextColor(grayColor);
 
                 } else if ("牛".equals(name)) {
-                    viewHolder.tvShu.setText("--");
-                    viewHolder.tvShu.setTextColor(grayColor);
+
                     viewHolder.tvNiu.setText("牛");
                     viewHolder.tvNiu.setTextColor(color);
-                    viewHolder.tvHu.setText("--");
-                    viewHolder.tvHu.setTextColor(grayColor);
-                    viewHolder.tvTu.setText("--");
-                    viewHolder.tvTu.setTextColor(grayColor);
-                    viewHolder.tvLong.setText("--");
-                    viewHolder.tvLong.setTextColor(grayColor);
-                    viewHolder.tvShe.setText("--");
-                    viewHolder.tvShe.setTextColor(grayColor);
-                    viewHolder.tvMa.setText("--");
-                    viewHolder.tvMa.setTextColor(grayColor);
-                    viewHolder.tvYang.setText("--");
-                    viewHolder.tvYang.setTextColor(grayColor);
-                    viewHolder.tvHou.setText("--");
-                    viewHolder.tvHou.setTextColor(grayColor);
-                    viewHolder.tvJi.setText("--");
-                    viewHolder.tvJi.setTextColor(grayColor);
-                    viewHolder.tvGou.setText("--");
-                    viewHolder.tvGou.setTextColor(grayColor);
-                    viewHolder.tvZhu.setText("--");
-                    viewHolder.tvZhu.setTextColor(grayColor);
+
                 } else if ("虎".equals(name)) {
-                    viewHolder.tvShu.setText("--");
-                    viewHolder.tvShu.setTextColor(grayColor);
-                    viewHolder.tvNiu.setText("--");
-                    viewHolder.tvNiu.setTextColor(grayColor);
+
                     viewHolder.tvHu.setText("虎");
                     viewHolder.tvHu.setTextColor(color);
-                    viewHolder.tvTu.setText("--");
-                    viewHolder.tvTu.setTextColor(grayColor);
-                    viewHolder.tvLong.setText("--");
-                    viewHolder.tvLong.setTextColor(grayColor);
-                    viewHolder.tvShe.setText("--");
-                    viewHolder.tvShe.setTextColor(grayColor);
-                    viewHolder.tvMa.setText("--");
-                    viewHolder.tvMa.setTextColor(grayColor);
-                    viewHolder.tvYang.setText("--");
-                    viewHolder.tvYang.setTextColor(grayColor);
-                    viewHolder.tvHou.setText("--");
-                    viewHolder.tvHou.setTextColor(grayColor);
-                    viewHolder.tvJi.setText("--");
-                    viewHolder.tvJi.setTextColor(grayColor);
-                    viewHolder.tvGou.setText("--");
-                    viewHolder.tvGou.setTextColor(grayColor);
-                    viewHolder.tvZhu.setText("--");
-                    viewHolder.tvZhu.setTextColor(grayColor);
+
                 } else if ("兔".equals(name)) {
-                    viewHolder.tvShu.setText("--");
-                    viewHolder.tvShu.setTextColor(grayColor);
-                    viewHolder.tvNiu.setText("--");
-                    viewHolder.tvNiu.setTextColor(grayColor);
-                    viewHolder.tvHu.setText("--");
-                    viewHolder.tvHu.setTextColor(grayColor);
+
                     viewHolder.tvTu.setText("兔");
                     viewHolder.tvTu.setTextColor(color);
-                    viewHolder.tvLong.setText("--");
-                    viewHolder.tvLong.setTextColor(grayColor);
-                    viewHolder.tvShe.setText("--");
-                    viewHolder.tvShe.setTextColor(grayColor);
-                    viewHolder.tvMa.setText("--");
-                    viewHolder.tvMa.setTextColor(grayColor);
-                    viewHolder.tvYang.setText("--");
-                    viewHolder.tvYang.setTextColor(grayColor);
-                    viewHolder.tvHou.setText("--");
-                    viewHolder.tvHou.setTextColor(grayColor);
-                    viewHolder.tvJi.setText("--");
-                    viewHolder.tvJi.setTextColor(grayColor);
-                    viewHolder.tvGou.setText("--");
-                    viewHolder.tvGou.setTextColor(grayColor);
-                    viewHolder.tvZhu.setText("--");
-                    viewHolder.tvZhu.setTextColor(grayColor);
+
                 } else if ("龙".equals(name)) {
-                    viewHolder.tvShu.setText("--");
-                    viewHolder.tvShu.setTextColor(grayColor);
-                    viewHolder.tvNiu.setText("--");
-                    viewHolder.tvNiu.setTextColor(grayColor);
-                    viewHolder.tvHu.setText("--");
-                    viewHolder.tvHu.setTextColor(grayColor);
-                    viewHolder.tvTu.setText("--");
-                    viewHolder.tvTu.setTextColor(grayColor);
+
                     viewHolder.tvLong.setText("龙");
                     viewHolder.tvLong.setTextColor(color);
-                    viewHolder.tvShe.setText("--");
-                    viewHolder.tvShe.setTextColor(grayColor);
-                    viewHolder.tvMa.setText("--");
-                    viewHolder.tvMa.setTextColor(grayColor);
-                    viewHolder.tvYang.setText("--");
-                    viewHolder.tvYang.setTextColor(grayColor);
-                    viewHolder.tvHou.setText("--");
-                    viewHolder.tvHou.setTextColor(grayColor);
-                    viewHolder.tvJi.setText("--");
-                    viewHolder.tvJi.setTextColor(grayColor);
-                    viewHolder.tvGou.setText("--");
-                    viewHolder.tvGou.setTextColor(grayColor);
-                    viewHolder.tvZhu.setText("--");
-                    viewHolder.tvZhu.setTextColor(grayColor);
+
                 } else if ("蛇".equals(name)) {
-                    viewHolder.tvShu.setText("--");
-                    viewHolder.tvShu.setTextColor(grayColor);
-                    viewHolder.tvNiu.setText("--");
-                    viewHolder.tvNiu.setTextColor(grayColor);
-                    viewHolder.tvHu.setText("--");
-                    viewHolder.tvHu.setTextColor(grayColor);
-                    viewHolder.tvTu.setText("--");
-                    viewHolder.tvTu.setTextColor(grayColor);
-                    viewHolder.tvLong.setText("--");
-                    viewHolder.tvLong.setTextColor(grayColor);
+
                     viewHolder.tvShe.setText("蛇");
                     viewHolder.tvShe.setTextColor(color);
-                    viewHolder.tvMa.setText("--");
-                    viewHolder.tvMa.setTextColor(grayColor);
-                    viewHolder.tvYang.setText("--");
-                    viewHolder.tvYang.setTextColor(grayColor);
-                    viewHolder.tvHou.setText("--");
-                    viewHolder.tvHou.setTextColor(grayColor);
-                    viewHolder.tvJi.setText("--");
-                    viewHolder.tvJi.setTextColor(grayColor);
-                    viewHolder.tvGou.setText("--");
-                    viewHolder.tvGou.setTextColor(grayColor);
-                    viewHolder.tvZhu.setText("--");
-                    viewHolder.tvZhu.setTextColor(grayColor);
+
                 } else if ("马".equals(name)) {
-                    viewHolder.tvShu.setText("--");
-                    viewHolder.tvShu.setTextColor(grayColor);
-                    viewHolder.tvNiu.setText("--");
-                    viewHolder.tvNiu.setTextColor(grayColor);
-                    viewHolder.tvHu.setText("--");
-                    viewHolder.tvHu.setTextColor(grayColor);
-                    viewHolder.tvTu.setText("--");
-                    viewHolder.tvTu.setTextColor(grayColor);
-                    viewHolder.tvLong.setText("--");
-                    viewHolder.tvLong.setTextColor(grayColor);
-                    viewHolder.tvShe.setText("--");
-                    viewHolder.tvShe.setTextColor(grayColor);
+
                     viewHolder.tvMa.setText("马");
                     viewHolder.tvMa.setTextColor(color);
-                    viewHolder.tvYang.setText("--");
-                    viewHolder.tvYang.setTextColor(grayColor);
-                    viewHolder.tvHou.setText("--");
-                    viewHolder.tvHou.setTextColor(grayColor);
-                    viewHolder.tvJi.setText("--");
-                    viewHolder.tvJi.setTextColor(grayColor);
-                    viewHolder.tvGou.setText("--");
-                    viewHolder.tvGou.setTextColor(grayColor);
-                    viewHolder.tvZhu.setText("--");
-                    viewHolder.tvZhu.setTextColor(grayColor);
+
                 } else if ("羊".equals(name)) {
-                    viewHolder.tvShu.setText("--");
-                    viewHolder.tvShu.setTextColor(grayColor);
-                    viewHolder.tvNiu.setText("--");
-                    viewHolder.tvNiu.setTextColor(grayColor);
-                    viewHolder.tvHu.setText("--");
-                    viewHolder.tvHu.setTextColor(grayColor);
-                    viewHolder.tvTu.setText("--");
-                    viewHolder.tvTu.setTextColor(grayColor);
-                    viewHolder.tvLong.setText("--");
-                    viewHolder.tvLong.setTextColor(grayColor);
-                    viewHolder.tvShe.setText("--");
-                    viewHolder.tvShe.setTextColor(grayColor);
-                    viewHolder.tvMa.setText("--");
-                    viewHolder.tvMa.setTextColor(grayColor);
+
                     viewHolder.tvYang.setText("羊");
                     viewHolder.tvYang.setTextColor(color);
-                    viewHolder.tvHou.setText("--");
-                    viewHolder.tvHou.setTextColor(grayColor);
-                    viewHolder.tvJi.setText("--");
-                    viewHolder.tvJi.setTextColor(grayColor);
-                    viewHolder.tvGou.setText("--");
-                    viewHolder.tvGou.setTextColor(grayColor);
-                    viewHolder.tvZhu.setText("--");
-                    viewHolder.tvZhu.setTextColor(grayColor);
+
                 } else if ("猴".equals(name)) {
-                    viewHolder.tvShu.setText("--");
-                    viewHolder.tvShu.setTextColor(grayColor);
-                    viewHolder.tvNiu.setText("--");
-                    viewHolder.tvNiu.setTextColor(grayColor);
-                    viewHolder.tvHu.setText("--");
-                    viewHolder.tvHu.setTextColor(grayColor);
-                    viewHolder.tvTu.setText("--");
-                    viewHolder.tvTu.setTextColor(grayColor);
-                    viewHolder.tvLong.setText("--");
-                    viewHolder.tvLong.setTextColor(grayColor);
-                    viewHolder.tvShe.setText("--");
-                    viewHolder.tvShe.setTextColor(grayColor);
-                    viewHolder.tvMa.setText("--");
-                    viewHolder.tvMa.setTextColor(grayColor);
-                    viewHolder.tvYang.setText("--");
-                    viewHolder.tvYang.setTextColor(grayColor);
+
                     viewHolder.tvHou.setText("猴");
                     viewHolder.tvHou.setTextColor(color);
-                    viewHolder.tvJi.setText("--");
-                    viewHolder.tvJi.setTextColor(grayColor);
-                    viewHolder.tvGou.setText("--");
-                    viewHolder.tvGou.setTextColor(grayColor);
-                    viewHolder.tvZhu.setText("--");
-                    viewHolder.tvZhu.setTextColor(grayColor);
+
                 } else if ("鸡".equals(name)) {
-                    viewHolder.tvShu.setText("--");
-                    viewHolder.tvShu.setTextColor(grayColor);
-                    viewHolder.tvNiu.setText("--");
-                    viewHolder.tvNiu.setTextColor(grayColor);
-                    viewHolder.tvHu.setText("--");
-                    viewHolder.tvHu.setTextColor(grayColor);
-                    viewHolder.tvTu.setText("--");
-                    viewHolder.tvTu.setTextColor(grayColor);
-                    viewHolder.tvLong.setText("--");
-                    viewHolder.tvLong.setTextColor(grayColor);
-                    viewHolder.tvShe.setText("--");
-                    viewHolder.tvShe.setTextColor(grayColor);
-                    viewHolder.tvMa.setText("--");
-                    viewHolder.tvMa.setTextColor(grayColor);
-                    viewHolder.tvYang.setText("--");
-                    viewHolder.tvYang.setTextColor(grayColor);
-                    viewHolder.tvHou.setText("--");
-                    viewHolder.tvHou.setTextColor(grayColor);
                     viewHolder.tvJi.setText("鸡");
                     viewHolder.tvJi.setTextColor(color);
-                    viewHolder.tvGou.setText("--");
-                    viewHolder.tvGou.setTextColor(grayColor);
-                    viewHolder.tvZhu.setText("--");
-                    viewHolder.tvZhu.setTextColor(grayColor);
+
                 } else if ("狗".equals(name)) {
-                    viewHolder.tvShu.setText("--");
-                    viewHolder.tvShu.setTextColor(grayColor);
-                    viewHolder.tvNiu.setText("--");
-                    viewHolder.tvNiu.setTextColor(grayColor);
-                    viewHolder.tvHu.setText("--");
-                    viewHolder.tvHu.setTextColor(grayColor);
-                    viewHolder.tvTu.setText("--");
-                    viewHolder.tvTu.setTextColor(grayColor);
-                    viewHolder.tvLong.setText("--");
-                    viewHolder.tvLong.setTextColor(grayColor);
-                    viewHolder.tvShe.setText("--");
-                    viewHolder.tvShe.setTextColor(grayColor);
-                    viewHolder.tvMa.setText("--");
-                    viewHolder.tvMa.setTextColor(grayColor);
-                    viewHolder.tvYang.setText("--");
-                    viewHolder.tvYang.setTextColor(grayColor);
-                    viewHolder.tvHou.setText("--");
-                    viewHolder.tvHou.setTextColor(grayColor);
-                    viewHolder.tvJi.setText("--");
-                    viewHolder.tvJi.setTextColor(grayColor);
                     viewHolder.tvGou.setText("狗");
                     viewHolder.tvGou.setTextColor(color);
-                    viewHolder.tvZhu.setText("--");
-                    viewHolder.tvZhu.setTextColor(grayColor);
+
                 } else if ("猪".equals(name)) {
-                    viewHolder.tvShu.setText("--");
-                    viewHolder.tvShu.setTextColor(grayColor);
-                    viewHolder.tvNiu.setText("--");
-                    viewHolder.tvNiu.setTextColor(grayColor);
-                    viewHolder.tvHu.setText("--");
-                    viewHolder.tvHu.setTextColor(grayColor);
-                    viewHolder.tvTu.setText("--");
-                    viewHolder.tvTu.setTextColor(grayColor);
-                    viewHolder.tvLong.setText("--");
-                    viewHolder.tvLong.setTextColor(grayColor);
-                    viewHolder.tvShe.setText("--");
-                    viewHolder.tvShe.setTextColor(grayColor);
-                    viewHolder.tvMa.setText("--");
-                    viewHolder.tvMa.setTextColor(grayColor);
-                    viewHolder.tvYang.setText("--");
-                    viewHolder.tvYang.setTextColor(grayColor);
-                    viewHolder.tvHou.setText("--");
-                    viewHolder.tvHou.setTextColor(grayColor);
-                    viewHolder.tvJi.setText("--");
-                    viewHolder.tvJi.setTextColor(grayColor);
-                    viewHolder.tvGou.setText("--");
-                    viewHolder.tvGou.setTextColor(grayColor);
                     viewHolder.tvZhu.setText("猪");
                     viewHolder.tvZhu.setTextColor(color);
                 }
@@ -452,6 +208,39 @@ public class ShengXiaoTrendRecyclerAdapter extends BaseRecycleViewAdapter {
             return TYPE_CONTENT;
         }
 //        return super.getItemViewType(position);
+    }
+
+    /**
+     * 初始设定UI
+     * @param viewHolder
+     * @param color
+     * @param grayColor
+     */
+    private void setUI(ViewHolderContent viewHolder, int color, int grayColor) {
+        viewHolder.tvShu.setText("--");
+        viewHolder.tvShu.setTextColor(grayColor);
+        viewHolder.tvNiu.setText("--");
+        viewHolder.tvNiu.setTextColor(grayColor);
+        viewHolder.tvHu.setText("--");
+        viewHolder.tvHu.setTextColor(grayColor);
+        viewHolder.tvTu.setText("--");
+        viewHolder.tvTu.setTextColor(grayColor);
+        viewHolder.tvLong.setText("--");
+        viewHolder.tvLong.setTextColor(grayColor);
+        viewHolder.tvShe.setText("--");
+        viewHolder.tvShe.setTextColor(grayColor);
+        viewHolder.tvMa.setText("--");
+        viewHolder.tvMa.setTextColor(grayColor);
+        viewHolder.tvYang.setText("--");
+        viewHolder.tvYang.setTextColor(grayColor);
+        viewHolder.tvHou.setText("--");
+        viewHolder.tvHou.setTextColor(grayColor);
+        viewHolder.tvJi.setText("--");
+        viewHolder.tvJi.setTextColor(grayColor);
+        viewHolder.tvGou.setText("--");
+        viewHolder.tvGou.setTextColor(grayColor);
+        viewHolder.tvZhu.setText("--");
+        viewHolder.tvZhu.setTextColor(grayColor);
     }
 
     /**

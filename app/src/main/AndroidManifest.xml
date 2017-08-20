@@ -212,6 +212,20 @@
             android:name=".activity.PublishXinShuiActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".activity.ForumDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MyForumActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SendArticleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ReportArticleActivity"
+            android:screenOrientation="portrait" />
+
+
         <!-- 极光测试页面，点击后打开 -->
         <!-- **********************************极光开始*************************************************************** -->
         <!-- Rich push 核心功能 since 2.0.6 -->

@@ -41,7 +41,7 @@ public class SalaryActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        setTitle("我的薪水");
+        setTitle("心水");
 
         String[] mTitles = {"本期推荐", "历史推荐"};
         salaryTablayout.setTabData(mTitles);
@@ -50,7 +50,7 @@ public class SalaryActivity extends BaseActivity {
         fragments.add(new currentFragment());
         fragments.add(new HistoryFragment());
 
-        salaryViewpager.setAdapter(new TabRichAdapter(fragments,getSupportFragmentManager(),this));
+        salaryViewpager.setAdapter(new TabRichAdapter(fragments, getSupportFragmentManager(), this));
         salaryTablayout.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {

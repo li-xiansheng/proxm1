@@ -10,7 +10,6 @@ import com.cpcp.loto.R;
 import com.cpcp.loto.adapter.TabFragmentAdapter;
 import com.cpcp.loto.base.BaseActivity;
 import com.cpcp.loto.base.BaseFragment;
-import com.cpcp.loto.fragment.bet.BetChildFragment;
 import com.cpcp.loto.fragment.winning.WinningFragment;
 
 import java.util.ArrayList;
