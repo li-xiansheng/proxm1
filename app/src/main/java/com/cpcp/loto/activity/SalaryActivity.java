@@ -1,5 +1,7 @@
 package com.cpcp.loto.activity;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.Log;
@@ -36,6 +38,12 @@ public class SalaryActivity extends BaseActivity {
     @BindView(R.id.salary_viewpager)
     ViewPager salaryViewpager;
 
+    String nickname;
+    String avatar;
+    String mobile;
+
+    CurrentFragment currentFragment;
+    HistoryFragment historyFragment;
 
     @Override
     protected int getLayoutResId() {
