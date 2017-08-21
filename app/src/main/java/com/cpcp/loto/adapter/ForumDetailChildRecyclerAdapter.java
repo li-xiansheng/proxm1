@@ -76,7 +76,6 @@ public class ForumDetailChildRecyclerAdapter extends BaseRecycleViewAdapter {
         @BindView(R.id.tvMsg)
         AppCompatTextView tvMsg;
 
-
         ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);

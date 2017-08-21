@@ -9,6 +9,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/PickeTimerViewLib" />
             <option value="$PROJECT_DIR$/Refresh-library" />
             <option value="$PROJECT_DIR$/app" />
           </set>

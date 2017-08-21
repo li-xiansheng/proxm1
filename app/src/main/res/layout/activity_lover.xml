@@ -2,6 +2,119 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/dp20">
 
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="match_parent"
+
+        android:layout_height="@dimen/dp100"
+        android:scaleType="centerInside"
+        android:src="@drawable/img_lover_tema" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="请选择你的性别"
+            android:textColor="@color/blackText"
+            android:textSize="@dimen/sp16" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/rbMan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@color/transparent"
+                android:text="男"
+                android:textSize="@dimen/sp16" />
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/rbWoman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp80"
+                android:button="@color/transparent"
+                android:text="女"
+                android:textSize="@dimen/sp16" />
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/dp10"
+        android:orientation="horizontal">
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blackText"
+            android:textSize="@dimen/sp16"
+            android:text="你的生日"
+            android:layout_weight="1"/>
+        <com.cpcp.loto.view.SelectedLayerTextView
+            android:id="@+id/tvMyBirthday"
+            android:layout_width="@dimen/dp110"
+            android:layout_height="@dimen/dp30"
+            android:textColor="@color/white"
+            android:hint="请选择生日"
+            android:textColorHint="@color/white"
+            android:gravity="center"
+            android:background="@color/grayBg"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/dp10"
+        android:orientation="horizontal">
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blackText"
+            android:textSize="@dimen/sp16"
+            android:text="你伴侣的生日"
+            android:layout_weight="1"/>
+        <com.cpcp.loto.view.SelectedLayerTextView
+            android:id="@+id/tvLoverBirthday"
+            android:layout_width="@dimen/dp110"
+            android:layout_height="@dimen/dp30"
+            android:textColor="@color/white"
+            android:hint="请选择生日"
+            android:textColorHint="@color/white"
+            android:gravity="center"
+            android:background="@color/grayBg"/>
+    </LinearLayout>
+
+    <com.cpcp.loto.view.SelectedLayerTextView
+        android:id="@+id/tvStart"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp30"
+        android:layout_margin="@dimen/dp20"
+        android:text="开始匹配"
+        android:textSize="@dimen/sp16"
+        android:gravity="center"
+        android:background="@drawable/shape_arc2_red"
+        android:textColor="@color/white"/>
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:text="幸运号码简介\n1、请选择你的性别。\n2、请输入你和他/她的生日，预测本期开奖结果"/>
 </LinearLayout>

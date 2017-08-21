@@ -3,6 +3,7 @@ package com.cpcp.loto.net;
 
 import com.cpcp.loto.entity.BaseResponse1Entity;
 import com.cpcp.loto.entity.BaseResponse2Entity;
+import com.cpcp.loto.entity.FormulaEntity;
 import com.cpcp.loto.entity.ForumDetailEntity;
 import com.cpcp.loto.entity.ForumEntity;
 import com.cpcp.loto.entity.ImgResponseEntity;
@@ -194,6 +195,16 @@ public interface HttpService {
     @FormUrlEncoded
     @POST("index.php?g=portal&m=article&a=jubao")
     Observable<BaseResponse2Entity<Object>> report(@FieldMap Map<String, String> map);
+
+    /**
+     * 六合公式（特码公式）
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=formula")
+    Observable<BaseResponse2Entity<List<FormulaEntity>>> getFormula(@FieldMap Map<String, String> map);
+
 
 
 
@@ -405,7 +416,6 @@ public interface HttpService {
     @FormUrlEncoded
     @POST("index.php?g=portal&m=article&a=get_pingtai")
     Observable<BaseResponse2Entity<String>> getPingTaiInfo(@FieldMap Map<String, String> map);
-
 
 
 }

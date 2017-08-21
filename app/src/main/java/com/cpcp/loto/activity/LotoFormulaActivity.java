@@ -1,13 +1,18 @@
 package com.cpcp.loto.activity;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 
 import com.cpcp.loto.R;
+import com.cpcp.loto.adapter.LotoFormulaRecyclerAdapter;
 import com.cpcp.loto.adapter.ShengXiaoTrendRecyclerAdapter;
 import com.cpcp.loto.base.BasePullRefreshActivity;
 import com.cpcp.loto.entity.BaseResponse2Entity;
+import com.cpcp.loto.entity.FormulaEntity;
 import com.cpcp.loto.entity.TrendAnalysisEntity;
+import com.cpcp.loto.listener.OnItemClickListener;
 import com.cpcp.loto.net.HttpRequest;
 import com.cpcp.loto.net.HttpService;
 import com.cpcp.loto.net.RxSchedulersHelper;
@@ -25,9 +30,9 @@ import java.util.Map;
  */
 
 public class LotoFormulaActivity extends BasePullRefreshActivity {
-    private List<TrendAnalysisEntity> mList;
+    private List<FormulaEntity> mList;
     private boolean isFirst = true;//是否第一次加载
-    private ShengXiaoTrendRecyclerAdapter mBaseRecycleViewAdapter;
+    private LotoFormulaRecyclerAdapter mBaseRecycleViewAdapter;
 
 
     @Override
@@ -41,9 +46,27 @@ public class LotoFormulaActivity extends BasePullRefreshActivity {
         setTitle("公式");
 
         mPullToRefreshRecyclerView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
-        mList = (List<TrendAnalysisEntity>) mBaseList;
-        mBaseRecycleViewAdapter = new ShengXiaoTrendRecyclerAdapter(mContext, mList);
+        mList = (List<FormulaEntity>) mBaseList;
+        mBaseRecycleViewAdapter = new LotoFormulaRecyclerAdapter(mContext, mList);
         recyclerView.setAdapter(mBaseRecycleViewAdapter);
+
+        getData();
+    }
+
+    @Override
+    protected void initListener() {
+        super.initListener();
+        mBaseRecycleViewAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                if (position==0){
+                    return;
+                }
+                Bundle bundle=new Bundle();
+                bundle.putString("content",mList.get(position-1).getPost_content());
+                jumpToActivity(FormulaDetailActivity.class,bundle,false);
+            }
+        });
     }
 
     @Override
@@ -73,22 +96,24 @@ public class LotoFormulaActivity extends BasePullRefreshActivity {
         map.put("pageStart", currentPage+"");
         map.put("pageSize","20");
         HttpService httpService = HttpRequest.provideClientApi();
-        httpService.getTrend(map)
-                .compose(RxSchedulersHelper.<BaseResponse2Entity<List<TrendAnalysisEntity>>>io_main())
-                .subscribe(new RxSubscriber<BaseResponse2Entity<List<TrendAnalysisEntity>>>() {
+        httpService.getFormula(map)
+                .compose(RxSchedulersHelper.<BaseResponse2Entity<List<FormulaEntity>>>io_main())
+                .subscribe(new RxSubscriber<BaseResponse2Entity<List<FormulaEntity>>>() {
                     @Override
                     public Activity getCurrentActivity() {
                         return null;
                     }
 
                     @Override
-                    public void _onNext(int status, BaseResponse2Entity<List<TrendAnalysisEntity>> response) {
+                    public void _onNext(int status, BaseResponse2Entity<List<FormulaEntity>> response) {
                         if (response.getFlag() == 1) {
-                            List<TrendAnalysisEntity> list = response.getData();
+                            List<FormulaEntity> list = response.getData();
                             if (list != null && list.size() > 0) {
                                 mList.addAll(list);
                             } else {
                                 ToastUtils.show("没有更多的数据");
+                                mPullToRefreshRecyclerView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
+
                             }
                             mBaseRecycleViewAdapter.notifyDataSetChanged();
                         } else {

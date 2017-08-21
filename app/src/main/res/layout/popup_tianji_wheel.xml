@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="@dimen/dp280"
+        android:layout_height="@dimen/dp160"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp4">
+
+        <com.cpcp.loto.view.EasyPickerView
+            android:id="@+id/cpv1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/img_tianji_bg"
+            android:layout_marginLeft="10dp"
+            custom:epvRecycleMode="true"
+            custom:epvTextColor="@color/black"
+            custom:epvTextMaxScale="2.0"
+            custom:epvTextMinAlpha="0.35"
+            custom:epvTextPadding="10dp"
+            custom:epvTextSize="30sp" />
+
+        <com.cpcp.loto.view.EasyPickerView
+            android:id="@+id/cpv2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/img_tianji_bg"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            custom:epvRecycleMode="true"
+            custom:epvTextColor="@color/black"
+            custom:epvTextMaxScale="2.0"
+            custom:epvTextMinAlpha="0.35"
+            custom:epvTextPadding="10dp"
+            custom:epvTextSize="30sp" />
+
+        <com.cpcp.loto.view.EasyPickerView
+            android:id="@+id/cpv3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/img_tianji_bg"
+            android:layout_marginRight="10dp"
+            custom:epvRecycleMode="true"
+            custom:epvTextColor="@color/black"
+            custom:epvTextMaxScale="2.0"
+            custom:epvTextMinAlpha="0.35"
+            custom:epvTextPadding="10dp"
+            custom:epvTextSize="30sp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -30,6 +30,7 @@
     <color name="grayTab">#FFDDDDDD</color>
     <color name="yellowTab">#FFFEE832</color>
     <color name="redTextTab">#F95D51</color>
+    <color name="yellowAlphaFE">#FEFFFF00</color>
 
     <!--黑色透明-->
     <color name="transparentHalfAlpha20">#20000000</color>

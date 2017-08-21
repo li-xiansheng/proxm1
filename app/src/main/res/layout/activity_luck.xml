@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grayBgLight"
+    android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/ivBg"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp240"
+            android:scaleType="center"
+            android:src="@drawable/img_luck_bg1" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/ivStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/dp80"
+            android:layout_marginTop="@dimen/dp50"
+            android:src="@drawable/icon_start_luck" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/img_luck_code_bg"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp30"
+            android:gravity="center"
+
+            android:text="幸運號碼"
+            android:textColor="@color/yellowText"
+            android:textSize="@dimen/sp18"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/lilLuckCode"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp60"
+            android:layout_margin="@dimen/dp18"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp10"
+        android:layout_weight="1"
+        android:gravity="center|bottom"
+        android:text="幸运摇奖只用于模拟开奖，点击'开始摇号',系统将自动摇出一组幸运号码" />
 </LinearLayout>

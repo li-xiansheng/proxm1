@@ -19,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * 功能描述：工具箱网格适配器
+ * 功能描述：粉丝数据适配器，我的关注
  */
 
 public class FansRecyclerAdapter extends BaseRecycleViewAdapter {
