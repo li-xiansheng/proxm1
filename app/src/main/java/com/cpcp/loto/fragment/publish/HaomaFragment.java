@@ -78,13 +78,11 @@ public class HaomaFragment extends BaseFragment {
         Iterator<Integer> i = posSet.iterator();//先迭代出来
 
         StringBuilder builder = new StringBuilder();
-        builder.append("[");
         while(i.hasNext()){//遍历
             int str = i.next();
             builder.append(mVals[str]+",");
         }
         builder.deleteCharAt(builder.length()-1);
-        builder.append("]");
         Log.i("PublishXinShuiActivity","builder = " + builder.toString());
 
         return builder.toString();

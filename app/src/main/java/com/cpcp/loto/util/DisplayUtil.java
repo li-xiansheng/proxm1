@@ -2,6 +2,8 @@ package com.cpcp.loto.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.WindowManager;
 
 /**
@@ -100,5 +102,32 @@ public class DisplayUtil {
      */
     public static float getDensity(Context context) {
         return context.getResources().getDisplayMetrics().density;
+    }
+
+    /**
+     * 设置相应控件的点击事件，实现点击效果
+     *
+     * @param view
+     */
+    public static void setTouchState(View view) {
+        view.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        v.setAlpha(0.5f);
+                        break;
+                    case MotionEvent.ACTION_CANCEL:
+                    case MotionEvent.ACTION_UP:
+                        v.setAlpha(1f);
+                        break;
+                    default:
+                        break;
+                }
+                return false;
+            }
+
+        });
     }
 }

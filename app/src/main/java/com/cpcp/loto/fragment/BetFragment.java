@@ -88,7 +88,7 @@ public class BetFragment extends BaseFragment {
             public void run() {
                 fragments.get(0).setUserVisibleHint(true);
             }
-        }, 1000);
+        }, 500);
     }
 
 

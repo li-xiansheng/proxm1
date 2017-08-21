@@ -19,6 +19,7 @@ import java.util.Map;
 import okhttp3.RequestBody;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PartMap;
@@ -417,5 +418,21 @@ public interface HttpService {
     @POST("index.php?g=portal&m=article&a=get_pingtai")
     Observable<BaseResponse2Entity<String>> getPingTaiInfo(@FieldMap Map<String, String> map);
 
+    /**
+     * 彩民投票
+     * index.php?g=portal&m=article&a=caimin_vote
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=caimin_vote")
+    Observable<BaseResponse2Entity<String>> putCaiMinVote(@FieldMap Map<String, String> map);
 
+    /**
+     * 获取彩民投票每个分类百分比
+     * index.php?g=portal&m=article&a=vote_proportion
+     */
+//    @FormUrlEncoded
+//    @POST("index.php?g=portal&m=article&a=vote_proportion")
+//    Observable<BaseResponse2Entity<String>> getCaiMinVote(@FieldMap Map<String, String> map);
+    @GET("index.php?g=portal&m=article&a=vote_proportion")
+    Observable<BaseResponse2Entity<String>> getCaiMinVote();
 }
