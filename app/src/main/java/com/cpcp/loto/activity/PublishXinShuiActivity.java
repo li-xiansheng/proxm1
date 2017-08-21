@@ -101,7 +101,7 @@ public class PublishXinShuiActivity extends BaseActivity {
         danshuangFragment = new DaxiaoFragment();
         Bundle bundle2 = new Bundle();
         bundle2.putString("type", "单双");
-        daxiaoFragment.setArguments(bundle2);
+        danshuangFragment.setArguments(bundle2);//上个版本这里有个BUG，没注意，现在修改过来了
         fragments.add(danshuangFragment);
 
         fragments.add(shengXiaoFragment = new ShengXiaoFragment());

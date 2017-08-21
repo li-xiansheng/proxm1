@@ -78,7 +78,8 @@
     <color name="titleTabRed">#FFF14C30</color>
 
     <color name="colorDeepOrangePrimary">#FF5722</color>
-    <color name="colorDeepOrangePrimaryDark">#E64A19</color>
+    <color name="colorDeepOrangePrimaryDark">#d1281f</color>
 
     <color name="grayColor">#A9AAAA</color>
+    <color name="greenColor">#3AB290</color>
 </resources>
