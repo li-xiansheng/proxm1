@@ -1,6 +1,7 @@
 package com.cpcp.loto.fragment.xinshui;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -60,13 +61,13 @@ public class HistoryFragment extends BaseFragment {
 //        historyTablayout.setTabTextColors(Color.BLACK, Color.BLUE);
         historyTablayout.setTabTextColors(getResources().getColor(R.color.black), getResources().getColor(R.color.colorPrimary));
 
-//        //主动调取第一个页面可见执行懒加载
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                fragments.get(0).setUserVisibleHint(true);
-//            }
-//        }, 1000);
+        //主动调取第一个页面可见执行懒加载
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                fragments.get(0).setUserVisibleHint(true);
+            }
+        }, 500);
 
     }
 

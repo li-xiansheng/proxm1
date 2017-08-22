@@ -438,9 +438,15 @@ public interface HttpService {
      * 获取彩民投票每个分类百分比
      * index.php?g=portal&m=article&a=vote_proportion
      */
-//    @FormUrlEncoded
-//    @POST("index.php?g=portal&m=article&a=vote_proportion")
-//    Observable<BaseResponse2Entity<String>> getCaiMinVote(@FieldMap Map<String, String> map);
     @GET("index.php?g=portal&m=article&a=vote_proportion")
     Observable<BaseResponse2Entity<String>> getCaiMinVote();
+
+
+    /**
+     * 修改密码
+     * index.php?m=article&a=editpassword
+     */
+    @FormUrlEncoded
+    @POST("index.php?m=article&a=editpassword")
+    Observable<BaseResponse2Entity<String>> changePassword(@FieldMap Map<String, String> map);
 }
