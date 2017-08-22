@@ -126,8 +126,14 @@ public class TianJiActivity extends BaseActivity {
                 if (isLast) {
                     if (type == 1) {
                         tvShengXiaoStart.append(dataList.get(curIndex));
+                        if(tvShengXiaoStart.getText().toString().length()==3){
+                            window.dismiss();
+                         }
                     } else {
                         tvTailStart.append(dataList.get(curIndex));
+                        if(tvTailStart.getText().toString().length()==3){
+                            window.dismiss();
+                        }
                     }
                 }
 

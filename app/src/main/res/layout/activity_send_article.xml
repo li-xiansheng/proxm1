@@ -54,5 +54,4 @@
             android:hint="请输入内容(最多1000字)"
             android:background="@drawable/shape_border_arc2_gray"/>
     </LinearLayout>
-    <include layout="@layout/view_gray_line"/>
-</LinearLayout>
+ </LinearLayout>

@@ -129,7 +129,7 @@ public class SendXinShuiActivity extends BaseActivity {
         //获取是否上传单双大小
         String numbertype = "";
         //大小，单双，或者其他生肖号码
-        String forecast = null;
+        String forecast = "";
         int currentPage = viewPager.getCurrentItem();
         if (currentPage == 0) {
             type = "1";
@@ -221,7 +221,7 @@ public class SendXinShuiActivity extends BaseActivity {
             map.put("numbertype", numbertype);
             map.put("forecast", forecast);
         } else if ("3".equals(type) || "4".equals(type)) {
-//            map.put("forecast", forecast);
+            map.put("forecast", forecast);
         }
 
 

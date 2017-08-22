@@ -54,7 +54,9 @@ public class LuckActivity extends BaseActivity {
         switch (view.getId()) {
 
             case R.id.ivStart:
-
+                if (isRunning){
+                    return;
+                }
                 final Handler handler = new Handler();
                 new Thread() {
                     @Override

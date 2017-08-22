@@ -47,7 +47,11 @@
             android:layout_height="wrap_content"
             android:text="发帖人" />
 
-        <include layout="@layout/view_vertical_line" />
+        <View
+            android:layout_width="@dimen/dp1"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dp6"
+            android:background="@color/grayBgLight" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/tvTime"
