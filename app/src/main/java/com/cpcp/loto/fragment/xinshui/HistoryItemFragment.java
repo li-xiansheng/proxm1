@@ -2,16 +2,15 @@ package com.cpcp.loto.fragment.xinshui;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.cpcp.loto.R;
 import com.cpcp.loto.adapter.HistoryRecyclerAdapter;
-import com.cpcp.loto.base.BaseFragment;
+import com.cpcp.loto.base.BasePullRefreshFragment;
 import com.cpcp.loto.bean.XinshuiBean;
 import com.cpcp.loto.config.Constants;
 import com.cpcp.loto.entity.BaseResponse2Entity;
@@ -20,10 +19,10 @@ import com.cpcp.loto.net.HttpRequest;
 import com.cpcp.loto.net.HttpService;
 import com.cpcp.loto.net.RxSchedulersHelper;
 import com.cpcp.loto.net.RxSubscriber;
-import com.cpcp.loto.uihelper.LoadingDialog;
 import com.cpcp.loto.util.LogUtils;
 import com.cpcp.loto.util.SPUtil;
 import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,10 +38,8 @@ import butterknife.BindView;
  * 功能描述：
  */
 
-public class HistoryItemFragment extends BaseFragment{
+public class HistoryItemFragment extends BasePullRefreshFragment{
 
-    @BindView(R.id.recyclerView)
-    RecyclerView recyclerView;
     @BindView(R.id.tvMsg)
     AppCompatTextView tvMsg;
     @BindView(R.id.empty_rl)
@@ -54,27 +51,45 @@ public class HistoryItemFragment extends BaseFragment{
     int type;
     String mobile;
 
+    boolean isFirst = true;
+
     @Override
-    protected int getLayoutResId() {
+    protected int getChildLayoutResId() {
         return R.layout.fragment_xinshui_current;
     }
 
     @Override
     protected void initView() {
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-
-//        mAdapter = new HistoryRecyclerAdapter(mContext, data);
-//
-//        recyclerView.setAdapter(mAdapter);
-        LogUtils.i(TAG, "getHistoryRecommend ---->" + mobile + "-----" + type);
-        getHistoryRecommend();
+        super.initView();
+        mPullToRefreshRecyclerView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
+        data = (List<XinshuiBean>) mBaseList;
+        mAdapter = new HistoryRecyclerAdapter(mContext, data);
+        recyclerView.setAdapter(mAdapter);
 
     }
 
     @Override
-    public void onLazyLoadData() {
+    protected void getData() {
+        if (isFirst) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    LogUtils.i(TAG, "首次加载……");
+                    mPullToRefreshRecyclerView.setRefreshing(true);//没有刷新，则执行下拉刷新UI
+                    isFirst = false;
+//                    fragments.get(0).setUserVisibleHint(true);
+                }
+            }, 500);
 
+
+        } else {
+            getHistoryRecommend();
+        }
+    }
+
+    @Override
+    public void onLazyLoadData() {
+            getData();
     }
 
 
@@ -99,8 +114,6 @@ public class HistoryItemFragment extends BaseFragment{
     }
 
     private void getHistoryRecommend() {
-
-        LoadingDialog.showDialog(getActivity());
         SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
         String tel = sp.getString(UserDB.TEL, "");
         Map<String, String> map = new HashMap<>();
@@ -113,12 +126,11 @@ public class HistoryItemFragment extends BaseFragment{
                 .subscribe(new RxSubscriber<BaseResponse2Entity<String>>() {
                     @Override
                     public Activity getCurrentActivity() {
-                        return mActivity;
+                        return null;
                     }
 
                     @Override
                     public void _onNext(int status, BaseResponse2Entity<String> response) {
-                        LoadingDialog.closeDialog(getActivity());
                         LogUtils.i(TAG, "getHistoryRecommend ---->" + response.getData());
                         if (response.getFlag() == 1) {
                             if (response.getData() != null) {
@@ -133,8 +145,7 @@ public class HistoryItemFragment extends BaseFragment{
                                     }
                                     Log.i(TAG, "data = " + data.toString());
 
-                                    mAdapter = new HistoryRecyclerAdapter(mContext, data);
-                                    recyclerView.setAdapter(mAdapter);
+                                    mAdapter.notifyDataSetChanged();
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -148,6 +159,26 @@ public class HistoryItemFragment extends BaseFragment{
                         } else {
                             tvMsg.setText("暂时还没数据...");
                             emptyRl.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        if (currentPage == 1 && mPullToRefreshRecyclerView != null) {
+                            mPullToRefreshRecyclerView.setMode(PullToRefreshBase.Mode.BOTH);
+                        }
+                        currentPage += 1;
+                        if (mPullToRefreshRecyclerView != null && mPullToRefreshRecyclerView.isRefreshing()) {
+                            mPullToRefreshRecyclerView.onRefreshComplete();
+                        }
+                    }
+
+                    @Override
+                    public void _onError(int status, String msg) {
+                        super._onError(status, msg);
+                        if (mPullToRefreshRecyclerView != null && mPullToRefreshRecyclerView.isRefreshing()) {
+                            mPullToRefreshRecyclerView.onRefreshComplete();
                         }
                     }
                 });

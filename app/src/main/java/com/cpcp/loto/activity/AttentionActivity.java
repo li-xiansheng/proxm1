@@ -2,16 +2,15 @@ package com.cpcp.loto.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.cpcp.loto.R;
 import com.cpcp.loto.adapter.AttentionRecyclerAdapter;
-import com.cpcp.loto.base.BaseActivity;
+import com.cpcp.loto.base.BasePullRefreshActivity;
 import com.cpcp.loto.bean.AttentionBean;
 import com.cpcp.loto.config.Constants;
 import com.cpcp.loto.entity.BaseResponse2Entity;
@@ -21,9 +20,10 @@ import com.cpcp.loto.net.HttpRequest;
 import com.cpcp.loto.net.HttpService;
 import com.cpcp.loto.net.RxSchedulersHelper;
 import com.cpcp.loto.net.RxSubscriber;
-import com.cpcp.loto.uihelper.LoadingDialog;
+import com.cpcp.loto.util.LogUtils;
 import com.cpcp.loto.util.SPUtil;
 import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,45 +39,33 @@ import butterknife.BindView;
  * 功能描述：我的关注
  */
 
-public class AttentionActivity extends BaseActivity {
-    @BindView(R.id.recyclerView)
-    RecyclerView recyclerView;
+public class AttentionActivity extends BasePullRefreshActivity {
+
     @BindView(R.id.empty_rl)
     RelativeLayout emptyRl;
     @BindView(R.id.tvMsg)
     AppCompatTextView tvMsg;
 
-    AttentionRecyclerAdapter adapter;
+    AttentionRecyclerAdapter mAdapter;
     List<AttentionBean> data = new ArrayList<>();
 
-
-
+    private boolean isFirst = true;//是否第一次加载
     @Override
-    protected int getLayoutResId() {
+    protected int getChildLayoutResId() {
         return R.layout.activity_attention;
     }
 
     @Override
     protected void initView() {
+        super.initView();
         setTitle("我的关注");
 
+        mPullToRefreshRecyclerView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
+        data = (List<AttentionBean>) mBaseList;
+        mAdapter = new AttentionRecyclerAdapter(mContext, data);
+        recyclerView.setAdapter(mAdapter);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-
-        getAttentionData();
-    }
-
-    @Override
-    protected void initData() {
-
-    }
-
-    private void refreshView(){
-
-        adapter = new AttentionRecyclerAdapter(AttentionActivity.this, data);
-        recyclerView.setAdapter(adapter);
-
-        adapter.setOnItemClickListener(new OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
 //                Intent intent = new Intent(AttentionActivity.this,SalaryActivity.class);
@@ -88,11 +76,36 @@ public class AttentionActivity extends BaseActivity {
                 jumpToActivity(SalaryActivity.class,bundle,false);
             }
         });
+
+        getData();
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void getData() {
+        if (isFirst) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    LogUtils.i(TAG, "首次加载……");
+                    mPullToRefreshRecyclerView.setRefreshing(true);//没有刷新，则执行下拉刷新UI
+                    isFirst = false;
+//                    fragments.get(0).setUserVisibleHint(true);
+                }
+            }, 1000);
+
+
+        } else {
+            getAttentionData();
+        }
     }
 
     public void getAttentionData() {
 
-        LoadingDialog.showDialog(this);
         SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
         String tel = sp.getString(UserDB.TEL, "");
         Map<String, String> map = new HashMap<>();
@@ -103,12 +116,11 @@ public class AttentionActivity extends BaseActivity {
                 .subscribe(new RxSubscriber<BaseResponse2Entity<String>>() {
                     @Override
                     public Activity getCurrentActivity() {
-                        return mActivity;
+                        return null;
                     }
 
                     @Override
                     public void _onNext(int status, BaseResponse2Entity<String> response) {
-                        LoadingDialog.closeDialog(AttentionActivity.this);
                         if (response.getFlag() == 1) {
                             Log.i(TAG, "getAttentionData ---->" + response.getData());
                             try {
@@ -124,8 +136,7 @@ public class AttentionActivity extends BaseActivity {
                                         AttentionBean bean = gson.fromJson(array.getJSONObject(i).toString(), AttentionBean.class);
                                         data.add(bean);
                                     }
-
-                                    refreshView();
+                                    mAdapter.notifyDataSetChanged();
 
                                 }
                             } catch (JSONException e) {
@@ -133,6 +144,26 @@ public class AttentionActivity extends BaseActivity {
                             }
                         } else {
 
+                        }
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        if (currentPage == 1 && mPullToRefreshRecyclerView != null) {
+                            mPullToRefreshRecyclerView.setMode(PullToRefreshBase.Mode.BOTH);
+                        }
+                        currentPage += 1;
+                        if (mPullToRefreshRecyclerView != null && mPullToRefreshRecyclerView.isRefreshing()) {
+                            mPullToRefreshRecyclerView.onRefreshComplete();
+                        }
+                    }
+
+                    @Override
+                    public void _onError(int status, String msg) {
+                        super._onError(status, msg);
+                        if (mPullToRefreshRecyclerView != null && mPullToRefreshRecyclerView.isRefreshing()) {
+                            mPullToRefreshRecyclerView.onRefreshComplete();
                         }
                     }
 

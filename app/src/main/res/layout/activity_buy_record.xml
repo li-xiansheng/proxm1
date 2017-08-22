@@ -4,10 +4,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <com.cpcp.loto.view.PullToRefreshRecyclerView xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/pullToRefreshRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        ptr:ptrAnimationStyle="flip"
+        ptr:ptrDrawable="@drawable/arrow_down"
+        ptr:ptrHeaderBackground="@color/white"
+        ptr:ptrHeaderTextColor="@color/grayText"
+        ptr:ptrMode="both"
+        ptr:ptrOverScroll="false"
+        ptr:ptrShowIndicator="false" />
 
     <include layout="@layout/view_empty" />
 </RelativeLayout>
