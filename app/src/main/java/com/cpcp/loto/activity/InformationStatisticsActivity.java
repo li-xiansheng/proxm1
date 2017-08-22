@@ -172,9 +172,10 @@ public class InformationStatisticsActivity extends BaseActivity implements Botto
     @Override
     public void onTabSelected(int position) {
         if (position == 4) {
-            return;
+            showPopupWindow();
+        }else{
+            showWebPage(position);
         }
-        showWebPage(position);
     }
 
 

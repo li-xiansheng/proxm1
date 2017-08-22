@@ -64,13 +64,17 @@ public class WinningFragment extends BasePullRefreshFragment {
             public void onItemClick(View view, int position) {
                 WinningEntity bean = mList.get(position);
                 Bundle bundle = new Bundle();
-                String username = "";
-                if (bean.getUserinfo() != null) {
-                    username = bean.getUserinfo().getUser_nicename();
+
+                WinningEntity.UserinfoBean userinfoBean = bean.getUserinfo();
+                if (userinfoBean != null) {
+                    bundle.putString("nickname", userinfoBean.getUser_nicename() + "");
+                    bundle.putString("avatar", "http://" + userinfoBean.getAvatar());
+                    bundle.putString("mobile", userinfoBean.getMobile());
+                    mActivity.jumpToActivity(SalaryActivity.class, bundle, false);
+                } else {
+                    ToastUtils.show("无法查看心水");
                 }
-                bundle.putString("username", username);
-                mActivity.jumpToActivity(SalaryActivity.class, bundle, false);
-            }
+             }
         });
     }
 

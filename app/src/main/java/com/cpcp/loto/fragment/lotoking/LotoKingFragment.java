@@ -7,6 +7,8 @@ import android.view.View;
 import com.cpcp.loto.R;
 import com.cpcp.loto.activity.GetRedPacketActivity;
 import com.cpcp.loto.activity.LotoKingActivity;
+import com.cpcp.loto.activity.PublishXinShuiActivity;
+import com.cpcp.loto.activity.SalaryActivity;
 import com.cpcp.loto.adapter.LotoKingRecyclerAdapter;
 import com.cpcp.loto.base.BaseFragment;
 import com.cpcp.loto.base.BasePullRefreshFragment;
@@ -61,11 +63,22 @@ public class LotoKingFragment extends BasePullRefreshFragment {
         mBaseRecycleViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-//                LotoKingEntity bean = mList.get(position);
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("bean", bean);
-//                bundle.putString("type", title);
-//                mActivity.jumpToActivity(CommunityDetailActivity.class, bundle, false);
+                LotoKingEntity bean = mList.get(position);
+                if (bean == null) {
+                    ToastUtils.show("无法查看心水");
+                    return;
+                }
+                Bundle bundle = new Bundle();
+                LotoKingEntity.UserinfoBean userinfoBean = bean.getUserinfo();
+                if (userinfoBean != null) {
+                    bundle.putString("nickname", userinfoBean.getUser_nicename() + "");
+                    bundle.putString("avatar", "http://"+userinfoBean.getAvatar());
+                    bundle.putString("mobile", userinfoBean.getMobile());
+                    mActivity.jumpToActivity(SalaryActivity.class, bundle, false);
+                } else {
+                    ToastUtils.show("无法查看心水");
+                }
+
             }
         });
     }

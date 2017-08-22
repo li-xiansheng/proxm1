@@ -1,21 +1,24 @@
 package com.cpcp.loto.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.cpcp.loto.R;
 import com.cpcp.loto.base.BaseRecycleViewAdapter;
 import com.cpcp.loto.entity.LotoKingEntity;
+import com.cpcp.loto.uihelper.GlideCircleTransform;
 import com.cpcp.loto.view.SelectedLayerTextView;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * 功能描述：六合王数据适配
@@ -40,24 +43,15 @@ public class LotoKingRecyclerAdapter extends BaseRecycleViewAdapter {
 
         if (holder instanceof ViewHolder) {
             ViewHolder viewHolder = (ViewHolder) holder;
-            AppCompatTextView tvTypeLatelyWinning = viewHolder.tvTypeLatelyWinning;
+            AppCompatTextView tvRanking = viewHolder.tvRanking;
+            AppCompatImageView ivAvatar = viewHolder.ivAvatar;
+            AppCompatTextView tvName = viewHolder.tvName;
             AppCompatTextView tvData = viewHolder.tvData;
-            AppCompatTextView tvType = viewHolder.tvType;
-            AppCompatTextView tvTitle = viewHolder.tvTitle;
-            AppCompatTextView tvReadAndScore = viewHolder.tvReadAndScore;
-            SelectedLayerTextView tvLook = viewHolder.tvLook;
-            tvLook.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mOnItemClickListener != null) {
-                        mOnItemClickListener.onItemClick(v, holder.getLayoutPosition());
-                    }
-                }
-            });
-            View rootView = holder.itemView;
-            rootView.setOnClickListener(null);
+            AppCompatTextView tvWinRate = viewHolder.tvWinRate;
+
 
             if (mListData.get(position) instanceof LotoKingEntity) {
+
                 LotoKingEntity entity = (LotoKingEntity) mListData.get(position);
                 String liansheng = entity.getLiansheng();
 
@@ -65,9 +59,41 @@ public class LotoKingRecyclerAdapter extends BaseRecycleViewAdapter {
                 String fail = entity.getFail();
                 String success = entity.getSuccess();
                 String shenglv = entity.getShenglv();
+                LotoKingEntity.UserinfoBean userinfoBean = entity.getUserinfo();
+                String avatar = "";
+                String name = "";
+                if (userinfoBean != null) {
+                    avatar = userinfoBean.getAvatar();
+                    name = userinfoBean.getUser_nicename();
+                    if (!TextUtils.isEmpty(avatar) && !avatar.startsWith("http")) {
+                        avatar = "http://" + avatar;
+                    }
+                    name = TextUtils.isEmpty(name) ? "" : name;
+                }
 
-                tvTypeLatelyWinning.setText("类型（最近已连胜）" + liansheng);
-                tvData.setText("总:" + total + " 胜:" + success + " 负:" + fail + " 胜率:" + shenglv);
+                if (position == 0) {
+                    tvRanking.setBackgroundResource(R.drawable.icon_ranking_no1);
+                } else if (position == 1) {
+                    tvRanking.setBackgroundResource(R.drawable.icon_ranking_no2);
+                } else if (position == 2) {
+                    tvRanking.setBackgroundResource(R.drawable.icon_ranking_no3);
+                    tvRanking.setText("");
+
+                } else {
+                    tvRanking.setBackgroundResource(R.color.transparent);
+                    tvRanking.setText((position + 1) + "");
+                }
+
+                if (!TextUtils.isEmpty(avatar)) {
+                    Glide.with(mContext)
+                            .load(avatar)
+                            .placeholder(R.drawable.icon_default_head)
+                            .transform(new GlideCircleTransform(mContext))
+                            .into(ivAvatar);
+                }
+                tvName.setText(name);
+                tvData.setText("总:" + total + " 胜负:" + success + "/" + fail + " 最大连胜" + liansheng);
+                tvWinRate.setText(shenglv + "%");
 
 
             }
@@ -79,18 +105,16 @@ public class LotoKingRecyclerAdapter extends BaseRecycleViewAdapter {
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tvTypeLatelyWinning)
-        AppCompatTextView tvTypeLatelyWinning;
+        @BindView(R.id.tvRanking)
+        AppCompatTextView tvRanking;
+        @BindView(R.id.ivAvatar)
+        AppCompatImageView ivAvatar;
+        @BindView(R.id.tvName)
+        AppCompatTextView tvName;
         @BindView(R.id.tvData)
         AppCompatTextView tvData;
-        @BindView(R.id.tvType)
-        AppCompatTextView tvType;
-        @BindView(R.id.tvTitle)
-        AppCompatTextView tvTitle;
-        @BindView(R.id.tvReadAndScore)
-        AppCompatTextView tvReadAndScore;
-        @BindView(R.id.tvLook)
-        SelectedLayerTextView tvLook;
+        @BindView(R.id.tvWinRate)
+        AppCompatTextView tvWinRate;
 
         ViewHolder(View view) {
             super(view);

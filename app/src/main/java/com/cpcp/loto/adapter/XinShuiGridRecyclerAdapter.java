@@ -19,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * 功能描述：首页网格选项适配器
+ * 功能描述：心水-生肖号码适配器
  */
 
 public class XinShuiGridRecyclerAdapter extends BaseRecycleViewAdapter {

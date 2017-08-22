@@ -1,39 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/etTitle"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp40"
-        android:background="@color/transparent"
-        android:hint="标题"
-        android:paddingLeft="@dimen/dp10" />
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-    <include layout="@layout/view_gray_line" />
-
-    <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/etScore"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp40"
-        android:background="@color/transparent"
-        android:hint="查看心水需要支付的积分（0-50）"
-        android:inputType="number"
-        android:paddingLeft="@dimen/dp10" />
-
-    <include layout="@layout/view_gray_line" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/etTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/dp10" />
-    </RelativeLayout>
-</LinearLayout>
+            android:layout_height="@dimen/dp40"
+            android:background="@color/transparent"
+            android:hint="标题"
+            android:paddingLeft="@dimen/dp10" />
+
+        <include layout="@layout/view_gray_line" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/etScore"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:background="@color/transparent"
+            android:hint="查看心水需要支付的积分（0-50）"
+            android:inputType="number"
+            android:paddingLeft="@dimen/dp10" />
+
+        <include layout="@layout/view_gray_line" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp10" />
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

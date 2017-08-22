@@ -63,6 +63,7 @@ public class HaoMaFragment extends BaseFragment {
             map.put("isChecked", false);
             data.add(map);
         }
+
         xinShuiRecyclerAdapter = new XinShuiGridRecyclerAdapter(mActivity, data);
         xinShuiRecyclerAdapter.setMaxChecked(12);
         recyclerView.setAdapter(xinShuiRecyclerAdapter);

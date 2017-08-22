@@ -21,8 +21,8 @@
         android:layout_height="@dimen/dp40"
         android:background="@color/transparent"
         android:hint="查看心水需要支付的积分（0-50）"
-        android:paddingLeft="@dimen/dp10"
-        android:inputType="number"/>
+        android:inputType="number"
+        android:paddingLeft="@dimen/dp10" />
 
     <include layout="@layout/view_gray_line" />
 
@@ -30,6 +30,7 @@
         android:id="@+id/radioGroup1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"
         android:orientation="vertical">
 
         <LinearLayout
@@ -42,72 +43,103 @@
                 android:id="@+id/rbCode1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp20"
                 android:layout_weight="1"
+                android:background="@drawable/selector_radio_zhengma_checked"
+                android:button="@color/transparent"
                 android:checked="true"
                 android:gravity="center"
-                android:text="正码一" />
+                android:text="正码一"
+                android:textColor="@drawable/selector_radio_color_red_white_checked" />
 
             <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/rbCode2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
                 android:layout_weight="1"
+                android:background="@drawable/selector_radio_zhengma_checked"
+                android:button="@color/transparent"
                 android:gravity="center"
-                android:text="正码二" />
+                android:text="正码二"
+
+                android:textColor="@drawable/selector_radio_color_red_white_checked" />
 
             <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/rbCode3"
-
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
 
-                android:text="正码三" />
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp20"
+                android:layout_weight="1"
+                android:background="@drawable/selector_radio_zhengma_checked"
+                android:button="@color/transparent"
+                android:gravity="center"
+                android:text="正码三"
+
+                android:textColor="@drawable/selector_radio_color_red_white_checked" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lil2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp10"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/rbCode4"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp20"
                 android:layout_weight="1"
+                android:background="@drawable/selector_radio_zhengma_checked"
+                android:button="@color/transparent"
                 android:gravity="center"
-                android:text="正码四" />
+                android:text="正码四"
+                android:textColor="@drawable/selector_radio_color_red_white_checked" />
 
             <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/rbCode5"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
                 android:layout_weight="1"
+                android:background="@drawable/selector_radio_zhengma_checked"
+                android:button="@color/transparent"
                 android:gravity="center"
-                android:text="正码五" />
+                android:text="正码五"
+                android:textColor="@drawable/selector_radio_color_red_white_checked" />
 
             <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/rbCode6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+                android:layout_marginRight="@dimen/dp20"
                 android:layout_weight="1"
+                android:background="@drawable/selector_radio_zhengma_checked"
+                android:button="@color/transparent"
                 android:gravity="center"
-                android:text="正码六" />
+                android:text="正码六"
+                android:textColor="@drawable/selector_radio_color_red_white_checked" />
         </LinearLayout>
 
         <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/rbTema"
-
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp100"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp10"
             android:layout_weight="1"
+            android:background="@drawable/selector_radio_zhengma_checked"
+            android:button="@color/transparent"
             android:gravity="center"
-
-            android:text="tema" />
+            android:text="特码"
+            android:textColor="@drawable/selector_radio_color_red_white_checked" />
     </com.cpcp.loto.view.NestRadioGroup>
 
     <RadioGroup
@@ -120,21 +152,27 @@
 
         <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/rbBig"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dp40"
+            android:layout_height="@dimen/dp40"
             android:layout_weight="1"
+            android:background="@drawable/selector_radio_xinshui_checked"
+            android:button="@color/transparent"
+            android:checked="true"
             android:gravity="center"
-            android:text="大" />
+            android:text="大"
+            android:textColor="@color/white" />
 
         <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/rbLittle"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dp40"
+            android:layout_height="@dimen/dp40"
+            android:layout_marginLeft="@dimen/dp30"
             android:layout_weight="1"
+            android:background="@drawable/selector_radio_xinshui_checked"
+            android:button="@color/transparent"
             android:gravity="center"
-
-            android:text="小" />
+            android:text="小"
+            android:textColor="@color/white" />
 
 
     </RadioGroup>

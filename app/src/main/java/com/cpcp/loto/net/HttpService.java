@@ -8,6 +8,7 @@ import com.cpcp.loto.entity.ForumDetailEntity;
 import com.cpcp.loto.entity.ForumEntity;
 import com.cpcp.loto.entity.ImgResponseEntity;
 import com.cpcp.loto.entity.LotoKingEntity;
+import com.cpcp.loto.entity.NextLotteryEntity;
 import com.cpcp.loto.entity.RedPacketEntity;
 import com.cpcp.loto.entity.TrendAnalysisEntity;
 import com.cpcp.loto.entity.UserInfoEntity;
@@ -206,6 +207,13 @@ public interface HttpService {
     @POST("index.php?g=portal&m=article&a=formula")
     Observable<BaseResponse2Entity<List<FormulaEntity>>> getFormula(@FieldMap Map<String, String> map);
 
+
+    /**
+     * 下次开奖--搅珠日期
+     * @return
+     */
+     @POST("index.php?g=portal&m=Index&a=xckj")
+    Observable<NextLotteryEntity> getNextDate();
 
 
 

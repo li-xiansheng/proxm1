@@ -88,7 +88,7 @@
                         android:drawableLeft="@drawable/icon_haitao"
                         android:drawablePadding="@dimen/dp4"
                         android:gravity="center"
-                        android:text="淘料市场"
+                        android:text="高手资料"
                         android:textSize="@dimen/sp18" />
                 </LinearLayout>
             </LinearLayout>

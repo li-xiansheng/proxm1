@@ -3,87 +3,46 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingLeft="@dimen/dp10"
+    android:paddingRight="@dimen/dp10">
 
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tvRanking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/grayText"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/ivAvatar"
+        android:layout_width="@dimen/dp50"
+        android:layout_height="@dimen/dp50"
+        android:layout_margin="@dimen/dp8" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp30"
-        android:background="@color/grayBgLight"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/dp10"
-        android:paddingRight="@dimen/dp6">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/tvTypeLatelyWinning"
+            android:id="@+id/tvName"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="大小(最近已经连胜10)" />
+            android:layout_height="wrap_content" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/tvData"
             android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/dp16"
             android:layout_height="wrap_content"
-            android:text="总：- 胜：- 负：- 胜率：-%"
-            android:textColor="@color/blackText" />
+            android:text="总:-  胜负:-/-  最大连胜" />
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp60"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/dp10"
-        android:paddingRight="@dimen/dp6">
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/tvType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/red"
-            android:text="单\n双"
-            android:textColor="@color/white" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="@dimen/dp8"
-            android:orientation="vertical">
-
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tvTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:hint="标题"
-                android:lines="1"
-                android:textColor="@color/blackText" />
-
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tvReadAndScore"
-                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:layout_marginTop="@dimen/dp6"
-                android:hint="阅读和积分"
-                android:lines="1"
-                android:textColor="@color/blackText" />
-        </LinearLayout>
-
-        <com.cpcp.loto.view.SelectedLayerTextView
-            android:id="@+id/tvLook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape_arc6_red"
-            android:paddingBottom="@dimen/dp4"
-            android:paddingLeft="@dimen/dp8"
-            android:paddingRight="@dimen/dp8"
-            android:paddingTop="@dimen/dp4"
-            android:text="查看"
-            android:textColor="@color/white" />
-    </LinearLayout>
-
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tvWinRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        android:text="%"/>
 </LinearLayout>
