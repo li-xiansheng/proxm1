@@ -5,7 +5,11 @@ import android.graphics.Bitmap;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.os.Environment;
+import android.os.Looper;
 import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.cache.ExternalCacheDiskCacheFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -76,5 +80,74 @@ public class ImageUtil {
             cachePath = context.getFilesDir().getPath();
         }
         return new File(cachePath + File.separator + cacheFile);
+    }
+
+    // 清除Glide磁盘缓存，自己获取缓存文件夹并删除方法
+    public static void  cleanCatchDisk(Context context) {
+//        DiskLruCacheFactory.DEFAULT_DISK_CACHE_DIR
+//        ExternalCacheDiskCacheFactory
+        String ImageExternalCatchDir=context.getExternalCacheDir()+ ExternalCacheDiskCacheFactory.DEFAULT_DISK_CACHE_DIR;
+        deleteFolderFile(ImageExternalCatchDir, true);
+
+    }
+
+    // 按目录删除文件夹文件方法
+    private static  void deleteFolderFile(String filePath, boolean deleteThisPath) {
+        try {
+            File file = new File(filePath);
+            if (file.isDirectory()) {
+                File files[] = file.listFiles();
+                for (File file1 : files) {
+                    deleteFolderFile(file1.getAbsolutePath(), true);
+                }
+            }
+            if (deleteThisPath) {
+                if (!file.isDirectory()) {
+                    file.delete();
+                } else {
+                    if (file.listFiles().length == 0) {
+                        file.delete();
+                    }
+                }
+            }
+//            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+//            return false;
+        }
+    }
+
+    /**
+     * 清除图片磁盘缓存
+     */
+    public static void clearImageDiskCache(final Context context) {
+        try {
+            if (Looper.myLooper() == Looper.getMainLooper()) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Glide.get(context).clearDiskCache();
+// BusUtil.getBus().post(new GlideCacheClearSuccessEvent());
+                    }
+                }).start();
+            } else {
+                Glide.get(context).clearDiskCache();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 清除图片内存缓存
+     */
+    public static void clearImageMemoryCache(Context context) {
+        try {
+            if (Looper.myLooper() == Looper.getMainLooper()) { //只能在主线程执行
+                Glide.get(context).clearMemory();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

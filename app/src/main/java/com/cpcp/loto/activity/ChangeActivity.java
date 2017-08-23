@@ -2,6 +2,7 @@ package com.cpcp.loto.activity;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -68,6 +69,8 @@ public class ChangeActivity extends BaseActivity {
     ArrayList<PingtaiBean> pingtaiList = new ArrayList<>();
     ArrayList<String> stringList = new ArrayList<>();
 
+    int pingtaiChoose;
+
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_change;
@@ -97,6 +100,34 @@ public class ChangeActivity extends BaseActivity {
             public void onClick(View v) {
                 if (check()){
                     submitChange();
+                }
+            }
+        });
+
+        transLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ("请选择".equals(pingtaiTxt.getText().toString())) {
+                    DialogUtil.createDialog(ChangeActivity.this, "请选择平台");
+                }else {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("name", pingtaiList.get(pingtaiChoose).pingtainame);
+                    bundle.putString("url", pingtaiList.get(pingtaiChoose).url);
+                    ((BaseActivity) mActivity).jumpToActivity(WebCommonPageActivity.class, bundle, false);
+                }
+            }
+        });
+
+        transRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ("请选择".equals(pingtaiTxt.getText().toString())) {
+                    DialogUtil.createDialog(ChangeActivity.this, "请选择平台");
+                }else {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("name", pingtaiList.get(pingtaiChoose).pingtainame);
+                    bundle.putString("url", pingtaiList.get(pingtaiChoose).url);
+                    ((BaseActivity) mActivity).jumpToActivity(WebCommonPageActivity.class, bundle, false);
                 }
             }
         });
@@ -173,6 +204,7 @@ public class ChangeActivity extends BaseActivity {
         sure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pingtaiChoose = easyPickerView.getCurIndex();
                 pingtaiTxt.setTextColor(getResources().getColor(R.color.black));
                 pingtaiTxt.setText(stringList.get(easyPickerView.getCurIndex()));
                 seletorDialog.dismiss();

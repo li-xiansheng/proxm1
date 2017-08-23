@@ -21,11 +21,10 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
- import com.cpcp.loto.R;
+import com.cpcp.loto.R;
 import com.cpcp.loto.base.BaseActivity;
 import com.cpcp.loto.config.Constants;
 import com.cpcp.loto.entity.BaseResponse2Entity;
-import com.cpcp.loto.entity.ImgResponseEntity;
 import com.cpcp.loto.entity.UserDB;
 import com.cpcp.loto.net.HttpRequest;
 import com.cpcp.loto.net.HttpService;
@@ -48,7 +47,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -284,22 +282,22 @@ public class MyInfoActivity extends BaseActivity {
         partMap.put("file" + "\";filename=\"" + file.getName(), fileBody);
         HttpService httpService = HttpRequest.provideClientApi();
         httpService.uploadPicToMine(partMap)
-                .compose(RxSchedulersHelper.<BaseResponse2Entity<ImgResponseEntity>>io_main())
-                .subscribe(new RxSubscriber<BaseResponse2Entity<ImgResponseEntity>>() {
+                .compose(RxSchedulersHelper.<BaseResponse2Entity<String>>io_main())
+                .subscribe(new RxSubscriber<BaseResponse2Entity<String>>() {
                     @Override
                     public Activity getCurrentActivity() {
                         return mActivity;
                     }
 
                     @Override
-                    public void _onNext(int status, BaseResponse2Entity<ImgResponseEntity> response) {
+                    public void _onNext(int status, BaseResponse2Entity<String> response) {
+                        LogUtils.i(TAG,"upLoadImage ---->" + response.getErrmsg());
+                        LogUtils.i(TAG,"upLoadImage ---->" + response.getData());
                         if (response != null && response.getFlag() == 1) {
                             SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
-                            ImgResponseEntity entity=response.getData();
-                            sp.putString(UserDB.AVATAR,entity.getUrl());
+                            sp.putString(UserDB.AVATAR,"http://"+response.getData());
                             Glide.with(mActivity)
-                                    .load(response.getData())
-                                    .placeholder(R.drawable.icon_default_head)
+                                    .load("http://"+response.getData())
                                     .transform(new GlideCircleTransform(mContext))
                                     .into(ivHead);
                         } else {

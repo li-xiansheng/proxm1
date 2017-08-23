@@ -30,7 +30,8 @@
                 android:layout_margin="@dimen/dp10"
                 android:text="设置"
                 android:textColor="@color/white"
-                android:textSize="@dimen/sp18" />
+                android:textSize="@dimen/sp18"
+                android:padding="15dp"/>
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/ivHead"

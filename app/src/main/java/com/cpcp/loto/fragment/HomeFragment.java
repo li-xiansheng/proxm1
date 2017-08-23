@@ -12,6 +12,7 @@ import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.cpcp.loto.MainActivity;
 import com.cpcp.loto.R;
 import com.cpcp.loto.activity.GetRedPacketActivity;
+import com.cpcp.loto.activity.LiuHeImgActivity;
 import com.cpcp.loto.activity.SuperiorInfoActivity;
 import com.cpcp.loto.activity.WebCommonPageActivity;
 import com.cpcp.loto.activity.CommunicationForumActivity;
@@ -221,7 +222,7 @@ public class HomeFragment extends BaseFragment {
                     Bundle bundle = new Bundle();
                     bundle.putString("name", "六合图库");
                     bundle.putString("url", HttpService.lotoPictures);
-                    ((BaseActivity) mActivity).jumpToActivity(WebCommonPageActivity.class, bundle, false);
+                    ((BaseActivity) mActivity).jumpToActivity(LiuHeImgActivity.class, bundle, false);
                 } else if ("历史开奖".equals(name)) {
                     Bundle bundle = new Bundle();
                     bundle.putString("name", "历史开奖");

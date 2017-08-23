@@ -101,8 +101,9 @@ public class MeFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-
-
+        SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
+        String tel = sp.getString(UserDB.TEL, "");
+        getUserInfo(tel);
     }
 
     @Override
@@ -122,11 +123,10 @@ public class MeFragment extends BaseFragment {
             if(!TextUtils.isEmpty(avatar)){
                 Glide.with(mContext)
                         .load(avatar)
-                        .placeholder(R.drawable.icon_default_head)
                         .transform(new GlideCircleTransform(mContext))
                         .into(ivHead);
             }
-            getUserInfo(tel);
+//            getUserInfo(tel);
         } else {
             lilLogin.setVisibility(View.GONE);
             lilNotLogin.setVisibility(View.VISIBLE);
@@ -177,7 +177,6 @@ public class MeFragment extends BaseFragment {
                             if(!TextUtils.isEmpty(avatar)){
                                 Glide.with(mContext)
                                         .load(avatar)
-                                        .placeholder(R.drawable.icon_default_head)
                                         .transform(new GlideCircleTransform(mContext))
                                         .into(ivHead);
                             }

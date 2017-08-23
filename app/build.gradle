@@ -114,46 +114,40 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
     //本地项目工程依赖
     compile project(':Refresh-library')
     //jar依赖
     compile files('libs/BmobSDK_3.5.5_20170420.jar')
     compile files('libs/jcore-android_v1.1.3.jar')
     compile files('libs/jpush-android_v3.0.6.jar')
-
     // App's dependencies, including test
     compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
     compile "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
     compile "com.android.support:design:$rootProject.supportLibraryVersion"
     compile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
-
     //测试-本地代码
     testCompile "junit:junit:$rootProject.ext.junitVersion"
     androidTestCompile "junit:junit:$rootProject.ext.junitVersion"
-
     //集成leakcanary--内存检测
     //bugly,日志处理，其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.2.0
     //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
     //UI注解框架
-    
-
     //Retrofit+okHttp+Rxjava+fastjson网络数据解析框架
     //ConverterFactory的String依赖包
     //Google官方底部导航条
     // 方法64k限制
     //testCompile "org.robolectric:shadows-multidex:3.3.2"
-
     //轮播控件https://github.com/saiwu-bigkoo/Android-ConvenientBanner
     //图片库
     //视频播放库--哔哩哔哩https://github.com/lipangit/JieCaoVideoPlayer
     //6.0权限库，适用于中国手机兼容差---https://github.com/yanzhenjie/AndPermission/blob/master/README-CN.md
     //郭婶儿ORM数据库框架https://github.com/LitePalFramework/LitePal
-    
+    //轻量级progressBar
+    compile files('libs/pinyin4j-2.5.0.jar')
     compile 'com.tencent.bugly:crashreport:latest.release'
     compile 'com.tencent.bugly:nativecrashreport:latest.release'
     compile 'com.jakewharton:butterknife:8.5.1'
@@ -173,8 +167,9 @@ dependencies {
     compile 'org.litepal.android:core:1.5.1'
     compile 'com.zhy:flowlayout-lib:1.0.3'
     compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
-    //轻量级progressBar
     compile 'com.liulishuo.magicprogresswidget:library:1.0.9'
+    compile 'com.afollestad.material-dialogs:core:0.9.4.5'
+    compile 'com.afollestad.material-dialogs:commons:0.9.4.5'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
