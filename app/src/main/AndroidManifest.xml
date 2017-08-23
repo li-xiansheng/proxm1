@@ -329,6 +329,7 @@
         <activity
             android:name=".activity.FankuiActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".activity.MianzeActivity"></activity>
     </application>
 
 </manifest>

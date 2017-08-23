@@ -452,7 +452,7 @@ public interface HttpService {
      */
     @FormUrlEncoded
     @POST("index.php?g=portal&m=Index&a=posts")
-    Observable<BaseResponse2Entity<String>> getArticle(@FieldMap Map<String, String> map);
+    Observable<BaseResponse1Entity<String>> getArticle(@FieldMap Map<String, String> map);
 
 
     /**

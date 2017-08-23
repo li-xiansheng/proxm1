@@ -1,6 +1,7 @@
 package com.cpcp.loto.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,8 +12,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.cpcp.loto.R;
 import com.cpcp.loto.base.BaseActivity;
 import com.cpcp.loto.config.Constants;
-import com.cpcp.loto.entity.BaseResponse2Entity;
-import com.cpcp.loto.entity.UserInfoEntity;
+import com.cpcp.loto.entity.BaseResponse1Entity;
 import com.cpcp.loto.net.HttpRequest;
 import com.cpcp.loto.net.HttpService;
 import com.cpcp.loto.net.RxSchedulersHelper;
@@ -21,6 +21,9 @@ import com.cpcp.loto.util.DisplayUtil;
 import com.cpcp.loto.util.ImageUtil;
 import com.cpcp.loto.util.SPUtil;
 import com.cpcp.loto.util.ToastUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,6 +47,7 @@ public class SettingActivity extends BaseActivity {
     LinearLayout haoping;
 
     SPUtil sp;
+
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_setting;
@@ -54,10 +58,10 @@ public class SettingActivity extends BaseActivity {
         setTitle("设置");
 
         sp = new SPUtil(mContext, Constants.USER_TABLE);
-        if (sp.getBoolean("isTipMsg",true)){
-            tuisong .setImageResource(R.drawable.dark_switch_on_3x);
-        }else {
-            tuisong .setImageResource(R.drawable.dark_switch_off_3x);
+        if (sp.getBoolean("isTipMsg", true)) {
+            tuisong.setImageResource(R.drawable.dark_switch_on_3x);
+        } else {
+            tuisong.setImageResource(R.drawable.dark_switch_off_3x);
         }
 
         DisplayUtil.setTouchState(clearCrash);
@@ -74,12 +78,12 @@ public class SettingActivity extends BaseActivity {
         tuisong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean State = sp.getBoolean("isTipMsg",false);
+                boolean State = sp.getBoolean("isTipMsg", false);
                 if (State) {
-                    sp.putBoolean("isTipMsg",false);
-                    tuisong .setImageResource(R.drawable.dark_switch_off_3x);
+                    sp.putBoolean("isTipMsg", false);
+                    tuisong.setImageResource(R.drawable.dark_switch_off_3x);
                 } else {
-                    sp.putBoolean("isTipMsg",true);
+                    sp.putBoolean("isTipMsg", true);
                     tuisong.setImageResource(R.drawable.dark_switch_on_3x);
                 }
             }
@@ -98,14 +102,14 @@ public class SettingActivity extends BaseActivity {
         mianze.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                getArtical();
             }
         });
 
         fankui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jumpToActivity(FankuiActivity.class,false);
+                jumpToActivity(FankuiActivity.class, false);
             }
         });
 
@@ -137,29 +141,36 @@ public class SettingActivity extends BaseActivity {
 
     }
 
-    private void getArtical(){
+    private void getArtical() {
         Map<String, String> map = new HashMap<>();
-        map.put("id", "1");
+        map.put("id", "15");
         HttpService httpService = HttpRequest.provideClientApi();
-        httpService.getUserInfo(map)
-                .compose(RxSchedulersHelper.<BaseResponse2Entity<UserInfoEntity>>io_main())
-                .subscribe(new RxSubscriber<BaseResponse2Entity<UserInfoEntity>>() {
+        httpService.getArticle(map)
+                .compose(RxSchedulersHelper.<BaseResponse1Entity<String>>io_main())
+                .subscribe(new RxSubscriber<BaseResponse1Entity<String>>() {
                     @Override
                     public Activity getCurrentActivity() {
                         return mActivity;
                     }
 
                     @Override
-                    public void _onNext(int status, BaseResponse2Entity<UserInfoEntity> response) {
-                        if (1 == response.getFlag()) {
+                    public void _onNext(int status, BaseResponse1Entity<String> response) {
+                        if ("成功".equals(response.getResult())) {
+                            try {
+                                JSONObject object = new JSONObject(response.getData());
+                                Intent intent = new Intent(SettingActivity.this, MianzeActivity.class);
+                                intent.putExtra("str", object.getString("post_content"));
+                                startActivity(intent);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
 
                         } else {
-                            ToastUtils.show(response.getErrmsg() + "");
+                            ToastUtils.show(response.getResult() + "");
                         }
                     }
                 });
     }
-
 
 
 }
