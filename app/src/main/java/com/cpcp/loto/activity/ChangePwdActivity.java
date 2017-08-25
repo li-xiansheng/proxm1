@@ -104,6 +104,8 @@ public class ChangePwdActivity extends BaseActivity {
                     public void _onNext(int status, BaseResponse2Entity<String> response) {
                         if (response.getFlag() == 1) {
                             Log.i(TAG, "getAttentionData ---->" + response.getData());
+                            SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
+                            sp.putString(UserDB.PWD,newPass.getText().toString());
                             DialogUtil.createDialog(ChangePwdActivity.this,"修改成功");
                             finish();
                         } else {

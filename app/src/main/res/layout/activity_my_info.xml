@@ -35,7 +35,7 @@
                 android:id="@+id/ivHead"
                 android:layout_width="@dimen/dp60"
                 android:layout_height="@dimen/dp60"
-                android:src="@drawable/icon_default_head" />
+                />
 
             <android.support.v7.widget.AppCompatImageView
                 android:layout_width="wrap_content"

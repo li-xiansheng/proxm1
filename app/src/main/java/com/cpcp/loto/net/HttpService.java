@@ -6,7 +6,6 @@ import com.cpcp.loto.entity.BaseResponse2Entity;
 import com.cpcp.loto.entity.FormulaEntity;
 import com.cpcp.loto.entity.ForumDetailEntity;
 import com.cpcp.loto.entity.ForumEntity;
-import com.cpcp.loto.entity.ImgResponseEntity;
 import com.cpcp.loto.entity.LotoKingEntity;
 import com.cpcp.loto.entity.NextLotteryEntity;
 import com.cpcp.loto.entity.OpenLotteryLiveEntity;
@@ -26,6 +25,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PartMap;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -89,7 +89,7 @@ public interface HttpService {
      */
     @Multipart
     @POST("index.php?g=user&m=profile&a=avatar_upload")
-    Observable<BaseResponse2Entity<ImgResponseEntity>> uploadPicToMine(@PartMap Map<String, RequestBody> params);
+    Observable<BaseResponse2Entity<String>> uploadPicToMine(@PartMap Map<String, RequestBody> params);
 
     /**
      * 领取红包
@@ -464,4 +464,37 @@ public interface HttpService {
     @FormUrlEncoded
     @POST("index.php?m=article&a=editpassword")
     Observable<BaseResponse2Entity<String>> changePassword(@FieldMap Map<String, String> map);
+
+
+    /**
+     * 彩色六合图库
+     * index.php?g=portal&m=article2&a=caisetuku&year=2017
+     */
+    @GET("index.php?g=portal&m=article2&a=caisetuku")
+    Observable<BaseResponse2Entity<String>> getColorPic(@Query("year") String year);
+
+    /**
+     * 黑白六合图库
+     * index.php?g=portal&m=article&a=heibaituku&year=2017
+     */
+    @GET("index.php?g=portal&m=article2&a=heibaituku")
+    Observable<BaseResponse2Entity<String>> getHeiBaiPic(@Query("year") String year);
+
+    /**
+     * 免责、关于、公告
+     * index.php?g=portal&m=Index&a=posts
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=Index&a=posts")
+    Observable<BaseResponse1Entity<String>> getArticle(@FieldMap Map<String, String> map);
+
+
+    /**
+     * 免责、关于、公告
+     * index.php?g=portal&m=article&a=fankui
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=fankui")
+    Observable<BaseResponse2Entity<String>> fanKui(@FieldMap Map<String, String> map);
+
 }

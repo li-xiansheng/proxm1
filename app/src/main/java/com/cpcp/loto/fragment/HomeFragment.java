@@ -12,6 +12,7 @@ import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.cpcp.loto.MainActivity;
 import com.cpcp.loto.R;
 import com.cpcp.loto.activity.GetRedPacketActivity;
+import com.cpcp.loto.activity.LiuHeImgActivity;
 import com.cpcp.loto.activity.OpenLotteryLiveActivity;
 import com.cpcp.loto.activity.SuperiorInfoActivity;
 import com.cpcp.loto.activity.WebCommonPageActivity;

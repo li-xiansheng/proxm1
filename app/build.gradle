@@ -159,7 +159,8 @@ dependencies {
     //视频播放库--哔哩哔哩https://github.com/lipangit/JieCaoVideoPlayer
     //6.0权限库，适用于中国手机兼容差---https://github.com/yanzhenjie/AndPermission/blob/master/README-CN.md
     //郭婶儿ORM数据库框架https://github.com/LitePalFramework/LitePal
-    
+    //轻量级progressBar
+    compile files('libs/pinyin4j-2.5.0.jar')
     compile 'com.tencent.bugly:crashreport:latest.release'
     compile 'com.tencent.bugly:nativecrashreport:latest.release'
     compile 'com.jakewharton:butterknife:8.5.1'
@@ -181,6 +182,8 @@ dependencies {
     compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     //轻量级progressBar
     compile 'com.liulishuo.magicprogresswidget:library:1.0.9'
+    compile 'com.afollestad.material-dialogs:core:0.9.4.5'
+    compile 'com.afollestad.material-dialogs:commons:0.9.4.5'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
