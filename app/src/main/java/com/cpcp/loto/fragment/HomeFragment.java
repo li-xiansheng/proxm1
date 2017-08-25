@@ -192,7 +192,7 @@ public class HomeFragment extends BaseFragment {
 
         // 待定跳转的class
         Class[] uri = new Class[]{
-                WebCommonPageActivity.class,
+                LiuHeImgActivity.class,
                 TrendAnalysisActivity.class,
                 CommunicationForumActivity.class,
                 HistoryLotteryActivity.class,
@@ -219,12 +219,13 @@ public class HomeFragment extends BaseFragment {
             public void onItemClick(View view, int position) {
                 Class aClass = (Class<?>) data.get(position).get("uri");
                 String name = (String) data.get(position).get("name");
-                if ("六合图库".equals(name)) {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("name", "六合图库");
-                    bundle.putString("url", HttpService.lotoPictures);
-                    ((BaseActivity) mActivity).jumpToActivity(WebCommonPageActivity.class, bundle, false);
-                } else if ("历史开奖".equals(name)) {
+//                if ("六合图库".equals(name)) {
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("name", "六合图库");
+//                    bundle.putString("url", HttpService.lotoPictures);
+//                    ((BaseActivity) mActivity).jumpToActivity(WebCommonPageActivity.class, bundle, false);
+//                } else
+                    if ("历史开奖".equals(name)) {
                     Bundle bundle = new Bundle();
                     bundle.putString("name", "历史开奖");
                     bundle.putString("url", HttpService.historyLottery);
