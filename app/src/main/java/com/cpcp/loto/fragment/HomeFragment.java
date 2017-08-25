@@ -12,6 +12,7 @@ import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.cpcp.loto.MainActivity;
 import com.cpcp.loto.R;
 import com.cpcp.loto.activity.GetRedPacketActivity;
+import com.cpcp.loto.activity.OpenLotteryLiveActivity;
 import com.cpcp.loto.activity.SuperiorInfoActivity;
 import com.cpcp.loto.activity.WebCommonPageActivity;
 import com.cpcp.loto.activity.CommunicationForumActivity;
@@ -252,10 +253,13 @@ public class HomeFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.lilLotteryLive:
-                Bundle bundle = new Bundle();
-                bundle.putString("name", "开奖直播");
-                bundle.putString("url", HttpService.lotteryLive);
-                ((BaseActivity) mActivity).jumpToActivity(WebCommonPageActivity.class, bundle, false);
+//                Bundle bundle = new Bundle();
+//                bundle.putString("name", "开奖直播");
+//                bundle.putString("url", HttpService.lotteryLive);
+//                ((BaseActivity) mActivity).jumpToActivity(WebCommonPageActivity.class, bundle, false);
+                ((BaseActivity) mActivity).jumpToActivity(OpenLotteryLiveActivity.class, false);
+
+
                 break;
             case R.id.lilHailiao:
                 ((BaseActivity) mActivity).jumpToActivity(SuperiorInfoActivity.class, false);

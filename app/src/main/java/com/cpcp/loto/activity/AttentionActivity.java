@@ -50,6 +50,7 @@ public class AttentionActivity extends BasePullRefreshActivity {
     List<AttentionBean> data = new ArrayList<>();
 
     private boolean isFirst = true;//是否第一次加载
+
     @Override
     protected int getChildLayoutResId() {
         return R.layout.activity_attention;
@@ -70,10 +71,10 @@ public class AttentionActivity extends BasePullRefreshActivity {
             public void onItemClick(View view, int position) {
 //                Intent intent = new Intent(AttentionActivity.this,SalaryActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("nickname",data.get(position).user_nicename);
-                bundle.putString("mobile",data.get(position).mobile);
-                bundle.putString("avatar","http://"+data.get(position).avatar);
-                jumpToActivity(SalaryActivity.class,bundle,false);
+                bundle.putString("nickname", data.get(position).user_nicename);
+                bundle.putString("mobile", data.get(position).mobile);
+                bundle.putString("avatar", "http://" + data.get(position).avatar);
+                jumpToActivity(SalaryActivity.class, bundle, false);
             }
         });
 
@@ -150,10 +151,7 @@ public class AttentionActivity extends BasePullRefreshActivity {
                     @Override
                     public void onCompleted() {
                         super.onCompleted();
-                        if (currentPage == 1 && mPullToRefreshRecyclerView != null) {
-                            mPullToRefreshRecyclerView.setMode(PullToRefreshBase.Mode.BOTH);
-                        }
-                        currentPage += 1;
+
                         if (mPullToRefreshRecyclerView != null && mPullToRefreshRecyclerView.isRefreshing()) {
                             mPullToRefreshRecyclerView.onRefreshComplete();
                         }
@@ -166,9 +164,6 @@ public class AttentionActivity extends BasePullRefreshActivity {
                             mPullToRefreshRecyclerView.onRefreshComplete();
                         }
                     }
-
                 });
-
     }
-
 }

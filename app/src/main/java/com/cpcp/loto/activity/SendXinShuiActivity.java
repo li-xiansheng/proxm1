@@ -176,7 +176,7 @@ public class SendXinShuiActivity extends BaseActivity {
                 }
             }
             if(forecast.endsWith(",")){
-                forecast.substring(0,forecast.length()-1);
+                forecast.substring(0,forecast.length()-2);
             }
         } else if (currentPage == 3) {
             type = "4";
@@ -193,7 +193,7 @@ public class SendXinShuiActivity extends BaseActivity {
                 }
             }
             if(forecast.endsWith(",")){
-                forecast.substring(0,forecast.length()-1);
+                forecast.substring(0,forecast.length()-2);
             }
         }
 

@@ -146,33 +146,37 @@
         android:id="@+id/radioGroup2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:layout_marginTop="@dimen/dp20"
         android:orientation="horizontal">
 
 
         <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/rbBig"
-            android:layout_width="@dimen/dp40"
-            android:layout_height="@dimen/dp40"
+            android:layout_width="@dimen/dp60"
+            android:layout_height="@dimen/dp60"
             android:layout_weight="1"
             android:background="@drawable/selector_radio_xinshui_checked"
             android:button="@color/transparent"
             android:checked="true"
             android:gravity="center"
             android:text="大"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+
+            android:textSize="@dimen/dp20" />
 
         <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/rbLittle"
-            android:layout_width="@dimen/dp40"
-            android:layout_height="@dimen/dp40"
-            android:layout_marginLeft="@dimen/dp30"
+            android:layout_width="@dimen/dp60"
+            android:layout_height="@dimen/dp60"
+            android:layout_marginLeft="@dimen/dp60"
             android:layout_weight="1"
             android:background="@drawable/selector_radio_xinshui_checked"
             android:button="@color/transparent"
             android:gravity="center"
             android:text="小"
-            android:textColor="@color/white" />
+
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp20" />
 
 
     </RadioGroup>

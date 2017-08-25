@@ -9,6 +9,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cpcp.loto.R;
+import com.cpcp.loto.activity.LoginActivity;
+import com.cpcp.loto.base.BaseActivity;
 import com.cpcp.loto.base.BaseFragment;
 import com.cpcp.loto.bean.VoteBean;
 import com.cpcp.loto.config.Constants;
@@ -140,6 +142,11 @@ public class BoSeBetFragment extends BaseFragment {
 
         LoadingDialog.showDialog(getActivity());
         SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
+        boolean isLogin=sp.getBoolean(UserDB.isLogin,false);
+        if(!isLogin){
+            ((BaseActivity)mActivity).jumpToActivity(LoginActivity.class,false);
+            return;
+        }
         String tel = sp.getString(UserDB.TEL, "");
         Map<String, String> map = new HashMap<>();
 

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:gravity="center_horizontal"
     android:orientation="vertical">
 
     <android.support.v7.widget.AppCompatTextView
@@ -19,20 +20,38 @@
         android:text="xxxx年第xxx期" />
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp300"
+        android:layout_width="@dimen/dp310"
+        android:layout_height="@dimen/dp310"
         android:layout_margin="@dimen/dp8"
         android:background="@color/black">
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+        </android.support.v7.widget.RecyclerView>
 
+        <com.cpcp.loto.view.CirclePointView
+            android:id="@+id/circlePointView"
+            android:layout_width="@dimen/dp150"
+            android:layout_height="@dimen/dp150"
+             android:layout_centerInParent="true" />
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开始"
+            android:layout_centerInParent="true"
+            android:background="@drawable/shape_arc2_yellow"/>
     </RelativeLayout>
 
     <android.support.v7.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:padding="@dimen/dp8"
         android:gravity="bottom"
-        android:textColor="@color/red"
-        android:text="小提示：每期只能进行一次波肖转盘" />
+        android:padding="@dimen/dp8"
+        android:text="小提示：每期只能进行一次波肖转盘"
+        android:textColor="@color/red" />
 </LinearLayout>

@@ -33,7 +33,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * 功能描述：工具箱网格适配器
+ * 功能描述：我的关注
  */
 
 public class AttentionRecyclerAdapter extends BaseRecycleViewAdapter {

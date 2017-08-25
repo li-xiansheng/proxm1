@@ -76,7 +76,7 @@
             android:layout_height="@dimen/dp30"
             android:layout_centerInParent="true"
             android:layout_marginTop="@dimen/dp20"
-            android:background="@drawable/shape_border_arc2_red"
+            android:background="@drawable/shape_border_arc6_red"
             android:gravity="center"
             android:text="查看"
 

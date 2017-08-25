@@ -1,6 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<com.handmark.pulltorefresh.library.PullToRefreshScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/pullToRefreshScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    ptr:ptrAnimationStyle="flip"
+    ptr:ptrDrawable="@drawable/arrow_down"
+    ptr:ptrHeaderBackground="@color/white"
+    ptr:ptrHeaderTextColor="@color/grayText"
+    ptr:ptrMode="both"
+    ptr:ptrOverScroll="false"
+    ptr:ptrShowIndicator="false">
 
-</LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp30"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp6">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_lingsheng" />
+
+            <com.cpcp.loto.view.MarqueeTextView
+                android:id="@+id/tvNotice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp6"
+                android:layout_weight="1"
+                android:ellipsize="marquee"
+                android:lines="1"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+                android:textColor="@color/blackText" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp10"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvQiShu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="第xxx期开奖结果" />
+
+            <com.cpcp.loto.view.SelectedLayerImageView
+                android:id="@+id/ivLive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:src="@drawable/icon_open_lottery_live" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/lilHaoMa"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp40"
+                    android:layout_marginLeft="@dimen/dp30"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lilShengXiao"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp40"
+                    android:layout_marginLeft="@dimen/dp30"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.cpcp.loto.view.SelectedLayerTextView
+                android:id="@+id/tvWait"
+                android:layout_width="@dimen/dp200"
+                android:layout_height="@dimen/dp36"
+                android:layout_centerInParent="true"
+                android:background="@color/yellowDark"
+                android:gravity="center"
+                android:text="等待开奖"
+
+
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvNextOpenLottery"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp30"
+            android:layout_margin="@dimen/dp10"
+            android:background="@drawable/shape_arc6_red"
+            android:gravity="center"
+            android:text="第xxx期"
+            android:textColor="@color/white" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+</com.handmark.pulltorefresh.library.PullToRefreshScrollView>

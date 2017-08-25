@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/PickeTimerViewLib" />
             <option value="$PROJECT_DIR$/Refresh-library" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/expandablerecyclerview" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

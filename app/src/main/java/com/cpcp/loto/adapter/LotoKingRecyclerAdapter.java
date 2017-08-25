@@ -73,12 +73,13 @@ public class LotoKingRecyclerAdapter extends BaseRecycleViewAdapter {
 
                 if (position == 0) {
                     tvRanking.setBackgroundResource(R.drawable.icon_ranking_no1);
+                    tvRanking.setText("");
                 } else if (position == 1) {
                     tvRanking.setBackgroundResource(R.drawable.icon_ranking_no2);
+                    tvRanking.setText("");
                 } else if (position == 2) {
                     tvRanking.setBackgroundResource(R.drawable.icon_ranking_no3);
                     tvRanking.setText("");
-
                 } else {
                     tvRanking.setBackgroundResource(R.color.transparent);
                     tvRanking.setText((position + 1) + "");

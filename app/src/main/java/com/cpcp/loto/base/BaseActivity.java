@@ -85,7 +85,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 目录名称
      */
-    private String menuStr;
+    public String menuStr;
     /**
      * 目录图片
      */

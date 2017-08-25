@@ -34,7 +34,7 @@ import java.util.Map;
 public class LotoKingFragment extends BasePullRefreshFragment {
 
 
-    private List<LotoKingEntity> mList;
+    public List<LotoKingEntity> mList;
     private String title = "";
     private boolean isFirst = true;//是否第一次加载
     private LotoKingRecyclerAdapter mBaseRecycleViewAdapter;

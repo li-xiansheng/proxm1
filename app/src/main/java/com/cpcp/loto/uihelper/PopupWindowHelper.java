@@ -32,7 +32,7 @@ public class PopupWindowHelper {
         TimePickerView pvTime = new TimePickerView(activity, TimePickerView.Type.YEAR);
         //控制时间范围
         Calendar calendar = Calendar.getInstance();
-        pvTime.setRange(2016, calendar.get(Calendar.YEAR));//要在setTime 之前才有效果哦
+        pvTime.setRange(1969, calendar.get(Calendar.YEAR));//要在setTime 之前才有效果哦
         pvTime.setTitle("选择年份");
         pvTime.setTime(new Date());
         pvTime.setCyclic(false);

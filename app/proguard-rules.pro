@@ -193,7 +193,7 @@
 }
 
 -keep class com.cpcp.loto.entity.**{*;}#//自定义实体类
-
+-keep class com.cpcp.loto.bean.**{*;}#//自定义实体类
 #jar包
 #-libraryjars  libs/BmobSDK_3.5.5_20170420.jar
 #-libraryjars libs/jcore-android_v1.1.3.jar

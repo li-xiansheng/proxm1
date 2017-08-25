@@ -9,6 +9,8 @@ import com.cpcp.loto.entity.ForumEntity;
 import com.cpcp.loto.entity.ImgResponseEntity;
 import com.cpcp.loto.entity.LotoKingEntity;
 import com.cpcp.loto.entity.NextLotteryEntity;
+import com.cpcp.loto.entity.OpenLotteryLiveEntity;
+import com.cpcp.loto.entity.OpenLotteryZuiXinEntity;
 import com.cpcp.loto.entity.RedPacketEntity;
 import com.cpcp.loto.entity.TrendAnalysisEntity;
 import com.cpcp.loto.entity.UserInfoEntity;
@@ -214,6 +216,19 @@ public interface HttpService {
      */
      @POST("index.php?g=portal&m=Index&a=xckj")
     Observable<NextLotteryEntity> getNextDate();
+
+    /**
+     * 开奖直播
+     * @return
+     */
+    @POST("index.php?g=portal&m=article&a=kjzb")
+    Observable<BaseResponse2Entity<OpenLotteryLiveEntity>> openLotteryLive();
+    /**
+     * 最新开奖
+     * @return
+     */
+    @POST("index.php?g=portal&m=Index&a=zuixin")
+    Observable<BaseResponse1Entity<List<OpenLotteryZuiXinEntity>>> openLotteryZuixin();
 
 
 

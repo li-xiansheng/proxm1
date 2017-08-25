@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_lotterying_bg"
+    android:gravity="clip_horizontal"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/ivBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_lotterying_bottom" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_lotterying_circle" />
+
+    />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/ivStatic"
+        android:layout_width="@dimen/dp180"
+        android:layout_height="@dimen/dp196"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp160"
+        android:scaleType="centerInside"
+        android:src="@drawable/img_lotterying_static" />
+
+    <com.cpcp.loto.view.SelectedLayerImageView
+        android:id="@+id/ivDismiss"
+        android:layout_width="@dimen/dp40"
+        android:layout_height="@dimen/dp40"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/dp40"
+        android:layout_marginRight="@dimen/dp10"
+        android:src="@drawable/icon_lotterying_delete" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp100"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp30"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dp20"
+            android:text="第xxx期"
+            android:textColor="@color/blackText"
+            android:textSize="@dimen/sp20" />
+
+        <include layout="@layout/view_gray_line" />
+
+        <LinearLayout
+            android:id="@+id/lilBall"
+
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp20">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lilShengXiao"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp20">
+
+        </LinearLayout>
+
+        <include layout="@layout/view_gray_line" />
+
+
+    </LinearLayout>
+</RelativeLayout>

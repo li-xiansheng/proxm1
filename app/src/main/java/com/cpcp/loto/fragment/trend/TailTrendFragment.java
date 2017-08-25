@@ -5,6 +5,7 @@ import android.app.Activity;
 import com.cpcp.loto.R;
 import com.cpcp.loto.adapter.HeadTrendRecyclerAdapter;
 import com.cpcp.loto.adapter.TailTrendRecyclerAdapter;
+import com.cpcp.loto.base.BaseActivity;
 import com.cpcp.loto.base.BasePullRefreshFragment;
 import com.cpcp.loto.entity.BaseResponse2Entity;
 import com.cpcp.loto.entity.TrendAnalysisEntity;
@@ -12,6 +13,7 @@ import com.cpcp.loto.net.HttpRequest;
 import com.cpcp.loto.net.HttpService;
 import com.cpcp.loto.net.RxSchedulersHelper;
 import com.cpcp.loto.net.RxSubscriber;
+import com.cpcp.loto.util.DateUtils;
 import com.cpcp.loto.util.LogUtils;
 import com.cpcp.loto.util.ToastUtils;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -81,7 +83,14 @@ public class TailTrendFragment extends BasePullRefreshFragment {
 
         map.put("type", "weishu");
         map.put("page", currentPage + "");
-        map.put("year", "2017");
+        String year = "";
+        String menuStr = ((BaseActivity) mActivity).menuStr;
+        if ("年限查询".equals(menuStr)) {
+            year = DateUtils.getYear() + "";
+        } else {
+            year = menuStr;
+        }
+        map.put("year", year + "");
         HttpService httpService = HttpRequest.provideClientApi();
         httpService.getTrend(map)
                 .compose(RxSchedulersHelper.<BaseResponse2Entity<List<TrendAnalysisEntity>>>io_main())

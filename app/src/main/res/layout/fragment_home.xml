@@ -21,7 +21,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp30"
-            android:background="@color/grayBg"
+            android:background="@color/grayBgLight"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/dp16">
@@ -121,8 +121,8 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp4"
-            android:background="@color/grayBg" />
+            android:layout_height="@dimen/dp6"
+            android:background="@color/grayBgLight" />
 
         <RelativeLayout
             android:layout_width="match_parent"

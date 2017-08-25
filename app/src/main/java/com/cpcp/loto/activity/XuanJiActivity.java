@@ -13,6 +13,7 @@ import com.cpcp.loto.net.HttpRequest;
 import com.cpcp.loto.net.HttpService;
 import com.cpcp.loto.net.RxSchedulersHelper;
 import com.cpcp.loto.net.RxSubscriber;
+import com.cpcp.loto.util.DialogUtil;
 import com.cpcp.loto.util.ToastUtils;
 import com.cpcp.loto.view.SelectedLayerTextView;
 
@@ -69,7 +70,7 @@ public class XuanJiActivity extends BaseActivity {
                     @Override
                     public void _onNext(int status, BaseResponse2Entity<String> response) {
                         String data = response.getData();
-                        ToastUtils.show(data + "");
+                        DialogUtil.createDialog(mContext,"玄机锦囊",data+"");
 
                     }
                 });

@@ -96,7 +96,13 @@ public class LotoKingActivity extends BaseActivity {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                ((LotoKingFragment) fragments.get(viewPager.getCurrentItem())).getData();
+                LotoKingFragment fragment = ((LotoKingFragment) fragments.get(viewPager.getCurrentItem()));
+                if (fragment.mList != null) {
+                    fragment.mList.clear();
+                }
+                //用刷新的UI去触发下拉刷新
+                fragment.mPullToRefreshRecyclerView.setRefreshing(true);
+//                fragment.getData();
             }
         });
     }

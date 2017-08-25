@@ -227,6 +227,12 @@
         <activity
             android:name=".activity.FormulaDetailActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.OpenLotteryLiveActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.OpenLotteryingActivity"
+            android:screenOrientation="portrait" />
 
 
         <!-- 极光测试页面，点击后打开 -->

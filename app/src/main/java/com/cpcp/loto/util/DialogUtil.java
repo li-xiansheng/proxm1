@@ -1,7 +1,7 @@
 package com.cpcp.loto.util;
 
-import android.app.AlertDialog;
 import android.content.Context;
+import android.support.v7.app.AlertDialog;
 
 /**
  * Created by chentao on 2017/8/18.

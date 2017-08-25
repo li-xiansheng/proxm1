@@ -27,6 +27,7 @@ import com.cpcp.loto.util.ToastUtils;
 import com.cpcp.loto.view.DividerItemDecorationGridHome;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,6 +68,9 @@ public class InformationStatisticsActivity extends BaseActivity implements Botto
     private StatisticsChildFragment fragment14;
     private StatisticsChildFragment fragment15;
     private StatisticsChildFragment fragment16;
+    //
+    private InfoStatisticsGridRecyclerAdapter infoStatisticsGridRecyclerAdapter;
+    private List<Map<String, Object>> data;
 
     @Override
     protected int getLayoutResId() {
@@ -76,6 +80,12 @@ public class InformationStatisticsActivity extends BaseActivity implements Botto
     @Override
     protected void initView() {
         setTitle("六合统计");
+        setTopRightButton("期数:100", new OnMenuClickListener() {
+            @Override
+            public void onClick() {
+
+            }
+        });
 
         //
         mBottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
@@ -173,7 +183,7 @@ public class InformationStatisticsActivity extends BaseActivity implements Botto
     public void onTabSelected(int position) {
         if (position == 4) {
             showPopupWindow();
-        }else{
+        } else {
             showWebPage(position);
         }
     }
@@ -209,8 +219,6 @@ public class InformationStatisticsActivity extends BaseActivity implements Botto
         mWindow.showAtLocation(this.getWindow().getDecorView(), Gravity.BOTTOM, 0, -(mBottomNavigationBar.getHeight()));
     }
 
-    private InfoStatisticsGridRecyclerAdapter infoStatisticsGridRecyclerAdapter;
-    private List<Map<String, Object>> data;
 
     /**
      * 初始化运用模块数据
@@ -223,6 +231,12 @@ public class InformationStatisticsActivity extends BaseActivity implements Botto
 
 
         infoStatisticsGridRecyclerAdapter = new InfoStatisticsGridRecyclerAdapter(mActivity, data);
+
+        String title = tvTitle.getText().toString();
+        int position = Arrays.asList(strIndex).indexOf(title);
+
+        infoStatisticsGridRecyclerAdapter.setSelectedPosition(position);
+
         recyclerView.setAdapter(infoStatisticsGridRecyclerAdapter);
         infoStatisticsGridRecyclerAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -231,7 +245,12 @@ public class InformationStatisticsActivity extends BaseActivity implements Botto
                     mWindow.dismiss();
                     mWindow = null;
                 }
-                showWebPage(position);
+                if (position < 4) {
+                    mBottomNavigationBar.selectTab(position);
+                } else {
+                    showWebPage(position);
+                }
+
             }
         });
     }

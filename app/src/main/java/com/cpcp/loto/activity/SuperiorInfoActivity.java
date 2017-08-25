@@ -6,6 +6,9 @@ import android.widget.LinearLayout;
 
 import com.cpcp.loto.R;
 import com.cpcp.loto.base.BaseActivity;
+import com.cpcp.loto.config.Constants;
+import com.cpcp.loto.entity.UserDB;
+import com.cpcp.loto.util.SPUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,21 +44,27 @@ public class SuperiorInfoActivity extends BaseActivity {
     }
 
 
-
     @OnClick({R.id.lilLotoKing, R.id.lilWinning, R.id.lilMyAttention, R.id.lilSendXinShui})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.lilLotoKing:
-                jumpToActivity(LotoKingActivity.class,false);
+                jumpToActivity(LotoKingActivity.class, false);
                 break;
             case R.id.lilWinning:
-                jumpToActivity(WinningActivity.class,false);
+                jumpToActivity(WinningActivity.class, false);
                 break;
             case R.id.lilMyAttention:
-                jumpToActivity(AttentionActivity.class,false);
+                SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
+                boolean isLogin = sp.getBoolean(UserDB.isLogin, false);
+                if (!isLogin) {
+                    jumpToActivity(LoginActivity.class, false);
+                    return;
+                }
+
+                jumpToActivity(AttentionActivity.class, false);
                 break;
             case R.id.lilSendXinShui:
-                jumpToActivity(SendXinShuiActivity.class,false);
+                jumpToActivity(SendXinShuiActivity.class, false);
                 break;
         }
     }

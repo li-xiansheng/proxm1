@@ -50,8 +50,9 @@ public class WebCommonPageActivity extends BaseActivity {
 
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);//支持内容重新布局
         settings.setUseWideViewPort(true);
-        settings.setLoadWithOverviewMode(true);
+        settings.setLoadWithOverviewMode(false);
         //添加js时间监听，交由web浏览器调用
         webView.removeJavascriptInterface("searchBoxJavaBredge_");//移除js调用漏洞
 
