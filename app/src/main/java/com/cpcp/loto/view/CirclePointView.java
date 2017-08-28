@@ -89,7 +89,7 @@ public class CirclePointView extends View {
                     double drawXCircle = centerXY - bitmapCircle.getWidth() / 2 + radius * Math.cos(360 / imgResList.size() * i * Math.PI / 180);
                     double drawYCircle = centerXY - bitmapCircle.getWidth() / 2 + radius * Math.sin(360 / imgResList.size() * i * Math.PI / 180);
 
-                    canvas.drawBitmap(bitmapCircle, (int) drawXCircle, (int) drawYCircle,null);
+                    canvas.drawBitmap(bitmapCircle, (int) drawXCircle, (int) drawYCircle, null);
 
                 }
 
@@ -111,8 +111,10 @@ public class CirclePointView extends View {
      *
      * @param index
      */
-     public  void setCurrentSelect(int index) {
-        currentIndex = index;
+    public void setCurrentSelect(int index) {
+        if (imgResList != null && imgResList.size() > 0) {
+            currentIndex = index % imgResList.size();
+        }
         invalidate();
     }
 

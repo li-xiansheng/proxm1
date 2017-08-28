@@ -1,6 +1,7 @@
 package com.cpcp.loto.activity;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.cpcp.loto.bean.AttentionBean;
 import com.cpcp.loto.config.Constants;
 import com.cpcp.loto.entity.BaseResponse2Entity;
 import com.cpcp.loto.entity.UserDB;
+import com.cpcp.loto.listener.OnItemClickListener;
 import com.cpcp.loto.net.HttpRequest;
 import com.cpcp.loto.net.HttpService;
 import com.cpcp.loto.net.RxSchedulersHelper;
@@ -48,6 +50,7 @@ public class FansActivity extends BasePullRefreshActivity {
     List<AttentionBean> data = new ArrayList<>();
 
     private boolean isFirst = true;//是否第一次加载
+
     @Override
     protected int getChildLayoutResId() {
         return R.layout.activity_fans;
@@ -63,24 +66,28 @@ public class FansActivity extends BasePullRefreshActivity {
         mAdapter = new FansRecyclerAdapter(mContext, data);
         recyclerView.setAdapter(mAdapter);
 
-//        mAdapter.setOnItemClickListener(new OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View view, int position) {
-////                Intent intent = new Intent(AttentionActivity.this,SalaryActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putString("nickname",data.get(position).user_nicename);
-//                bundle.putString("mobile",data.get(position).mobile);
-//                bundle.putString("avatar","http://"+data.get(position).avatar);
-//                jumpToActivity(SalaryActivity.class,bundle,false);
-//            }
-//        });
 
-        getData();
+    }
+
+    @Override
+    protected void initListener() {
+        super.initListener();
+        mAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Bundle bundle = new Bundle();
+                bundle.putString("nickname", data.get(position).user_nicename);
+                bundle.putString("mobile", data.get(position).mobile);
+                bundle.putString("avatar", "http://" + data.get(position).avatar);
+                jumpToActivity(SalaryActivity.class, bundle, false);
+            }
+        });
+
     }
 
     @Override
     protected void initData() {
-
+        super.initData();
     }
 
     @Override
@@ -157,10 +164,7 @@ public class FansActivity extends BasePullRefreshActivity {
                     @Override
                     public void onCompleted() {
                         super.onCompleted();
-                        if (currentPage == 1 && mPullToRefreshRecyclerView != null) {
-                            mPullToRefreshRecyclerView.setMode(PullToRefreshBase.Mode.BOTH);
-                        }
-                        currentPage += 1;
+
                         if (mPullToRefreshRecyclerView != null && mPullToRefreshRecyclerView.isRefreshing()) {
                             mPullToRefreshRecyclerView.onRefreshComplete();
                         }

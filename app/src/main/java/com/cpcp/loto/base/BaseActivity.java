@@ -89,7 +89,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 目录图片
      */
-    private int menuResId;
+    public int menuResId;
     /**
      * 记录是点击时屏幕的Y轴起点
      */
@@ -496,7 +496,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * 右边菜单
+     * 菜单事件
      *
      * @param item
      * @return
@@ -515,7 +515,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * 左边菜单
+     * 右边菜单
      *
      * @param menu
      * @return

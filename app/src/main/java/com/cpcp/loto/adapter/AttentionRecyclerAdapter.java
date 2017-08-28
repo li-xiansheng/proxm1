@@ -69,6 +69,7 @@ public class AttentionRecyclerAdapter extends BaseRecycleViewAdapter {
             if (avatar!=null){
                 Glide.with(mContext)
                         .load(avatar)
+                        .placeholder(R.drawable.icon_default_head)
                         .transform(new GlideCircleTransform(mContext))
                         .into(viewHolder.salaryHead);
             }else {

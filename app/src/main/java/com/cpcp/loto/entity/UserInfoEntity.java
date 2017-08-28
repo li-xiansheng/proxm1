@@ -13,11 +13,19 @@ public class UserInfoEntity {
      * avatar : ad.076668.com/data/upload/avatar/avatar.png
      * score : 3456
      */
-
+    private String id;
     private String user_nicename;
     private String mobile;
     private String avatar;
     private String score;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getUser_nicename() {
         return user_nicename;

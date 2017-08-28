@@ -51,13 +51,9 @@ public class RichActivity extends BaseActivity {
         fragments.add(new CaiShenFragment());
         fragments.add(new IntroduceFragment());
 
-//        tabItems.add(richTabitem1);
-//        tabItems.add(richTabitem2);
-//        tabItems.add(richTabitem3);
-
-        richViewpager.setAdapter(new TabRichAdapter(fragments,getSupportFragmentManager(), this));
-//        richTablayout.setupWithViewPager(richViewpager);
-        richTablayout.setupWithViewPager(richViewpager,false);
+        richViewpager.setOffscreenPageLimit(2);
+        richViewpager.setAdapter(new TabRichAdapter(fragments, getSupportFragmentManager(), this));
+        richTablayout.setupWithViewPager(richViewpager, false);
 
         richTablayout.getTabAt(0).setCustomView(R.layout.item_rich_tab1);
         richTablayout.getTabAt(1).setCustomView(R.layout.item_rich_tab2);

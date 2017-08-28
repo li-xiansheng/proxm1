@@ -175,8 +175,8 @@ public class SendXinShuiActivity extends BaseActivity {
                     forecast += name + ",";
                 }
             }
-            if(forecast.endsWith(",")){
-                forecast.substring(0,forecast.length()-2);
+            if (forecast.endsWith(",")) {
+                forecast = forecast.substring(0, forecast.length() - 1);
             }
         } else if (currentPage == 3) {
             type = "4";
@@ -192,8 +192,8 @@ public class SendXinShuiActivity extends BaseActivity {
                     forecast += name + ",";
                 }
             }
-            if(forecast.endsWith(",")){
-                forecast.substring(0,forecast.length()-2);
+            if (forecast.endsWith(",")) {
+                forecast = forecast.substring(0, forecast.length() - 1);
             }
         }
 

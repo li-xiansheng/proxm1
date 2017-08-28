@@ -22,7 +22,9 @@
             android:hint="请输入手机号"
             android:inputType="phone"
             android:maxLength="11"
-            android:paddingLeft="@dimen/dp40"
+            android:drawableLeft="@drawable/icon_phone_gray"
+            android:paddingLeft="@dimen/dp10"
+
             android:paddingRight="@dimen/dp10"
             android:textSize="@dimen/sp16" />
         <View
@@ -40,7 +42,8 @@
             android:hint="请输入密码"
             android:inputType="textPassword"
             android:maxLength="20"
-            android:paddingLeft="@dimen/dp40"
+            android:drawableLeft="@drawable/icon_pass_gray"
+            android:paddingLeft="@dimen/dp10"
             android:paddingRight="@dimen/dp10"
             android:textSize="@dimen/sp16" />
 

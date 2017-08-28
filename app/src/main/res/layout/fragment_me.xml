@@ -28,10 +28,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_margin="@dimen/dp10"
+                android:padding="15dp"
                 android:text="设置"
                 android:textColor="@color/white"
-                android:textSize="@dimen/sp18"
-                android:padding="15dp"/>
+                android:textSize="@dimen/sp18" />
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/ivHead"
@@ -40,7 +40,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/dp40"
                 android:scaleType="centerCrop"
-                />
+                android:src="@drawable/icon_default_head" />
 
             <LinearLayout
                 android:id="@+id/lilLogin"
@@ -249,7 +249,7 @@
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/item_icon_buy_record"
                 android:drawablePadding="@dimen/dp10"
-                android:text="购买记录"
+                android:text="积分记录"
                 android:textSize="@dimen/sp18" />
 
             <android.support.v7.widget.AppCompatImageView

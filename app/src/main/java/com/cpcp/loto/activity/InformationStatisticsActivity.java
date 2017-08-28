@@ -1,29 +1,32 @@
 package com.cpcp.loto.activity;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
-import com.cpcp.loto.MainActivity;
 import com.cpcp.loto.R;
-import com.cpcp.loto.adapter.HomeGridRecyclerAdapter;
 import com.cpcp.loto.adapter.InfoStatisticsGridRecyclerAdapter;
 import com.cpcp.loto.base.BaseActivity;
 import com.cpcp.loto.fragment.statistics.StatisticsChildFragment;
 import com.cpcp.loto.listener.OnItemClickListener;
 import com.cpcp.loto.net.HttpService;
 import com.cpcp.loto.uihelper.PopMenuHelper;
+import com.cpcp.loto.uihelper.PopupWindowHelper;
 import com.cpcp.loto.uihelper.ScrollGridLayoutManager;
-import com.cpcp.loto.util.ToastUtils;
+import com.cpcp.loto.util.LogUtils;
 import com.cpcp.loto.view.DividerItemDecorationGridHome;
 
 import java.util.ArrayList;
@@ -31,7 +34,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Observable;
 
 import butterknife.BindView;
 
@@ -46,11 +48,13 @@ public class InformationStatisticsActivity extends BaseActivity implements Botto
 
     private int[] resId;
     private String[] strIndex;
-    private String[] url;
+    private String[] urls;
     PopupWindow mWindow;
 
     //各个Fragment操作页面
+    public int mPosition;//记录当前选择
     public Fragment currentFragment;
+
     private StatisticsChildFragment fragment0;
     private StatisticsChildFragment fragment1;
     private StatisticsChildFragment fragment2;
@@ -71,6 +75,8 @@ public class InformationStatisticsActivity extends BaseActivity implements Botto
     //
     private InfoStatisticsGridRecyclerAdapter infoStatisticsGridRecyclerAdapter;
     private List<Map<String, Object>> data;
+    //
+    private AppCompatTextView tempTextView;
 
     @Override
     protected int getLayoutResId() {
@@ -80,12 +86,9 @@ public class InformationStatisticsActivity extends BaseActivity implements Botto
     @Override
     protected void initView() {
         setTitle("六合统计");
-        setTopRightButton("期数:100", new OnMenuClickListener() {
-            @Override
-            public void onClick() {
-
-            }
-        });
+        menuStr = "";//初始化保证不为null
+        //初始一个TextView缓存对象，监听事件选择
+        tempTextView = new AppCompatTextView(mContext);
 
         //
         mBottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
@@ -115,6 +118,49 @@ public class InformationStatisticsActivity extends BaseActivity implements Botto
 
     }
 
+    @Override
+    protected void initListener() {
+        super.initListener();
+        tempTextView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String str = tempTextView.getText().toString();
+                String type = "";
+                if (!TextUtils.isEmpty(str)) {
+                    if (str.contains("近")) {
+                        type = str.substring(1, str.length() - 1);
+                        menuStr = "期数:"+type;
+                    } else {
+                        type = str;
+                        menuStr = "年份:"+type;
+                    }
+
+
+                    String url = urls[mPosition];
+
+
+                    if (!TextUtils.isEmpty(url) && url.contains("type=")) {
+                        int indexLast = url.lastIndexOf("=");
+                        url = url.substring(0, indexLast) + "=" + type;
+                    }
+                    LogUtils.i(TAG, "刷新的url为" + url);
+                    ((StatisticsChildFragment) currentFragment).refreshWebUrl(url);
+                }
+
+
+            }
+        });
+    }
 
     @Override
     protected void initData() {
@@ -149,7 +195,7 @@ public class InformationStatisticsActivity extends BaseActivity implements Botto
                 "连肖走势"};
 
         // 待定跳转的class
-        url = new String[]{
+        urls = new String[]{
                 HttpService.lotoStatistics,
                 HttpService.attributeReference,
                 HttpService.temaHistory,
@@ -174,7 +220,7 @@ public class InformationStatisticsActivity extends BaseActivity implements Botto
             HashMap<String, Object> map = new HashMap<String, Object>();
             map.put("name", strIndex[i]);
             map.put("img", resId[i]);
-            map.put("url", url[i]);
+            map.put("urls", urls[i]);
             data.add(map);
         }
     }
@@ -186,6 +232,7 @@ public class InformationStatisticsActivity extends BaseActivity implements Botto
         } else {
             showWebPage(position);
         }
+
     }
 
 
@@ -261,15 +308,45 @@ public class InformationStatisticsActivity extends BaseActivity implements Botto
      * @param position
      */
     private void showWebPage(int position) {
-        if (data == null || url == null || strIndex == null) {
+        if (data == null || urls == null || strIndex == null) {
             initData();
         }
         String name = (String) data.get(position).get("name");
-        String url = (String) data.get(position).get("url");
+        String url = (String) data.get(position).get("urls");
 
         setTitle(name);
 
 
+        if (position == 1) {
+            setTopRightButton("", null);
+        } else if (position == 4 || position == 14 ||
+                position == 15 || position == 16) {//选择年份
+            setTopRightButton(menuStr, new OnMenuClickListener() {
+                @Override
+                public void onClick() {
+                    PopupWindowHelper.selectYear(mActivity, tempTextView);
+                }
+            });
+        } else {//选择期数
+            setTopRightButton(menuStr, new OnMenuClickListener() {
+                @Override
+                public void onClick() {
+                    List<String> listPicker = new ArrayList<>();
+                    listPicker.add("近50期");
+                    listPicker.add("近100期");
+                    listPicker.add("近200期");
+                    listPicker.add("近300期");
+
+                    PopupWindowHelper.selectOneStrData(mActivity, listPicker, tempTextView, "选择期数");
+
+
+                }
+            });
+
+        }
+
+
+        mPosition = position;
         switch (position) {
             case 0:
                 if (fragment0 == null) {
@@ -277,6 +354,7 @@ public class InformationStatisticsActivity extends BaseActivity implements Botto
                 }
                 jumpFragment(currentFragment, fragment0, R.id.sub_content, name);
                 currentFragment = fragment0;
+
 
                 break;
 
@@ -394,5 +472,13 @@ public class InformationStatisticsActivity extends BaseActivity implements Botto
                 currentFragment = fragment16;
                 break;
         }
+
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.action_right);
+
+        return super.onPrepareOptionsMenu(menu);
     }
 }

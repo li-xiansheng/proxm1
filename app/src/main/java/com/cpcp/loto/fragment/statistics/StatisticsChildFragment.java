@@ -2,6 +2,7 @@ package com.cpcp.loto.fragment.statistics;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -13,6 +14,11 @@ import com.cpcp.loto.base.BaseActivity;
 import com.cpcp.loto.base.BaseFragment;
 import com.cpcp.loto.net.HttpService;
 import com.cpcp.loto.uihelper.LoadingDialog;
+import com.cpcp.loto.uihelper.PopupWindowHelper;
+import com.cpcp.loto.util.LogUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -63,8 +69,8 @@ public class StatisticsChildFragment extends BaseFragment {
 
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
-        settings.setUseWideViewPort(true);
-        settings.setLoadWithOverviewMode(true);
+        settings.setUseWideViewPort(false);
+        settings.setLoadWithOverviewMode(false);
         //添加js时间监听，交由web浏览器调用
         webView.removeJavascriptInterface("searchBoxJavaBredge_");//移除js调用漏洞
 
@@ -80,10 +86,76 @@ public class StatisticsChildFragment extends BaseFragment {
         webView.loadUrl(url);
         webView.setWebViewClient(new StatisticsChildFragment.UserAgreementWebViewClient());
 
+        /**
+         * 初始设为是否隐藏，false，不隐藏
+         */
+        onHiddenChanged(false);
     }
 
     @Override
     public void onLazyLoadData() {
+
+    }
+
+    //切换Fragment时调用
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        LogUtils.i(TAG, titleName + "显示为" + hidden);
+        if (!hidden) {//已经有了Fragment后才会调用，当前fragment正在显示
+
+            String menuStr = ((BaseActivity) mActivity).menuStr;
+            String type = "";
+            if (url.contains("type=")) {
+                int indexLast = url.lastIndexOf("=");
+                type = url.substring(indexLast + 1);
+
+//                url = url.substring(0, indexLast) + "" + type;
+            }
+            //如果，期数或者年份和menu显示相同，则不进行刷新menu，否则刷新menu
+            if (TextUtils.isEmpty(type) || menuStr.contains(type)) {
+                ((BaseActivity) mActivity).invalidateOptionsMenu();
+                return;
+            }
+
+            if ("属性参照".equals(titleName)) {
+                ((BaseActivity) mActivity).menuStr = " ";
+
+            } else if ("尾数大小".equals(titleName) || "家禽野兽".equals(titleName) ||
+                    "连码走势".equals(titleName) || "连肖走势".equals(titleName)) {//选择年份
+                ((BaseActivity) mActivity).menuStr = "年份:" + type;
+
+
+            } else {//选择期数
+                ((BaseActivity) mActivity).menuStr = "期数:" + type;
+
+            }
+            ((BaseActivity) mActivity).invalidateOptionsMenu();
+
+        }
+
+
+    }
+
+    /**
+     * 设置最新URL
+     *
+     * @param url
+     */
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    /**
+     * 设置最新URL
+     *
+     * @param url
+     */
+    public void refreshWebUrl(String url) {
+        this.url = url;//设置url后，刷新页面
+        webView.loadUrl(url);
+        onHiddenChanged(false);
+        LogUtils.i(TAG, "菜单选择筛选" + url);
 
     }
 

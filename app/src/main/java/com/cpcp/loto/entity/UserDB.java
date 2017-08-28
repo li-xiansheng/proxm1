@@ -5,6 +5,7 @@ package com.cpcp.loto.entity;
  */
 
 public class UserDB {
+    public static String ID="id";
     public static String TEL="tel";
     public static String PWD="pwd";
     public static String isLogin="isLogin";

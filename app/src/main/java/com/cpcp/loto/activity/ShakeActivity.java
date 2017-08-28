@@ -1,6 +1,7 @@
 package com.cpcp.loto.activity;
 
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -15,17 +16,30 @@ import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.cpcp.loto.R;
 import com.cpcp.loto.adapter.ShakeLotteryRecyclerAdapter;
 import com.cpcp.loto.base.BaseActivity;
+import com.cpcp.loto.config.Constants;
+import com.cpcp.loto.entity.BaseResponse2Entity;
+import com.cpcp.loto.entity.TurntableEntity;
+import com.cpcp.loto.net.HttpRequest;
+import com.cpcp.loto.net.HttpService;
+import com.cpcp.loto.net.RxSchedulersHelper;
+import com.cpcp.loto.net.RxSubscriber;
 import com.cpcp.loto.util.LogUtils;
+import com.cpcp.loto.util.SPUtil;
 
 import java.lang.ref.WeakReference;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import butterknife.BindView;
@@ -62,31 +76,18 @@ public class ShakeActivity extends BaseActivity implements SensorEventListener {
 
     private ShakeLotteryRecyclerAdapter shakeLotteryRecyclerAdapter;
     private List<Integer> mList;
+    private TurntableEntity entity;
+
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_shake;
     }
 
-    @Override
-    protected void initBase(Bundle savedInstanceState) {
-//        isShowToolBar = false;
-//        isFitsSystemWindows = false;
-//        statusBarColor = R.color.transparent;//初始化状态栏颜色
-        super.initBase(savedInstanceState);
-    }
 
     @Override
     protected void initView() {
         setTitle("摇一摇");
 
-        mHandler = new MyHandler(this);
-
-        //初始化SoundPool
-        mSoundPool = new SoundPool(1, AudioManager.STREAM_SYSTEM, 5);
-        mWeiChatAudio = mSoundPool.load(this, R.raw.weichat_audio, 1);
-
-        //获取Vibrator震动服务
-        mVibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
         //
         recyclerView.setLayoutManager(new GridLayoutManager(mContext, 6));
@@ -98,9 +99,22 @@ public class ShakeActivity extends BaseActivity implements SensorEventListener {
         recyclerView.setVisibility(View.GONE);
     }
 
+
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void initData() {
+        //
+        turntableNextLottery();
+    }
+
+    private void initShake() {
+        mHandler = new MyHandler(this);
+
+        //初始化SoundPool
+        mSoundPool = new SoundPool(1, AudioManager.STREAM_SYSTEM, 5);
+        mWeiChatAudio = mSoundPool.load(this, R.raw.weichat_audio, 1);
+
+        //获取Vibrator震动服务
+        mVibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         //获取 SensorManager 负责管理传感器
         mSensorManager = ((SensorManager) getSystemService(SENSOR_SERVICE));
         if (mSensorManager != null) {
@@ -110,10 +124,6 @@ public class ShakeActivity extends BaseActivity implements SensorEventListener {
                 mSensorManager.registerListener(this, mAccelerometerSensor, SensorManager.SENSOR_DELAY_UI);
             }
         }
-    }
-
-    @Override
-    protected void initData() {
 
     }
 
@@ -235,6 +245,62 @@ public class ShakeActivity extends BaseActivity implements SensorEventListener {
         mList.add(random.nextInt(36) + 1);
 
         shakeLotteryRecyclerAdapter.notifyDataSetChanged();
+
+        //
+        mSensorManager.unregisterListener(this, mAccelerometerSensor);//摇奖完成后，禁止继续摇奖
+        SPUtil sp = new SPUtil(mContext, "shakeActivity");
+        if (entity != null) {
+            sp.putString("time", entity.getTime());
+            sp.putString("list", JSON.toJSONString(mList));
+        }
+
+
+    }
+
+    /**
+     * 下期开奖
+     */
+    private void turntableNextLottery() {
+
+        HttpService httpService = HttpRequest.provideClientApi();
+        httpService.turntableNextLottery()
+                .compose(RxSchedulersHelper.<BaseResponse2Entity<TurntableEntity>>io_main())
+                .subscribe(new RxSubscriber<BaseResponse2Entity<TurntableEntity>>() {
+                    @Override
+                    public Activity getCurrentActivity() {
+                        return mActivity;
+                    }
+
+                    @Override
+                    public void _onNext(int status, BaseResponse2Entity<TurntableEntity> response) {
+                        if (response.getFlag() == 1) {
+                            entity = response.getData();
+                            if (entity != null) {
+                                String qishu = TextUtils.isEmpty(entity.getDesc()) ? "" : entity.getDesc();
+                                tvNumber.setText(qishu);
+
+
+                                SPUtil sp = new SPUtil(mContext, "shakeActivity");
+                                String list = sp.getString("list", "");
+                                String time = sp.getString("time", "");
+                                int index = sp.getInt("index", -1);
+                                if (!TextUtils.isEmpty(time) && time.equals(entity.getTime())) {
+                                    tvNumber.setVisibility(View.VISIBLE);
+                                    recyclerView.setVisibility(View.VISIBLE);
+                                    List<Integer> list1 = JSON.parseObject(list, new TypeReference<List<Integer>>() {
+                                    });
+                                    mList.clear();
+                                    mList.addAll(list1);
+                                    shakeLotteryRecyclerAdapter.notifyDataSetChanged();
+                                } else {
+                                    initShake();
+                                    sp.clearData();
+                                }
+
+                            }
+                        }
+                    }
+                });
     }
 
 }

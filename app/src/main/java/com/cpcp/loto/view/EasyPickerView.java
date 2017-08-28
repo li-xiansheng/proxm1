@@ -79,6 +79,11 @@ public class EasyPickerView extends View {
     // 是否正处于滑动状态
     private boolean isSliding = false;
 
+
+    public void setRecycleMode(boolean recycleMode) {
+        isRecycleMode = recycleMode;
+    }
+
     public EasyPickerView(Context context) {
         this(context, null);
     }

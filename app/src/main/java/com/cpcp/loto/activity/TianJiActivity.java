@@ -1,25 +1,37 @@
 package com.cpcp.loto.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.PopupWindow;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.cpcp.loto.R;
 import com.cpcp.loto.adapter.ShakeLotteryRecyclerAdapter;
 import com.cpcp.loto.base.BaseActivity;
+import com.cpcp.loto.entity.BaseResponse2Entity;
+import com.cpcp.loto.entity.TurntableEntity;
 import com.cpcp.loto.listener.PopupWindowDismissListener;
+import com.cpcp.loto.net.HttpRequest;
+import com.cpcp.loto.net.HttpService;
+import com.cpcp.loto.net.RxSchedulersHelper;
+import com.cpcp.loto.net.RxSubscriber;
 import com.cpcp.loto.uihelper.PopMenuHelper;
 import com.cpcp.loto.util.DisplayUtil;
+import com.cpcp.loto.util.SPUtil;
 import com.cpcp.loto.view.EasyPickerView;
 import com.cpcp.loto.view.SelectedLayerTextView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import butterknife.BindView;
@@ -42,6 +54,8 @@ public class TianJiActivity extends BaseActivity {
     //是否最后一次滚动
     private boolean isLast = false;
 
+    private TurntableEntity entity;
+
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_tianji;
@@ -50,12 +64,13 @@ public class TianJiActivity extends BaseActivity {
     @Override
     protected void initView() {
         setTitle("天机测算");
-
+        tvTailStart.setClickable(false);
+        tvShengXiaoStart.setClickable(false);
     }
 
     @Override
     protected void initData() {
-
+        turntableNextLottery();
     }
 
 
@@ -126,12 +141,24 @@ public class TianJiActivity extends BaseActivity {
                 if (isLast) {
                     if (type == 1) {
                         tvShengXiaoStart.append(dataList.get(curIndex));
-                        if(tvShengXiaoStart.getText().toString().length()==3){
+                        if (tvShengXiaoStart.getText().toString().length() == 3) {
+                            SPUtil sp = new SPUtil(mContext, "tianJiActivity");
+                            sp.putString("shengxiao", tvShengXiaoStart.getText().toString());
+                            if (entity != null) {
+                                sp.putString("time", entity.getTime());
+                            }
                             window.dismiss();
-                         }
+                        }
                     } else {
                         tvTailStart.append(dataList.get(curIndex));
-                        if(tvTailStart.getText().toString().length()==3){
+                        if (tvTailStart.getText().toString().length() == 3) {
+                            SPUtil sp = new SPUtil(mContext, "tianJiActivity");
+
+                            sp.putString("weishu", tvTailStart.getText().toString());
+                            if (entity != null) {
+                                sp.putString("time", entity.getTime());
+                            }
+
                             window.dismiss();
                         }
                     }
@@ -187,6 +214,51 @@ public class TianJiActivity extends BaseActivity {
                 isRunning = false;
             }
         }.start();
+    }
+
+
+    /**
+     * 下期开奖
+     */
+    private void turntableNextLottery() {
+
+        HttpService httpService = HttpRequest.provideClientApi();
+        httpService.turntableNextLottery()
+                .compose(RxSchedulersHelper.<BaseResponse2Entity<TurntableEntity>>io_main())
+                .subscribe(new RxSubscriber<BaseResponse2Entity<TurntableEntity>>() {
+                    @Override
+                    public Activity getCurrentActivity() {
+                        return mActivity;
+                    }
+
+                    @Override
+                    public void _onNext(int status, BaseResponse2Entity<TurntableEntity> response) {
+                        if (response.getFlag() == 1) {
+                            entity = response.getData();
+                            if (entity != null) {
+                                String qishu = TextUtils.isEmpty(entity.getDesc()) ? "" : entity.getDesc();
+
+
+                                SPUtil sp = new SPUtil(mContext, "tianJiActivity");
+                                String shengxiao = sp.getString("shengxiao", "");
+                                String weishu = sp.getString("weishu", "");
+                                String time = sp.getString("time", "");
+                                if (!TextUtils.isEmpty(time) && time.equals(entity.getTime())) {
+                                    tvShengXiaoStart.setClickable(false);
+                                    tvTailStart.setClickable(false);
+                                    tvShengXiaoStart.setText(shengxiao);
+                                    tvTailStart.setText(weishu);
+
+                                } else {
+                                    tvShengXiaoStart.setClickable(true);
+                                    tvTailStart.setClickable(true);
+                                    sp.clearData();
+                                }
+
+                            }
+                        }
+                    }
+                });
     }
 
 

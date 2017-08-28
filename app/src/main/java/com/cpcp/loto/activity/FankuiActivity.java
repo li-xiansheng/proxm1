@@ -23,6 +23,9 @@ import java.util.Map;
 
 import butterknife.BindView;
 
+/**
+ * 意见反馈
+ */
 public class FankuiActivity extends BaseActivity {
 
     @BindView(R.id.fankui)

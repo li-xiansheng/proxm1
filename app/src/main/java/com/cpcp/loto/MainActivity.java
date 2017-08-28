@@ -1,20 +1,31 @@
 package com.cpcp.loto;
 
+
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BadgeItem;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.cpcp.loto.activity.LoginActivity;
+import com.cpcp.loto.activity.MyForumActivity;
 import com.cpcp.loto.activity.WebPageActivity;
 import com.cpcp.loto.base.BaseActivity;
 import com.cpcp.loto.broadcast.LocalBroadcastManager;
+import com.cpcp.loto.config.Constants;
+import com.cpcp.loto.entity.UserDB;
 import com.cpcp.loto.entity.WebFlag;
 import com.cpcp.loto.fragment.ForumFragment;
 import com.cpcp.loto.fragment.HomeFragment;
@@ -23,6 +34,10 @@ import com.cpcp.loto.fragment.MeFragment;
 import com.cpcp.loto.uihelper.LoadingDialog;
 import com.cpcp.loto.util.ExampleUtil;
 import com.cpcp.loto.util.LogUtils;
+import com.cpcp.loto.util.SPUtil;
+import com.cpcp.loto.util.ScreenUtil;
+import com.cpcp.loto.util.ToastUtils;
+import com.cpcp.loto.view.SelectedLayerTextView;
 
 import java.util.List;
 
@@ -76,6 +91,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     //
     private final int personalPage = 2;
 
+    private Dialog shareDialog;
+
     @Override
     public void getIntentData() {
         super.getIntentData();
@@ -89,10 +106,32 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     @Override
     protected void initView() {
-        setTitle("六合彩库");
+        setTitle("六合彩票");
+
+        menuStr = "分享";
+        setTopRightButton(menuStr, new OnMenuClickListener() {
+            @Override
+            public void onClick() {
+                if ("分享".equals(menuStr)) {
+                    ToastUtils.show("暂不开放");
+//                    initDialog();
+                } else {
+                    SPUtil spUtil = new SPUtil(mContext, Constants.USER_TABLE);
+                    boolean islogin = spUtil.getBoolean(UserDB.isLogin, false);
+                    if (islogin) {
+                        jumpToActivity(MyForumActivity.class, false);
+                    } else {
+                        jumpToActivity(LoginActivity.class, false);
+                    }
+
+                }
+            }
+        });
         initTab();
         registerMessageReceiver();  // used for receive msg
         init();
+
+
     }
 
     @Override
@@ -123,7 +162,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
         /*** the setting for BottomNavigationBar ***/
         mBottomNavigationBar.
-                addItem(new BottomNavigationItem(R.drawable.tab_home_checked, "六合彩库").
+                addItem(new BottomNavigationItem(R.drawable.tab_home_checked, "六合彩票").
                         setInactiveIconResource(R.drawable.tab_home_normal).setActiveColorResource(R.color.whiteTab).
                         setInActiveColorResource(R.color.grayText))
                 .addItem(new BottomNavigationItem(R.drawable.tab_bet_checked, "彩民投票").
@@ -202,14 +241,18 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
         switch (position) {
             case 0:
+
                 this.getWindow().getDecorView().setFitsSystemWindows(true);
                 showToolbar();
-                setTitle("六合彩库");
+                setTitle("六合彩票");
+                menuStr = "分享";
+                menuResId = 0;
+                invalidateOptionsMenu();
 
                 if (homeFragment == null) {
                     homeFragment = HomeFragment.newInstance();
                 }
-                jumpFragment(currentFragment, homeFragment, R.id.sub_content, "六合彩库");
+                jumpFragment(currentFragment, homeFragment, R.id.sub_content, "六合彩票");
                 currentFragment = homeFragment;
                 break;
 
@@ -217,6 +260,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                 this.getWindow().getDecorView().setFitsSystemWindows(true);
                 showToolbar();
                 setTitle("彩民投票");
+                menuStr = "";
+                menuResId = 0;
+                invalidateOptionsMenu();
 
                 if (betFragment == null) {
                     betFragment = BetFragment.newInstance();
@@ -229,6 +275,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                 this.getWindow().getDecorView().setFitsSystemWindows(true);
                 showToolbar();
                 setTitle("交流论坛");
+                menuStr = "";
+                menuResId = R.drawable.icon_msg_lingsheng3;
+                invalidateOptionsMenu();
                 if (forumFragment == null) {
                     forumFragment = ForumFragment.newInstance();
                 }
@@ -238,7 +287,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
             case 3:
                 this.getWindow().getDecorView().setFitsSystemWindows(false);
                 hideToolbar();
-//                setTitle("个人中心");
+
                 if (meFragment == null) {
                     meFragment = MeFragment.newInstance();
                 }
@@ -251,6 +300,66 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     @Override
     public void onTabUnselected(int position) {
         LogUtils.i(TAG, "onTabUnselected");
+    }
+
+    /**
+     * 初始化dialog
+     */
+    private void initDialog() {
+
+
+        if (shareDialog == null) {
+            shareDialog = new Dialog(this, R.style.time_dialog);
+            shareDialog.setCancelable(true);
+            shareDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            View view = LayoutInflater.from(mContext).inflate(R.layout.dialog_share, null);
+            shareDialog.setContentView(view);
+            shareDialog.show();
+            Window window = shareDialog.getWindow();
+            window.setGravity(Gravity.BOTTOM);
+            window.setWindowAnimations(R.style.AnimationFadeButtom); //设置窗口弹出动画
+            WindowManager.LayoutParams lp = window.getAttributes();
+            int width = ScreenUtil.getInstance(this).getScreenWidth();
+            lp.width = width;
+            window.setAttributes(lp);
+            //
+            SelectedLayerTextView tvWeixin = (SelectedLayerTextView) view.findViewById(R.id.tvWeixin);
+            SelectedLayerTextView tvWeixinFriend = (SelectedLayerTextView) view.findViewById(R.id.tvWeixinFriend);
+            SelectedLayerTextView tvQQ = (SelectedLayerTextView) view.findViewById(R.id.tvQQ);
+            SelectedLayerTextView tvQQspace = (SelectedLayerTextView) view.findViewById(R.id.tvQQspace);
+            SelectedLayerTextView tvCancel = (SelectedLayerTextView) view.findViewById(R.id.tvCancel);
+
+            View.OnClickListener onClickListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    switch (v.getId()) {
+                        case R.id.tvWeixin:
+                            ToastUtils.show("微信分享");
+                            break;
+                        case R.id.tvWeixinFriend:
+                            break;
+                        case R.id.tvQQ:
+                            break;
+                        case R.id.tvQQspace:
+                            break;
+                        case R.id.tv_cancle:
+                            shareDialog.dismiss();
+                            shareDialog = null;
+                            break;
+                    }
+                }
+            };
+
+            tvWeixin.setOnClickListener(onClickListener);
+            tvWeixinFriend.setOnClickListener(onClickListener);
+            tvQQ.setOnClickListener(onClickListener);
+            tvQQspace.setOnClickListener(onClickListener);
+            tvCancel.setOnClickListener(onClickListener);
+        } else {
+            shareDialog.show();
+        }
+
+
     }
 
     @Override

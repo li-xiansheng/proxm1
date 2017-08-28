@@ -104,7 +104,7 @@ public class JiaoZhuDateActivity extends BaseActivity {
                         if (response != null) {
                             String date = response.getOption_value();
                             tvNextDate.setText(date + "");
-                            dateRecyclerAdapter.setTime(month, date);
+                            dateRecyclerAdapter.setTime(date);
                             dateRecyclerAdapter.notifyDataSetChanged();
                         }
 
@@ -157,6 +157,7 @@ public class JiaoZhuDateActivity extends BaseActivity {
                     break;
                 }
             }
+            dateRecyclerAdapter.setMonth(month);
             dateRecyclerAdapter.notifyDataSetChanged();
         }
     }

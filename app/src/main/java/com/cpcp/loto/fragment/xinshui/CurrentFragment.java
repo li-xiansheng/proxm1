@@ -169,10 +169,6 @@ public class CurrentFragment extends BasePullRefreshFragment {
                     @Override
                     public void onCompleted() {
                         super.onCompleted();
-                        if (currentPage == 1 && mPullToRefreshRecyclerView != null) {
-                            mPullToRefreshRecyclerView.setMode(PullToRefreshBase.Mode.BOTH);
-                        }
-                        currentPage += 1;
                         if (mPullToRefreshRecyclerView != null && mPullToRefreshRecyclerView.isRefreshing()) {
                             mPullToRefreshRecyclerView.onRefreshComplete();
                         }

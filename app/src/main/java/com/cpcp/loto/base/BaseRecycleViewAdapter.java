@@ -95,4 +95,5 @@ abstract public class BaseRecycleViewAdapter extends RecyclerView.Adapter<Recycl
 
     protected abstract void bindView(RecyclerView.ViewHolder holder, int position);
 
+
 }

@@ -78,12 +78,11 @@ public class AttentionActivity extends BasePullRefreshActivity {
             }
         });
 
-        getData();
     }
 
     @Override
     protected void initData() {
-
+        super.initData();
     }
 
     @Override
@@ -123,6 +122,7 @@ public class AttentionActivity extends BasePullRefreshActivity {
                     @Override
                     public void _onNext(int status, BaseResponse2Entity<String> response) {
                         if (response.getFlag() == 1) {
+                            data.clear();
                             Log.i(TAG, "getAttentionData ---->" + response.getData());
                             try {
                                 JSONArray array = new JSONArray(response.getData());

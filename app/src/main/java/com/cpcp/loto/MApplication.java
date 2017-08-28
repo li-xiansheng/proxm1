@@ -37,13 +37,13 @@ public class MApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            // This process is dedicated to LeakCanary for heap analysis.
-            // You should not init your app in this process.
-            return;
-        }
-        //初始化内存检测，debug时有效，release时无效
-        LeakCanary.install(this);
+//        if (LeakCanary.isInAnalyzerProcess(this)) {
+//            // This process is dedicated to LeakCanary for heap analysis.
+//            // You should not init your app in this process.
+//            return;
+//        }
+//        //初始化内存检测，debug时有效，release时无效
+//        LeakCanary.install(this);
         // Normal app init code...
         applicationContext = this;
         instance = this;

@@ -25,8 +25,6 @@ import butterknife.ButterKnife;
 public class FansRecyclerAdapter extends BaseRecycleViewAdapter {
 
 
-
-
     public FansRecyclerAdapter(Context context, List<?> data) {
         super.BaseRecycleViewAdapter(context, data);
     }
@@ -46,18 +44,17 @@ public class FansRecyclerAdapter extends BaseRecycleViewAdapter {
             String total = ((AttentionBean) mListData.get(position)).total;
             String success = ((AttentionBean) mListData.get(position)).success;
             String fail = ((AttentionBean) mListData.get(position)).fail;
-            String avatar = "http://"+((AttentionBean) mListData.get(position)).avatar;
+            String avatar = "http://" + ((AttentionBean) mListData.get(position)).avatar;
             viewHolder.name.setText(strName);
-            viewHolder.total.setText("总:"+total);
-            viewHolder.shengfu.setText("胜负:"+success+"/"+fail);
-            if (avatar!=null){
-                Glide.with(mContext)
-                        .load(avatar)
-                        .transform(new GlideCircleTransform(mContext))
-                        .into(viewHolder.salaryHead);
-            }else {
-                viewHolder.salaryHead.setImageResource(R.drawable.icon_default_head);
-            }
+            viewHolder.total.setText("总:" + total);
+            viewHolder.shengfu.setText("胜负:" + success + "/" + fail);
+
+            Glide.with(mContext)
+                    .load(avatar)
+                    .placeholder(R.drawable.icon_default_head)
+                    .transform(new GlideCircleTransform(mContext))
+                    .into(viewHolder.salaryHead);
+
         }
     }
 
@@ -70,10 +67,14 @@ public class FansRecyclerAdapter extends BaseRecycleViewAdapter {
         AppCompatTextView total;
         @BindView(R.id.shengfu)
         AppCompatTextView shengfu;
+        @BindView(R.id.quxiao)
+        AppCompatTextView quxiao;
+
 
         ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+            quxiao.setVisibility(View.GONE);
         }
     }
 }

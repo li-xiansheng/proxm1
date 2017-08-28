@@ -117,7 +117,7 @@ public class DanShuangBetFragment extends BaseFragment {
             return;
         }
 
-        LoadingDialog.showDialog(getActivity());
+
         SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
         boolean isLogin=sp.getBoolean(UserDB.isLogin,false);
         if(!isLogin){
@@ -141,10 +141,11 @@ public class DanShuangBetFragment extends BaseFragment {
 
                     @Override
                     public void _onNext(int status, BaseResponse2Entity<String> response) {
-                        LoadingDialog.closeDialog(getActivity());
+
                         LogUtils.i(TAG, "getCurrentRecommend ---->" + response.getData());
                         if (response.getFlag() == 1) {
                             DialogUtil.createDialog(mContext,"投票成功");
+                            getVote();
                         }else {
                             DialogUtil.createDialog(mContext,response.getErrmsg());
                         }

@@ -1,8 +1,11 @@
 package com.cpcp.loto.net;
 
 
+import com.cpcp.loto.config.HostConfig;
 import com.cpcp.loto.entity.BaseResponse1Entity;
 import com.cpcp.loto.entity.BaseResponse2Entity;
+import com.cpcp.loto.entity.CaiShenEntity;
+import com.cpcp.loto.entity.CodeImgEntity;
 import com.cpcp.loto.entity.FormulaEntity;
 import com.cpcp.loto.entity.ForumDetailEntity;
 import com.cpcp.loto.entity.ForumEntity;
@@ -12,6 +15,7 @@ import com.cpcp.loto.entity.OpenLotteryLiveEntity;
 import com.cpcp.loto.entity.OpenLotteryZuiXinEntity;
 import com.cpcp.loto.entity.RedPacketEntity;
 import com.cpcp.loto.entity.TrendAnalysisEntity;
+import com.cpcp.loto.entity.TurntableEntity;
 import com.cpcp.loto.entity.UserInfoEntity;
 import com.cpcp.loto.entity.WinningEntity;
 
@@ -26,6 +30,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PartMap;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 import rx.Observable;
 
 /**
@@ -141,6 +146,7 @@ public interface HttpService {
 
     /**
      * 走势分析
+     *
      * @param map
      * @return
      */
@@ -150,6 +156,7 @@ public interface HttpService {
 
     /**
      * 论坛信息
+     *
      * @param map
      * @return
      */
@@ -159,14 +166,17 @@ public interface HttpService {
 
     /**
      * 论坛帖子详细
+     *
      * @param map
      * @return
      */
     @FormUrlEncoded
     @POST("index.php?g=portal&m=article&a=postdetail")
     Observable<BaseResponse2Entity<ForumDetailEntity>> getForumInfoDetail(@FieldMap Map<String, String> map);
+
     /**
      * 我的帖子详细
+     *
      * @param map
      * @return
      */
@@ -176,14 +186,17 @@ public interface HttpService {
 
     /**
      * 回复帖子
+     *
      * @param map
      * @return
      */
     @FormUrlEncoded
     @POST("index.php?g=portal&m=article&a=add_guest_reply")
     Observable<BaseResponse2Entity<Object>> replayInfo(@FieldMap Map<String, String> map);
+
     /**
      * 发布帖子-添加留言
+     *
      * @param map
      * @return
      */
@@ -193,6 +206,7 @@ public interface HttpService {
 
     /**
      * 帖子举报
+     *
      * @param map
      * @return
      */
@@ -202,6 +216,7 @@ public interface HttpService {
 
     /**
      * 六合公式（特码公式）
+     *
      * @param map
      * @return
      */
@@ -212,131 +227,186 @@ public interface HttpService {
 
     /**
      * 下次开奖--搅珠日期
+     *
      * @return
      */
-     @POST("index.php?g=portal&m=Index&a=xckj")
+    @POST("index.php?g=portal&m=Index&a=xckj")
     Observable<NextLotteryEntity> getNextDate();
 
     /**
      * 开奖直播
+     *
      * @return
      */
     @POST("index.php?g=portal&m=article&a=kjzb")
     Observable<BaseResponse2Entity<OpenLotteryLiveEntity>> openLotteryLive();
+
     /**
      * 最新开奖
+     *
      * @return
      */
     @POST("index.php?g=portal&m=Index&a=zuixin")
     Observable<BaseResponse1Entity<List<OpenLotteryZuiXinEntity>>> openLotteryZuixin();
 
 
+    /**
+     * 判断是否已关注
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=is_friend")
+    Observable<BaseResponse2Entity<Object>> isFirend(@FieldMap Map<String, String> map);
+
+
+    /**
+     * 添加为关注
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=article&a=add_friend")
+    Observable<BaseResponse2Entity<Object>> addFriend(@FieldMap Map<String, String> map);
+
+    /**
+     * 波肖转盘下期开奖时间--工具箱，下期开奖通用
+     *
+     * @return
+     */
+    @POST("index.php?g=portal&m=article&a=bxzp_xckj")
+    Observable<BaseResponse2Entity<TurntableEntity>> turntableNextLottery();
+
+    /**
+     * 下载App二维码
+     *
+     * @return
+     */
+    @POST("index.php?g=portal&m=article&a=download_qrcode&client=android")
+    Observable<BaseResponse2Entity<CodeImgEntity>> getCodeImg();
+
+    /**
+     * 忘记密码
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("index.php?m=article&a=findpassword")
+    Observable<BaseResponse2Entity<String>> forgetPwd(@FieldMap Map<String, String> map);
+
+    /**
+     * 修改昵称
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("index.php?m=article&a=editnickname")
+    Observable<BaseResponse2Entity<Object>> changeNickName(@FieldMap Map<String, String> map);
+
 
     /**
      * 开奖直播地址
      */
-    public static String lotteryLive="http://lac.83gw.com/index.php?g=portal&m=Index&a=sskj";
+    public static String lotteryLive = HostConfig.getHost() + "index.php?g=portal&m=Index&a=sskj";
     /**
      * 六合图库
      */
-    public static String lotoPictures="http://lac.83gw.com/index.php?g=portal&m=Index&a=lhtk";
+    public static String lotoPictures = HostConfig.getHost() + "index.php?g=portal&m=Index&a=lhtk";
     /**
      * 历史开奖
      */
-    public static String historyLottery="http://lac.83gw.com/index.php?g=portal&m=Index&a=kaijianglishi";
+    public static String historyLottery = HostConfig.getHost() + "index.php?g=portal&m=Index&a=kaijianglishi";
 
     /**
      * 查询助手
      */
-    public static String queryHelper="http://lac.83gw.com/index.php?g=portal&m=Index&a=chaxunzhushou";
+    public static String queryHelper = HostConfig.getHost() + "index.php?g=portal&m=Index&a=chaxunzhushou";
 
     /**
      * 六合资料
      */
-    public static String lotoInfo="http://lac.83gw.com/index.php?g=portal&m=Index&a=liuheziliao1";
+    public static String lotoInfo = HostConfig.getHost() + "index.php?g=portal&m=Index&a=liuheziliao1";
     /**
      * 六合统计
      */
-    public static String lotoStatistics="http://lac.83gw.com/index.php?g=portal&m=article&a=liuhetongji&type=50";
+    public static String lotoStatistics = HostConfig.getHost() + "index.php?g=portal&m=article&a=liuhetongji&type=50";
     /**
      * 属性参照
      */
-    public static String attributeReference = "http://lac.83gw.com/index.php?g=portal&m=article&a=shuxingcanzhao";
+    public static String attributeReference = HostConfig.getHost() + "index.php?g=portal&m=article&a=shuxingcanzhao";
     /**
      * 特码历史
      */
-    public static String temaHistory = "http://lac.83gw.com/index.php?g=portal&m=article&a=temalishi&type=50";
+    public static String temaHistory = HostConfig.getHost() + "index.php?g=portal&m=article&a=temalishi&type=50";
 
     /**
      * 正码历史
      */
-    public static String orthocodeHistory = "http://lac.83gw.com/index.php?g=portal&m=article&a=zhengmalishi&type=50";
+    public static String orthocodeHistory = HostConfig.getHost() + "index.php?g=portal&m=article&a=zhengmalishi&type=50";
 
     /**
      * 尾数大小
      */
-    public static String tailSize = "http://lac.83gw.com/index.php?g=portal&m=article&a=weishudaxiao&type=2017";
+    public static String tailSize = HostConfig.getHost() + "index.php?g=portal&m=article&a=weishudaxiao&type=2017";
 
     /**
      * 生肖特码
      */
-    public static String animalTema = "http://lac.83gw.com/index.php?g=portal&m=article&a=shengxiaotemalengretu&type=50";
+    public static String animalTema = HostConfig.getHost() + "index.php?g=portal&m=article&a=shengxiaotemalengretu&type=50";
 
     /**
      * 生肖正码
      */
-    public static String animalOrthocode = "http://lac.83gw.com/index.php?g=portal&m=article&a=shengxiaozhengmalengretu&type=50";
+    public static String animalOrthocode = HostConfig.getHost() + "index.php?g=portal&m=article&a=shengxiaozhengmalengretu&type=50";
     /**
      * 波色特码
      */
-    public static String boseTema = "http://lac.83gw.com/index.php?g=portal&m=article&a=bosetema&type=50";
+    public static String boseTema = HostConfig.getHost() + "index.php?g=portal&m=article&a=bosetema&type=50";
     /**
      * 波色正码
      */
-    public static String boseOrthocode = "http://lac.83gw.com/index.php?g=portal&m=article&a=bosezhengma&type=50";
+    public static String boseOrthocode = HostConfig.getHost() + "index.php?g=portal&m=article&a=bosezhengma&type=50";
     /**
      * 特码两面
      */
-    public static String TemaBothSides = "http://lac.83gw.com/index.php?g=portal&m=article&a=temaliangmian&type=50";
+    public static String TemaBothSides = HostConfig.getHost() + "index.php?g=portal&m=article&a=temaliangmian&type=50";
 
     /**
      * 特码尾数
      */
-    public static String TemaMantissa = "http://lac.83gw.com/index.php?g=portal&m=article&a=temaweishu&type=50";
+    public static String TemaMantissa = HostConfig.getHost() + "index.php?g=portal&m=article&a=temaweishu&type=50";
 
     /**
      * 正码尾数
      */
-    public static String OrthocodeMantissa = "http://lac.83gw.com/index.php?g=portal&m=article&a=zhengmaweishu&type=50";
+    public static String OrthocodeMantissa = HostConfig.getHost() + "index.php?g=portal&m=article&a=zhengmaweishu&type=50";
 
     /**
      * 正码总分
      */
-    public static String OrthocodeTotal = "http://lac.83gw.com/index.php?g=portal&m=article&a=zhengmazongfen&type=50";
+    public static String OrthocodeTotal = HostConfig.getHost() + "index.php?g=portal&m=article&a=zhengmazongfen&type=50";
     /**
      * 号码波段
      */
-    public static String numberBand = "http://lac.83gw.com/index.php?g=portal&m=article&a=haomaboduan&type=50";
+    public static String numberBand = HostConfig.getHost() + "index.php?g=portal&m=article&a=haomaboduan&type=50";
 
     /**
      * 家禽野兽
      */
-    public static String animal = "http://lac.83gw.com/index.php?g=portal&m=article&a=jiaqinyeshou&type=2017";
+    public static String animal = HostConfig.getHost() + "index.php?g=portal&m=article&a=jiaqinyeshou&type=2017";
 
     /**
      * 连码走势
      */
-    public static String jointMark = "http://lac.83gw.com/index.php?g=portal&m=article&a=lianmazoushi&type=2017";
+    public static String jointMark = HostConfig.getHost() + "index.php?g=portal&m=article&a=lianmazoushi&type=2017";
     /**
      * 连肖走势
      */
-    public static String lianxiao = "http://lac.83gw.com/index.php?g=portal&m=article&a=lianxiaozoushi&type=2017";
-
-
+    public static String lianxiao = HostConfig.getHost() + "index.php?g=portal&m=article&a=lianxiaozoushi&type=2017";
 
 
     /**
-     * 获取我的关注列表
+     * 取消关注
      * index.php?g=portal&m=article&a=del_friend
      */
     @FormUrlEncoded
@@ -344,7 +414,7 @@ public interface HttpService {
     Observable<BaseResponse2Entity<String>> cancelAttention(@FieldMap Map<String, String> map);
 
     /**
-     * 取消关注
+     * 我的关注列表
      * index.php?g=portal&m=article&a=myfriends
      */
     @FormUrlEncoded
@@ -407,7 +477,7 @@ public interface HttpService {
      */
     @FormUrlEncoded
     @POST("index.php?g=portal&m=article&a=mymammon")
-    Observable<BaseResponse2Entity<String>> getMyMammom(@FieldMap Map<String, String> map);
+    Observable<BaseResponse2Entity<List<CaiShenEntity>>> getMyMammom(@FieldMap Map<String, String> map);
 
     /**
      * 发布心水
@@ -496,5 +566,6 @@ public interface HttpService {
     @FormUrlEncoded
     @POST("index.php?g=portal&m=article&a=fankui")
     Observable<BaseResponse2Entity<String>> fanKui(@FieldMap Map<String, String> map);
+
 
 }

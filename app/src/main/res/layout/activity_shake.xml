@@ -8,7 +8,7 @@
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/ivShake"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/dp408"
         android:scaleType="centerInside"
         android:src="@drawable/img_shake_lottery" />
 
@@ -16,9 +16,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/dp50"
-        android:layout_marginLeft="@dimen/dp60"
-        android:layout_marginRight="@dimen/dp60"
+        android:layout_marginBottom="@dimen/dp30"
+        android:layout_marginLeft="@dimen/dp30"
+        android:layout_marginRight="@dimen/dp30"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -26,7 +26,8 @@
             android:id="@+id/tvNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="第71期幸运号码" />
+            android:text="第xxx期幸运号码"
+            android:textSize="@dimen/sp16" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"

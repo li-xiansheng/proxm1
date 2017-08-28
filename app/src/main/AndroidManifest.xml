@@ -225,6 +225,9 @@
         <activity
             android:name=".activity.OpenLotteryingActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ChangeNickNameActivity"
+            android:screenOrientation="portrait" />
 
         <!-- 极光测试页面，点击后打开 -->
         <!-- **********************************极光开始*************************************************************** -->
@@ -323,7 +326,7 @@
             android:value="developer-default" />
         <meta-data
             android:name="JPUSH_APPKEY"
-            android:value="8bfd2cd3d71ca511e41abf1e" /> <!-- </>值来自开发者平台取得的AppKey -->
+            android:value="b84d633a1cbfd759c6dd45b3" /> <!-- </>值来自开发者平台取得的AppKey -->
         <!-- **********************************极光结束*************************************************************** -->
 
         <activity

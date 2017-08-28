@@ -350,8 +350,8 @@ public class ShengxiaoBetFragment extends BaseFragment {
 
     private void putVote() {
 
-        if (chooseList.size() == 0) {
-            DialogUtil.createDialog(mContext,"您还未选择生肖..");
+        if (chooseList.size() < 3) {
+            DialogUtil.createDialog(mContext,"请选择3个生肖..");
             return;
         }
         StringBuilder builder = new StringBuilder();
@@ -360,7 +360,7 @@ public class ShengxiaoBetFragment extends BaseFragment {
         }
         String choose = builder.deleteCharAt(builder.length()-1).toString();
         LogUtils.i(TAG, "choose = " + choose);
-        LoadingDialog.showDialog(getActivity());
+
         SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
         boolean isLogin=sp.getBoolean(UserDB.isLogin,false);
         if(!isLogin){
@@ -369,7 +369,7 @@ public class ShengxiaoBetFragment extends BaseFragment {
         }
         String tel = sp.getString(UserDB.TEL, "");
         Map<String, String> map = new HashMap<>();
-        map.put("type", "2");
+        map.put("type", "4");
         map.put("username", tel);
         map.put("poll", choose);
         HttpService httpService = HttpRequest.provideClientApi();
@@ -383,10 +383,11 @@ public class ShengxiaoBetFragment extends BaseFragment {
 
                     @Override
                     public void _onNext(int status, BaseResponse2Entity<String> response) {
-                        LoadingDialog.closeDialog(getActivity());
+
                         LogUtils.i(TAG, "getCurrentRecommend ---->" + response.getData());
                         if (response.getFlag() == 1) {
                             DialogUtil.createDialog(mContext, "投票成功");
+                            getVote();
                         } else {
                             DialogUtil.createDialog(mContext, response.getErrmsg());
                         }

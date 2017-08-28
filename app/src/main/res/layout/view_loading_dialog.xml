@@ -6,7 +6,7 @@
     android:minHeight="@dimen/dp80"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:background="@color/white"
+    android:background="@drawable/shape_arc8_white"
     android:orientation="horizontal">
     <ProgressBar
         android:id="@+id/progress_wheel"

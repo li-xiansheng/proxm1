@@ -10,7 +10,10 @@ import android.view.ViewGroup;
 
 import com.cpcp.loto.R;
 import com.cpcp.loto.base.BaseRecycleViewAdapter;
+import com.cpcp.loto.util.DateTimeUtils;
+import com.cpcp.loto.util.DateUtils;
 
+import java.text.ParseException;
 import java.util.List;
 
 import butterknife.BindView;
@@ -23,15 +26,29 @@ import butterknife.ButterKnife;
 public class JiaozhuDateRecyclerAdapter extends BaseRecycleViewAdapter {
 
     private String time;
-    private int month;
+    int month;
+    int year;
 
     /**
-     * @param month
      * @param option_value
      */
-    public void setTime(int month, String option_value) {
-        this.time = option_value;
+    public void setTime(String option_value) {
+
+        try {
+            this.time = DateTimeUtils.DateConvertTimeStam(option_value);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setMonth(int month) {
         this.month = month;
+        year = DateUtils.getYear();
+        int currentMonth = DateUtils.getMonth();
+        if (currentMonth > month) {//如果当前月份，比展示的月份大，则跨年了
+            year = year + 1;
+        }
+
     }
 
     public JiaozhuDateRecyclerAdapter(Context context, List<?> list) {
@@ -53,12 +70,14 @@ public class JiaozhuDateRecyclerAdapter extends BaseRecycleViewAdapter {
             if (values > 0) {
                 ((ViewHolder) holder).tvDate.setText(values + "");
                 if (!TextUtils.isEmpty(time)) {
-                    String[] dates = time.split("-");
-
-                    if (dates != null && dates.length > 2 &&
-                            month != 0 && dates[1].equals(month + "") &&
-                            dates[2].equals(values + "")) {
-                        ((ViewHolder) holder).tvDate.setBackgroundResource(R.color.white);
+                    String currentDay = null;
+                    try {
+                        currentDay = DateTimeUtils.DateConvertTimeStam(year + "-" + month + "-" + values);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    if (currentDay != null && currentDay.equals(time)) {
+                        ((ViewHolder) holder).tvDate.setBackgroundResource(R.drawable.shape_white_circle_fill);
                         ((ViewHolder) holder).tvDate.setTextColor(Color.RED);
 
                     } else {

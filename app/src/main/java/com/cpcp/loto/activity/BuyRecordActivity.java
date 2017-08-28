@@ -33,7 +33,7 @@ import java.util.Map;
 import butterknife.BindView;
 
 /**
- * 功能描述：购买记录
+ * 功能描述：积分记录
  */
 
 public class BuyRecordActivity extends BasePullRefreshActivity {
@@ -56,12 +56,20 @@ public class BuyRecordActivity extends BasePullRefreshActivity {
     @Override
     protected void initView() {
         super.initView();
-        setTitle("购买记录");
+        setTitle("积分记录");
 
         mPullToRefreshRecyclerView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
         data = (List<BuyRecordBean>) mBaseList;
         mAdapter = new BuyRecordRecyclerAdapter(mContext, data);
         recyclerView.setAdapter(mAdapter);
+
+
+
+    }
+
+    @Override
+    protected void initListener() {
+        super.initListener();
 
 //        mAdapter.setOnItemClickListener(new OnItemClickListener() {
 //            @Override
@@ -74,13 +82,11 @@ public class BuyRecordActivity extends BasePullRefreshActivity {
 //                jumpToActivity(SalaryActivity.class,bundle,false);
 //            }
 //        });
-
-        getData();
     }
 
     @Override
     protected void initData() {
-
+        super.initData();
     }
 
     @Override
@@ -150,10 +156,7 @@ public class BuyRecordActivity extends BasePullRefreshActivity {
                     @Override
                     public void onCompleted() {
                         super.onCompleted();
-                        if (currentPage == 1 && mPullToRefreshRecyclerView != null) {
-                            mPullToRefreshRecyclerView.setMode(PullToRefreshBase.Mode.BOTH);
-                        }
-                        currentPage += 1;
+
                         if (mPullToRefreshRecyclerView != null && mPullToRefreshRecyclerView.isRefreshing()) {
                             mPullToRefreshRecyclerView.onRefreshComplete();
                         }

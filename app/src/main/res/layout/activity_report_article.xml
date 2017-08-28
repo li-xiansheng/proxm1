@@ -57,6 +57,7 @@
             android:layout_marginTop="@dimen/dp10"
             android:background="@drawable/shape_border_arc2_gray"
             android:gravity="top|left"
+            android:textColorHint="@color/grayText"
             android:hint="请输入举报理由(最多1000字)"
             android:paddingLeft="@dimen/dp6"
             android:textColor="@color/white" />

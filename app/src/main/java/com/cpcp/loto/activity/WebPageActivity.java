@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.cpcp.loto.R;
 import com.cpcp.loto.base.BaseActivity;
 import com.cpcp.loto.uihelper.LoadingDialog;
+import com.cpcp.loto.util.NetworkUtil;
 import com.cpcp.loto.util.ToastUtils;
 
 import butterknife.BindView;
@@ -74,6 +75,13 @@ public class WebPageActivity extends BaseActivity {
     @Override
     protected void initView() {
         setTitle(titleName);
+
+        //判断网络未打开则提示，不进行加载
+        if (!NetworkUtil.isConnected(mContext)) {
+            ToastUtils.show("请检查网络连接……");
+            return;
+        }
+
 
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);

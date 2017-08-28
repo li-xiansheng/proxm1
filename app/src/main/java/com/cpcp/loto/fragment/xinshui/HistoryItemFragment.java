@@ -38,7 +38,7 @@ import butterknife.BindView;
  * 功能描述：
  */
 
-public class HistoryItemFragment extends BasePullRefreshFragment{
+public class HistoryItemFragment extends BasePullRefreshFragment {
 
     @BindView(R.id.tvMsg)
     AppCompatTextView tvMsg;
@@ -89,7 +89,7 @@ public class HistoryItemFragment extends BasePullRefreshFragment{
 
     @Override
     public void onLazyLoadData() {
-            getData();
+        getData();
     }
 
 
@@ -99,7 +99,7 @@ public class HistoryItemFragment extends BasePullRefreshFragment{
         Bundle bundle = getArguments();
         mobile = bundle.getString("mobile");
         String typeStr = bundle.getString("title");
-        LogUtils.i(TAG, "getIntentData ---->" + typeStr +"----"+mobile);
+        LogUtils.i(TAG, "getIntentData ---->" + typeStr + "----" + mobile);
         if ("综合".equals(typeStr)) {
             type = 5;
         } else if ("大小".equals(typeStr)) {
@@ -138,9 +138,9 @@ public class HistoryItemFragment extends BasePullRefreshFragment{
                                 try {
                                     JSONArray array = new JSONArray(response.getData());
 
-                                    for (int i=0;i<array.length();i++){
+                                    for (int i = 0; i < array.length(); i++) {
                                         Gson gson = new Gson();
-                                        XinshuiBean bean = gson.fromJson(array.getJSONObject(i).toString(),XinshuiBean.class);
+                                        XinshuiBean bean = gson.fromJson(array.getJSONObject(i).toString(), XinshuiBean.class);
                                         data.add(bean);
                                     }
                                     Log.i(TAG, "data = " + data.toString());
@@ -165,10 +165,6 @@ public class HistoryItemFragment extends BasePullRefreshFragment{
                     @Override
                     public void onCompleted() {
                         super.onCompleted();
-                        if (currentPage == 1 && mPullToRefreshRecyclerView != null) {
-                            mPullToRefreshRecyclerView.setMode(PullToRefreshBase.Mode.BOTH);
-                        }
-                        currentPage += 1;
                         if (mPullToRefreshRecyclerView != null && mPullToRefreshRecyclerView.isRefreshing()) {
                             mPullToRefreshRecyclerView.onRefreshComplete();
                         }

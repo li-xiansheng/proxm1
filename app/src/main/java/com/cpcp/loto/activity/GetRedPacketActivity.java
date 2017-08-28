@@ -1,19 +1,14 @@
 package com.cpcp.loto.activity;
 
-import android.animation.ObjectAnimator;
 import android.app.Activity;
-import android.os.Bundle;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.cpcp.loto.MApplication;
 import com.cpcp.loto.R;
 import com.cpcp.loto.base.BaseActivity;
 import com.cpcp.loto.config.Constants;
-import com.cpcp.loto.entity.BaseResponse1Entity;
 import com.cpcp.loto.entity.BaseResponse2Entity;
 import com.cpcp.loto.entity.RedPacketEntity;
 import com.cpcp.loto.entity.UserDB;
@@ -21,17 +16,14 @@ import com.cpcp.loto.net.HttpRequest;
 import com.cpcp.loto.net.HttpService;
 import com.cpcp.loto.net.RxSchedulersHelper;
 import com.cpcp.loto.net.RxSubscriber;
-import com.cpcp.loto.uihelper.LoadingDialog;
 import com.cpcp.loto.util.SPUtil;
 import com.cpcp.loto.util.ToastUtils;
 import com.cpcp.loto.view.SelectedLayerTextView;
-import com.squareup.haha.perflib.analysis.TopologicalSort;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
@@ -102,21 +94,20 @@ public class GetRedPacketActivity extends BaseActivity {
                     public void _onNext(int status, BaseResponse2Entity<RedPacketEntity> response) {
 
 
-
                         lilScore.setVisibility(View.VISIBLE);
                         if (response.getFlag() == 1) {
                             if (response.getData() != null) {
 
-                                String socre=response.getData().getScore();
-                                if("0".equals(socre)){
+                                String socre = response.getData().getScore();
+                                if ("0".equals(socre)) {
                                     ivRedPacket.setImageResource(R.drawable.img_red_packet_open_not);
                                     tvScore.setText("");
-                                }else{
+                                } else {
                                     ivRedPacket.setImageResource(R.drawable.img_red_packet_open);
-                                    tvScore.setText( socre+ "分");
+                                    tvScore.setText(socre + "分");
                                 }
 
-                            }else{
+                            } else {
                                 ivRedPacket.setImageResource(R.drawable.img_red_packet_open_tomorrow);
                                 ToastUtils.show(response.getErrmsg() + "");
                                 tvScore.setText("");

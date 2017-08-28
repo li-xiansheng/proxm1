@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.Editable;
 import android.text.TextWatcher;
 
@@ -40,6 +41,8 @@ public class TrendAnalysisActivity extends BaseActivity {
     @BindView(R.id.viewPager)
     ViewPager viewPager;
     private List<BaseFragment> fragments;
+
+    private AppCompatTextView tvTemp;
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_trend_analysis;
@@ -48,10 +51,12 @@ public class TrendAnalysisActivity extends BaseActivity {
     @Override
     protected void initView() {
         setTitle("走势分析");
+        tvTemp=new AppCompatTextView(mContext);
+
         setTopRightButton("年限查询", new OnMenuClickListener() {
             @Override
             public void onClick() {
-                PopupWindowHelper.selectYear(mActivity, tvTitle);
+                PopupWindowHelper.selectYear(mActivity, tvTemp);
             }
         });
         String[] titles = {"生肖走势", "波色走势", "单双走势", "段位走势", "头数走势", "尾数走势", "五行走势"};
@@ -105,7 +110,7 @@ public class TrendAnalysisActivity extends BaseActivity {
     @Override
     protected void initListener() {
         super.initListener();
-        tvTitle.addTextChangedListener(new TextWatcher() {
+        tvTemp.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -118,11 +123,11 @@ public class TrendAnalysisActivity extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                String values = tvTitle.getText().toString();
+                String values = tvTemp.getText().toString();
                 if (!"走势分析".equals(values) && values != null) {
                     menuStr = values;
                     invalidateOptionsMenu();
-                    tvTitle.setText("走势分析");
+
                     BasePullRefreshFragment fragment = ((BasePullRefreshFragment) fragments.get(viewPager.getCurrentItem()));
                     //使用刷新UI触发下拉刷新加载
                     fragment.mPullToRefreshRecyclerView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);

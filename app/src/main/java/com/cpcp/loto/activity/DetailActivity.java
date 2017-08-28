@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.cpcp.loto.R;
@@ -28,6 +29,7 @@ import com.cpcp.loto.uihelper.LoadingDialog;
 import com.cpcp.loto.util.DisplayUtil;
 import com.cpcp.loto.util.LogUtils;
 import com.cpcp.loto.util.SPUtil;
+import com.cpcp.loto.util.ToastUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,6 +40,9 @@ import java.util.Map;
 
 import butterknife.BindView;
 
+/**
+ * 推荐详情
+ */
 public class DetailActivity extends BaseActivity {
 
     @BindView(R.id.head)
@@ -205,6 +210,8 @@ public class DetailActivity extends BaseActivity {
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
+                        }else{
+                            ToastUtils.show(response.getErrmsg()+"");
                         }
                     }
                 });

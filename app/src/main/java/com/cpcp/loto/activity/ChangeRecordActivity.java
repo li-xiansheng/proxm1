@@ -64,7 +64,14 @@ public class ChangeRecordActivity extends BasePullRefreshActivity {
         mAdapter = new ChangeRecordRecyclerAdapter(mContext, data);
         recyclerView.setAdapter(mAdapter);
 
-//        mAdapter.setOnItemClickListener(new OnItemClickListener() {
+
+
+    }
+
+    @Override
+    protected void initListener() {
+        super.initListener();
+        //        mAdapter.setOnItemClickListener(new OnItemClickListener() {
 //            @Override
 //            public void onItemClick(View view, int position) {
 ////                Intent intent = new Intent(AttentionActivity.this,SalaryActivity.class);
@@ -75,12 +82,6 @@ public class ChangeRecordActivity extends BasePullRefreshActivity {
 //                jumpToActivity(SalaryActivity.class,bundle,false);
 //            }
 //        });
-
-        getData();
-    }
-
-    @Override
-    protected void initData() {
 
     }
 
@@ -93,8 +94,7 @@ public class ChangeRecordActivity extends BasePullRefreshActivity {
                     LogUtils.i(TAG, "首次加载……");
                     mPullToRefreshRecyclerView.setRefreshing(true);//没有刷新，则执行下拉刷新UI
                     isFirst = false;
-//                    fragments.get(0).setUserVisibleHint(true);
-                }
+                 }
             }, 1000);
 
 
@@ -151,10 +151,7 @@ public class ChangeRecordActivity extends BasePullRefreshActivity {
                     @Override
                     public void onCompleted() {
                         super.onCompleted();
-                        if (currentPage == 1 && mPullToRefreshRecyclerView != null) {
-                            mPullToRefreshRecyclerView.setMode(PullToRefreshBase.Mode.BOTH);
-                        }
-                        currentPage += 1;
+
                         if (mPullToRefreshRecyclerView != null && mPullToRefreshRecyclerView.isRefreshing()) {
                             mPullToRefreshRecyclerView.onRefreshComplete();
                         }

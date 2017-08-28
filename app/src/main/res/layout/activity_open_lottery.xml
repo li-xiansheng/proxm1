@@ -105,8 +105,7 @@
                 android:background="@color/yellowDark"
                 android:gravity="center"
                 android:text="等待开奖"
-
-
+                android:visibility="gone"
                 android:textColor="@color/white" />
         </RelativeLayout>
 

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp16"
+        android:background="@color/white">
+        <com.cpcp.loto.view.SelectedLayerTextView
+            android:id="@+id/tvWeixin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/icon_weixin"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/dp4"
+            android:text="微信"/>
+        <com.cpcp.loto.view.SelectedLayerTextView
+            android:id="@+id/tvWeixinFriend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/icon_weixin_friend"
+            android:gravity="center"
+            android:layout_weight="1"
+
+            android:drawablePadding="@dimen/dp4"
+            android:text="微信朋友圈"/>
+        <com.cpcp.loto.view.SelectedLayerTextView
+            android:id="@+id/tvQQ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/icon_qq"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/dp4"
+            android:text="QQ"/>
+        <com.cpcp.loto.view.SelectedLayerTextView
+            android:id="@+id/tvQQspace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/icon_qq_space"
+            android:gravity="center"
+            android:layout_weight="1"
+
+            android:drawablePadding="@dimen/dp4"
+            android:text="QQ空间"/>
+    </LinearLayout>
+
+    <com.cpcp.loto.view.SelectedLayerTextView
+        android:id="@+id/tvCancel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp30"
+        android:text="取消"
+        android:gravity="center"
+        android:background="@color/grayBgLight"
+        android:textSize="@dimen/sp16"
+        android:textColor="@color/red"/>
+</LinearLayout>

@@ -101,9 +101,9 @@ public class MeFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
-        String tel = sp.getString(UserDB.TEL, "");
-        getUserInfo(tel);
+//        SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
+//        String tel = sp.getString(UserDB.TEL, "");
+//        getUserInfo(tel);
     }
 
     @Override
@@ -116,17 +116,18 @@ public class MeFragment extends BaseFragment {
             lilNotLogin.setVisibility(View.GONE);
             String tel = sp.getString(UserDB.TEL, "");
             String name = sp.getString(UserDB.NAME, "");
-            String score=sp.getString(UserDB.SCORE,"");
-            String avatar=sp.getString(UserDB.AVATAR,"");
+            String score = sp.getString(UserDB.SCORE, "");
+            String avatar = sp.getString(UserDB.AVATAR, "");
             tvNickName.setText(name);
-            tvIntegral.setText("总积分："+score);
-            if(!TextUtils.isEmpty(avatar)){
+            tvIntegral.setText("总积分：" + score);
+            if (!TextUtils.isEmpty(avatar)) {
                 Glide.with(mContext)
                         .load(avatar)
+                        .placeholder(R.drawable.icon_default_head)
                         .transform(new GlideCircleTransform(mContext))
                         .into(ivHead);
             }
-//            getUserInfo(tel);
+            getUserInfo(tel);
         } else {
             lilLogin.setVisibility(View.GONE);
             lilNotLogin.setVisibility(View.VISIBLE);
@@ -159,24 +160,27 @@ public class MeFragment extends BaseFragment {
                     public void _onNext(int status, BaseResponse2Entity<UserInfoEntity> response) {
                         if (1 == response.getFlag()) {
                             UserInfoEntity entity = response.getData();
+                            String id=entity.getId();
                             String nickName = entity.getUser_nicename();
                             String avatar = entity.getAvatar();
                             String score = entity.getScore();
                             nickName = nickName == null ? "" : nickName;
-                            avatar = avatar == null ? "" : "http://"+avatar;
+                            avatar = avatar == null ? "" : "http://" + avatar;
                             score = score == null ? "" : score;
 
-                            Log.i(TAG,"getUserInfo avatar = " +avatar);
+                            Log.i(TAG, "getUserInfo avatar = " + avatar);
                             SPUtil sp = new SPUtil(MApplication.applicationContext, Constants.USER_TABLE);
+                            sp.putString(UserDB.ID,id);
                             sp.putString(UserDB.NAME, nickName);
                             sp.putString(UserDB.AVATAR, avatar);
                             sp.putString(UserDB.SCORE, score);
 
                             tvNickName.setText(nickName);
-                            tvIntegral.setText("总积分："+score);
-                            if(!TextUtils.isEmpty(avatar)){
+                            tvIntegral.setText("总积分：" + score);
+                            if (!TextUtils.isEmpty(avatar)) {
                                 Glide.with(mContext)
                                         .load(avatar)
+                                        .placeholder(R.drawable.icon_default_head)
                                         .transform(new GlideCircleTransform(mContext))
                                         .into(ivHead);
                             }
@@ -192,6 +196,15 @@ public class MeFragment extends BaseFragment {
             R.id.lilAttention, R.id.lilFans, R.id.lilBuyRecord, R.id.lilChangeRecord,
             R.id.btnLogin})
     public void onViewClicked(View view) {
+        SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
+        boolean isLogin = sp.getBoolean(UserDB.isLogin, false);
+        if (view.getId() != R.id.tvSetting) {//只要不是设置，都验证是否登录，未登录，则先登录
+            if (!isLogin) {
+                ((BaseActivity) mActivity).jumpToActivity(LoginActivity.class, false);
+                return;
+            }
+
+        }
         switch (view.getId()) {
             case R.id.tvSetting:
                 ((BaseActivity) mActivity).jumpToActivity(SettingActivity.class, false);
@@ -206,15 +219,15 @@ public class MeFragment extends BaseFragment {
                 ((BaseActivity) mActivity).jumpToActivity(MyInfoActivity.class, false);
                 break;
             case R.id.lilSalary:
-                SPUtil sp = new SPUtil(MApplication.applicationContext, Constants.USER_TABLE);
+
                 String nickname = sp.getString(UserDB.NAME, "");
                 String avatar = sp.getString(UserDB.AVATAR, "");
                 String mobile = sp.getString(UserDB.TEL, "");
                 Bundle bundle = new Bundle();
-                bundle.putString("nickname",nickname);
-                bundle.putString("avatar",avatar);
-                bundle.putString("mobile",mobile);
-                ((BaseActivity) mActivity).jumpToActivity(SalaryActivity.class,bundle,false);
+                bundle.putString("nickname", nickname);
+                bundle.putString("avatar", avatar);
+                bundle.putString("mobile", mobile);
+                ((BaseActivity) mActivity).jumpToActivity(SalaryActivity.class, bundle, false);
                 break;
             case R.id.lilAttention:
                 ((BaseActivity) mActivity).jumpToActivity(AttentionActivity.class, false);

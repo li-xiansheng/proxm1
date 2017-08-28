@@ -68,12 +68,7 @@ public class DaXiaoFragment extends BaseFragment {
     @Override
     protected void initListener() {
         super.initListener();
-        radioGroup1.setOnCheckedChangeListener(new NestRadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(NestRadioGroup group, int checkedId) {
 
-            }
-        });
 
     }
 

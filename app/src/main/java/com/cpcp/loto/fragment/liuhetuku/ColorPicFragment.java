@@ -57,7 +57,6 @@ public class ColorPicFragment extends BaseFragment {
     private List<TukuBean> SourceDateList = new ArrayList<>();
 
 
-
     @Override
     protected int getLayoutResId() {
         return R.layout.fragment_pic_color;
@@ -77,10 +76,13 @@ public class ColorPicFragment extends BaseFragment {
             @Override
             public void onTouchingLetterChanged(String s) {
                 //该字母首次出现的位置
-                int position = adapter.getPositionForSection(s.charAt(0));
-                if (position != -1) {
-                    lvContact.setSelection(position);
+                if (adapter!=null){
+                    int position = adapter.getPositionForSection(s.charAt(0));
+                    if (position != -1) {
+                        lvContact.setSelection(position);
+                    }
                 }
+
             }
         });
 
@@ -91,7 +93,7 @@ public class ColorPicFragment extends BaseFragment {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 Intent intent = new Intent(mContext, ShowPicActivity.class);
-                intent.putExtra("url",SourceDateList.get(position).getThumb());
+                intent.putExtra("url", SourceDateList.get(position).getThumb());
                 startActivity(intent);
 
             }
@@ -125,14 +127,13 @@ public class ColorPicFragment extends BaseFragment {
     public void getColorPic(String year) {
 
         LogUtils.i(TAG, "year = " + year);
-        LoadingDialog.showDialog(getActivity());
         HttpService httpService = HttpRequest.provideClientApi();
         httpService.getColorPic(year)
                 .compose(RxSchedulersHelper.<BaseResponse2Entity<String>>io_main())
                 .subscribe(new RxSubscriber<BaseResponse2Entity<String>>() {
                     @Override
                     public Activity getCurrentActivity() {
-                        return null;
+                        return mActivity;
                     }
 
                     @Override
@@ -147,13 +148,12 @@ public class ColorPicFragment extends BaseFragment {
 //                                emptyRl.setVisibility(View.VISIBLE);
 //                            }
 
-                            LoadingDialog.closeDialog(getActivity());
                             SourceDateList.clear();
                             Gson gson = new Gson();
                             try {
                                 JSONArray array = new JSONArray(response.getData());
-                                for (int i=0;i<array.length();i++){
-                                    TukuBean bean = gson.fromJson(array.get(i).toString(),TukuBean.class);
+                                for (int i = 0; i < array.length(); i++) {
+                                    TukuBean bean = gson.fromJson(array.get(i).toString(), TukuBean.class);
                                     SourceDateList.add(bean);
                                 }
 
@@ -203,7 +203,10 @@ public class ColorPicFragment extends BaseFragment {
         }
         // 根据a-z进行排序
         Collections.sort(mSortList, new PinyinComparator());
-        adapter.updateListView(mSortList);
+        if (adapter!=null){
+            adapter.updateListView(mSortList);
+        }
+
     }
 
     private void setSideBar(List<TukuBean> mSortList) {

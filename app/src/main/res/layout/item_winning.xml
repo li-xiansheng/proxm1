@@ -54,9 +54,11 @@
             android:textColor="@color/red" />
     </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/tvType"
@@ -74,14 +76,13 @@
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="@dimen/dp50"
             android:layout_height="@dimen/dp30"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="@dimen/dp20"
+             android:layout_marginTop="@dimen/dp8"
             android:background="@drawable/shape_border_arc6_red"
             android:gravity="center"
             android:text="查看"
 
             android:textColor="@color/red" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

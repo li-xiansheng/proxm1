@@ -1,7 +1,9 @@
 package com.cpcp.loto.activity;
 
 import android.app.Dialog;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -14,6 +16,7 @@ import com.cpcp.loto.base.BaseActivity;
 import com.cpcp.loto.base.BaseFragment;
 import com.cpcp.loto.fragment.liuhetuku.ColorPicFragment;
 import com.cpcp.loto.fragment.liuhetuku.HeibaiPicFragment;
+import com.cpcp.loto.util.DateUtils;
 import com.cpcp.loto.util.LogUtils;
 import com.cpcp.loto.util.ScreenUtil;
 import com.cpcp.loto.view.EasyPickerView;
@@ -26,7 +29,8 @@ import java.util.List;
 import butterknife.BindView;
 
 public class LiuHeImgActivity extends BaseActivity {
-
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.salary_tablayout)
     SegmentTabLayout salaryTablayout;
     @BindView(R.id.salary_viewpager)
@@ -40,14 +44,29 @@ public class LiuHeImgActivity extends BaseActivity {
     HeibaiPicFragment heibaiPicFragment;
 
     @Override
+    protected void initBase(Bundle savedInstanceState) {
+        isShowToolBar = false;
+        super.initBase(savedInstanceState);
+    }
+
+
+    @Override
     protected int getLayoutResId() {
         return R.layout.activity_liu_he_img;
     }
 
     @Override
     protected void initView() {
-
-        setTitle("六合图库");
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        //如果需要给toolbar设置事件监听，需要将toolbar设置支持actionbar
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         setTopRightButton("全年图纸", new OnMenuClickListener() {
 
@@ -63,7 +82,7 @@ public class LiuHeImgActivity extends BaseActivity {
 
     }
 
-    private void initAdapter(){
+    private void initAdapter() {
         String[] mTitles = {"彩色", "黑白"};
         salaryTablayout.setTabData(mTitles);
 
@@ -133,10 +152,10 @@ public class LiuHeImgActivity extends BaseActivity {
         sure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (salaryTablayout.getCurrentTab() == 0){
-                    LogUtils.i(TAG,stringList.get(easyPickerView.getCurIndex()));
+                if (salaryTablayout.getCurrentTab() == 0) {
+                    LogUtils.i(TAG, stringList.get(easyPickerView.getCurIndex()));
                     colorPicFragment.getColorPic(stringList.get(easyPickerView.getCurIndex()));
-                }else {
+                } else {
                     heibaiPicFragment.getHeibaiPic(stringList.get(easyPickerView.getCurIndex()));
                 }
                 seletorDialog.dismiss();
@@ -144,16 +163,19 @@ public class LiuHeImgActivity extends BaseActivity {
         });
     }
 
-    private void initList(){
-        stringList.add("2017");
-        stringList.add("2016");
-        stringList.add("2015");
-        stringList.add("2014");
-        stringList.add("2013");
+    private void initList() {
+        stringList.clear();
+        int year = DateUtils.getYear();
+        for (int i = year; i >= 2013; i--) {
+            stringList.add(i + "");
+        }
+
     }
 
     @Override
     protected void initData() {
 
     }
+
+
 }

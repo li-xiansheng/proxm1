@@ -98,7 +98,7 @@ public class ChangeActivity extends BaseActivity {
         submitRl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (check()){
+                if (check()) {
                     submitChange();
                 }
             }
@@ -109,7 +109,7 @@ public class ChangeActivity extends BaseActivity {
             public void onClick(View v) {
                 if ("请选择".equals(pingtaiTxt.getText().toString())) {
                     DialogUtil.createDialog(ChangeActivity.this, "请选择平台");
-                }else {
+                } else {
                     Bundle bundle = new Bundle();
                     bundle.putString("name", pingtaiList.get(pingtaiChoose).pingtainame);
                     bundle.putString("url", pingtaiList.get(pingtaiChoose).url);
@@ -123,7 +123,7 @@ public class ChangeActivity extends BaseActivity {
             public void onClick(View v) {
                 if ("请选择".equals(pingtaiTxt.getText().toString())) {
                     DialogUtil.createDialog(ChangeActivity.this, "请选择平台");
-                }else {
+                } else {
                     Bundle bundle = new Bundle();
                     bundle.putString("name", pingtaiList.get(pingtaiChoose).pingtainame);
                     bundle.putString("url", pingtaiList.get(pingtaiChoose).url);
@@ -140,7 +140,7 @@ public class ChangeActivity extends BaseActivity {
 
     }
 
-    private boolean check(){
+    private boolean check() {
         if (TextUtils.isEmpty(pingtaiTxt.getText().toString())) {
             DialogUtil.createDialog(this, "平台不能为空");
             return false;
@@ -156,12 +156,12 @@ public class ChangeActivity extends BaseActivity {
             return false;
         }
 
-        if (Integer.parseInt(transJifen.getText().toString()) > Integer.parseInt(score)){
+        if (Integer.parseInt(transJifen.getText().toString()) > Integer.parseInt(score)) {
             DialogUtil.createDialog(this, "转换积分大于总积分");
             return false;
         }
 
-        if (Integer.parseInt(score) < 2000){
+        if (Integer.parseInt(score) < 2000) {
             DialogUtil.createDialog(this, "总积分达到2000才能进行兑换");
             return false;
         }
@@ -171,8 +171,8 @@ public class ChangeActivity extends BaseActivity {
 
     private void initDialog() {
 
-        totalPoints.setText(" 总积分:"+score);
-        if (Integer.parseInt(score) < 2000){
+        totalPoints.setText(" 总积分:" + score);
+        if (Integer.parseInt(score) < 2000) {
             DialogUtil.createDialog(this, "总积分达到2000才能进行兑换");
         }
 
@@ -190,8 +190,8 @@ public class ChangeActivity extends BaseActivity {
         }
 
         easyPickerView = (EasyPickerView) seletorDialog.findViewById(R.id.easyPickerView);
+        easyPickerView.setRecycleMode(false);
         easyPickerView.setDataList(stringList);
-
         TextView cancel = (TextView) seletorDialog.findViewById(R.id.tv_cancle);
         TextView sure = (TextView) seletorDialog.findViewById(R.id.tv_select);
 
@@ -215,8 +215,7 @@ public class ChangeActivity extends BaseActivity {
     /**
      * 提交转换
      */
-    private void submitChange(){
-        LoadingDialog.showDialog(this);
+    private void submitChange() {
         SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
         String tel = sp.getString(UserDB.TEL, "");
         Map<String, String> map = new HashMap<>();
@@ -235,11 +234,10 @@ public class ChangeActivity extends BaseActivity {
 
                     @Override
                     public void _onNext(int status, BaseResponse2Entity<String> response) {
-                        LoadingDialog.closeDialog(ChangeActivity.this);
                         if (response.getFlag() == 1) {
                             DialogUtil.createDialog(ChangeActivity.this, "申请成功");
                         } else {
-                            DialogUtil.createDialog(ChangeActivity.this, "申请失败",response.getErrmsg());
+                            DialogUtil.createDialog(ChangeActivity.this, "申请失败", response.getErrmsg());
                         }
                     }
 
@@ -249,7 +247,7 @@ public class ChangeActivity extends BaseActivity {
     /**
      * 获取平台等信息
      */
-    private void getPingTaiInfo(){
+    private void getPingTaiInfo() {
         LoadingDialog.showDialog(this);
         SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
         String tel = sp.getString(UserDB.TEL, "");
@@ -273,8 +271,8 @@ public class ChangeActivity extends BaseActivity {
                                 JSONArray array = object.getJSONArray("pingtai");
                                 score = object.getString("score");
                                 Gson gson = new Gson();
-                                for (int i=0;i<array.length();i++){
-                                    PingtaiBean bean = gson.fromJson(array.get(i).toString(),PingtaiBean.class);
+                                for (int i = 0; i < array.length(); i++) {
+                                    PingtaiBean bean = gson.fromJson(array.get(i).toString(), PingtaiBean.class);
                                     stringList.add(bean.pingtainame);
                                     pingtaiList.add(bean);
                                 }
@@ -284,7 +282,7 @@ public class ChangeActivity extends BaseActivity {
                                 e.printStackTrace();
                             }
                         } else {
-                            DialogUtil.createDialog(ChangeActivity.this, "申请失败",response.getErrmsg());
+                            DialogUtil.createDialog(ChangeActivity.this, "申请失败", response.getErrmsg());
                         }
                     }
 

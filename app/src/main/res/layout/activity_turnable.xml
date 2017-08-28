@@ -13,6 +13,7 @@
         android:text="简介\n转转转!转出本期的生肖和波色,激动不如行动，感觉来转出你您心目中的生肖和波色!" />
 
     <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tvQiShu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -29,21 +30,26 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
-        </android.support.v7.widget.RecyclerView>
+            android:layout_centerInParent="true"></android.support.v7.widget.RecyclerView>
 
         <com.cpcp.loto.view.CirclePointView
             android:id="@+id/circlePointView"
             android:layout_width="@dimen/dp150"
             android:layout_height="@dimen/dp150"
-             android:layout_centerInParent="true" />
+            android:layout_centerInParent="true" />
+
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/tvStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="开始"
             android:layout_centerInParent="true"
-            android:background="@drawable/shape_arc2_yellow"/>
+            android:background="@drawable/shape_arc2_yellow"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dp2"
+            android:paddingLeft="@dimen/dp6"
+            android:paddingRight="@dimen/dp6"
+            android:paddingTop="@dimen/dp2"
+            android:text="开始" />
     </RelativeLayout>
 
     <android.support.v7.widget.AppCompatTextView

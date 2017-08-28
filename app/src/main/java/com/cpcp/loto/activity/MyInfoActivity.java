@@ -59,11 +59,15 @@ public class MyInfoActivity extends BaseActivity {
     private static final int REQUEST_CAMERA = 0x11;
     private static final int REQUEST_CODE_CUTTING = 0x12;
     private static final int REQUEST_CODE_PICK = 0x13;
-
+    //
+    public static final int REQUEST_CODE_NICKNAME = 0x14;
     @BindView(R.id.ivHead)
     AppCompatImageView ivHead;
     @BindView(R.id.lilUpdateHead)
     LinearLayout lilUpdateHead;
+    @BindView(R.id.lilNickName)
+    LinearLayout lilNickName;
+
     @BindView(R.id.tvNickName)
     AppCompatTextView tvNickName;
     @BindView(R.id.tvTel)
@@ -77,6 +81,7 @@ public class MyInfoActivity extends BaseActivity {
     //
     private Uri cameraFileUri;
     private File cameraFile;
+
 
     @Override
     protected int getLayoutResId() {
@@ -94,13 +99,12 @@ public class MyInfoActivity extends BaseActivity {
         tvNickName.setText(nickName);
         tvTel.setText(tel);
 
-        if (!TextUtils.isEmpty(avatar)) {
-            Glide.with(mContext)
-                    .load(avatar)
-                    .placeholder(R.drawable.icon_default_head)
-                    .transform(new GlideCircleTransform(mContext))
-                    .into(ivHead);
-        }
+
+        Glide.with(mContext)
+                .load(avatar)
+                .placeholder(R.drawable.icon_default_head)
+                .transform(new GlideCircleTransform(mContext))
+                .into(ivHead);
 
 
     }
@@ -111,19 +115,24 @@ public class MyInfoActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.lilUpdateHead, R.id.lilChangePwd, R.id.tvLogout})
+    @OnClick({R.id.lilUpdateHead, R.id.lilChangePwd, R.id.tvLogout, R.id.lilNickName})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.lilUpdateHead:
                 showDialog();
                 break;
             case R.id.lilChangePwd:
-                jumpToActivity(ChangePwdActivity.class,false);
+                jumpToActivity(ChangePwdActivity.class, false);
                 break;
             case R.id.tvLogout:
                 SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
                 sp.putBoolean(UserDB.isLogin, false);
                 this.finish();
+                break;
+            case R.id.lilNickName://
+                Intent intent = new Intent(this, ChangeNickNameActivity.class);
+                startActivityForResult(intent, REQUEST_CODE_NICKNAME);
+
                 break;
         }
     }
@@ -261,7 +270,6 @@ public class MyInfoActivity extends BaseActivity {
 //            Drawable drawable = new BitmapDrawable(getResources(), photo);
 
             String path = ImageUtil.saveBitmap(mContext, photo);
-//             DemoHelper.getInstance().getUserProfileManager().uploadUserAvatar(new File(path), mActivity);
             upLoadImage(new File(path));
         }
 
@@ -291,13 +299,14 @@ public class MyInfoActivity extends BaseActivity {
 
                     @Override
                     public void _onNext(int status, BaseResponse2Entity<String> response) {
-                        LogUtils.i(TAG,"upLoadImage ---->" + response.getErrmsg());
-                        LogUtils.i(TAG,"upLoadImage ---->" + response.getData());
+                        LogUtils.i(TAG, "upLoadImage ---->" + response.getErrmsg());
+                        LogUtils.i(TAG, "upLoadImage ---->" + response.getData());
                         if (response != null && response.getFlag() == 1) {
                             SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
-                            sp.putString(UserDB.AVATAR,"http://"+response.getData());
+                            sp.putString(UserDB.AVATAR, "http://" + response.getData());
                             Glide.with(mActivity)
-                                    .load("http://"+response.getData())
+                                    .load("http://" + response.getData())
+                                    .placeholder(R.drawable.icon_default_head)
                                     .transform(new GlideCircleTransform(mContext))
                                     .into(ivHead);
                         } else {
@@ -326,6 +335,13 @@ public class MyInfoActivity extends BaseActivity {
             case REQUEST_CAMERA:
                 if (cameraFileUri != null) {
                     startPhotoZoom(cameraFileUri, true);
+                }
+                break;
+            case REQUEST_CODE_NICKNAME:
+                if (requestCode == REQUEST_CODE_NICKNAME) {
+                    SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
+                    String nickName = sp.getString(UserDB.NAME, "");
+                    tvNickName.setText(nickName);
                 }
                 break;
             default:

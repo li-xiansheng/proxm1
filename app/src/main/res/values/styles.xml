@@ -40,4 +40,10 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowBackground">@color/white</item>
     </style>
+
+    <!-- 弹出窗口淡入淡出动画-下面出 -->
+    <style name="AnimationFadeButtom">
+        <item name="android:windowEnterAnimation">@anim/push_up_in</item>
+        <item name="android:windowExitAnimation">@anim/push_up_out</item>
+    </style>
 </resources>

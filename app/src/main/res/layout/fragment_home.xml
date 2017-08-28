@@ -106,15 +106,13 @@
                 android:background="@drawable/selector_transparent_black_half_transparent"
                 android:gravity="center">
 
-                <android.support.v7.widget.AppCompatTextView
+                <android.support.v7.widget.AppCompatImageView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="@dimen/dp4"
-                    android:drawableTop="@drawable/icon_get_red_packet"
-                    android:gravity="center"
-                    android:text="领取红包"
-                    android:textSize="@dimen/sp18" />
+                    android:layout_gravity="center"
+                    android:scaleType="center"
+                    android:src="@drawable/icon_get_packet" />
             </LinearLayout>
 
         </LinearLayout>

@@ -129,7 +129,7 @@
     <RelativeLayout
         android:id="@+id/toupiao"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="30dp"
         android:layout_marginLeft="40dp"
@@ -139,7 +139,7 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:layout_centerInParent="true"
             android:drawablePadding="10dp"
             android:gravity="center"

@@ -4,15 +4,17 @@ import android.app.Activity;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.cpcp.loto.R;
+import com.cpcp.loto.util.DisplayUtil;
 
 
 /**
-*@date 创建时间：2016/12/5.
-*@description  Loading进度等待帮助类
-*/
+ * @date 创建时间：2016/12/5.
+ * @description Loading进度等待帮助类
+ */
 
 public class LoadingDialog {
     public static AlertDialog mAlertDialog;
@@ -26,7 +28,7 @@ public class LoadingDialog {
      * @return
      */
     public static AlertDialog createLoadingDialog(Activity activity, String msg) {
-        if(activity==null){
+        if (activity == null) {
             return null;
         }
         if (mAlertDialog != null && mAlertDialog.isShowing()) {
@@ -41,8 +43,12 @@ public class LoadingDialog {
         // 显示文本
         tvMessage.setText(msg);
         mAlertDialog = new AlertDialog.Builder(activity).create();
-        if (activity != null&&!activity.isFinishing()) {
+        if (activity != null && !activity.isFinishing()) {
             mAlertDialog.show();
+            WindowManager.LayoutParams params = mAlertDialog.getWindow().getAttributes();
+            params.height = DisplayUtil.dip2px(activity, 100);
+            params.width = DisplayUtil.dip2px(activity, 100);
+            mAlertDialog.getWindow().setAttributes(params);
         }
         mAlertDialog.setCancelable(true);
         mAlertDialog.setCanceledOnTouchOutside(false);
@@ -61,10 +67,11 @@ public class LoadingDialog {
 
 
     }
+
     /**
      * 显示Dialog
      */
-    public static void showDialog(Activity activity,int drawableRes,String msg) {
+    public static void showDialog(Activity activity, int drawableRes, String msg) {
         //每次重建靠谱
         if (activity != null) {
             mAlertDialog = LoadingDialog.createLoadingDialog(activity, msg);
@@ -78,7 +85,7 @@ public class LoadingDialog {
      */
     public static void closeDialog(Activity activity) {
         if (mAlertDialog != null) {
-            if (activity!=null&&!activity.isFinishing() && mAlertDialog.isShowing()) {
+            if (activity != null && !activity.isFinishing() && mAlertDialog.isShowing()) {
                 mAlertDialog.dismiss();
             }
             mAlertDialog = null;

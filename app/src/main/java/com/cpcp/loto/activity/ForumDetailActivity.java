@@ -133,15 +133,15 @@ public class ForumDetailActivity extends BasePullRefreshActivity {
     @Override
     protected void initListener() {
         super.initListener();
-        new KeyboardChangeListener(this).setKeyBoardListener(new KeyboardChangeListener.KeyBoardListener() {
-            @Override
-            public void onKeyboardChange(boolean isShow, int keyboardHeight) {
-                LogUtils.d(TAG, "isShow = [" + isShow + "], keyboardHeight = [" + keyboardHeight + "]");
-                if (!isShow) {
-                    cleanInput();
-                }
-            }
-        });
+//        new KeyboardChangeListener(this).setKeyBoardListener(new KeyboardChangeListener.KeyBoardListener() {
+//            @Override
+//            public void onKeyboardChange(boolean isShow, int keyboardHeight) {
+//                LogUtils.d(TAG, "isShow = [" + isShow + "], keyboardHeight = [" + keyboardHeight + "]");
+//                if (!isShow) {
+//                    cleanInput();
+//                }
+//            }
+//        });
     }
 
     @Override

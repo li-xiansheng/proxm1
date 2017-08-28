@@ -75,10 +75,13 @@ public class HeibaiPicFragment extends BaseFragment {
             @Override
             public void onTouchingLetterChanged(String s) {
                 //该字母首次出现的位置
-                int position = adapter.getPositionForSection(s.charAt(0));
-                if (position != -1) {
-                    lvContact.setSelection(position);
+                if (adapter != null) {
+                    int position = adapter.getPositionForSection(s.charAt(0));
+                    if (position != -1) {
+                        lvContact.setSelection(position);
+                    }
                 }
+
             }
         });
 
@@ -90,7 +93,7 @@ public class HeibaiPicFragment extends BaseFragment {
                                     int position, long id) {
 
                 Intent intent = new Intent(mContext, ShowPicActivity.class);
-                intent.putExtra("url",SourceDateList.get(position).getThumb());
+                intent.putExtra("url", SourceDateList.get(position).getThumb());
                 startActivity(intent);
             }
         });
@@ -194,7 +197,9 @@ public class HeibaiPicFragment extends BaseFragment {
         }
         // 根据a-z进行排序
         Collections.sort(mSortList, new PinyinComparator());
-        adapter.updateListView(mSortList);
+        if (adapter != null) {
+            adapter.updateListView(mSortList);
+        }
     }
 
     private void setSideBar(List<TukuBean> mSortList) {

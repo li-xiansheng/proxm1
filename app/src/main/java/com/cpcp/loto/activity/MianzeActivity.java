@@ -9,6 +9,9 @@ import com.cpcp.loto.base.BaseActivity;
 
 import butterknife.BindView;
 
+/**
+ * 免责申明
+ */
 public class MianzeActivity extends BaseActivity {
 
     String str;

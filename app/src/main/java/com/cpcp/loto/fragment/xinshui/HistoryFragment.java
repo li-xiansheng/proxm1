@@ -52,7 +52,7 @@ public class HistoryFragment extends BaseFragment {
             fragments.add(fragment);
         }
 
-        historyViewpager.setOffscreenPageLimit(3);
+        historyViewpager.setOffscreenPageLimit(4);
         historyViewpager.setAdapter(new TabFragmentAdapter(fragments,mTitles,getFragmentManager(),mContext));
 
         // 将ViewPager和TabLayout绑定
