@@ -9,6 +9,7 @@ import com.cpcp.loto.activity.LotoKingActivity;
 import com.cpcp.loto.activity.SalaryActivity;
 import com.cpcp.loto.adapter.LotoKingRecyclerAdapter;
 import com.cpcp.loto.adapter.WinningRecyclerAdapter;
+import com.cpcp.loto.base.BaseActivity;
 import com.cpcp.loto.base.BasePullRefreshFragment;
 import com.cpcp.loto.entity.BaseResponse2Entity;
 import com.cpcp.loto.entity.LotoKingEntity;
@@ -70,7 +71,7 @@ public class WinningFragment extends BasePullRefreshFragment {
                     bundle.putString("nickname", userinfoBean.getUser_nicename() + "");
                     bundle.putString("avatar", "http://" + userinfoBean.getAvatar());
                     bundle.putString("mobile", userinfoBean.getMobile());
-                    mActivity.jumpToActivity(SalaryActivity.class, bundle, false);
+                    ((BaseActivity)mActivity).jumpToActivity(SalaryActivity.class, bundle, false);
                 } else {
                     ToastUtils.show("无法查看心水");
                 }

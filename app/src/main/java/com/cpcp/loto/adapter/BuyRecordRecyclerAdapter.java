@@ -25,8 +25,6 @@ import butterknife.ButterKnife;
 public class BuyRecordRecyclerAdapter extends BaseRecycleViewAdapter {
 
 
-
-
     public BuyRecordRecyclerAdapter(Context context, List<?> data) {
         super.BaseRecycleViewAdapter(context, data);
     }
@@ -45,18 +43,17 @@ public class BuyRecordRecyclerAdapter extends BaseRecycleViewAdapter {
             String date = ((BuyRecordBean) mListData.get(position)).time;
             String chakan = ((BuyRecordBean) mListData.get(position)).title;
             String jifen = ((BuyRecordBean) mListData.get(position)).points;
-            String head = "http://"+((BuyRecordBean) mListData.get(position)).avatar;
+            String head = "http://" + ((BuyRecordBean) mListData.get(position)).avatar;
             viewHolder.date.setText(date);
             viewHolder.chakan.setText(chakan);
-            viewHolder.jifen.setText(jifen+"积分");
-            if (head != null) {
-                Glide.with(mContext)
-                        .load(head)
-                        .transform(new GlideCircleTransform(mContext))
-                        .into(viewHolder.salaryHead);
-            } else {
-                viewHolder.salaryHead.setImageResource(R.drawable.icon_default_head);
-            }
+            viewHolder.jifen.setText(jifen + "积分");
+
+            Glide.with(mContext)
+                    .load(head)
+                    .placeholder(R.drawable.icon_default_head)
+                    .transform(new GlideCircleTransform(mContext))
+                    .into(viewHolder.salaryHead);
+
         }
     }
 

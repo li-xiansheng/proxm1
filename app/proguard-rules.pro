@@ -282,3 +282,35 @@
 -keep class * extends org.litepal.crud.DataSupport {
     *;
 }
+
+#百度语音SDK
+-dontwarn com.baidu.**
+-keep class com.baidu.** { *; }
+#so包
+-libraryjars src/main/jniLibs/arm64-v8a/libbd_etts.so
+-libraryjars src/main/jniLibs/armeabi/libbd_etts.so
+-libraryjars src/main/jniLibs/armeabi-v7a/libbd_etts.so
+-libraryjars src/main/jniLibs/mips/libbd_etts.so
+-libraryjars src/main/jniLibs/x86/libbd_etts.so
+-libraryjars src/main/jniLibs/x86_64/libbd_etts.so
+#
+-libraryjars src/main/jniLibs/arm64-v8a/libBDSpeechDecoder_V1.so
+-libraryjars src/main/jniLibs/armeabi/libBDSpeechDecoder_V1.so
+-libraryjars src/main/jniLibs/armeabi-v7a/libBDSpeechDecoder_V1.so
+-libraryjars src/main/jniLibs/mips/libBDSpeechDecoder_V1.so
+-libraryjars src/main/jniLibs/x86/libBDSpeechDecoder_V1.so
+-libraryjars src/main/jniLibs/x86_64/libBDSpeechDecoder_V1.so
+#
+-libraryjars src/main/jniLibs/arm64-v8a/libbdtts.so
+-libraryjars src/main/jniLibs/armeabi/libbdtts.so
+-libraryjars src/main/jniLibs/armeabi-v7a/libbdtts.so
+-libraryjars src/main/jniLibs/mips/libbdtts.so
+-libraryjars src/main/jniLibs/x86/libbdtts.so
+-libraryjars src/main/jniLibs/x86_64/libbdtts.so
+#
+-libraryjars src/main/jniLibs/arm64-v8a/libgnustl_shared.so
+-libraryjars src/main/jniLibs/armeabi/libgnustl_shared.so
+-libraryjars src/main/jniLibs/armeabi-v7a/libgnustl_shared.so
+-libraryjars src/main/jniLibs/mips/libgnustl_shared.so
+-libraryjars src/main/jniLibs/x86/libgnustl_shared.so
+-libraryjars src/main/jniLibs/x86_64/libgnustl_shared.so

@@ -73,11 +73,12 @@ public class OpenLotteryLiveActivity extends BaseActivity {
 
     //刷新时label控件
     protected String label = null;
-    //
+    //开奖直播接口
     private OpenLotteryLiveEntity openLotteryLiveEntity;
+    //
     private LiveExpandableListAdapter mExpandableListAdapter;
     private List<OpenLotteryLiveMEntity> mMEntities;
-    //
+    //正在开奖-开出最新数据的开奖接口
     private OpenLotteryZuiXinEntity openLotteryZuiXinEntity;
 
     /**
@@ -282,7 +283,7 @@ public class OpenLotteryLiveActivity extends BaseActivity {
     }
 
     /**
-     * 轮询最新开奖数据
+     * 轮询最新开奖数据接口
      */
     private Timer timer;
 
@@ -293,6 +294,72 @@ public class OpenLotteryLiveActivity extends BaseActivity {
      */
     private void setDataToZuixinUI(OpenLotteryZuiXinEntity entity) {
 
+        lilHaoMa.removeAllViews();
+        lilShengXiao.removeAllViews();
+
+
+        long currentTime = System.currentTimeMillis();
+        long lotteryTime = 0;
+        try {
+            lotteryTime = Long.parseLong(openLotteryLiveEntity.getTimeprompt()) * 1000;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        //开奖时间减去当前时间-正数，距离开奖时间还剩waitingTime，负数，已经过了开奖时间
+
+        long waitingTime = lotteryTime - currentTime;
+        if (waitingTime > 0) {//等待开奖
+            //是否在5分钟内
+            if (waitingTime < 1000 * 60 * 5) {
+                tvWait.setVisibility(View.VISIBLE);
+                //设置离开奖时间多少秒后，每隔5秒，轮询最新开奖数据
+                if (timer == null) {
+                    timer = new Timer();
+                    timer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            getLotteryInfo();
+                        }
+                    }, lotteryTime - currentTime, 5000);
+                }
+            } else {
+                //展示当期开奖
+                tvWait.setVisibility(View.GONE);
+                addDataToUI(entity);
+            }
+        } else {//判断开奖是否正在继续或者结束
+            tvWait.setVisibility(View.GONE);
+
+            //特码为null，或者（开奖直播历史期数为null）最新开奖未完成--正在开奖
+            if (TextUtils.isEmpty(openLotteryZuiXinEntity.getTema()) || TextUtils.isEmpty(openLotteryLiveEntity.getNo())) {
+                //设置离开奖时间多少秒后，每隔5秒，轮询最新开奖数据-当前页面显示
+                if (timer == null) {
+                    timer = new Timer();
+                    timer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            getLotteryInfo();
+                        }
+                    }, 0, 5000);
+                }
+
+
+            } else {
+                if (timer != null) {
+                    timer.cancel();
+                }
+            }
+            addDataToUI(entity);
+        }
+
+    }
+
+    /**
+     * 添加最新开奖数据到UI
+     *
+     * @param entity
+     */
+    private void addDataToUI(OpenLotteryZuiXinEntity entity) {
         String date = entity.getNo();
         tvQiShu.setText("第" + date + "开奖结果");
         List<String> haomaList = new ArrayList<>();
@@ -308,223 +375,120 @@ public class OpenLotteryLiveActivity extends BaseActivity {
         int withOrHeight = DisplayUtil.dip2px(mContext, 34);
 
 
-        lilHaoMa.removeAllViews();
-        lilShengXiao.removeAllViews();
 
-
-        tvWait.setVisibility(View.GONE);
-        long currentTime = System.currentTimeMillis();
         try {
-            long lotteryTime = Long.parseLong(openLotteryLiveEntity.getTimeprompt()) * 1000;
-            if (lotteryTime - currentTime > 0 && lotteryTime - currentTime < 1000 * 60 * 5) {//提前5分钟等待
-                tvWait.setVisibility(View.VISIBLE);
-                //设置离开奖时间多少秒后，每隔5秒，轮询最新开奖数据
-                if (timer == null) {
-                    timer = new Timer();
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            getLotteryInfo();
-                        }
-                    }, lotteryTime - currentTime, 5000);
+            for (int i = 0; i < haomaList.size(); i++) {
+                if (TextUtils.isEmpty(haomaList.get(i))) {
+                    break;
                 }
 
+                if (i == 6) {
+                    AppCompatTextView tv = new AppCompatTextView(mContext);
+                    tv.setGravity(Gravity.CENTER);
+                    tv.setBackgroundResource(R.drawable.icon_live_add);
 
-            } else if (TextUtils.isEmpty(openLotteryLiveEntity.getNo())) {//最新开奖显示为null
-                tvWait.setVisibility(View.VISIBLE);
-                //设置离开奖时间多少秒后，每隔5秒，轮询最新开奖数据
-                if (timer == null) {
-                    timer = new Timer();
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            getLotteryInfo();
-                        }
-                    }, 0, 5000);
+                    lilHaoMa.addView(tv);
+                    LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tv.getLayoutParams();
+                    params.setMargins(10, 0, 0, 0);
+                    params.width = withOrHeight;
+                    params.height = withOrHeight;
+                    tv.setLayoutParams(params);
+                    //
+                    AppCompatTextView tvShengxiao = new AppCompatTextView(mContext);
+                    lilShengXiao.addView(tvShengxiao);
+                    LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) tvShengxiao.getLayoutParams();
+                    params1.setMargins(10, 0, 0, 0);
+                    params1.width = withOrHeight;
+                    params1.height = withOrHeight;
+                    tvShengxiao.setLayoutParams(params1);
+
                 }
-            } else {
-                if (currentTime - lotteryTime > 0 && TextUtils.isEmpty(openLotteryZuiXinEntity.getTema())) {
-                    //设置离开奖时间多少秒后，每隔5秒，轮询最新开奖数据
-                    if (timer == null) {
-                        timer = new Timer();
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                getLotteryInfo();
-                            }
-                        }, 0, 5000);
-                    }
-                    try {
-                        for (int i = 0; i < haomaList.size(); i++) {
-                            if (TextUtils.isEmpty(haomaList.get(i))) {
-                                break;
-                            }
+                AppCompatTextView tv = new AppCompatTextView(mContext);
+                tv.setGravity(Gravity.CENTER);
 
-                            if (i == 6) {
-                                AppCompatTextView tv = new AppCompatTextView(mContext);
-                                tv.setGravity(Gravity.CENTER);
-                                tv.setBackgroundResource(R.drawable.icon_live_add);
-
-                                lilHaoMa.addView(tv);
-                                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tv.getLayoutParams();
-                                params.setMargins(10, 0, 0, 0);
-                                params.width = withOrHeight;
-                                params.height = withOrHeight;
-                                tv.setLayoutParams(params);
-                                //
-                                AppCompatTextView tvShengxiao = new AppCompatTextView(mContext);
-                                lilShengXiao.addView(tvShengxiao);
-                                LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) tvShengxiao.getLayoutParams();
-                                params1.setMargins(10, 0, 0, 0);
-                                params1.width = withOrHeight;
-                                params1.height = withOrHeight;
-                                tvShengxiao.setLayoutParams(params1);
-
-                            }
-                            AppCompatTextView tv = new AppCompatTextView(mContext);
-                            tv.setGravity(Gravity.CENTER);
-
-                            if (i == 1 || i == 2 || i == 3 || i == 5) {
-                                tv.setBackgroundResource(R.drawable.redball);
-                            } else if (i == 0) {
-                                tv.setBackgroundResource(R.drawable.blueball);
-                            } else {
-                                tv.setBackgroundResource(R.drawable.greenball);
-                            }
-                            String haoma = haomaList.get(i) + "";
-                            tv.setText(haoma);
-                            lilHaoMa.addView(tv);
-
-                            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tv.getLayoutParams();
-                            params.setMargins(10, 0, 0, 0);
-                            params.width = withOrHeight;
-                            params.height = withOrHeight;
-                            tv.setLayoutParams(params);
-
-                            //
-                            AppCompatTextView tvShengXiao = new AppCompatTextView(mContext);
-                            tvShengXiao.setGravity(Gravity.CENTER);
-
-                            String shengxiao = shengxiaoList.get(i) + "";
-                            tvShengXiao.setText(shengxiao);
-
-                            lilShengXiao.addView(tvShengXiao);
-                            LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) tvShengXiao.getLayoutParams();
-                            params1.setMargins(10, 0, 0, 0);
-                            params1.width = withOrHeight;
-                            params1.height = withOrHeight;
-                            tvShengXiao.setLayoutParams(params1);
-
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } else if (currentTime - lotteryTime > 0 && !TextUtils.isEmpty(openLotteryZuiXinEntity.getTema())) {
-                    if (timer != null) {
-                        timer.cancel();
-                    }
-
-                    try {
-                        for (int i = 0; i < haomaList.size(); i++) {
-                            if (TextUtils.isEmpty(haomaList.get(i))) {
-                                break;
-                            }
-
-                            if (i == 6) {
-                                AppCompatTextView tv = new AppCompatTextView(mContext);
-                                tv.setGravity(Gravity.CENTER);
-                                tv.setBackgroundResource(R.drawable.icon_live_add);
-
-                                lilHaoMa.addView(tv);
-                                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tv.getLayoutParams();
-                                params.setMargins(10, 0, 0, 0);
-                                params.width = withOrHeight;
-                                params.height = withOrHeight;
-                                tv.setLayoutParams(params);
-                                //
-                                AppCompatTextView tvShengxiao = new AppCompatTextView(mContext);
-                                lilShengXiao.addView(tvShengxiao);
-                                LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) tvShengxiao.getLayoutParams();
-                                params1.setMargins(10, 0, 0, 0);
-                                params1.width = withOrHeight;
-                                params1.height = withOrHeight;
-                                tvShengxiao.setLayoutParams(params1);
-
-                            }
-                            AppCompatTextView tv = new AppCompatTextView(mContext);
-                            tv.setGravity(Gravity.CENTER);
-
-                            if (i == 1 || i == 2 || i == 3 || i == 5) {
-                                tv.setBackgroundResource(R.drawable.redball);
-                            } else if (i == 0) {
-                                tv.setBackgroundResource(R.drawable.blueball);
-                            } else {
-                                tv.setBackgroundResource(R.drawable.greenball);
-                            }
-                            String haoma = haomaList.get(i) + "";
-                            tv.setText(haoma);
-                            lilHaoMa.addView(tv);
-
-                            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tv.getLayoutParams();
-                            params.setMargins(10, 0, 0, 0);
-                            params.width = withOrHeight;
-                            params.height = withOrHeight;
-                            tv.setLayoutParams(params);
-
-                            //
-                            AppCompatTextView tvShengXiao = new AppCompatTextView(mContext);
-                            tvShengXiao.setGravity(Gravity.CENTER);
-
-                            String shengxiao = shengxiaoList.get(i) + "";
-                            tvShengXiao.setText(shengxiao);
-
-                            lilShengXiao.addView(tvShengXiao);
-                            LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) tvShengXiao.getLayoutParams();
-                            params1.setMargins(10, 0, 0, 0);
-                            params1.width = withOrHeight;
-                            params1.height = withOrHeight;
-                            tvShengXiao.setLayoutParams(params1);
-
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                if (i == 1 || i == 2 || i == 3 || i == 5) {
+                    tv.setBackgroundResource(R.drawable.redball);
+                } else if (i == 0) {
+                    tv.setBackgroundResource(R.drawable.blueball);
+                } else {
+                    tv.setBackgroundResource(R.drawable.greenball);
                 }
+                String haoma = haomaList.get(i) + "";
+                tv.setText(haoma);
+                lilHaoMa.addView(tv);
+
+                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tv.getLayoutParams();
+                params.setMargins(10, 0, 0, 0);
+                params.width = withOrHeight;
+                params.height = withOrHeight;
+                tv.setLayoutParams(params);
+
+                //
+                AppCompatTextView tvShengXiao = new AppCompatTextView(mContext);
+                tvShengXiao.setGravity(Gravity.CENTER);
+
+                String shengxiao = shengxiaoList.get(i) + "";
+                tvShengXiao.setText(shengxiao);
+
+                lilShengXiao.addView(tvShengXiao);
+                LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) tvShengXiao.getLayoutParams();
+                params1.setMargins(10, 0, 0, 0);
+                params1.width = withOrHeight;
+                params1.height = withOrHeight;
+                tvShengXiao.setLayoutParams(params1);
+
             }
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
     @OnClick({R.id.ivLive, R.id.tvWait})
     public void onViewClicked(View v) {
+        long currentTime = System.currentTimeMillis();
+        long lotteryTime = 0;
+        try {
+            lotteryTime = Long.parseLong(openLotteryLiveEntity.getTimeprompt()) * 1000;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+        long leadTime = lotteryTime - currentTime;
         switch (v.getId()) {
             case R.id.ivLive:
-                long currentTime = System.currentTimeMillis();
+
                 if (openLotteryLiveEntity != null && openLotteryZuiXinEntity != null) {
-                    long lotteryTime = Long.parseLong(openLotteryLiveEntity.getTimeprompt()) * 1000;
 
-
-                    if (lotteryTime - currentTime > 0 && lotteryTime - currentTime < 1000 * 60 * 5) {//提前5分钟
-                        Bundle bundle = new Bundle();
-                        bundle.putLong("nextOpenLottery", lotteryTime);
-                        bundle.putString("nextNo", openLotteryLiveEntity.getNextqishu()+"");
-                        jumpToActivity(OpenLotteryingActivity.class, bundle, false);
-                    } else if (currentTime - lotteryTime > 0 && TextUtils.isEmpty(openLotteryZuiXinEntity.getTema()) || TextUtils.isEmpty(openLotteryLiveEntity.getNo())) {//正在开奖
-                        Bundle bundle = new Bundle();
-                        bundle.putLong("nextOpenLottery", lotteryTime);
-                        bundle.putString("nextNo", openLotteryLiveEntity.getNextqishu()+"");
-                        jumpToActivity(OpenLotteryingActivity.class, bundle, false);
-                    } else if (currentTime - lotteryTime > 0 && !TextUtils.isEmpty(openLotteryZuiXinEntity.getTema())) {//特码不为空
-                        DialogUtil.createDialog(mContext, "直播已结束");
+                    if (leadTime > 0) {
+                        if (leadTime < 1000 * 60 * 5) {//提前5分钟
+                            Bundle bundle = new Bundle();
+                            bundle.putLong("nextOpenLottery", lotteryTime);
+                            bundle.putString("nextNo", openLotteryLiveEntity.getNextqishu() + "");
+                            jumpToActivity(OpenLotteryingActivity.class, bundle, false);
+                        } else {
+                            try {
+                                String time = DateTimeUtils.timestampConvertMonthTime(lotteryTime + "");
+                                DialogUtil.createDialog(mContext, "提示", time + "开奖期间才能观看");
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     } else {
-                        try {
-                            String time = DateTimeUtils.timestampConvertMonthTime(lotteryTime + "");
-                            DialogUtil.createDialog(mContext, "提示", time + "开奖期间才能观看");
-                        } catch (ParseException e) {
-                            e.printStackTrace();
+                        //特码为null或者当期期数为null，正在开奖
+                        if (TextUtils.isEmpty(openLotteryZuiXinEntity.getTema()) &&TextUtils.isEmpty(openLotteryLiveEntity.getNo())) {
+                            Bundle bundle = new Bundle();
+                            bundle.putLong("nextOpenLottery", lotteryTime);
+                            bundle.putString("nextNo", openLotteryLiveEntity.getNextqishu() + "");
+                            jumpToActivity(OpenLotteryingActivity.class, bundle, false);
+                        } else if (!TextUtils.isEmpty(openLotteryZuiXinEntity.getTema()) && TextUtils.isEmpty(openLotteryLiveEntity.getNo())) {//直播已结束
+                            DialogUtil.createDialog(mContext, "直播已结束-下期开奖还未发布");
+                        } else {//下期开奖提示
+                            try {
+                                String time = DateTimeUtils.timestampConvertMonthTime(lotteryTime + "");
+                                DialogUtil.createDialog(mContext, "提示", time + "开奖期间才能观看");
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 } else {
@@ -534,22 +498,20 @@ public class OpenLotteryLiveActivity extends BaseActivity {
                 break;
             case R.id.tvWait:
                 if (openLotteryLiveEntity != null) {
-                    long currentTime1 = System.currentTimeMillis();
 
-                    long lotteryTime = Long.parseLong(openLotteryLiveEntity.getTimeprompt()) * 1000;
-                    if (currentTime1 - lotteryTime > 0) {//已经在开奖
-
-                    } else {
+                    if (leadTime > 0 && leadTime < 1000 * 60 * 5) {//开奖前5分钟
                         Bundle bundle = new Bundle();
                         bundle.putLong("nextOpenLottery", lotteryTime);
-                        bundle.putString("nextNo", openLotteryLiveEntity.getNextqishu()+"");
+                        bundle.putString("nextNo", openLotteryLiveEntity.getNextqishu() + "");
                         jumpToActivity(OpenLotteryingActivity.class, bundle, false);
-                        jumpToActivity(OpenLotteryingActivity.class, false);
+
+                    } else {
+                        pullToRefreshScrollView.setRefreshing(true);
                     }
-
-                    break;
+                } else {
+                    ToastUtils.show("请刷新获取最新数据");
                 }
-
+                break;
         }
     }
 

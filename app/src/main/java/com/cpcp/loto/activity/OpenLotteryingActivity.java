@@ -72,7 +72,7 @@ public class OpenLotteryingActivity extends BaseActivity implements SpeechSynthe
     private Timer startTimer;
     //轮询开奖
     private Timer mTimer;
-
+    //当前播报开奖号
     private int currentIndex;
 
     private long nextOpenLottery;
@@ -127,96 +127,100 @@ public class OpenLotteryingActivity extends BaseActivity implements SpeechSynthe
     private void dealWithData() {
         final Handler handler = new Handler();
         long currentTime = System.currentTimeMillis();
-        if (nextOpenLottery - currentTime > 1000 * 60) {//开奖时间一分钟前，还未到开奖时间
-            startTimer = new Timer();
-            startTimer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    long shijian = nextOpenLottery - System.currentTimeMillis();
-                    if (shijian > 1000 * 59 && shijian <= 1000 * 60) {
-                        mSpeechSynthesizer.speak("距离开奖时间还剩1分钟");
-                        LogUtils.i(TAG, "开奖提示音1分钟");
-                    } else if (System.currentTimeMillis() - nextOpenLottery > 0) {//开始轮询开奖
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                LogUtils.i(TAG, "开奖开始");
-                                startAnimalAndVoice();
-                                startTimer.cancel();
-                            }
-                        });
-                        //轮询，每隔4s访问一次开奖直播接口
-                        mTimer = new Timer();
-                        mTimer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                handler.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        if (mSubscription == null) {
-                                            LogUtils.i(TAG, "轮询开始");
-                                            getLotteryInfo();
+        long leadTime = nextOpenLottery - currentTime;
+        if (leadTime > 0) {
+            if (leadTime < 1000 * 60) {//离开奖一分钟内
+                mSpeechSynthesizer.speak("距离开奖时间还剩" + ((nextOpenLottery - currentTime) / 1000) + "秒");
+                LogUtils.i(TAG, "开奖提示音秒");
+                startTimer = new Timer();
+                startTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (System.currentTimeMillis() - nextOpenLottery > 0) {//开始轮询开奖
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    LogUtils.i(TAG, "开奖开始--秒之后");
+                                    startAnimalAndVoice();
+                                    startTimer.cancel();
+                                }
+                            });
+                            //轮询，每隔4s访问一次开奖直播接口
+                            mTimer = new Timer();
+                            mTimer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    handler.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            if (mSubscription == null) {
+                                                LogUtils.i(TAG, "轮询开始--秒之后");
+                                                getLotteryInfo();
+                                            }
                                         }
-                                    }
-                                });
-                            }
-                        }, 0, 4000);
-                    }
-                }
-            }, 0, 1000);
-        } else if (nextOpenLottery - currentTime < 1000 * 60 && nextOpenLottery - currentTime > 0) {
-            mSpeechSynthesizer.speak("距离开奖时间还剩" + ((nextOpenLottery - currentTime) / 1000) + "秒");
-            LogUtils.i(TAG, "开奖提示音秒");
-            startTimer = new Timer();
-            startTimer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    if (System.currentTimeMillis() - nextOpenLottery > 0) {//开始轮询开奖
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                LogUtils.i(TAG, "开奖开始--秒之后");
-                                startAnimalAndVoice();
-                                startTimer.cancel();
-                            }
-                        });
-                        //轮询，每隔4s访问一次开奖直播接口
-                        mTimer = new Timer();
-                        mTimer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                handler.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        if (mSubscription == null) {
-                                            LogUtils.i(TAG, "轮询开始--秒之后");
-                                            getLotteryInfo();
-                                        }
-                                    }
-                                });
-                            }
-                        }, 0, 4000);
-                    }
-                }
-            }, 0, 1000);
-
-        } else {
-            startAnimalAndVoice();
-            //轮询，每隔4s访问一次开奖直播接口
-            mTimer = new Timer();
-            mTimer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            LogUtils.i(TAG, "直接轮询");
-                            getLotteryInfo();
+                                    });
+                                }
+                            }, 0, 4000);
                         }
-                    });
-                }
-            }, 0, 4000);
+                    }
+                }, 0, 1000);
 
+            } else {//离开奖时间大于1分钟
+                startTimer = new Timer();
+                startTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        long shijian = nextOpenLottery - System.currentTimeMillis();
+                        if (shijian > 1000 * 59 && shijian <= 1000 * 60) {//刚好一分钟左右
+                            mSpeechSynthesizer.speak("距离开奖时间还剩1分钟");
+                            LogUtils.i(TAG, "开奖提示音1分钟");
+                        } else if (System.currentTimeMillis() - nextOpenLottery > 0) {//到开奖时间-开始轮询开奖
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    LogUtils.i(TAG, "开奖开始-开始动画，取消时间监听");
+                                    startAnimalAndVoice();
+                                    startTimer.cancel();
+                                }
+                            });
+                            //轮询，每隔4s访问一次开奖直播接口
+                            mTimer = new Timer();
+                            mTimer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    handler.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            if (mSubscription == null) {
+                                                LogUtils.i(TAG, "轮询开始");
+                                                getLotteryInfo();
+                                            }
+                                        }
+                                    });
+                                }
+                            }, 0, 4000);
+                        }
+                    }
+                }, 0, 1000);
+            }
+        } else {
+            if (nextOpenLottery != 0) {//正在开奖
+                startAnimalAndVoice();
+                //轮询，每隔4s访问一次开奖直播接口
+                mTimer = new Timer();
+                mTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                LogUtils.i(TAG, "直接轮询");
+                                getLotteryInfo();
+                            }
+                        });
+                    }
+                }, 0, 4000);
+            }
         }
 
     }
@@ -240,7 +244,10 @@ public class OpenLotteryingActivity extends BaseActivity implements SpeechSynthe
                             List<OpenLotteryZuiXinEntity> list = response.getData();
                             if (list != null && list.size() > 0) {
                                 OpenLotteryZuiXinEntity entity = list.get(0);
-                                setDataToUI(entity);
+                                if (entity != null) {
+                                    setDataToUI(entity);
+                                }
+
                             }
 
                         }
@@ -290,7 +297,7 @@ public class OpenLotteryingActivity extends BaseActivity implements SpeechSynthe
 
         lilBall.removeAllViews();
         lilShengXiao.removeAllViews();
-        if (!TextUtils.isEmpty(entity.getTema())) {
+        if (!TextUtils.isEmpty(entity.getTema()) && currentIndex == 0) {//不是最新开奖完成
             return;
         }
         try {
@@ -396,7 +403,6 @@ public class OpenLotteryingActivity extends BaseActivity implements SpeechSynthe
         } else {
             startAnimalAndVoice();
         }
-
         mSpeechSynthesizer.speak(code + "号" + shengxiao);
 
     }
@@ -434,14 +440,6 @@ public class OpenLotteryingActivity extends BaseActivity implements SpeechSynthe
                     mediaPlayer.start();
                 }
             });
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if (!mediaPlayer.isPlaying()) {
-                        mediaPlayer.start();
-                    }
-                }
-            }, 3000);
 
         }
     }
@@ -451,6 +449,9 @@ public class OpenLotteryingActivity extends BaseActivity implements SpeechSynthe
      * 停止动画和声音
      */
     private void stoptAnimalAndVoice() {
+        if (mTimer != null) {
+            mTimer.cancel();
+        }
         Glide.with(mContext)
                 .load(0)
                 .into(ivStatic);
@@ -463,9 +464,7 @@ public class OpenLotteryingActivity extends BaseActivity implements SpeechSynthe
             mediaPlayer.release();
             mediaPlayer = null;
         }
-        if (mTimer != null) {
-            mTimer.cancel();
-        }
+
     }
 
     /***
