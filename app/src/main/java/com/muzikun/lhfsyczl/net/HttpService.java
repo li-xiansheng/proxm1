@@ -2,6 +2,7 @@ package com.muzikun.lhfsyczl.net;
 
 
 import com.muzikun.lhfsyczl.config.HostConfig;
+import com.muzikun.lhfsyczl.entity.AdvertEntity;
 import com.muzikun.lhfsyczl.entity.BaseResponse1Entity;
 import com.muzikun.lhfsyczl.entity.BaseResponse2Entity;
 import com.muzikun.lhfsyczl.entity.CaiShenEntity;
@@ -559,12 +560,19 @@ public interface HttpService {
 
 
     /**
-     * 免责、关于、公告
+     *反馈
      * index.php?g=portal&m=article&a=fankui
      */
     @FormUrlEncoded
     @POST("index.php?g=portal&m=article&a=fankui")
     Observable<BaseResponse2Entity<String>> fanKui(@FieldMap Map<String, String> map);
 
+    /**
+     * 发现--广告图
+     * index.php?g=portal&m=Index&a=posts
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=Index&a=faxian")
+    Observable<BaseResponse1Entity<List<AdvertEntity>>> getAdvert(@FieldMap Map<String, String> map);
 
 }

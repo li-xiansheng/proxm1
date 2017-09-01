@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ditu"
+    tools:context="com.muzikun.one.activity.AnalyzeActivity">
+
+    <LinearLayout
+        android:id="@+id/analyze_title_ll"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/colorPrimaryOne"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/analyze_back_ll"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/back_left" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="六合风水卦象"
+            android:textColor="#ffffff"
+            android:textSize="18dp" />
+
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"></LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/analyze_fangwei_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/analyze_title_ll"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/aa_bian_kuang"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/analyze_fangwei"
+            style="@style/text_style"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="房屋布局：坐坤向艮"
+            android:textColor="@color/colorPrimaryOne"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/analyze_chaoxiang"
+            style="@style/text_style"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="2dp"
+            android:text="飞星：捐财伤丁"
+            android:textColor="@color/colorPrimaryOne"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/analyze_fangwei_ll"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/analyze_direction_top"
+            style="@style/text_style"
+            android:layout_gravity="center_horizontal"
+            android:text="向东北"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/analyze_direction_left"
+                style="@style/text_style"
+                android:layout_marginRight="20dp"
+                android:ems="1"
+                android:text="西北"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/analyze_1"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/jueming" />
+
+                    <ImageView
+                        android:id="@+id/analyze_2"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="1dp"
+                        android:src="@drawable/shengqi"/>
+
+                    <ImageView
+                        android:id="@+id/analyze_3"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="1dp"
+                        android:src="@drawable/huohai"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/analyze_4"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/yannian" />
+
+                    <ImageView
+                        android:id="@+id/analyze_5"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="1dp"
+                        android:src="@drawable/zaizhu"/>
+
+                    <ImageView
+                        android:id="@+id/analyze_6"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="1dp"
+                        android:src="@drawable/wugui"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/analyze_7"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/tianyi" />
+
+                    <ImageView
+                        android:id="@+id/analyze_8"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="1dp"
+                        android:src="@drawable/fuwei"/>
+
+                    <ImageView
+                        android:id="@+id/analyze_9"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="1dp"
+                        android:src="@drawable/liusha"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/analyze_direction_right"
+                style="@style/text_style"
+                android:layout_marginLeft="20dp"
+                android:ems="1"
+                android:text="东南"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/analyze_direction_bottom"
+            style="@style/text_style"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text="坐西南"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            style="@style/text_style"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text="注:点击上图九宫格查看说明"
+            android:textColor="@color/textColor"
+            android:textSize="14sp" />
+    </LinearLayout>
+</RelativeLayout>

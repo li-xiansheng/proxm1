@@ -24,6 +24,7 @@ import com.muzikun.lhfsyczl.net.HttpRequest;
 import com.muzikun.lhfsyczl.net.HttpService;
 import com.muzikun.lhfsyczl.net.RxSchedulersHelper;
 import com.muzikun.lhfsyczl.net.RxSubscriber;
+import com.muzikun.lhfsyczl.util.BallColorUtil;
 import com.muzikun.lhfsyczl.util.DateTimeUtils;
 import com.muzikun.lhfsyczl.util.DialogUtil;
 import com.muzikun.lhfsyczl.util.DisplayUtil;
@@ -406,14 +407,9 @@ public class OpenLotteryLiveActivity extends BaseActivity {
                 AppCompatTextView tv = new AppCompatTextView(mContext);
                 tv.setGravity(Gravity.CENTER);
 
-                if (i == 1 || i == 2 || i == 3 || i == 5) {
-                    tv.setBackgroundResource(R.drawable.redball);
-                } else if (i == 0) {
-                    tv.setBackgroundResource(R.drawable.blueball);
-                } else {
-                    tv.setBackgroundResource(R.drawable.greenball);
-                }
+
                 String haoma = haomaList.get(i) + "";
+                BallColorUtil.ballColor(haoma,tv);
                 tv.setText(haoma);
                 lilHaoMa.addView(tv);
 

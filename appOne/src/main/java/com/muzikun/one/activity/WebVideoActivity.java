@@ -33,7 +33,8 @@ public class WebVideoActivity extends Activity {
         //获取相应信息
         Intent intent = getIntent();
         String url = intent.getStringExtra("url");
-
+        String title=intent.getStringExtra("title");
+        activityWebTitle.setText(title+"");
         //设置网页信息
 //        info = (WebView) findViewById(R2.id.info);
         info.getSettings().setJavaScriptEnabled(true);

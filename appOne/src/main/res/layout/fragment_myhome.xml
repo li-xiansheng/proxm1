@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/fragment_myhome_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/mine_bg"
+        android:orientation="vertical"
+        android:paddingBottom="50dp">
+
+        <com.muzikun.one.lib.view.CircularImage
+            android:id="@+id/fragment_myhome_usericon"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/mine_head" />
+
+        <TextView
+            android:id="@+id/fragment_myhome_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="登录"
+            android:textColor="#FFFFFF"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#f7f7f7"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/activity_myhome_navigation_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="#ffffff"
+            android:divider="#f7f7f7"
+            android:dividerHeight="2dp"></ListView>
+
+    </LinearLayout>
+</LinearLayout>

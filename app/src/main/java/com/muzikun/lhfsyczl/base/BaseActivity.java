@@ -102,7 +102,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LogUtils.e(TAG,"基类--onCreate");
-        statusBarColor = R.color.colorPrimaryOne;//初始化颜色
+        statusBarColor = R.color.colorPrimary;//初始化颜色
         initBase(savedInstanceState);
         if (mDecorView == null) {
             initDecorView();//初始化跟布局（添加toolbar，添加mContentview给子布局留空间）

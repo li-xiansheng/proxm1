@@ -64,7 +64,7 @@ public class TailTrendRecyclerAdapter extends BaseRecycleViewAdapter {
                 int color = 0;
                 int grayColor = mContext.getResources().getColor(R.color.grayText);
                 if ("lan".equals(yanse)) {
-                    color = mContext.getResources().getColor(R.color.colorPrimaryDarkOne);
+                    color = mContext.getResources().getColor(R.color.colorPrimaryDark);
 
                 } else if ("lv".equals(yanse)) {
                     color = mContext.getResources().getColor(R.color.green);

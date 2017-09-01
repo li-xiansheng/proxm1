@@ -52,6 +52,8 @@ public class PagerFragment extends Fragment implements SensorEventListener {
     String fangXiang = "";
     String chaoXiang = "";
 
+    // 传感器管理器
+    private SensorManager sm;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -75,12 +77,8 @@ public class PagerFragment extends Fragment implements SensorEventListener {
 
 
         // 传感器管理器
-        SensorManager sm = (SensorManager) getActivity().getSystemService(SENSOR_SERVICE);
-        // 注册传感器(Sensor.TYPE_ORIENTATION(方向传感器);SENSOR_DELAY_FASTEST(0毫秒延迟);
-        // SENSOR_DELAY_GAME(20,000毫秒延迟)、SENSOR_DELAY_UI(60,000毫秒延迟))
-        sm.registerListener(this,
-                sm.getDefaultSensor(Sensor.TYPE_ORIENTATION),
-                SensorManager.SENSOR_DELAY_FASTEST);
+        sm = (SensorManager) getActivity().getSystemService(SENSOR_SERVICE);
+
 
         EventUtil.setTouchState(fenxi);
         EventUtil.setTouchState(jiaocheng);
@@ -115,6 +113,23 @@ public class PagerFragment extends Fragment implements SensorEventListener {
 
 
     @Override
+    public void onResume() {
+        super.onResume();
+        // 注册传感器(Sensor.TYPE_ORIENTATION(方向传感器);SENSOR_DELAY_FASTEST(0毫秒延迟);
+        // SENSOR_DELAY_GAME(20,000毫秒延迟)、SENSOR_DELAY_UI(60,000毫秒延迟))
+
+        /**
+         * 获取方向传感器
+         * 通过SensorManager对象获取相应的Sensor类型的对象
+         */
+        Sensor sensor = sm.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+        //应用在前台时候注册监听器
+        sm.registerListener(this, sensor,
+                SensorManager.SENSOR_DELAY_GAME);
+        super.onResume();
+    }
+
+    @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_ORIENTATION) {
             float degree = event.values[0];
@@ -139,7 +154,7 @@ public class PagerFragment extends Fragment implements SensorEventListener {
             //罗盘图片使用旋转动画
             luopan.startAnimation(ra);
 
-            Log.i(TAG, "degree" + degree);
+//            Log.i(TAG, "degree" + degree);
 //            fangwei.setText();
             showFangWei(degree);
 
@@ -233,5 +248,13 @@ public class PagerFragment extends Fragment implements SensorEventListener {
         }
         fangwei.setText(fangXiang + ":" + EventUtil.FormatDouble(degree + 1));
         chaoxiang.setText(chaoXiang);
+    }
+
+    @Override
+    public void onPause() {
+        //应用不在前台时候销毁掉监听器
+        sm.unregisterListener(this);
+        super.onPause();
+
     }
 }

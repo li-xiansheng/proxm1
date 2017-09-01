@@ -90,7 +90,7 @@ public class TrendAnalysisActivity extends BaseActivity {
         // 将ViewPager和TabLayout绑定
         tabLayout.setupWithViewPager(viewPager);
         // 设置tab文本的没有选中（第一个参数）和选中（第二个参数）的颜色
-        tabLayout.setTabTextColors(Color.BLACK, mContext.getResources().getColor(R.color.colorPrimaryOne));
+        tabLayout.setTabTextColors(Color.BLACK, mContext.getResources().getColor(R.color.colorPrimary));
         //主动调取第一个页面可见执行懒加载
         new Handler().postDelayed(new Runnable() {
             @Override

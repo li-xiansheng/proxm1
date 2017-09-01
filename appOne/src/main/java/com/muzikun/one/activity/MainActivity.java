@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private List<ImageView> imageViewList = null;
     private List<TextView> textViewList = null;
     private List<LinearLayout> linearLayoutList = null;
-    private int selectedPosition = 0;
+    private int selectedPosition =-1;
     private long exitTime = 0;
     private int[] bottomIds = new int[]{
             R.id.common_bottom_nav_news,
@@ -152,20 +152,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void selectItem(int position) {
-        selectedPosition = position;
-        for (int i = 0; i < imageViewList.size(); i++) {
-            if (i == position) {
-                Glide.with(MainActivity.this)
-                        .load(bottomImagesSelect[i])
-                        .into(imageViewList.get(i));
+        //选中的
+//        Glide.with(MainActivity.this)
+//                .load(bottomImagesSelect[position])
+//                .into(imageViewList.get(position));
+        imageViewList.get(position).setImageResource(bottomImages[position]);
+        textViewList.get(position).setTextColor(getResources().getColor(R.color.orange));
+        //未选中的
+        if(selectedPosition!=-1&&(selectedPosition>=0&&selectedPosition<4)){
 
-                textViewList.get(i).setTextColor(getResources().getColor(R.color.orange));
-            } else {
-                imageViewList.get(i).setImageResource(bottomImages[i]);
-                textViewList.get(i).setTextColor(getResources().getColor(R.color.white));
-            }
-
+            imageViewList.get(selectedPosition).setImageResource(bottomImages[selectedPosition]);
+            textViewList.get(selectedPosition).setTextColor(getResources().getColor(R.color.white));
         }
+        selectedPosition = position;
+
+//        for (int i = 0,size= imageViewList.size() ;i < size; i++) {
+//            if (i == position) {
+//                Glide.with(MainActivity.this)
+//                        .load(bottomImagesSelect[i])
+//                        .into(imageViewList.get(i));
+//                textViewList.get(i).setTextColor(getResources().getColor(R.color.orange));
+//            } else {
+//                Glide.with(MainActivity.this)
+//                        .load(bottomImages[i])
+//                        .into(imageViewList.get(i));
+////                imageViewList.get(i).setImageResource(bottomImages[i]);
+//                textViewList.get(i).setTextColor(getResources().getColor(R.color.white));
+//            }
+//
+//        }
 
         switch (position) {
             case 0:

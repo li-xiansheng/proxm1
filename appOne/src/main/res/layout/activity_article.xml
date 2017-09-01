@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/activity_article_mainbox"
+        android:paddingBottom="42dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/activity_article_topbar"
+            android:background="@color/colorPrimaryOne"
+            android:orientation="horizontal"
+            >
+
+            <LinearLayout
+                android:id="@+id/activity_article_back"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/back_left"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:lines="1"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:ellipsize="end"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:id="@+id/activity_article_stow"
+                android:layout_width="50dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/star_no"
+                />
+
+            <!--  <ImageView
+                  android:id="@+id/activity_article_share"
+                  android:layout_width="50dp"
+                  android:layout_height="25dp"
+                  android:layout_gravity="center_vertical"
+                  android:src="@drawable/share"
+                  />-->
+        </LinearLayout>
+
+        <com.muzikun.one.lib.view.ScrollViewExpand
+            android:id="@+id/activity_article_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <WebView
+                    android:id="@+id/activity_article_webview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="20dp"
+                    >
+                </WebView>
+
+                <LinearLayout
+                    android:id="@+id/activity_article_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/activity_article_webview"
+                    android:layout_marginTop="20dp"
+                    android:background="#ffffff"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:text="用户评论"
+                            android:textColor="@color/colorPrimaryOne"
+                            android:textSize="16dp"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/colorPrimaryOne">
+                    </View>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:id="@+id/activity_article_comment_listview_box"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+                        <com.muzikun.one.lib.view.MyListView
+                            android:id="@+id/activity_article_comment_listview"
+                            android:visibility="gone"
+                            android:divider="#DDDDDD"
+                            android:dividerHeight="1px"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        </com.muzikun.one.lib.view.MyListView>
+                        <TextView
+                            android:id="@+id/activity_article_nodata_message"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="暂无评论"
+                            android:layout_marginTop="50dp"
+                            android:layout_marginBottom="50dp"
+                            android:textSize="18dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:id="@+id/myProgressBar"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="-2dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="8dp"
+                    android:scaleY="1"
+                    />
+            </RelativeLayout>
+
+        </com.muzikun.one.lib.view.ScrollViewExpand>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/activity_article_comment_box"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_alignParentBottom="true"
+            android:background="#ffffff"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#BBBBBB">
+            </View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:background="#f7f7f7"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:id="@+id/activity_article_click_enter"
+                    android:layout_width="0dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/enter_comment_bg"
+                    android:gravity="center|left"
+                    android:paddingLeft="20dp"
+                    android:text="点此输入评论"/>
+
+                <ImageView
+                    android:id="@+id/activity_article_comment_icon"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/article_comment"/>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/activity_article_comment_edit_box"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/activity_article_shadow_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            android:background="#60000000"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#f6f6f6"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/activity_article_comment_cancel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="取消"
+                    android:textSize="16dp"/>
+
+                <TextView
+                    android:id="@+id/activity_article_send_comment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="发表"
+                    android:textSize="16dp"/>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/activity_article_edit"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="top|left"
+                android:hint="请遵守国家法律法规,不要散播不良信息."
+                android:inputType="textMultiLine"
+                android:padding="5dp"
+                android:textSize="14dp"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+</FrameLayout>

@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.holder.Holder;
+import com.bumptech.glide.Glide;
 import com.muzikun.one.R;
 import com.muzikun.one.lib.util.Helper;
 
@@ -81,7 +82,10 @@ public class CourseActivity extends AppCompatActivity {
 
         @Override
         public void UpdateUI(Context context, final int position, Integer data) {
-            imageView.setImageResource(data);
+            Glide.with(context)
+                    .load(data)
+                    .into(imageView);
+
         }
     }
 

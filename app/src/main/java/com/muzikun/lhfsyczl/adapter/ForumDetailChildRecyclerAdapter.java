@@ -59,7 +59,7 @@ public class ForumDetailChildRecyclerAdapter extends BaseRecycleViewAdapter {
                 msg = TextUtils.isEmpty(msg) ? "" : msg;
 //                tvMsg.setText(msg);
                 SpannableStringBuilder builder = new SpannableStringBuilder(full_name+":");
-                builder.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimaryOne)), 0, full_name.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                builder.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)), 0, full_name.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 builder.append(msg);
                 tvMsg.setText(builder);
             }

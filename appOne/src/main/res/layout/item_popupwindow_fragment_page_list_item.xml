@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_marginTop="15dp"
+              android:layout_marginBottom="15dp"
+              android:layout_height="match_parent">
+    <View
+        android:layout_marginLeft="5dp"
+        android:layout_width="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryOne">
+    </View>
+    <TextView
+        android:id="@+id/item_fragment_pager_popupwindow_listview_orders"
+        android:layout_width="50dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_height="match_parent"
+        android:text="01版"
+        android:textColor="@color/colorPrimaryOne"
+        />
+    <TextView
+        android:id="@+id/item_fragment_pager_popupwindow_listview_title"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center|left"
+        android:padding="10dp"
+        android:background="#e5e5ec"
+        android:layout_weight="1"
+        android:textColor="@color/colorPrimaryOne"
+        android:textSize="18dp"
+        android:text="版面标题"/>
+</LinearLayout>

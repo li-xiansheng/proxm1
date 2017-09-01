@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -66,6 +67,7 @@ public class ArticleActivity extends FragmentActivity implements View.OnClickLis
     private ImageView stowArticle = null;
     //    private ImageView shareBox                                              = null;
     private String articleTitle = "文章";
+    private TextView tvTitle=null;
     private ImageView commentIcon = null;
     private ScrollViewExpand scrollView = null;
     private TextView clickEnter = null;
@@ -101,6 +103,7 @@ public class ArticleActivity extends FragmentActivity implements View.OnClickLis
 
     @SuppressWarnings("unchecked")
     private void initView() {
+        tvTitle= (TextView) findViewById(R.id.tvTitle);
         webView = (WebView) findViewById(R.id.activity_article_webview);
         backButton = (LinearLayout) findViewById(R.id.activity_article_back);
         topBar = (LinearLayout) findViewById(R.id.activity_article_topbar);
@@ -137,6 +140,9 @@ public class ArticleActivity extends FragmentActivity implements View.OnClickLis
             articleId = 0;
             windowType = 0;
         }
+        //
+        articleTitle=TextUtils.isEmpty(articleTitle)?"文章":articleTitle;
+        tvTitle.setText(articleTitle);
 
         if (windowType == 1) {
             Helper.setColor(this, Color.parseColor("#000000"));
@@ -280,20 +286,20 @@ public class ArticleActivity extends FragmentActivity implements View.OnClickLis
         createEditBox();
     }
 
-    public void createShareBox() {
-        shareAlert = new Dialog(this, R.style.Dialog_FS);
-        shareAlert.setCanceledOnTouchOutside(true);
-        shareAlert.setContentView(R.layout.dialog_share_box);
-        WindowManager.LayoutParams layoutParams = shareAlert.getWindow().getAttributes();
-        shareAlert.getWindow().findViewById(R.id.dialog_share_box_to_qq).setOnClickListener(this);
-        shareAlert.getWindow().findViewById(R.id.dialog_share_box_to_qzone).setOnClickListener(this);
-
-        layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
-        layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        shareAlert.getWindow().setGravity(Gravity.BOTTOM);
-        shareAlert.getWindow().setAttributes(layoutParams);
-        shareAlert.show();
-    }
+//    public void createShareBox() {
+//        shareAlert = new Dialog(this, R.style.Dialog_FS);
+//        shareAlert.setCanceledOnTouchOutside(true);
+//        shareAlert.setContentView(R.layout.dialog_share_box);
+//        WindowManager.LayoutParams layoutParams = shareAlert.getWindow().getAttributes();
+//        shareAlert.getWindow().findViewById(R.id.dialog_share_box_to_qq).setOnClickListener(this);
+//        shareAlert.getWindow().findViewById(R.id.dialog_share_box_to_qzone).setOnClickListener(this);
+//
+//        layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+//        layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
+//        shareAlert.getWindow().setGravity(Gravity.BOTTOM);
+//        shareAlert.getWindow().setAttributes(layoutParams);
+//        shareAlert.show();
+//    }
 
     public void createEditBox() {
         commmentAlert = new Dialog(this, R.style.Dialog_FS);

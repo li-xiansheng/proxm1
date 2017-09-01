@@ -59,7 +59,7 @@ public class HistoryFragment extends BaseFragment {
         historyTablayout.setupWithViewPager(historyViewpager);
         // 设置tab文本的没有选中（第一个参数）和选中（第二个参数）的颜色
 //        historyTablayout.setTabTextColors(Color.BLACK, Color.BLUE);
-        historyTablayout.setTabTextColors(getResources().getColor(R.color.black), getResources().getColor(R.color.colorPrimaryOne));
+        historyTablayout.setTabTextColors(getResources().getColor(R.color.black), getResources().getColor(R.color.colorPrimary));
 
         //主动调取第一个页面可见执行懒加载
         new Handler().postDelayed(new Runnable() {

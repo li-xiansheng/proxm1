@@ -314,3 +314,10 @@
 -libraryjars src/main/jniLibs/mips/libgnustl_shared.so
 -libraryjars src/main/jniLibs/x86/libgnustl_shared.so
 -libraryjars src/main/jniLibs/x86_64/libgnustl_shared.so
+
+#保持播放器库不被混淆
+-dontwarn fm.jiecao.jcvideoplayer_lib.**
+-keep class fm.jiecao.jcvideoplayer_lib.**{*;}
+#保持播放器库引用的aar文件不被混淆，通过日志抓取的包名
+-dontwarn tv.danmaku.ijk.media.player.**
+-keep class tv.danmaku.ijk.media.player.**{*;}
