@@ -29,6 +29,7 @@ import com.cpcp.loto.net.HttpRequest;
 import com.cpcp.loto.net.HttpService;
 import com.cpcp.loto.net.RxSchedulersHelper;
 import com.cpcp.loto.net.RxSubscriber;
+import com.cpcp.loto.util.BallColorUtil;
 import com.cpcp.loto.util.DisplayUtil;
 import com.cpcp.loto.util.LogUtils;
 import com.cpcp.loto.util.ToastUtils;
@@ -331,21 +332,21 @@ public class OpenLotteryingActivity extends BaseActivity implements SpeechSynthe
                 tv.setGravity(Gravity.CENTER);
 
                 String haoma = haomaList.get(i) + "";
-
-                if ("01".equals(haoma) || "02".equals(haoma) || "07".equals(haoma) || "08".equals(haoma)
-                        || "12".equals(haoma) || "13".equals(haoma) || "18".equals(haoma) || "19".equals(haoma)
-                        || "23".equals(haoma) || "24".equals(haoma) || "29".equals(haoma) || "30".equals(haoma)
-                        || "34".equals(haoma) || "35".equals(haoma) || "40".equals(haoma) || "45".equals(haoma)
-                        || "46".equals(haoma)) {
-                    tv.setBackgroundResource(R.drawable.redball);
-                } else if ("03".equals(haoma) || "04".equals(haoma) || "09".equals(haoma) || "10".equals(haoma)
-                        || "14".equals(haoma) || "15".equals(haoma) || "20".equals(haoma) || "25".equals(haoma)
-                        || "26".equals(haoma) || "31".equals(haoma) || "36".equals(haoma) || "36".equals(haoma)
-                        || "41".equals(haoma) || "42".equals(haoma) || "47".equals(haoma) || "48".equals(haoma)) {
-                    tv.setBackgroundResource(R.drawable.blueball);
-                } else {
-                    tv.setBackgroundResource(R.drawable.greenball);
-                }
+                BallColorUtil.ballColor(haoma,tv);
+//                if ("01".equals(haoma) || "02".equals(haoma) || "07".equals(haoma) || "08".equals(haoma)
+//                        || "12".equals(haoma) || "13".equals(haoma) || "18".equals(haoma) || "19".equals(haoma)
+//                        || "23".equals(haoma) || "24".equals(haoma) || "29".equals(haoma) || "30".equals(haoma)
+//                        || "34".equals(haoma) || "35".equals(haoma) || "40".equals(haoma) || "45".equals(haoma)
+//                        || "46".equals(haoma)) {
+//                    tv.setBackgroundResource(R.drawable.redball);
+//                } else if ("03".equals(haoma) || "04".equals(haoma) || "09".equals(haoma) || "10".equals(haoma)
+//                        || "14".equals(haoma) || "15".equals(haoma) || "20".equals(haoma) || "25".equals(haoma)
+//                        || "26".equals(haoma) || "31".equals(haoma) || "36".equals(haoma) || "36".equals(haoma)
+//                        || "41".equals(haoma) || "42".equals(haoma) || "47".equals(haoma) || "48".equals(haoma)) {
+//                    tv.setBackgroundResource(R.drawable.blueball);
+//                } else {
+//                    tv.setBackgroundResource(R.drawable.greenball);
+//                }
                 tv.setText(haoma);
                 lilBall.addView(tv);
 

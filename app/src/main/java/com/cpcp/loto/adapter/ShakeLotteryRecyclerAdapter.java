@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.cpcp.loto.R;
 import com.cpcp.loto.base.BaseRecycleViewAdapter;
+import com.cpcp.loto.util.BallColorUtil;
 
 import java.util.List;
 
@@ -40,12 +41,9 @@ public class ShakeLotteryRecyclerAdapter extends BaseRecycleViewAdapter {
             AppCompatTextView name = viewHolder.tvNumber;
             if (mListData.get(position) instanceof Integer) {
                 Integer number = (Integer) mListData.get(position);
-                name.setText(String.format("%02d",number.intValue()));
-                if(position==0||position==4){
-                    name.setBackgroundResource(R.drawable.icon_boll_red_bg);
-                }else{
-                    name.setBackgroundResource(R.drawable.icon_boll_green_bg);
-                }
+                String num=String.format("%02d",number.intValue());
+                name.setText(num);
+                BallColorUtil.ballColor(num,name);
 
             }
 

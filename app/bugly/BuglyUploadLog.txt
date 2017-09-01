@@ -446,3 +446,10 @@ appChannel=prod
 appPackage=com.cpcp.loto
 appVersion=1.0
 
+file=D:\anroidWorkSpace\LOTO\app\build\outputs\mapping\prod\release\mapping.txt
+sha1=ef60ced91fb60d759a709bce30a106cf111f0afc
+appId=f151eb182c
+appChannel=prod
+appPackage=com.cpcp.loto
+appVersion=1.0
+
