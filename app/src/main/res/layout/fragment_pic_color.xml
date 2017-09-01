@@ -6,7 +6,7 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <com.cpcp.loto.view.search.EditTextWithDel
+    <com.muzikun.lhfsyczl.view.search.EditTextWithDel
         android:id="@+id/et_search"
         android:hint="搜索"
         android:singleLine="true"
@@ -44,7 +44,7 @@
             android:visibility="gone"
             tools:visibility="visible" />
 
-        <com.cpcp.loto.view.search.SideBar
+        <com.muzikun.lhfsyczl.view.search.SideBar
             android:id="@+id/sidrbar"
             android:layout_width="24dp"
             android:layout_height="match_parent"

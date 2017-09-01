@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.cpcp.loto.view.PullToRefreshRecyclerView xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    <com.muzikun.lhfsyczl.view.PullToRefreshRecyclerView xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/pullToRefreshRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

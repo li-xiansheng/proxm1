@@ -36,7 +36,7 @@
                 android:textSize="18sp"/>
         </LinearLayout>
 
-        <com.cpcp.loto.view.SelectedLayerTextView
+        <com.muzikun.lhfsyczl.view.SelectedLayerTextView
             android:id="@+id/tvAttention"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -28,7 +28,7 @@
         android:scaleType="centerInside"
         android:src="@drawable/img_lotterying_static" />
 
-    <com.cpcp.loto.view.SelectedLayerImageView
+    <com.muzikun.lhfsyczl.view.SelectedLayerImageView
         android:id="@+id/ivDismiss"
         android:layout_width="@dimen/dp40"
         android:layout_height="@dimen/dp40"

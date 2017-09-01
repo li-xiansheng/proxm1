@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/LOTO.iml" filepath="$PROJECT_DIR$/LOTO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LOTOmeager.iml" filepath="$PROJECT_DIR$/LOTOmeager.iml" />
       <module fileurl="file://$PROJECT_DIR$/PickeTimerViewLib/PickeTimerViewLib.iml" filepath="$PROJECT_DIR$/PickeTimerViewLib/PickeTimerViewLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/Refresh-library/Refresh-library.iml" filepath="$PROJECT_DIR$/Refresh-library/Refresh-library.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/appOne/appOne.iml" filepath="$PROJECT_DIR$/appOne/appOne.iml" />
       <module fileurl="file://$PROJECT_DIR$/expandablerecyclerview/expandablerecyclerview.iml" filepath="$PROJECT_DIR$/expandablerecyclerview/expandablerecyclerview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jcvideoplayer-lib/jcvideoplayer-lib.iml" filepath="$PROJECT_DIR$/jcvideoplayer-lib/jcvideoplayer-lib.iml" />
     </modules>
   </component>
 </project>

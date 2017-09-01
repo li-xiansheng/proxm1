@@ -84,7 +84,7 @@
                 android:paddingRight="@dimen/dp10"
                 android:textSize="@dimen/sp16" />
 
-            <com.cpcp.loto.view.SelectedLayerTextView
+            <com.muzikun.lhfsyczl.view.SelectedLayerTextView
                 android:id="@+id/tvCode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -131,7 +131,7 @@
             android:paddingRight="@dimen/dp10"
             android:textSize="@dimen/sp16" />
 
-        <com.cpcp.loto.view.SelectedLayerTextView
+        <com.muzikun.lhfsyczl.view.SelectedLayerTextView
             android:id="@+id/tvRegister"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp40"

@@ -57,7 +57,7 @@
 
         </LinearLayout>
 
-        <com.cpcp.loto.view.SelectedLayerTextView
+        <com.muzikun.lhfsyczl.view.SelectedLayerTextView
             android:id="@+id/tvLogin"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp40"
@@ -76,7 +76,7 @@
             android:orientation="horizontal"
             android:layout_marginTop="@dimen/dp180">
 
-            <com.cpcp.loto.view.SelectedLayerTextView
+            <com.muzikun.lhfsyczl.view.SelectedLayerTextView
                 android:id="@+id/tvRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp30"
@@ -85,7 +85,7 @@
                 android:textColor="@color/red"
                 android:textSize="@dimen/sp16" />
 
-            <com.cpcp.loto.view.SelectedLayerTextView
+            <com.muzikun.lhfsyczl.view.SelectedLayerTextView
                 android:id="@+id/tvForgetPwd"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp30"

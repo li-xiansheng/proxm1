@@ -25,7 +25,7 @@
             android:paddingLeft="@dimen/dp10"
             android:paddingRight="@dimen/dp10">
 
-            <com.cpcp.loto.view.SelectedLayerImageView
+            <com.muzikun.lhfsyczl.view.SelectedLayerImageView
                 android:id="@+id/ivLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp16" />
 
-            <com.cpcp.loto.view.SelectedLayerImageView
+            <com.muzikun.lhfsyczl.view.SelectedLayerImageView
                 android:id="@+id/ivRight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

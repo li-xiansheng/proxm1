@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/icon_lingsheng" />
 
-            <com.cpcp.loto.view.MarqueeTextView
+            <com.muzikun.lhfsyczl.view.MarqueeTextView
                 android:id="@+id/tvNotice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
                 android:gravity="center"
                 android:text="第xxx期开奖结果" />
 
-            <com.cpcp.loto.view.SelectedLayerImageView
+            <com.muzikun.lhfsyczl.view.SelectedLayerImageView
                 android:id="@+id/ivLive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
 
             </LinearLayout>
 
-            <com.cpcp.loto.view.SelectedLayerTextView
+            <com.muzikun.lhfsyczl.view.SelectedLayerTextView
                 android:id="@+id/tvWait"
                 android:layout_width="@dimen/dp200"
                 android:layout_height="@dimen/dp36"

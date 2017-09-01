@@ -160,7 +160,7 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
 		}
 
 		// If the ListView header loading layout is showing, then we need to
-		// flip so that the original one is showing instead
+		// flip so that the original com.muzikun.one is showing instead
 		if (listViewLoadingLayout.getVisibility() == View.VISIBLE) {
 
 			// Set our Original View to Visible

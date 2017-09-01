@@ -81,7 +81,7 @@ public class SoundPullEventListener<V extends View> implements PullToRefreshBase
 	}
 
 	private void playSound(int resId) {
-		// Stop current player, if there's one playing
+		// Stop current player, if there's com.muzikun.one playing
 		if (null != mCurrentMediaPlayer) {
 			mCurrentMediaPlayer.stop();
 			mCurrentMediaPlayer.release();

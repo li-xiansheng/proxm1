@@ -109,7 +109,7 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
 
 		/**
 		 * Set whether the Last Item is Visible. lastVisibleItemIndex is a
-		 * zero-based index, so we minus one totalItemCount to check
+		 * zero-based index, so we minus com.muzikun.one totalItemCount to check
 		 */
 		if (null != mOnLastItemVisibleListener) {
 			mLastItemVisible = (totalItemCount > 0) && (firstVisibleItem + visibleItemCount >= totalItemCount - 1);
@@ -120,7 +120,7 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
 			updateIndicatorViewsVisibility();
 		}
 
-		// Finally call OnScrollListener if we have one
+		// Finally call OnScrollListener if we have com.muzikun.one
 		if (null != mOnScrollListener) {
 			mOnScrollListener.onScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
 		}
@@ -336,7 +336,7 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
 		FrameLayout refreshableViewWrapper = getRefreshableViewWrapper();
 
 		if (mode.showHeaderLoadingLayout() && null == mIndicatorIvTop) {
-			// If the mode can pull down, and we don't have one set already
+			// If the mode can pull down, and we don't have com.muzikun.one set already
 			mIndicatorIvTop = new IndicatorLayout(getContext(), Mode.PULL_FROM_START);
 			FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
 					ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -351,7 +351,7 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
 		}
 
 		if (mode.showFooterLoadingLayout() && null == mIndicatorIvBottom) {
-			// If the mode can pull down, and we don't have one set already
+			// If the mode can pull down, and we don't have com.muzikun.one set already
 			mIndicatorIvBottom = new IndicatorLayout(getContext(), Mode.PULL_FROM_END);
 			FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
 					ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -385,7 +385,7 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
 			 * This check should really just be:
 			 * mRefreshableView.getFirstVisiblePosition() == 0, but PtRListView
 			 * internally use a HeaderView which messes the positions up. For
-			 * now we'll just add one to account for it and rely on the inner
+			 * now we'll just add com.muzikun.one to account for it and rely on the inner
 			 * condition which checks getTop().
 			 */
 			if (mRefreshableView.getFirstVisiblePosition() <= 1) {
@@ -419,7 +419,7 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
 			/**
 			 * This check should really just be: lastVisiblePosition ==
 			 * lastItemPosition, but PtRListView internally uses a FooterView
-			 * which messes the positions up. For me we'll just subtract one to
+			 * which messes the positions up. For me we'll just subtract com.muzikun.one to
 			 * account for it and rely on the inner condition which checks
 			 * getBottom().
 			 */

@@ -41,7 +41,7 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <com.cpcp.loto.view.SelectedLayerTextView
+    <com.muzikun.lhfsyczl.view.SelectedLayerTextView
         android:id="@+id/tvGet"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp30"

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.cpcp.loto.view.RatingBarView
+    <com.muzikun.lhfsyczl.view.RatingBarView
         android:id="@+id/custom_ratingbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

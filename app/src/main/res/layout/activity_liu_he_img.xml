@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.cpcp.loto.activity.LiuHeImgActivity">
+    tools:context="com.muzikun.lhfsyczl.activity.LiuHeImgActivity">
 
     <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/toolbar"
@@ -24,7 +24,8 @@
             tl:tl_indicator_corner_radius="@dimen/dp5"
             tl:tl_tab_padding="@dimen/dp20"
             tl:tl_textSelectColor="@color/colorPrimary"
-            tl:tl_textUnselectColor="@color/white" />
+            tl:tl_textUnselectColor="@color/white"
+             />
 
     </android.support.v7.widget.Toolbar>
 

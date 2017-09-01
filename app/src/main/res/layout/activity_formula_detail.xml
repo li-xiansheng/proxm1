@@ -6,7 +6,7 @@
     android:padding="@dimen/dp20"
     android:background="@color/white">
 
-    <com.cpcp.loto.view.htmltextview.HtmlTextView
+    <com.muzikun.lhfsyczl.view.htmltextview.HtmlTextView
         android:id="@+id/tvContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

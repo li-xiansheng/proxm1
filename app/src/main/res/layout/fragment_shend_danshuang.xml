@@ -26,7 +26,7 @@
 
     <include layout="@layout/view_gray_line" />
 
-    <com.cpcp.loto.view.NestRadioGroup
+    <com.muzikun.lhfsyczl.view.NestRadioGroup
         android:id="@+id/radioGroup1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -142,7 +142,7 @@
             android:gravity="center"
             android:text="特码"
             android:textColor="@drawable/selector_radio_color_red_white_checked" />
-    </com.cpcp.loto.view.NestRadioGroup>
+    </com.muzikun.lhfsyczl.view.NestRadioGroup>
 
     <RadioGroup
         android:id="@+id/radioGroup2"

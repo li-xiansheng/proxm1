@@ -12,7 +12,7 @@
         android:orientation="vertical">
 
 
-        <com.cpcp.loto.view.convenientbanner.ConvenientBanner xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.muzikun.lhfsyczl.view.convenientbanner.ConvenientBanner xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/convenientBanner"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp120"

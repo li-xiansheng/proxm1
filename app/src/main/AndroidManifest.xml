@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.cpcp.loto"> <!-- 版本覆盖视频库约束的最低版本为16 -->
+    package="com.muzikun.lhfsyczl"> <!-- 版本覆盖视频库约束的最低版本为16 -->
     <uses-sdk tools:overrideLibrary="fm.jiecao.jcvideoplayer_lib" />
     <!-- 访问网络和wifi状态 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -39,11 +39,11 @@
     <!-- 极光权限 -->
     <!-- Required -->
     <permission
-        android:name="com.cpcp.loto.permission.JPUSH_MESSAGE"
+        android:name="com.muzikun.lhfsyczl.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
 
     <!-- Required  一些系统要求的权限，如访问网络等 -->
-    <uses-permission android:name="com.cpcp.loto.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="com.muzikun.lhfsyczl.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -57,7 +57,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
-        android:name=".MApplication"
+        android:name="com.muzikun.lhfsyczl.MApplication"
         android:allowBackup="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
@@ -68,7 +68,7 @@
         <!-- android N之后磁盘访问声明 ${applicationId} -->
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.cpcp.loto.fileprovider"
+            android:authorities="com.muzikun.lhfsyczl.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -76,7 +76,7 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".SplashActivity">
+        <activity android:name="com.muzikun.lhfsyczl.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -84,149 +84,147 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.LoginActivity"
+            android:name="com.muzikun.lhfsyczl.activity.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.RegisterActivity"
+            android:name="com.muzikun.lhfsyczl.activity.RegisterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ForgetPasswordActivity"
+            android:name="com.muzikun.lhfsyczl.activity.ForgetPasswordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ChangePwdActivity"
+            android:name="com.muzikun.lhfsyczl.activity.ChangePwdActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.muzikun.lhfsyczl.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activity.WebPageActivity"
+            android:name="com.muzikun.lhfsyczl.activity.WebPageActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.WebCommonPageActivity"
+            android:name="com.muzikun.lhfsyczl.activity.WebCommonPageActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.GetRedPacketActivity"
+            android:name="com.muzikun.lhfsyczl.activity.GetRedPacketActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.SuperiorInfoActivity"
+            android:name="com.muzikun.lhfsyczl.activity.SuperiorInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.LotoKingActivity"
+            android:name="com.muzikun.lhfsyczl.activity.LotoKingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.WinningActivity"
+            android:name="com.muzikun.lhfsyczl.activity.WinningActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.SendXinShuiActivity"
+            android:name="com.muzikun.lhfsyczl.activity.SendXinShuiActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.QueryHelperActivity"
+            android:name="com.muzikun.lhfsyczl.activity.QueryHelperActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.CommunicationForumActivity"
+            android:name="com.muzikun.lhfsyczl.activity.CommunicationForumActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.TextDataActivity"
+            android:name="com.muzikun.lhfsyczl.activity.TextDataActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.InformationStatisticsActivity"
+            android:name="com.muzikun.lhfsyczl.activity.InformationStatisticsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.TrendAnalysisActivity"
+            android:name="com.muzikun.lhfsyczl.activity.TrendAnalysisActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.LotoFormulaActivity"
+            android:name="com.muzikun.lhfsyczl.activity.LotoFormulaActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.HistoryLotteryActivity"
+            android:name="com.muzikun.lhfsyczl.activity.HistoryLotteryActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ToolBoxActivity"
+            android:name="com.muzikun.lhfsyczl.activity.ToolBoxActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.SettingActivity"
+            android:name="com.muzikun.lhfsyczl.activity.SettingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.RichActivity"
+            android:name="com.muzikun.lhfsyczl.activity.RichActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ChangeActivity"
+            android:name="com.muzikun.lhfsyczl.activity.ChangeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.MyInfoActivity"
+            android:name="com.muzikun.lhfsyczl.activity.MyInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.SalaryActivity"
+            android:name="com.muzikun.lhfsyczl.activity.SalaryActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.AttentionActivity"
+            android:name="com.muzikun.lhfsyczl.activity.AttentionActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.FansActivity"
+            android:name="com.muzikun.lhfsyczl.activity.FansActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ChangeRecordActivity"
+            android:name="com.muzikun.lhfsyczl.activity.ChangeRecordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.BuyRecordActivity"
+            android:name="com.muzikun.lhfsyczl.activity.BuyRecordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.WithDrawRecordActivity"
+            android:name="com.muzikun.lhfsyczl.activity.WithDrawRecordActivity"
             android:screenOrientation="portrait" />
 
         <!--  -->
         <activity
-            android:name=".activity.ShakeActivity"
+            android:name="com.muzikun.lhfsyczl.activity.ShakeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ShengXiaoActivity"
+            android:name="com.muzikun.lhfsyczl.activity.ShengXiaoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.XuanJiActivity"
+            android:name="com.muzikun.lhfsyczl.activity.XuanJiActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.LoverActivity"
+            android:name="com.muzikun.lhfsyczl.activity.LoverActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.TurntableActivity"
+            android:name="com.muzikun.lhfsyczl.activity.TurntableActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.JiaoZhuDateActivity"
+            android:name="com.muzikun.lhfsyczl.activity.JiaoZhuDateActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.TianJiActivity"
+            android:name="com.muzikun.lhfsyczl.activity.TianJiActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.LuckActivity"
+            android:name="com.muzikun.lhfsyczl.activity.LuckActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.muzikun.lhfsyczl.activity.ForumDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.PublishXinShuiActivity"
+            android:name="com.muzikun.lhfsyczl.activity.MyForumActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ForumDetailActivity"
+            android:name="com.muzikun.lhfsyczl.activity.SendArticleActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.MyForumActivity"
+            android:name="com.muzikun.lhfsyczl.activity.ReportArticleActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.SendArticleActivity"
+            android:name="com.muzikun.lhfsyczl.activity.FormulaDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ReportArticleActivity"
+            android:name="com.muzikun.lhfsyczl.activity.OpenLotteryLiveActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.FormulaDetailActivity"
+            android:name="com.muzikun.lhfsyczl.activity.OpenLotteryingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.OpenLotteryLiveActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.OpenLotteryingActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.ChangeNickNameActivity"
+            android:name="com.muzikun.lhfsyczl.activity.ChangeNickNameActivity"
             android:screenOrientation="portrait" />
 
         <!-- 极光测试页面，点击后打开 -->
@@ -247,7 +245,7 @@
                 <action android:name="cn.jpush.android.ui.PushActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.cpcp.loto" /> <!-- 运用包名 -->
+                <category android:name="com.muzikun.lhfsyczl" /> <!-- 运用包名 -->
             </intent-filter>
         </activity>
 
@@ -274,7 +272,7 @@
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService" />
 
-                <category android:name="com.cpcp.loto" />
+                <category android:name="com.muzikun.lhfsyczl" />
             </intent-filter>
         </service>
 
@@ -285,7 +283,7 @@
             android:exported="false">
             <intent-filter android:priority="1000">
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" /> <!-- Required  显示通知栏 -->
-                <category android:name="com.cpcp.loto" />
+                <category android:name="com.muzikun.lhfsyczl" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.USER_PRESENT" />
@@ -307,7 +305,7 @@
 
         <!-- User defined.  For test only  用户自定义的广播接收器 -->
         <receiver
-            android:name=".broadcast.MyReceiver"
+            android:name="com.muzikun.lhfsyczl.broadcast.MyReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
@@ -316,7 +314,7 @@
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!-- Required  用户接收SDK通知栏信息的intent -->
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!-- Required  用户打开自定义通知栏的intent -->
                 <action android:name="cn.jpush.android.intent.CONNECTION" /> <!-- 接收网络变化 连接/断开 since 1.6.3 -->
-                <category android:name="com.cpcp.loto" />
+                <category android:name="com.muzikun.lhfsyczl" />
             </intent-filter>
         </receiver>
 
@@ -326,22 +324,22 @@
             android:value="developer-default" />
         <meta-data
             android:name="JPUSH_APPKEY"
-            android:value="b84d633a1cbfd759c6dd45b3" /> <!-- </>值来自开发者平台取得的AppKey -->
+            android:value="2ed2daf8813c01fb4d84fc7c" /> <!-- </>值来自开发者平台取得的AppKey -->
         <!-- **********************************极光结束*************************************************************** -->
 
         <activity
-            android:name=".activity.DetailActivity"
+            android:name="com.muzikun.lhfsyczl.activity.DetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.LiuHeImgActivity"
+            android:name="com.muzikun.lhfsyczl.activity.LiuHeImgActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ShowPicActivity"
+            android:name="com.muzikun.lhfsyczl.activity.ShowPicActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.FankuiActivity"
+            android:name="com.muzikun.lhfsyczl.activity.FankuiActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.MianzeActivity"></activity>
+        <activity android:name="com.muzikun.lhfsyczl.activity.MianzeActivity"></activity>
     </application>
 
 </manifest>

@@ -192,8 +192,8 @@
     rx.internal.util.atomic.LinkedQueueNode consumerNode;
 }
 
--keep class com.cpcp.loto.entity.**{*;}#//自定义实体类
--keep class com.cpcp.loto.bean.**{*;}#//自定义实体类
+-keep class com.muzikun.lhfsyczl.entity.**{*;}#//自定义实体类
+-keep class com.muzikun.lhfsyczl.bean.**{*;}#//自定义实体类
 #jar包
 #-libraryjars  libs/BmobSDK_3.5.5_20170420.jar
 #-libraryjars libs/jcore-android_v1.1.3.jar
@@ -224,7 +224,7 @@
 -libraryjars src/main/jniLibs/x86_64/libjcore113.so
 
 
-#bmob并且保证继承自BmobObject、BmobUser类的JavaBean不被混淆com.cpcp.loto已经申明
+#bmob并且保证继承自BmobObject、BmobUser类的JavaBean不被混淆com.muzikun.lhfsyczl已经申明
 -keep class cn.bmob.v3.**{*;}
 
 #Jpush和Gson

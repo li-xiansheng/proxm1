@@ -12,7 +12,9 @@
             <option value="$PROJECT_DIR$/PickeTimerViewLib" />
             <option value="$PROJECT_DIR$/Refresh-library" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/appOne" />
             <option value="$PROJECT_DIR$/expandablerecyclerview" />
+            <option value="$PROJECT_DIR$/jcvideoplayer-lib" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

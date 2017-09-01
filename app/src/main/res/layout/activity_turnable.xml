@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"></android.support.v7.widget.RecyclerView>
 
-        <com.cpcp.loto.view.CirclePointView
+        <com.muzikun.lhfsyczl.view.CirclePointView
             android:id="@+id/circlePointView"
             android:layout_width="@dimen/dp150"
             android:layout_height="@dimen/dp150"
