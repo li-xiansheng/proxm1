@@ -2,6 +2,7 @@ package com.cpcp.loto.net;
 
 
 import com.cpcp.loto.config.HostConfig;
+import com.cpcp.loto.entity.AdvertEntity;
 import com.cpcp.loto.entity.BaseResponse1Entity;
 import com.cpcp.loto.entity.BaseResponse2Entity;
 import com.cpcp.loto.entity.CaiShenEntity;
@@ -560,12 +561,20 @@ public interface HttpService {
 
 
     /**
-     * 免责、关于、公告
+     *反馈
      * index.php?g=portal&m=article&a=fankui
      */
     @FormUrlEncoded
     @POST("index.php?g=portal&m=article&a=fankui")
     Observable<BaseResponse2Entity<String>> fanKui(@FieldMap Map<String, String> map);
+
+    /**
+     * 发现--广告图
+     * index.php?g=portal&m=Index&a=posts
+     */
+    @FormUrlEncoded
+    @POST("index.php?g=portal&m=Index&a=faxian")
+    Observable<BaseResponse1Entity<List<AdvertEntity>>> getAdvert(@FieldMap Map<String, String> map);
 
 
 }

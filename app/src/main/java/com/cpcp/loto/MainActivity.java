@@ -1,6 +1,7 @@
 package com.cpcp.loto;
 
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -32,6 +33,9 @@ import com.cpcp.loto.fragment.ForumFragment;
 import com.cpcp.loto.fragment.HomeFragment;
 import com.cpcp.loto.fragment.BetFragment;
 import com.cpcp.loto.fragment.MeFragment;
+import com.cpcp.loto.net.HttpRequest;
+import com.cpcp.loto.net.HttpService;
+import com.cpcp.loto.net.RxSchedulersHelper;
 import com.cpcp.loto.uihelper.LoadingDialog;
 import com.cpcp.loto.util.ExampleUtil;
 import com.cpcp.loto.util.LogUtils;
