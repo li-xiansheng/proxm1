@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
 //        Glide.with(MainActivity.this)
 //                .load(bottomImagesSelect[position])
 //                .into(imageViewList.get(position));
-        imageViewList.get(position).setImageResource(bottomImages[position]);
+        imageViewList.get(position).setImageResource(bottomImagesSelect[position]);
         textViewList.get(position).setTextColor(getResources().getColor(R.color.orange));
         //未选中的
         if(selectedPosition!=-1&&(selectedPosition>=0&&selectedPosition<4)){

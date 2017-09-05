@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_margin="6dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:textColor="#333333"
+            android:text="标题"
+            android:textSize="16dp"/>
+
+        <EditText
+            android:id="@+id/fragment_send_article_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="text"
+            android:singleLine="true"
+            android:hint="请输入标题"
+            android:textColorHint="#AAAAAA"
+            android:background="@null"
+            android:textSize="16dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#cccccc">
+    </View>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="6dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:gravity="top|center"
+            android:textColor="#333333"
+            android:text="内容"
+            android:textSize="16dp"/>
+
+        <EditText
+            android:id="@+id/fragment_send_article_content"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:inputType="textMultiLine"
+            android:minLines="5"
+            android:hint="请简要说明您想爆料的内容，我们会安排专门的人员与您联系，采集更详尽的信息。（请勿发布无关信息）"
+            android:textColorHint="#AAAAAA"
+            android:background="@null"
+            android:textSize="16dp"
+            android:gravity="left|top"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#cccccc">
+    </View>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_margin="6dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:textColor="#333333"
+            android:text="手机"
+            android:textSize="16dp"/>
+
+        <EditText
+            android:id="@+id/fragment_send_article_phone"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="phone"
+            android:singleLine="true"
+            android:hint="请输入您的联系方式"
+            android:textColorHint="#AAAAAA"
+            android:background="@null"
+            android:textSize="16dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#cccccc">
+    </View>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:id="@+id/fragment_send_article_button"
+        android:background="@drawable/login_button_bg"
+        android:textColor="#ffffff"
+        android:textSize="16dp"
+        android:elevation="0dip"
+        android:layout_margin="20dp"
+        style="?android:attr/borderlessButtonStyle"
+        android:text="发布"/>
+</LinearLayout>
+

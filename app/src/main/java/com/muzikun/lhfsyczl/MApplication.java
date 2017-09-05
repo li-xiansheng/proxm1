@@ -28,7 +28,8 @@ import okhttp3.OkHttpClient;
 
 /**
  * <p>
- * 功能描述：继承系统入口，添加配置属性,继承于分包处理Application
+ * 功能描述：继承系统入口，添加配置属性,继承于分包处理Application--
+ * 因为要保持依赖项目-appOne中的是否登录-置于全局Application中，故此处继承了依赖工程的Application
  */
 
 public class MApplication extends App {

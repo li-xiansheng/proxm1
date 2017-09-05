@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryOne">#891C21</color>
+    <color name="colorPrimaryDarkOne">#303F9F</color>
+    <!--<color name="colorAccent">#FF4081</color>-->
+    <color name="colorAccentOne">#891C21</color>
+    <color name="background">#F0F0F4</color>
+    <color name="black">#000000</color>
+    <color name="orange">#BBAF73</color>
+    <color name="white">#FFFFFF</color>
+    <color name="fengshuiBg">#F6E7BA</color>
+    <color name="jiaocheng">#BB892B</color>
+    <color name="grayColor">#DCC8AD</color>
+    <color name="redColor">#FE0000</color>
+    <color name="textColor">#9c9b9b</color>
+    <color name="answer_color">#e6e6e6</color>
+    <color name="gray_light">#c4c3c9</color>
+    <!--CFCDCD-->
+</resources>

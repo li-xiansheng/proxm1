@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.muzikun.one.R;
 import com.muzikun.one.util.EventUtil;
 
@@ -23,14 +24,13 @@ import com.muzikun.one.util.EventUtil;
 public class ViewDialogRegister extends Dialog {
     protected static final String TAG = "MyDialog";
 
-
+    private ImageView ivBg;
     private ImageView dialogScaleIv;
 
     private TextView dialogScaleTv;
 
     private ImageView dialogSureIv;
 
-    private RelativeLayout dialogRl;
 
     private TextView dialogTitleTv;
 
@@ -53,6 +53,7 @@ public class ViewDialogRegister extends Dialog {
 
     private boolean isShowCancelButton;
 
+    private Context mContext;
 
     private OnDialogClickListener mCancelClickListener;
     private OnDialogClickListener mConfirmClickListener;
@@ -60,10 +61,12 @@ public class ViewDialogRegister extends Dialog {
 
     public ViewDialogRegister(Context context) {
         super(context);
+        mContext = context;
     }
 
     public ViewDialogRegister(Context context, int theme) {
         super(context, theme);
+        mContext = context;
     }
 
     public static interface OnDialogClickListener {
@@ -98,7 +101,7 @@ public class ViewDialogRegister extends Dialog {
         dialogScaleIv = (ImageView) findViewById(R.id.dialog_scale_iv);
         dialogScaleTv = (TextView) findViewById(R.id.dialog_scale_tv);
         dialogSureIv = (ImageView) findViewById(R.id.dialog_sure_iv);
-        dialogRl = (RelativeLayout) findViewById(R.id.dialog_rl);
+        ivBg = (ImageView) findViewById(R.id.ivBg);
         dialogTitleTv = (TextView) findViewById(R.id.dialog_title_tv);
         dialogContentTv = (TextView) findViewById(R.id.dialog_content_tv);
     }
@@ -116,19 +119,44 @@ public class ViewDialogRegister extends Dialog {
 
     public ViewDialogRegister setBackGroundType(int type) {
         this.type = type;
-        if (dialogRl != null && dialogScaleIv != null && dialogSureIv != null) {
+        if (ivBg != null && dialogScaleIv != null && dialogSureIv != null) {
             if (type == 1) {
-                dialogRl.setBackgroundResource(R.drawable.honh);
-                dialogScaleIv.setImageResource(R.drawable.jili);
-                dialogSureIv.setImageResource(R.drawable.queding);
+//                dialogRl.setBackgroundResource(R.drawable.honh);
+//                dialogScaleIv.setImageResource(R.drawable.jili);
+//                dialogSureIv.setImageResource(R.drawable.queding);
+
+                Glide.with(mContext)
+                        .load(R.drawable.honh)
+                        .into(ivBg);
+                Glide.with(mContext)
+                        .load(R.drawable.jili)
+                        .into(dialogScaleIv);
+                Glide.with(mContext)
+                        .load(R.drawable.queding)
+                        .into(dialogSureIv);
             } else if (type == 2) {
-                dialogRl.setBackgroundResource(R.drawable.huang);
-                dialogScaleIv.setImageResource(R.drawable.xiong);
-                dialogSureIv.setImageResource(R.drawable.quedingd);
+//                dialogRl.setBackgroundResource(R.drawable.huang);
+//                dialogScaleIv.setImageResource(R.drawable.xiong);
+//                dialogSureIv.setImageResource(R.drawable.quedingd);
+                Glide.with(mContext)
+                        .load(R.drawable.huang)
+                        .into(ivBg);
+                Glide.with(mContext)
+                        .load(R.drawable.xiong)
+                        .into(dialogScaleIv);
+                Glide.with(mContext)
+                        .load(R.drawable.quedingd)
+                        .into(dialogSureIv);
             } else {
-                dialogRl.setBackgroundResource(R.drawable.red);
+//                dialogRl.setBackgroundResource(R.drawable.red);
                 dialogScaleIv.setImageResource(0);
-                dialogSureIv.setImageResource(R.drawable.qued);
+//                dialogSureIv.setImageResource(R.drawable.qued);
+                Glide.with(mContext)
+                        .load(R.drawable.red)
+                        .into(ivBg);
+                Glide.with(mContext)
+                        .load(R.drawable.qued)
+                        .into(dialogSureIv);
             }
         }
 

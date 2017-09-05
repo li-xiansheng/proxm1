@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.muzikun.one">
+
+    <!--android:name=".base.App"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"-->
+    <application
+        android:theme="@style/AppThemeNoActionBar">
+        <activity
+            android:name="com.muzikun.one.activity.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.muzikun.one.activity.ArticleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.muzikun.one.activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.muzikun.one.activity.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.muzikun.one.activity.ShowListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.muzikun.one.activity.WelcomeActivity"
+            android:screenOrientation="portrait">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+
+
+        <activity
+            android:name="com.muzikun.one.activity.WebActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name="com.muzikun.one.activity.AnalyzeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.muzikun.one.activity.CourseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.muzikun.one.activity.WebVideoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.muzikun.one.activity.AnswerActivity"
+            android:screenOrientation="portrait"></activity>
+    </application>
+
+</manifest>

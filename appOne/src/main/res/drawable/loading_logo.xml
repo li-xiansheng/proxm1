@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+                android:oneshot="false" >
+    <!--<item android:drawable="@drawable/loading_logo1" android:duration="150"/>-->
+    <!--<item android:drawable="@drawable/loading_logo2" android:duration="150"/>-->
+    <!--<item android:drawable="@drawable/loading_logo3" android:duration="150"/>-->
+    <!--<item android:drawable="@drawable/loading_logo4" android:duration="150"/>-->
+    <!--<item android:drawable="@drawable/loading_logo5" android:duration="150"/>-->
+    <!--<item android:drawable="@drawable/loading_logo6" android:duration="150"/>-->
+    <!--<item android:drawable="@drawable/loading_logo7" android:duration="150"/>-->
+    <!--<item android:drawable="@drawable/loading_logo8" android:duration="150"/>-->
+    <!--<item android:drawable="@drawable/loading_logo9" android:duration="150"/>-->
+    <!--<item android:drawable="@drawable/loading_logo10" android:duration="150"/>-->
+    <!--<item android:drawable="@drawable/loading_logo11" android:duration="150"/>-->
+    <!--<item android:drawable="@drawable/loading_logo12" android:duration="150"/>-->
+    <!--<item android:drawable="@drawable/loading_logo13" android:duration="150"/>-->
+    <!--<item android:drawable="@drawable/loading_logo14" android:duration="150"/>-->
+    <!--<item android:drawable="@drawable/loading_logo15" android:duration="150"/>-->
+    <!--<item android:drawable="@drawable/loading_logo16" android:duration="150"/>-->
+</animation-list>

@@ -488,3 +488,17 @@ appChannel=prod
 appPackage=com.muzikun.lhfsyczl
 appVersion=1.0.11
 
+file=D:\anroidWorkSpace\LOTOmeager\app\build\outputs\mapping\prod\release\mapping.txt
+sha1=efbc043ac2d17821663036f19686d0107d560317
+appId=f151eb182c
+appChannel=prod
+appPackage=com.muzikun.lhfsyczl
+appVersion=1.0.11
+
+file=D:\anroidWorkSpace\LOTOmeager\app\build\outputs\mapping\prod\release\mapping.txt
+sha1=83437c76b0e3b84430d967ec18078ffb3ce93417
+appId=f151eb182c
+appChannel=prod
+appPackage=com.muzikun.lhfsyczl
+appVersion=1.0.12
+

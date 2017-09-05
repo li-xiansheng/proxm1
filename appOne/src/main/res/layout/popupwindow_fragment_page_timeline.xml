@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <View
+    android:layout_gravity="left"
+    android:layout_marginTop="-10dp"
+    android:layout_marginLeft="20dp"
+    android:layout_width="20dp"
+    android:layout_height="20dp"
+    android:background="@drawable/sanjiao">
+</View>
+    <CalendarView
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="228dp"
+        android:id="@+id/fragment_page_calendarview"/>
+    <LinearLayout
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimaryOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@drawable/last_pager"/>
+            -->
+    <TextView
+        android:id="@+id/popupwindow_fragment_pape_timeline_see_now"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="查看最近一期"
+        android:textColor="#FFFFFF"/>
+<!--
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@drawable/next_pager"/>
+            -->
+    </LinearLayout>
+</LinearLayout>
