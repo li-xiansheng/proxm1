@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:orientation="horizontal"
     android:gravity="center_vertical"
+    android:orientation="horizontal"
     android:paddingLeft="@dimen/dp10"
     android:paddingRight="@dimen/dp10">
 
@@ -12,6 +12,8 @@
         android:id="@+id/tvRanking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minWidth="@dimen/dp30"
         android:textColor="@color/grayText"
         android:textStyle="bold" />
 
@@ -35,14 +37,15 @@
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/tvData"
             android:layout_width="wrap_content"
-            android:layout_marginTop="@dimen/dp16"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp16"
             android:text="总:-  胜负:-/-  最大连胜" />
     </LinearLayout>
+
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tvWinRate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/red"
-        android:text="%"/>
+        android:text="%"
+        android:textColor="@color/red" />
 </LinearLayout>

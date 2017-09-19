@@ -70,10 +70,14 @@ public class AttentionActivity extends BasePullRefreshActivity {
             @Override
             public void onItemClick(View view, int position) {
 //                Intent intent = new Intent(AttentionActivity.this,SalaryActivity.class);
+                String avatar=data.get(position).avatar;
+                if (avatar!=null&&!avatar.startsWith("http")){
+                    avatar="http://"+avatar;
+                }
                 Bundle bundle = new Bundle();
                 bundle.putString("nickname", data.get(position).user_nicename);
                 bundle.putString("mobile", data.get(position).mobile);
-                bundle.putString("avatar", "http://" + data.get(position).avatar);
+                bundle.putString("avatar", avatar);
                 jumpToActivity(SalaryActivity.class, bundle, false);
             }
         });

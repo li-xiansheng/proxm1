@@ -44,7 +44,10 @@ public class FansRecyclerAdapter extends BaseRecycleViewAdapter {
             String total = ((AttentionBean) mListData.get(position)).total;
             String success = ((AttentionBean) mListData.get(position)).success;
             String fail = ((AttentionBean) mListData.get(position)).fail;
-            String avatar = "http://" + ((AttentionBean) mListData.get(position)).avatar;
+            String avatar = ((AttentionBean) mListData.get(position)).avatar;
+            if (avatar != null && !avatar.startsWith("http")) {
+                avatar = "http://" + avatar;
+            }
             viewHolder.name.setText(strName);
             viewHolder.total.setText("总:" + total);
             viewHolder.shengfu.setText("胜负:" + success + "/" + fail);

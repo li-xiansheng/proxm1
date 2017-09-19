@@ -67,6 +67,7 @@ public class SplashActivity extends BaseActivity {
                     @Override
                     public void run() {
                         getMobData();
+//                        jumpToActivity(MainActivity.class, true);
                     }
                 });
 
@@ -75,8 +76,6 @@ public class SplashActivity extends BaseActivity {
         Timer timer = new Timer();
         timer.schedule(timerTask, 1000);
 
-
-//        getMobData();
     }
 
     /**

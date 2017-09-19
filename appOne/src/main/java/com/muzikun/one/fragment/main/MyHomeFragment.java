@@ -199,6 +199,7 @@ public class MyHomeFragment  extends Fragment implements View.OnClickListener {
      */
     public void setUserIcon(String iconPath){
         if(iconPath.length()>10){
+            iconPath=iconPath.replace("www.gzbjwb.cn","wanbao.7va.cn");
             Glide.with(getActivity())
                     .load(iconPath)
                     .placeholder(R.drawable.mine_head)

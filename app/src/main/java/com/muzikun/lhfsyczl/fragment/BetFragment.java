@@ -28,6 +28,7 @@ public class BetFragment extends BaseFragment {
     TabLayout tabLayout;
     @BindView(R.id.viewPager)
     ViewPager viewPager;
+    private List<BaseFragment> fragments;
 
     /**
      * 构造Fragment
@@ -53,44 +54,56 @@ public class BetFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        String[] titles = {"波色投票", "大小投票", "单双投票", "生肖投票"};
-        final List<BaseFragment> fragments = new ArrayList<>();
-
-        BaseFragment fragment;
-        for (int i = 0; i < titles.length; i++) {
-            if (i == 0) {
-                fragment = new BoSeBetFragment();
-            } else if (i == 1) {
-                fragment = new DaXiaoBetFragment();
-            } else if (i == 2) {
-                fragment = new DanShuangBetFragment();
-            } else if (i == 3) {
-                fragment = new ShengxiaoBetFragment();
-            } else {
-                break;
-            }
-            Bundle bundle = new Bundle();
-            bundle.putString("text", titles[i]);
-            fragment.setArguments(bundle);
-            fragments.add(fragment);
-        }
-        viewPager.setOffscreenPageLimit(3);
-        viewPager.setAdapter(new TabFragmentAdapter(fragments, titles, this.getActivity().getSupportFragmentManager(), mContext));
-
-        // 将ViewPager和TabLayout绑定
-        tabLayout.setupWithViewPager(viewPager);
-        // 设置tab文本的没有选中（第一个参数）和选中（第二个参数）的颜色
-        tabLayout.setTabTextColors(Color.BLACK, R.color.colorPrimary);
-        tabLayout.setTabMode(tabLayout.MODE_FIXED);
+        initFragment();
         //主动调取第一个页面可见执行懒加载
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                fragments.get(0).setUserVisibleHint(true);
+                if (fragments != null && fragments.size() > 0) {
+                    fragments.get(0).setUserVisibleHint(true);
+                } else {
+                    initFragment();
+                    fragments.get(0).setUserVisibleHint(true);
+                }
+
             }
         }, 500);
     }
 
+    private void initFragment() {
+        if (fragments == null || fragments.size() == 0) {
+            String[] titles = {"波色投票", "大小投票", "单双投票", "生肖投票"};
+            fragments = new ArrayList<>();
+
+            BaseFragment fragment;
+            for (int i = 0; i < titles.length; i++) {
+                if (i == 0) {
+                    fragment = new BoSeBetFragment();
+                } else if (i == 1) {
+                    fragment = new DaXiaoBetFragment();
+                } else if (i == 2) {
+                    fragment = new DanShuangBetFragment();
+                } else if (i == 3) {
+                    fragment = new ShengxiaoBetFragment();
+                } else {
+                    break;
+                }
+                Bundle bundle = new Bundle();
+                bundle.putString("text", titles[i]);
+                fragment.setArguments(bundle);
+                fragments.add(fragment);
+            }
+            viewPager.setOffscreenPageLimit(3);
+            viewPager.setAdapter(new TabFragmentAdapter(fragments, titles, this.getActivity().getSupportFragmentManager(), mContext));
+
+            // 将ViewPager和TabLayout绑定
+            tabLayout.setupWithViewPager(viewPager);
+            // 设置tab文本的没有选中（第一个参数）和选中（第二个参数）的颜色
+            tabLayout.setTabTextColors(Color.BLACK, R.color.colorPrimary);
+            tabLayout.setTabMode(tabLayout.MODE_FIXED);
+        }
+
+    }
 
     @Override
     public void onLazyLoadData() {

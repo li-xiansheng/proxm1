@@ -41,7 +41,7 @@ import butterknife.Unbinder;
 
 public class ForumFragment extends BasePullRefreshFragment {
 
-    public static final int REQUEST_CODE =0x111 ;
+    public static final int REQUEST_CODE = 0x111;
     @BindView(R.id.rbDefault)
     AppCompatRadioButton rbDefault;
     @BindView(R.id.rbNew)
@@ -105,12 +105,19 @@ public class ForumFragment extends BasePullRefreshFragment {
         mBaseRecycleViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                ForumEntity forumEntity = mList.get(position);
-                Bundle bundle = new Bundle();
-                bundle.putString("id", forumEntity.getId());
-                ((BaseActivity) mActivity).jumpToActivity(ForumDetailActivity.class, bundle, false);
+                if (mList != null && mList.size() > 0) {
+                    ForumEntity forumEntity = mList.get(position);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("id", forumEntity.getId());
+                    ((BaseActivity) mActivity).jumpToActivity(ForumDetailActivity.class, bundle, false);
 
+                } else {
+                    ToastUtils.show("刷新数据……\n请重试");
+                    if (mPullToRefreshRecyclerView != null) {
+                        mPullToRefreshRecyclerView.setRefreshing(true);//没有刷新，则执行下拉刷新UI
+                    }
 
+                }
             }
         });
 
@@ -218,18 +225,18 @@ public class ForumFragment extends BasePullRefreshFragment {
 
     @OnClick({R.id.ivSendArticle})
     public void onViewClicked(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.ivSendArticle://发表文章
-                Intent intent=new Intent(mContext,SendArticleActivity.class);
-                startActivityForResult(intent,REQUEST_CODE);
+                Intent intent = new Intent(mContext, SendArticleActivity.class);
+                startActivityForResult(intent, REQUEST_CODE);
 
-                 break;
+                break;
         }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode==REQUEST_CODE&&REQUEST_CODE==REQUEST_CODE){
+        if (requestCode == REQUEST_CODE && REQUEST_CODE == REQUEST_CODE) {
             getForumInfo();
         }
         super.onActivityResult(requestCode, resultCode, data);

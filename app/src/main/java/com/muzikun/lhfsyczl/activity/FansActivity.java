@@ -75,10 +75,14 @@ public class FansActivity extends BasePullRefreshActivity {
         mAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                String avatar=data.get(position).avatar;
+                if(avatar!=null&&!avatar.startsWith("http")){
+                    avatar="http://"+avatar;
+                }
                 Bundle bundle = new Bundle();
                 bundle.putString("nickname", data.get(position).user_nicename);
                 bundle.putString("mobile", data.get(position).mobile);
-                bundle.putString("avatar", "http://" + data.get(position).avatar);
+                bundle.putString("avatar", avatar);
                 jumpToActivity(SalaryActivity.class, bundle, false);
             }
         });

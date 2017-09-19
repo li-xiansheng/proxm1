@@ -199,7 +199,10 @@ public class DetailActivity extends BaseActivity {
                                     LogUtils.i(TAG, "getDetailDta ----> result=" + array.getString(i));
                                     bean.result.add(array.getString(i));
                                 }
-                                bean.avatar = "http://" + object.getJSONObject("user").getString("avatar");
+                                bean.avatar = object.getJSONObject("user").getString("avatar");
+                                if (bean.avatar!=null&&!bean.avatar.startsWith("http")){
+                                    bean.avatar="http://"+bean.avatar;
+                                }
                                 bean.user_nicename = object.getJSONObject("user").getString("user_nicename");
                                 bean.addtime = object.getJSONObject("user").getString("addtime");
 
@@ -254,7 +257,10 @@ public class DetailActivity extends BaseActivity {
                 LogUtils.i(TAG, "getDetailDta ----> result=" + array.getString(i));
                 detailBean.result.add(array.getString(i));
             }
-            detailBean.avatar = "http://" + object.getJSONObject("user").getString("avatar");
+            detailBean.avatar = object.getJSONObject("user").getString("avatar");
+            if (detailBean.avatar!=null&&!detailBean.avatar.startsWith("http")){
+                detailBean.avatar="http://"+detailBean.avatar;
+            }
             detailBean.user_nicename = object.getJSONObject("user").getString("user_nicename");
             detailBean.addtime = object.getJSONObject("user").getString("addtime");
 

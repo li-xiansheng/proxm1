@@ -41,6 +41,7 @@ public class TrendAnalysisActivity extends BaseActivity {
     private List<BaseFragment> fragments;
 
     private AppCompatTextView tvTemp;
+
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_trend_analysis;
@@ -49,7 +50,7 @@ public class TrendAnalysisActivity extends BaseActivity {
     @Override
     protected void initView() {
         setTitle("走势分析");
-        tvTemp=new AppCompatTextView(mContext);
+        tvTemp = new AppCompatTextView(mContext);
 
         setTopRightButton("年限查询", new OnMenuClickListener() {
             @Override
@@ -57,47 +58,61 @@ public class TrendAnalysisActivity extends BaseActivity {
                 PopupWindowHelper.selectYear(mActivity, tvTemp);
             }
         });
-        String[] titles = {"生肖走势", "波色走势", "单双走势", "段位走势", "头数走势", "尾数走势", "五行走势"};
-          fragments = new ArrayList<>();
-
-        BaseFragment fragment;
-        for (int i = 0; i < titles.length; i++) {
-            if (i == 0) {
-                fragment = new ShengXiaoTrendFragment();
-            } else if (i == 1) {
-                fragment = new BoSeTrendFragment();
-            } else if (i == 2) {
-                fragment = new DanShuangTrendFragment();
-            } else if (i == 3) {
-                fragment = new DuanWeiTrendFragment();
-            } else if (i == 4) {
-                fragment = new HeadTrendFragment();
-            } else if (i == 5) {
-                fragment = new TailTrendFragment();
-            } else if (i == 6) {
-                fragment = new WuXingTrendFragment();
-            } else {//无效
-                break;
-            }
-            Bundle bundle = new Bundle();
-            bundle.putString("text", titles[i]);
-            fragment.setArguments(bundle);
-            fragments.add(fragment);
-        }
-        viewPager.setOffscreenPageLimit(6);
-        viewPager.setAdapter(new TabFragmentAdapter(fragments, titles, getSupportFragmentManager(), mContext));
-
-        // 将ViewPager和TabLayout绑定
-        tabLayout.setupWithViewPager(viewPager);
-        // 设置tab文本的没有选中（第一个参数）和选中（第二个参数）的颜色
-        tabLayout.setTabTextColors(Color.BLACK, mContext.getResources().getColor(R.color.colorPrimary));
+        initFragment();
         //主动调取第一个页面可见执行懒加载
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                fragments.get(0).setUserVisibleHint(true);
+                if (fragments != null && fragments.size() > 0) {
+                    fragments.get(0).setUserVisibleHint(true);
+                } else {
+                    initFragment();
+                    fragments.get(0).setUserVisibleHint(true);
+                }
+
             }
         }, 1000);
+    }
+
+    private void initFragment() {
+        if (fragments == null || fragments.size() == 0) {
+            String[] titles = {"生肖走势", "波色走势", "单双走势", "段位走势", "头数走势", "尾数走势", "五行走势"};
+            fragments = new ArrayList<>();
+
+            BaseFragment fragment;
+            for (int i = 0; i < titles.length; i++) {
+                if (i == 0) {
+                    fragment = new ShengXiaoTrendFragment();
+                } else if (i == 1) {
+                    fragment = new BoSeTrendFragment();
+                } else if (i == 2) {
+                    fragment = new DanShuangTrendFragment();
+                } else if (i == 3) {
+                    fragment = new DuanWeiTrendFragment();
+                } else if (i == 4) {
+                    fragment = new HeadTrendFragment();
+                } else if (i == 5) {
+                    fragment = new TailTrendFragment();
+                } else if (i == 6) {
+                    fragment = new WuXingTrendFragment();
+                } else {//无效
+                    break;
+                }
+                Bundle bundle = new Bundle();
+                bundle.putString("text", titles[i]);
+                fragment.setArguments(bundle);
+                fragments.add(fragment);
+            }
+            viewPager.setOffscreenPageLimit(6);
+            viewPager.setAdapter(new TabFragmentAdapter(fragments, titles, getSupportFragmentManager(), mContext));
+
+            // 将ViewPager和TabLayout绑定
+            tabLayout.setupWithViewPager(viewPager);
+            // 设置tab文本的没有选中（第一个参数）和选中（第二个参数）的颜色
+            tabLayout.setTabTextColors(Color.BLACK, mContext.getResources().getColor(R.color.colorPrimary));
+
+        }
+
     }
 
     @Override

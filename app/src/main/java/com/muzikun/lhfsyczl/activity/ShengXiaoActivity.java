@@ -34,6 +34,7 @@ public class ShengXiaoActivity extends BaseActivity {
     private List<Map<String, Object>> mData;
 
     private List<Integer> resImg;
+    private List<Integer> listHistory;
 
     @Override
     protected int getLayoutResId() {
@@ -73,12 +74,13 @@ public class ShengXiaoActivity extends BaseActivity {
         resImg.add(R.drawable.img_shengxiao_yang);
         resImg.add(R.drawable.img_shengxiao_zhu);
 
-
+        listHistory = new ArrayList<>();
     }
 
     @Override
     protected void initListener() {
         super.initListener();
+
 
         mAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -102,9 +104,30 @@ public class ShengXiaoActivity extends BaseActivity {
                 if (map != null && isOpen == false) {
 
                     if (view instanceof AppCompatImageView) {
-                        map.put("isOpen",true);
+                        map.put("isOpen", true);
                         AppCompatImageView imageView = (AppCompatImageView) view;
-                        int valuesRes = new Random().nextInt(12);
+                        int valuesRes = -1;
+                        while (true) {
+                            valuesRes = new Random().nextInt(12);
+                            if (listHistory == null) {
+                                listHistory = new ArrayList<>();
+                            }
+
+                            boolean isHad = false;
+                            for (Integer valuesHistory : listHistory) {
+                                if (valuesHistory.intValue() == valuesRes) {
+                                    isHad = true;
+                                    break;
+                                }
+                            }
+                            if (isHad) {
+                                continue;
+                            }
+                            listHistory.add(valuesRes);
+                            break;
+                        }
+
+
                         imageView.setImageResource(resImg.get(valuesRes));
                         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(imageView, "rotationY", 180f, 0f);
                         objectAnimator.setDuration(500);

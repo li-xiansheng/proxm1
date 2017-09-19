@@ -6,6 +6,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v4.app.Fragment;
@@ -26,9 +28,9 @@ import com.muzikun.lhfsyczl.base.BaseActivity;
 import com.muzikun.lhfsyczl.broadcast.LocalBroadcastManager;
 import com.muzikun.lhfsyczl.config.Constants;
 import com.muzikun.lhfsyczl.entity.UserDB;
+import com.muzikun.lhfsyczl.fragment.BetFragment;
 import com.muzikun.lhfsyczl.fragment.ForumFragment;
 import com.muzikun.lhfsyczl.fragment.HomeFragment;
-import com.muzikun.lhfsyczl.fragment.BetFragment;
 import com.muzikun.lhfsyczl.fragment.MeFragment;
 import com.muzikun.lhfsyczl.util.ExampleUtil;
 import com.muzikun.lhfsyczl.util.LogUtils;
@@ -36,6 +38,18 @@ import com.muzikun.lhfsyczl.util.SPUtil;
 import com.muzikun.lhfsyczl.util.ScreenUtil;
 import com.muzikun.lhfsyczl.util.ToastUtils;
 import com.muzikun.lhfsyczl.view.SelectedLayerTextView;
+import com.tencent.connect.share.QQShare;
+import com.tencent.connect.share.QzoneShare;
+import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
+import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
+import com.tencent.mm.sdk.modelmsg.WXWebpageObject;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
+import com.tencent.tauth.UiError;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import cn.jpush.android.api.JPushInterface;
@@ -54,6 +68,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         return mBottomNavigationBar;
     }
 
+    private Tencent mTencent;// 新建Tencent实例用于调用分享方法
     /**
      * 记录退出按键的最后时刻，初始为0
      */
@@ -85,6 +100,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     private final int personalPage = 2;
 
     private Dialog shareDialog;
+    //分享传递参数
+    private Bundle params;
 
     @Override
     public void getIntentData() {
@@ -99,6 +116,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     @Override
     protected void initView() {
+        mTencent = Tencent.createInstance(Constants.QQ_APP_ID, getApplicationContext());
+
         setTitle("六合彩票");
 
         menuStr = "分享";
@@ -106,8 +125,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
             @Override
             public void onClick() {
                 if ("分享".equals(menuStr)) {
-                    ToastUtils.show("暂不开放");
-//                    initDialog();
+//                    ToastUtils.show("暂不开放");
+                    initDialog();
                 } else {
                     SPUtil spUtil = new SPUtil(mContext, Constants.USER_TABLE);
                     boolean islogin = spUtil.getBoolean(UserDB.isLogin, false);
@@ -295,6 +314,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         LogUtils.i(TAG, "onTabUnselected");
     }
 
+
     /**
      * 初始化dialog
      */
@@ -327,15 +347,32 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                 public void onClick(View v) {
                     switch (v.getId()) {
                         case R.id.tvWeixin:
-                            ToastUtils.show("微信分享");
+                            sendWebInfoToWeiXin(true);
+                            shareDialog.dismiss();
+                            shareDialog = null;
                             break;
                         case R.id.tvWeixinFriend:
+                            sendWebInfoToWeiXin(false);
+                            shareDialog.dismiss();
+                            shareDialog = null;
                             break;
                         case R.id.tvQQ:
+                            if (mTencent == null) {
+                                mTencent = Tencent.createInstance(Constants.QQ_APP_ID, getApplicationContext());
+                            }
+                            shareQQ();
+                            shareDialog.dismiss();
+                            shareDialog = null;
                             break;
                         case R.id.tvQQspace:
+                            if (mTencent == null) {
+                                mTencent = Tencent.createInstance(Constants.QQ_APP_ID, getApplicationContext());
+                            }
+                            shareQQSpace();
+                            shareDialog.dismiss();
+                            shareDialog = null;
                             break;
-                        case R.id.tv_cancle:
+                        case R.id.tvCancel:
                             shareDialog.dismiss();
                             shareDialog = null;
                             break;
@@ -354,6 +391,90 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
 
     }
+
+
+    /**
+     *
+     */
+    private void shareQQ() {
+
+        params = new Bundle();
+        params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_DEFAULT);
+        params.putString(QQShare.SHARE_TO_QQ_TITLE, "六合分享");// 标题
+        params.putString(QQShare.SHARE_TO_QQ_SUMMARY, Constants.share_description);// 摘要
+        params.putString(QQShare.SHARE_TO_QQ_TARGET_URL, "http://a.app.qq.com/o/simple.jsp?pkgname=com.muzikun.lhfsyczl");//运用宝微下载
+        params.putString(QQShare.SHARE_TO_QQ_IMAGE_URL, "http://ad.076668.com/logo.png");// 网络图片地址　
+
+// 　
+        params.putString(QQShare.SHARE_TO_QQ_APP_NAME, "六合风水预测资料");// 应用名称
+        params.putString(QQShare.SHARE_TO_QQ_EXT_INT, Constants.share_description);
+        //分享操作要在主线程中完成
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mTencent.shareToQQ(mActivity, params, new MyIUiListener());
+            }
+        });
+    }
+
+    /**
+     *
+     */
+    private void shareQQSpace() {
+
+        params = new Bundle();
+        params.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE, QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT);
+        params.putString(QzoneShare.SHARE_TO_QQ_TITLE, "六合分享");// 标题
+        params.putString(QzoneShare.SHARE_TO_QQ_SUMMARY, Constants.share_description);// 摘要
+        params.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL, "http://a.app.qq.com/o/simple.jsp?pkgname=com.muzikun.lhfsyczl");//运用宝微下载
+        ArrayList<String> imgUrlList = new ArrayList<>();
+        imgUrlList.add("http://ad.076668.com/logo.png");
+        params.putStringArrayList(QzoneShare.SHARE_TO_QQ_IMAGE_URL, imgUrlList);// 图片地址
+        // 分享操作要在主线程中完成
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mTencent.shareToQzone(mActivity, params, new MyIUiListener());
+            }
+        });
+
+    }
+
+    /**
+     * 发送web网页信息到微信
+     *
+     * @param flag
+     */
+    private void sendWebInfoToWeiXin(boolean flag) {
+        // IWXAPI 是第三方app和微信通信的openapi接口
+        IWXAPI api;
+
+
+        //实例化
+        api = WXAPIFactory.createWXAPI(this, Constants.weiXinAPP_ID);
+        api.registerApp(Constants.weiXinAPP_ID);
+
+        WXWebpageObject webpage = new WXWebpageObject();
+        if (flag) {//分享到微信好友
+            webpage.webpageUrl = "http://a.app.qq.com/o/simple.jsp?pkgname=com.muzikun.lhfsyczl";//运用宝微下载
+        } else {//分享到朋友圈，此处用相同的网页，也可随需求改为不同的网页，
+            webpage.webpageUrl = "http://a.app.qq.com/o/simple.jsp?pkgname=com.muzikun.lhfsyczl";//运用宝微下载
+        }
+
+        WXMediaMessage msg = new WXMediaMessage(webpage);
+        msg.title = "六合分享";
+        msg.description = Constants.share_description;
+        //这里替换一张自己工程里的图片资源
+        Bitmap thumb = BitmapFactory.decodeResource(getResources(), R.mipmap.logo);
+        msg.setThumbImage(thumb);
+
+        SendMessageToWX.Req req = new SendMessageToWX.Req();
+        req.transaction = String.valueOf(System.currentTimeMillis());
+        req.message = msg;
+        req.scene = flag ? SendMessageToWX.Req.WXSceneSession : SendMessageToWX.Req.WXSceneTimeline;
+        api.sendReq(req);
+    }
+
 
     @Override
     public void onTabReselected(int position) {
@@ -418,4 +539,47 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
         super.onSaveInstanceState(outState, outPersistentState);
     }
+
+
+    /**
+     * 功能描述：分享回调
+     */
+
+    class MyIUiListener implements IUiListener {
+        @Override
+        public void onComplete(Object o) {
+            // 操作成功
+            ToastUtils.show("分享成功");
+            if (shareDialog != null) {
+                shareDialog.dismiss();
+                shareDialog = null;
+            }
+
+        }
+
+        @Override
+        public void onError(UiError uiError) {
+            // 分享异常
+            ToastUtils.show("分享失败");
+            shareDialog.dismiss();
+            shareDialog = null;
+            if (shareDialog != null) {
+                shareDialog.dismiss();
+                shareDialog = null;
+            }
+        }
+
+        @Override
+        public void onCancel() {
+            // 分享取消
+            ToastUtils.show("取消取消");
+            shareDialog.dismiss();
+            shareDialog = null;
+            if (shareDialog != null) {
+                shareDialog.dismiss();
+                shareDialog = null;
+            }
+        }
+    }
+
 }

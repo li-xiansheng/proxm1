@@ -321,3 +321,7 @@
 #保持播放器库引用的aar文件不被混淆，通过日志抓取的包名
 -dontwarn tv.danmaku.ijk.media.player.**
 -keep class tv.danmaku.ijk.media.player.**{*;}
+
+#QQ分享
+-dontwarn com.tencent.**
+-keep class com.tencent.**{*;}

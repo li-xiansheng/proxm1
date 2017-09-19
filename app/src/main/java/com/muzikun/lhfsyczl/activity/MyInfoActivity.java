@@ -301,10 +301,14 @@ public class MyInfoActivity extends BaseActivity {
                         LogUtils.i(TAG, "upLoadImage ---->" + response.getErrmsg());
                         LogUtils.i(TAG, "upLoadImage ---->" + response.getData());
                         if (response != null && response.getFlag() == 1) {
+                            String avatar=response.getData();
+                            if (avatar!=null&&!avatar.startsWith("http")){
+                                avatar="http://" +avatar;
+                            }
                             SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
-                            sp.putString(UserDB.AVATAR, "http://" + response.getData());
+                            sp.putString(UserDB.AVATAR, avatar);
                             Glide.with(mActivity)
-                                    .load("http://" + response.getData())
+                                    .load(avatar)
                                     .placeholder(R.drawable.icon_default_head)
                                     .transform(new GlideCircleTransform(mContext))
                                     .into(ivHead);

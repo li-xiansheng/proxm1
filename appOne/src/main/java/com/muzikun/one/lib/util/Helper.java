@@ -23,7 +23,7 @@ import java.util.UUID;
  */
 public class Helper {
     public static void T(Context context , String s){
-        Toast.makeText(context,s,Toast.LENGTH_SHORT).show();
+        Toast.makeText(context,s+"",Toast.LENGTH_SHORT).show();
     }
     public static void T(Context context , int s){
         Toast.makeText(context,String.valueOf(s),Toast.LENGTH_SHORT).show();
@@ -96,15 +96,20 @@ public class Helper {
         return statusView;
     }
     public static String getPhoneCode(Activity activity){
-        final TelephonyManager tm = (TelephonyManager) activity.getBaseContext().getSystemService(activity.TELEPHONY_SERVICE);
+        String uniqueId = null;
+        try {
+            final TelephonyManager tm = (TelephonyManager) activity.getBaseContext().getSystemService(activity.TELEPHONY_SERVICE);
 
-        final String tmDevice, tmSerial, tmPhone, androidId;
-        tmDevice = "" + tm.getDeviceId();
-        tmSerial = "" + tm.getSimSerialNumber();
-        androidId = "" + android.provider.Settings.Secure.getString(activity.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+            final String tmDevice, tmSerial, tmPhone, androidId;
+            tmDevice = "" + tm.getDeviceId();
+            tmSerial = "" + tm.getSimSerialNumber();
+            androidId = "" + android.provider.Settings.Secure.getString(activity.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
 
-        UUID deviceUuid = new UUID(androidId.hashCode(), ((long)tmDevice.hashCode() << 32) | tmSerial.hashCode());
-        String uniqueId = deviceUuid.toString();
+            UUID deviceUuid = new UUID(androidId.hashCode(), ((long)tmDevice.hashCode() << 32) | tmSerial.hashCode());
+            uniqueId = deviceUuid.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return uniqueId;
     }
 }

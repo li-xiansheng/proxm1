@@ -62,7 +62,11 @@ public class UserCommentListViewAdapter extends BaseAdapter {
         }
 
         CommentFragment.CommentDataBean commentDataBean = listData.get(i);
-        Glide.with(context).load(commentDataBean.FACE).into(viewHolder.USER_ICON);
+        String imgUrl="";
+        if(commentDataBean.FACE!=null){
+            imgUrl=(commentDataBean.FACE).replace("www.gzbjwb.cn","wanbao.7va.cn");
+        }
+        Glide.with(context).load(imgUrl).into(viewHolder.USER_ICON);
         viewHolder.USER_NAME.setText(commentDataBean.USER_NAME);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Long timeNumber = Long.parseLong(commentDataBean.ADD_TIME) *1000;

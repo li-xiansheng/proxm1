@@ -165,7 +165,9 @@ public class MeFragment extends BaseFragment {
                             String avatar = entity.getAvatar();
                             String score = entity.getScore();
                             nickName = nickName == null ? "" : nickName;
-                            avatar = avatar == null ? "" : "http://" + avatar;
+                            if(avatar!=null&&!avatar.startsWith("http")){
+                                avatar="http://"+avatar;
+                            }
                             score = score == null ? "" : score;
 
                             Log.i(TAG, "getUserInfo avatar = " + avatar);

@@ -66,7 +66,7 @@ public class WinningRecyclerAdapter extends BaseRecycleViewAdapter {
                 String nickName = userinfoBean.getUser_nicename();
                 String title = entity.getDesc();
                 String liansheng = entity.getLiansheng();
-                if (avatar != null && !avatar.contains("http")) {
+                if (avatar != null && !avatar.startsWith("http")) {
                     avatar = "http://" + avatar;
                 }
 

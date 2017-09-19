@@ -26,6 +26,7 @@ public class WinningActivity extends BaseActivity {
     TabLayout tabLayout;
     @BindView(R.id.viewPager)
     ViewPager viewPager;
+    private List<BaseFragment> fragments;
 
     @Override
     protected int getLayoutResId() {
@@ -36,32 +37,44 @@ public class WinningActivity extends BaseActivity {
     protected void initView() {
         setTitle("连胜榜");
 
-        String[] titles = {"单双", "大小", "生肖", "号码"};
-        final List<BaseFragment> fragments = new ArrayList<>();
-
-
-        for (int i = 0; i < titles.length; i++) {
-            WinningFragment fragment = new WinningFragment();
-            Bundle bundle = new Bundle();
-            bundle.putString("text", titles[i]);
-            fragment.setArguments(bundle);
-            fragments.add(fragment);
-        }
-        viewPager.setOffscreenPageLimit(3);
-        viewPager.setAdapter(new TabFragmentAdapter(fragments, titles, getSupportFragmentManager(), mContext));
-
-        // 将ViewPager和TabLayout绑定
-        tabLayout.setupWithViewPager(viewPager);
-        // 设置tab文本的没有选中（第一个参数）和选中（第二个参数）的颜色
-        tabLayout.setTabTextColors(Color.BLACK, Color.RED);
-        tabLayout.setTabMode(tabLayout.MODE_FIXED);
+        initFragment();
         //主动调取第一个页面可见执行懒加载
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                fragments.get(0).setUserVisibleHint(true);
+                if (fragments != null && fragments.size() > 0) {
+                    fragments.get(0).setUserVisibleHint(true);
+                } else {
+                    initFragment();
+                    fragments.get(0).setUserVisibleHint(true);
+                }
+
             }
         }, 1000);
+    }
+
+    private void initFragment() {
+        if (fragments == null || fragments.size() == 0) {
+            String[] titles = {"单双", "大小", "生肖", "号码"};
+            fragments = new ArrayList<>();
+
+
+            for (int i = 0; i < titles.length; i++) {
+                WinningFragment fragment = new WinningFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("text", titles[i]);
+                fragment.setArguments(bundle);
+                fragments.add(fragment);
+            }
+            viewPager.setOffscreenPageLimit(3);
+            viewPager.setAdapter(new TabFragmentAdapter(fragments, titles, getSupportFragmentManager(), mContext));
+
+            // 将ViewPager和TabLayout绑定
+            tabLayout.setupWithViewPager(viewPager);
+            // 设置tab文本的没有选中（第一个参数）和选中（第二个参数）的颜色
+            tabLayout.setTabTextColors(Color.BLACK, Color.RED);
+            tabLayout.setTabMode(tabLayout.MODE_FIXED);
+        }
     }
 
     @Override

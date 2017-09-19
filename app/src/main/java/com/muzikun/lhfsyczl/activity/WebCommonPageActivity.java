@@ -34,6 +34,7 @@ public class WebCommonPageActivity extends BaseActivity {
 
     private AppCompatTextView tvTemp;
 
+
     @Override
     public void getIntentData() {
         super.getIntentData();
@@ -61,12 +62,22 @@ public class WebCommonPageActivity extends BaseActivity {
             ToastUtils.show("请检查网络连接……");
             return;
         }
+
         if (!TextUtils.isEmpty(titleName) && "历史开奖".equals(titleName)) {
-            tvTemp = new AppCompatTextView(mContext);
+
             setTopRightButton("选择年份", new OnMenuClickListener() {
                 @Override
                 public void onClick() {
                     PopupWindowHelper.selectYear(mActivity, tvTemp);
+                }
+            });
+        } else if (!TextUtils.isEmpty(titleName) && ("六合助手".equals(titleName) || "查询助手".equals(titleName))) {
+
+            setTopRightButton("搜索", R.drawable.icon_white_search, new OnMenuClickListener() {
+                @Override
+                public void onClick() {
+
+                    webView.loadUrl("javascript:search()");
                 }
             });
         }
@@ -98,6 +109,7 @@ public class WebCommonPageActivity extends BaseActivity {
         super.initListener();
 
         if (!TextUtils.isEmpty(titleName) && "历史开奖".equals(titleName)) {
+            tvTemp = new AppCompatTextView(mContext);
             tvTemp.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -159,6 +171,8 @@ public class WebCommonPageActivity extends BaseActivity {
         public void onPageFinished(WebView view, String url) {
             LoadingDialog.closeDialog(mActivity);
             super.onPageFinished(view, url);
+
+
         }
 
 

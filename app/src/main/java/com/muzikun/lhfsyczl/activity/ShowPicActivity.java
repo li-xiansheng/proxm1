@@ -11,6 +11,7 @@ import com.bumptech.glide.request.target.Target;
 import com.muzikun.lhfsyczl.R;
 import com.muzikun.lhfsyczl.base.BaseActivity;
 import com.muzikun.lhfsyczl.uihelper.LoadingDialog;
+import com.muzikun.lhfsyczl.util.LogUtils;
 import com.muzikun.lhfsyczl.util.ToastUtils;
 
 import butterknife.BindView;
@@ -36,7 +37,7 @@ public class ShowPicActivity extends BaseActivity {
         setTitle("显示图片");
 
         if (!TextUtils.isEmpty(url)) {
-            String str = url.substring(url.length() - 3);
+//            String str = url.substring(url.length() - 3);
 //            if (!TextUtils.isEmpty(str) && str.endsWith("gif")) {
 //                Glide.with(mContext)
 //                        .load("http://" + url)
@@ -44,9 +45,15 @@ public class ShowPicActivity extends BaseActivity {
 //                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
 //                        .into(photo_view);
 //            } else {
+            if (!(url.startsWith("http"))) {
+                url = "http://" + url;
+                LogUtils.i(TAG,"添加");
+            }else{
+                LogUtils.i(TAG,"不添加");
+            }
                 LoadingDialog.showDialog(mActivity);
                 Glide.with(mContext)
-                        .load("http://" + url)
+                        .load(url)
                         .listener(new RequestListener<String, GlideDrawable>() {
                             @Override
                             public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {

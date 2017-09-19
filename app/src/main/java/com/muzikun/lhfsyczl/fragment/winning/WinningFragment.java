@@ -65,14 +65,18 @@ public class WinningFragment extends BasePullRefreshFragment {
 
                 WinningEntity.UserinfoBean userinfoBean = bean.getUserinfo();
                 if (userinfoBean != null) {
+                    String avatar = userinfoBean.getAvatar();
+                    if (avatar != null && !avatar.startsWith("http")) {
+                        avatar = "http://" + avatar;
+                    }
                     bundle.putString("nickname", userinfoBean.getUser_nicename() + "");
-                    bundle.putString("avatar", "http://" + userinfoBean.getAvatar());
+                    bundle.putString("avatar", avatar);
                     bundle.putString("mobile", userinfoBean.getMobile());
-                    ((BaseActivity)mActivity).jumpToActivity(SalaryActivity.class, bundle, false);
+                    ((BaseActivity) mActivity).jumpToActivity(SalaryActivity.class, bundle, false);
                 } else {
                     ToastUtils.show("无法查看心水");
                 }
-             }
+            }
         });
     }
 
@@ -80,7 +84,9 @@ public class WinningFragment extends BasePullRefreshFragment {
     public void getData() {
         if (isFirst) {
             LogUtils.i(TAG, "首次加载……");
-            mPullToRefreshRecyclerView.setRefreshing(true);//没有刷新，则执行下拉刷新UI
+            if (mPullToRefreshRecyclerView != null) {
+                mPullToRefreshRecyclerView.setRefreshing(true);//没有刷新，则执行下拉刷新UI
+            }
             isFirst = false;
         } else {
             getLotoLottery();

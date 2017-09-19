@@ -163,6 +163,7 @@ public class AnswerActivity extends AppCompatActivity {
 
     private void refreshView(SendNewsBean bean) {
         if (bean.headPath.length() > 10) {
+            bean.headPath=bean.headPath.replace("www.gzbjwb.cn","wanbao.7va.cn");
             Glide.with(this)
                     .load(bean.headPath)
                     .placeholder(R.drawable.mine_head)

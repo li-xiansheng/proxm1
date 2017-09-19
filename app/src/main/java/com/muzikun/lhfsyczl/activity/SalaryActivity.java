@@ -78,6 +78,12 @@ public class SalaryActivity extends BaseActivity {
             String tel = sp.getString(UserDB.TEL, "");
             if (!TextUtils.isEmpty(mobile) && mobile.equals(tel)) {
                 tvAttention.setVisibility(View.GONE);
+                //头像设置为自己头像
+                avatar = sp.getString(UserDB.AVATAR, "");
+                Glide.with(this)
+                        .load(avatar)
+                        .transform(new GlideCircleTransform(mContext))
+                        .into(salaryHead);
             } else {
                 //判断是否已关注，决定显示关注UI
                 isFriend(tel);

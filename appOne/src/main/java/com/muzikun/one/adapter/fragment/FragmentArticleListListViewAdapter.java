@@ -77,9 +77,13 @@ public class FragmentArticleListListViewAdapter extends BaseAdapter {
         }else if(picTotal==1){
             viewHolder.imageBox1.setVisibility(View.VISIBLE);
             viewHolder.imageBox2.setVisibility(View.GONE);
-            
+
+            String imgUrl=listData.get(i).pic[0];
+            if (imgUrl!=null){
+                imgUrl=imgUrl.replace("www.gzbjwb.cn","wanbao.7va.cn");
+            }
             Glide.with(context)
-                    .load(listData.get(i).pic[0])
+                    .load(imgUrl)
                     .crossFade()
                     .into(viewHolder.image0);
 
@@ -89,16 +93,29 @@ public class FragmentArticleListListViewAdapter extends BaseAdapter {
         }else if(picTotal==3){
             viewHolder.imageBox1.setVisibility(View.GONE);
             viewHolder.imageBox2.setVisibility(View.VISIBLE);
+            String imgUrl0=listData.get(i).pic[0]+"";
+            if (imgUrl0!=null){
+                imgUrl0=imgUrl0.replace("www.gzbjwb.cn","wanbao.7va.cn");
+            }
+            String imgUrl1=listData.get(i).pic[1]+"";
+            if (imgUrl1!=null){
+                imgUrl1=imgUrl1.replace("www.gzbjwb.cn","wanbao.7va.cn");
+            }
+            String imgUrl2=listData.get(i).pic[2]+"";
+            if (imgUrl2!=null){
+                imgUrl1=imgUrl2.replace("www.gzbjwb.cn","wanbao.7va.cn");
+            }
+
             Glide.with(context)
-                    .load(listData.get(i).pic[0])
+                    .load(imgUrl0)
                     .crossFade()
                     .into(viewHolder.image1);
             Glide.with(context)
-                    .load(listData.get(i).pic[1])
+                    .load(imgUrl1)
                     .crossFade()
                     .into(viewHolder.image2);
             Glide.with(context)
-                    .load(listData.get(i).pic[2])
+                    .load(imgUrl2)
                     .crossFade()
                     .into(viewHolder.image3);
         }

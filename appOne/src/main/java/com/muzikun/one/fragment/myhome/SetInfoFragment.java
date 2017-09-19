@@ -76,8 +76,11 @@ public class SetInfoFragment extends Fragment implements View.OnClickListener{
 
 
         userNameView.setText(userInfo.get(UserModel.USER_NAME));
-
-        Glide.with(getActivity()).load(userInfo.get(UserModel.USER_ICON)).placeholder(R.drawable.mine_head).into(userIconView);
+        String imgUrl="";
+        if(userInfo.get(UserModel.USER_ICON)!=null){
+            imgUrl=(userInfo.get(UserModel.USER_ICON)).replace("www.gzbjwb.cn","wanbao.7va.cn");
+        }
+        Glide.with(getActivity()).load(imgUrl).placeholder(R.drawable.mine_head).into(userIconView);
 
 
         userIconBox.setOnClickListener(this);
@@ -147,7 +150,12 @@ public class SetInfoFragment extends Fragment implements View.OnClickListener{
             try {
                 JSONObject jsonObject = new JSONObject(s);
                 if(jsonObject.getInt("code") == 1){
-                    Glide.with(getActivity()).load(jsonObject.getString("data")).into(userIconView);
+                    String imgUrl="";
+                    if(jsonObject.getString("data")!=null){
+                        imgUrl=(jsonObject.getString("data")).replace("www.gzbjwb.cn","wanbao.7va.cn");
+                    }
+
+                    Glide.with(getActivity()).load(imgUrl).into(userIconView);
                     SharedPreferences userShared = UserModel.getSharedPreferences(SetInfoFragment.this.getContext());
                     SharedPreferences.Editor edit  =  userShared.edit();
                     edit.putString(UserModel.USER_ICON,jsonObject.getString("data"));

@@ -78,7 +78,12 @@ public class ArticleActivityCommentListViewAdapter extends BaseAdapter{
         viewHolder.TIME_STRING.setText(time);
         viewHolder.GOOD.setText(String.valueOf(listData.get(i).GOOD));
         viewHolder.GOOD_BOX.setOnClickListener(new GoodOnClickListener(listData.get(i).COMMENT_ID));
-        Glide.with(context).load(listData.get(i).USER_ICON).placeholder(R.drawable.user_default_inc).into(viewHolder.USER_ICON);
+        String imgHead="";
+        if (listData.get(i).USER_ICON!=null){
+            imgHead=(listData.get(i).USER_ICON).replace("www.gzbjwb.cn","wanbao.7va.cn");
+        }
+
+        Glide.with(context).load(imgHead).placeholder(R.drawable.user_default_inc).into(viewHolder.USER_ICON);
         viewHolder.CONTENT.setText(Html.fromHtml(listData.get(i).CONTENT));
 
         return view;

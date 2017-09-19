@@ -62,9 +62,11 @@ public class FragmentVideoListAdapter extends BaseAdapter {
         viewHolder.vedioView.setUp(listData.get(position).VEDIO_URL
                 , JCVideoPlayerStandard.SCREEN_LAYOUT_LIST, listData.get(position).VEDIO_TITLE);
         JCVideoPlayer.setJcBuriedPoint(new MyJCBuriedPointStandard());
-
-        
-        Glide.with(context).load(listData.get(position).IMAGE_URL).into(viewHolder.vedioView.thumbImageView);
+        String imgUrl="";
+        if(listData.get(position).IMAGE_URL!=null){
+            imgUrl=(listData.get(position).IMAGE_URL).replace("www.gzbjwb.cn","wanbao.7va.cn");
+        };
+        Glide.with(context).load(imgUrl).into(viewHolder.vedioView.thumbImageView);
         return convertView;
     }
 
