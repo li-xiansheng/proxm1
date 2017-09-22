@@ -12,6 +12,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
+import com.handmark.pulltorefresh.library.ILoadingLayout;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.muzikun.lhfsyczl.R;
 import com.muzikun.lhfsyczl.adapter.LiveExpandableListAdapter;
 import com.muzikun.lhfsyczl.base.BaseActivity;
@@ -33,9 +36,6 @@ import com.muzikun.lhfsyczl.util.ToastUtils;
 import com.muzikun.lhfsyczl.view.MarqueeTextView;
 import com.muzikun.lhfsyczl.view.SelectedLayerImageView;
 import com.muzikun.lhfsyczl.view.SelectedLayerTextView;
-import com.handmark.pulltorefresh.library.ILoadingLayout;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -268,16 +268,58 @@ public class OpenLotteryLiveActivity extends BaseActivity {
         List<List<OpenLotteryLiveEntity.RecommendBean>> lists = entity.getRecommend();
         mMEntities.clear();
         if (lists != null && lists.size() > 0) {
+            //合并数据，竖线分割，当catname和content连接字符小于9，则连接合并为一行，以|分割
             for (int i = 0; i < lists.size(); i++) {
                 List<OpenLotteryLiveEntity.RecommendBean> recommendBean = lists.get(i);
-                if (recommendBean != null && recommendBean.size() > 0) {
+                if (recommendBean!=null&&recommendBean.size()>0){
+                    //将文字多的排序到前面显示
+                    for (int j = 0; j < recommendBean.size(); j++) {
+                        OpenLotteryLiveEntity.RecommendBean bean = recommendBean.get(j);
+
+                        String catname = bean.getCatname();
+                        String content = bean.getContent();
+                        catname = TextUtils.isEmpty(catname) ? "" : catname;
+                        content = TextUtils.isEmpty(content) ? "" : content;
+
+                        bean.setCombine(catname + ":" + content);
+
+                        if (bean.getCombine().length() > 9) {
+                            recommendBean.add(0, bean);
+                            recommendBean.remove(j + 1);
+                        }
+                    }
+                    //合并
+                    for (int j = 0; j < recommendBean.size(); j++) {
+                        OpenLotteryLiveEntity.RecommendBean bean = recommendBean.get(j);
+                        String combine=bean.getCombine();
+                        if (combine!=null&&combine.length()<=9&&(j+1)<recommendBean.size()){
+                            bean.setCombine1(recommendBean.get(j+1).getCombine());
+                            recommendBean.remove(j+1);
+                        }
+                    }
+                    //给父列表命名
                     OpenLotteryLiveEntity.RecommendBean bean = recommendBean.get(0);
                     OpenLotteryLiveMEntity openLotteryLiveMEntity = new OpenLotteryLiveMEntity();
                     openLotteryLiveMEntity.setQishu(bean.getQishu());
                     openLotteryLiveMEntity.setPartners(recommendBean);
                     mMEntities.add(openLotteryLiveMEntity);
+
                 }
+
+
             }
+
+
+//            for (int i = 0; i < lists.size(); i++) {
+//                List<OpenLotteryLiveEntity.RecommendBean> recommendBean = lists.get(i);
+//                if (recommendBean != null && recommendBean.size() > 0) {
+//                    OpenLotteryLiveEntity.RecommendBean bean = recommendBean.get(0);
+//                    OpenLotteryLiveMEntity openLotteryLiveMEntity = new OpenLotteryLiveMEntity();
+//                    openLotteryLiveMEntity.setQishu(bean.getQishu());
+//                    openLotteryLiveMEntity.setPartners(recommendBean);
+//                    mMEntities.add(openLotteryLiveMEntity);
+//                }
+//            }
         }
         mExpandableListAdapter = new LiveExpandableListAdapter(mContext, mMEntities);
         recyclerView.setAdapter(mExpandableListAdapter);
@@ -376,7 +418,6 @@ public class OpenLotteryLiveActivity extends BaseActivity {
         int withOrHeight = DisplayUtil.dip2px(mContext, 34);
 
 
-
         try {
             for (int i = 0; i < haomaList.size(); i++) {
                 if (TextUtils.isEmpty(haomaList.get(i))) {
@@ -409,7 +450,7 @@ public class OpenLotteryLiveActivity extends BaseActivity {
 
 
                 String haoma = haomaList.get(i) + "";
-                BallColorUtil.ballColor(haoma,tv);
+                BallColorUtil.ballColor(haoma, tv);
                 tv.setText(haoma);
                 lilHaoMa.addView(tv);
 
@@ -444,7 +485,13 @@ public class OpenLotteryLiveActivity extends BaseActivity {
         long currentTime = System.currentTimeMillis();
         long lotteryTime = 0;
         try {
-            lotteryTime = Long.parseLong(openLotteryLiveEntity.getTimeprompt()) * 1000;
+            if (openLotteryLiveEntity != null) {
+                lotteryTime = Long.parseLong(openLotteryLiveEntity.getTimeprompt()) * 1000;
+
+            } else {
+                ToastUtils.show("请下拉刷新获取最新数据");
+
+            }
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
@@ -471,7 +518,7 @@ public class OpenLotteryLiveActivity extends BaseActivity {
                         }
                     } else {
                         //特码为null或者当期期数为null，正在开奖
-                        if (TextUtils.isEmpty(openLotteryZuiXinEntity.getTema()) &&TextUtils.isEmpty(openLotteryLiveEntity.getNo())) {
+                        if (TextUtils.isEmpty(openLotteryZuiXinEntity.getTema()) && TextUtils.isEmpty(openLotteryLiveEntity.getNo())) {
                             Bundle bundle = new Bundle();
                             bundle.putLong("nextOpenLottery", lotteryTime);
                             bundle.putString("nextNo", openLotteryLiveEntity.getNextqishu() + "");
@@ -488,7 +535,7 @@ public class OpenLotteryLiveActivity extends BaseActivity {
                         }
                     }
                 } else {
-                    ToastUtils.show("请刷新获取最新数据");
+                    ToastUtils.show("请下拉刷新获取最新数据");
                 }
 
                 break;
@@ -505,7 +552,7 @@ public class OpenLotteryLiveActivity extends BaseActivity {
                         pullToRefreshScrollView.setRefreshing(true);
                     }
                 } else {
-                    ToastUtils.show("请刷新获取最新数据");
+                    ToastUtils.show("请下拉刷新获取最新数据");
                 }
                 break;
         }

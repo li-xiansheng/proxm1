@@ -167,7 +167,7 @@ public class MyInfoActivity extends BaseActivity {
                                                 public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
                                                     AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                                                     builder.setTitle("权限提示");
-                                                    builder.setMessage("你已经拒绝使用相机，为了能发送视频，请到设置中开启相机和文件权限");
+                                                    builder.setMessage("你已经拒绝使用相机，为了能上传照片，请到设置中开启相机和文件权限");
                                                     builder.setPositiveButton("设置", new DialogInterface.OnClickListener() {
                                                         @Override
                                                         public void onClick(DialogInterface dialog, int which) {

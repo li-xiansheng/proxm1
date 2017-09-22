@@ -298,8 +298,9 @@ public class HomeFragment extends BaseFragment {
         homeGridRecyclerAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Class aClass = (Class<?>) data.get(position).get("uri");
-                String name = (String) data.get(position).get("name");
+                if (data!=null&&data.size()>position){
+                    Class aClass = (Class<?>) data.get(position).get("uri");
+                    String name = (String) data.get(position).get("name");
 //                if ("六合图库".equals(name)) {
 //                    Bundle bundle = new Bundle();
 //                    bundle.putString("name", "六合图库");
@@ -307,26 +308,25 @@ public class HomeFragment extends BaseFragment {
 //                    ((BaseActivity) mActivity).jumpToActivity(WebCommonPageActivity.class, bundle, false);
 //                } else
                     if ("历史开奖".equals(name)) {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("name", "历史开奖");
-                    bundle.putString("url", HttpService.historyLottery);
-                    ((BaseActivity) mActivity).jumpToActivity(WebCommonPageActivity.class, bundle, false);
-                } else if ("六合助手".equals(name)) {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("name", "六合助手");
-                    bundle.putString("url", HttpService.queryHelper);
-                    ((BaseActivity) mActivity).jumpToActivity(WebCommonPageActivity.class, bundle, false);
-                } else if ("六合资料".equals(name)) {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("name", "六合资料");
-                    bundle.putString("url", HttpService.lotoInfo);
-                    ((BaseActivity) mActivity).jumpToActivity(WebCommonPageActivity.class, bundle, false);
-                } else {
-                    Intent intent = new Intent((MainActivity) mActivity, (Class<?>) data.get(position).get("uri"));
-                    startActivity(intent);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("name", "历史开奖");
+                        bundle.putString("url", HttpService.historyLottery);
+                        ((BaseActivity) mActivity).jumpToActivity(WebCommonPageActivity.class, bundle, false);
+                    } else if ("六合助手".equals(name)) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("name", "六合助手");
+                        bundle.putString("url", HttpService.queryHelper);
+                        ((BaseActivity) mActivity).jumpToActivity(WebCommonPageActivity.class, bundle, false);
+                    } else if ("六合资料".equals(name)) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("name", "六合资料");
+                        bundle.putString("url", HttpService.lotoInfo);
+                        ((BaseActivity) mActivity).jumpToActivity(WebCommonPageActivity.class, bundle, false);
+                    } else {
+                        Intent intent = new Intent((MainActivity) mActivity, (Class<?>) data.get(position).get("uri"));
+                        startActivity(intent);
+                    }
                 }
-
-
             }
         });
     }

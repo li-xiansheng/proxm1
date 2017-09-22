@@ -60,22 +60,30 @@ public class WinningFragment extends BasePullRefreshFragment {
         mBaseRecycleViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                WinningEntity bean = mList.get(position);
-                Bundle bundle = new Bundle();
+                if (mList!=null&&mList.size()>position){//1.0.18版本bug修改
+                    WinningEntity bean = mList.get(position);
+                    Bundle bundle = new Bundle();
 
-                WinningEntity.UserinfoBean userinfoBean = bean.getUserinfo();
-                if (userinfoBean != null) {
-                    String avatar = userinfoBean.getAvatar();
-                    if (avatar != null && !avatar.startsWith("http")) {
-                        avatar = "http://" + avatar;
+                    WinningEntity.UserinfoBean userinfoBean = bean.getUserinfo();
+                    if (userinfoBean != null) {
+                        String avatar = userinfoBean.getAvatar();
+                        if (avatar != null && !avatar.startsWith("http")) {
+                            avatar = "http://" + avatar;
+                        }
+                        bundle.putString("nickname", userinfoBean.getUser_nicename() + "");
+                        bundle.putString("avatar", avatar);
+                        bundle.putString("mobile", userinfoBean.getMobile());
+                        ((BaseActivity) mActivity).jumpToActivity(SalaryActivity.class, bundle, false);
+                    } else {
+                        ToastUtils.show("无法查看心水");
                     }
-                    bundle.putString("nickname", userinfoBean.getUser_nicename() + "");
-                    bundle.putString("avatar", avatar);
-                    bundle.putString("mobile", userinfoBean.getMobile());
-                    ((BaseActivity) mActivity).jumpToActivity(SalaryActivity.class, bundle, false);
-                } else {
-                    ToastUtils.show("无法查看心水");
+                }else{
+                    ToastUtils.show("刷新数据后，请重试");
+                    if (mPullToRefreshRecyclerView != null) {
+                        mPullToRefreshRecyclerView.setRefreshing(true);//没有刷新，则执行下拉刷新UI
+                    }
                 }
+
             }
         });
     }

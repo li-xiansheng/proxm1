@@ -60,25 +60,33 @@ public class LotoKingFragment extends BasePullRefreshFragment {
         mBaseRecycleViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                LotoKingEntity bean = mList.get(position);
-                if (bean == null) {
-                    ToastUtils.show("无法查看心水");
-                    return;
-                }
-                Bundle bundle = new Bundle();
-                LotoKingEntity.UserinfoBean userinfoBean = bean.getUserinfo();
-                if (userinfoBean != null) {
-                    String avatar = userinfoBean.getAvatar();
-                    if (avatar != null && !avatar.startsWith("http")) {
-                        avatar = "http://" + avatar;
+                if (mList!=null&&mList.size()>position){
+                    LotoKingEntity bean = mList.get(position);
+                    if (bean == null) {
+                        ToastUtils.show("无法查看心水");
+                        return;
                     }
-                    bundle.putString("nickname", userinfoBean.getUser_nicename() + "");
-                    bundle.putString("avatar", avatar);
-                    bundle.putString("mobile", userinfoBean.getMobile());
-                    mActivity.jumpToActivity(SalaryActivity.class, bundle, false);
-                } else {
-                    ToastUtils.show("无法查看心水");
+                    Bundle bundle = new Bundle();
+                    LotoKingEntity.UserinfoBean userinfoBean = bean.getUserinfo();
+                    if (userinfoBean != null) {
+                        String avatar = userinfoBean.getAvatar();
+                        if (avatar != null && !avatar.startsWith("http")) {
+                            avatar = "http://" + avatar;
+                        }
+                        bundle.putString("nickname", userinfoBean.getUser_nicename() + "");
+                        bundle.putString("avatar", avatar);
+                        bundle.putString("mobile", userinfoBean.getMobile());
+                        mActivity.jumpToActivity(SalaryActivity.class, bundle, false);
+                    } else {
+                        ToastUtils.show("无法查看心水");
+                    }
+                }else{
+                    ToastUtils.show("刷新数据后，请重试");
+                    if (mPullToRefreshRecyclerView != null) {
+                        mPullToRefreshRecyclerView.setRefreshing(true);//没有刷新，则执行下拉刷新UI
+                    }
                 }
+
 
             }
         });

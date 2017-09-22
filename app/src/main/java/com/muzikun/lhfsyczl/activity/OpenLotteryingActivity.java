@@ -555,7 +555,14 @@ public class OpenLotteryingActivity extends BaseActivity implements SpeechSynthe
 
     @Override
     protected void onDestroy() {
-        this.mSpeechSynthesizer.release();
+        if (mSpeechSynthesizer!=null){
+            try {
+                this.mSpeechSynthesizer.release();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         super.onDestroy();
         if (mTimer != null) {
             mTimer.cancel();

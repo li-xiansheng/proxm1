@@ -1,6 +1,5 @@
 package com.muzikun.lhfsyczl;
 
-import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 import android.text.TextUtils;
@@ -11,8 +10,6 @@ import com.tencent.bugly.crashreport.CrashReport;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.https.HttpsUtils;
 import com.zhy.http.okhttp.log.LoggerInterceptor;
-
-import org.litepal.LitePal;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -76,7 +73,7 @@ public class MApplication extends App {
         CrashReport.initCrashReport(getApplicationContext(), "f151eb182c", false);
 
         //数据库初始化
-        LitePal.initialize(this);
+//        LitePal.initialize(this);
         //
         // 捕获未知异常-本地sd自己用
 //        CrashHandler crashHandler = CrashHandler.getInstance();

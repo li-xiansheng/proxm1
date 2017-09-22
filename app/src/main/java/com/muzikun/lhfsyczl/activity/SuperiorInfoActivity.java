@@ -12,6 +12,8 @@ import com.muzikun.lhfsyczl.util.SPUtil;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.muzikun.lhfsyczl.entity.UserDB.isLogin;
+
 /**
  * 功能描述：高手资料
  */
@@ -44,7 +46,10 @@ public class SuperiorInfoActivity extends BaseActivity {
 
     @OnClick({R.id.lilLotoKing, R.id.lilWinning, R.id.lilMyAttention, R.id.lilSendXinShui})
     public void onViewClicked(View view) {
+        SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
+        boolean isLogin = sp.getBoolean(UserDB.isLogin, false);
         switch (view.getId()) {
+
             case R.id.lilLotoKing:
                 jumpToActivity(LotoKingActivity.class, false);
                 break;
@@ -52,8 +57,8 @@ public class SuperiorInfoActivity extends BaseActivity {
                 jumpToActivity(WinningActivity.class, false);
                 break;
             case R.id.lilMyAttention:
-                SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
-                boolean isLogin = sp.getBoolean(UserDB.isLogin, false);
+
+
                 if (!isLogin) {
                     jumpToActivity(LoginActivity.class, false);
                     return;
@@ -62,6 +67,10 @@ public class SuperiorInfoActivity extends BaseActivity {
                 jumpToActivity(AttentionActivity.class, false);
                 break;
             case R.id.lilSendXinShui:
+                if (!isLogin) {
+                    jumpToActivity(LoginActivity.class, false);
+                    return;
+                }
                 jumpToActivity(SendXinShuiActivity.class, false);
                 break;
         }

@@ -170,7 +170,6 @@ public class DetailActivity extends BaseActivity {
 
     private void getCurrentDetailDta() {
 
-        LoadingDialog.showDialog(this);
         SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
         String tel = sp.getString(UserDB.TEL, "");
         Map<String, String> map = new HashMap<>();
@@ -187,9 +186,7 @@ public class DetailActivity extends BaseActivity {
 
                     @Override
                     public void _onNext(int status, BaseResponse2Entity<String> response) {
-                        LoadingDialog.closeDialog(DetailActivity.this);
-                        LogUtils.i(TAG, "getDetailDta ---->" + response.getData());
-                        if (response.getFlag() == 1) {
+                         if (response.getFlag() == 1) {
                             try {
                                 JSONObject object = new JSONObject(response.getData());
                                 DetailBean bean = new DetailBean();
@@ -200,8 +197,8 @@ public class DetailActivity extends BaseActivity {
                                     bean.result.add(array.getString(i));
                                 }
                                 bean.avatar = object.getJSONObject("user").getString("avatar");
-                                if (bean.avatar!=null&&!bean.avatar.startsWith("http")){
-                                    bean.avatar="http://"+bean.avatar;
+                                if (bean.avatar != null && !bean.avatar.startsWith("http")) {
+                                    bean.avatar = "http://" + bean.avatar;
                                 }
                                 bean.user_nicename = object.getJSONObject("user").getString("user_nicename");
                                 bean.addtime = object.getJSONObject("user").getString("addtime");
@@ -212,8 +209,8 @@ public class DetailActivity extends BaseActivity {
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-                        }else{
-                            ToastUtils.show(response.getErrmsg()+"");
+                        } else {
+                            ToastUtils.show(response.getErrmsg() + "");
                         }
                     }
                 });
@@ -221,7 +218,6 @@ public class DetailActivity extends BaseActivity {
 
     private void getHistoryDetailDta() {
 
-        LoadingDialog.showDialog(this);
         SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
         String tel = sp.getString(UserDB.TEL, "");
         Map<String, String> map = new HashMap<>();
@@ -237,10 +233,11 @@ public class DetailActivity extends BaseActivity {
 
                     @Override
                     public void _onNext(int status, BaseResponse2Entity<String> response) {
-                        LoadingDialog.closeDialog(DetailActivity.this);
                         LogUtils.i(TAG, "getDetailDta ---->" + response.getData());
                         if (response.getFlag() == 1) {
                             parseJson(response.getData());
+                        }else{
+                            ToastUtils.show(response.getErrmsg()+"");
                         }
                     }
                 });
@@ -258,8 +255,8 @@ public class DetailActivity extends BaseActivity {
                 detailBean.result.add(array.getString(i));
             }
             detailBean.avatar = object.getJSONObject("user").getString("avatar");
-            if (detailBean.avatar!=null&&!detailBean.avatar.startsWith("http")){
-                detailBean.avatar="http://"+detailBean.avatar;
+            if (detailBean.avatar != null && !detailBean.avatar.startsWith("http")) {
+                detailBean.avatar = "http://" + detailBean.avatar;
             }
             detailBean.user_nicename = object.getJSONObject("user").getString("user_nicename");
             detailBean.addtime = object.getJSONObject("user").getString("addtime");
@@ -355,31 +352,31 @@ public class DetailActivity extends BaseActivity {
                 daxiao2.setText(bean.daxiao.get(i));
                 danshuang2.setText(bean.danshuang.get(i));
                 setBackground(bean.yanse.get(i), number2Iv);
-            }else if (i == 2) {
+            } else if (i == 2) {
                 number3.setText(bean.haoma.get(i));
                 shengxiao3.setText(bean.shengxiao.get(i));
                 daxiao3.setText(bean.daxiao.get(i));
                 danshuang3.setText(bean.danshuang.get(i));
                 setBackground(bean.yanse.get(i), number3Iv);
-            }else if (i == 3) {
+            } else if (i == 3) {
                 number4.setText(bean.haoma.get(i));
                 shengxiao4.setText(bean.shengxiao.get(i));
                 daxiao4.setText(bean.daxiao.get(i));
                 danshuang4.setText(bean.danshuang.get(i));
                 setBackground(bean.yanse.get(i), number4Iv);
-            }else if (i == 4) {
+            } else if (i == 4) {
                 number5.setText(bean.haoma.get(i));
                 shengxiao5.setText(bean.shengxiao.get(i));
                 daxiao5.setText(bean.daxiao.get(i));
                 danshuang5.setText(bean.danshuang.get(i));
                 setBackground(bean.yanse.get(i), number5Iv);
-            }else if (i == 5) {
+            } else if (i == 5) {
                 number6.setText(bean.haoma.get(i));
                 shengxiao6.setText(bean.shengxiao.get(i));
                 daxiao6.setText(bean.daxiao.get(i));
                 danshuang6.setText(bean.danshuang.get(i));
                 setBackground(bean.yanse.get(i), number6Iv);
-            }else if (i == 6) {
+            } else if (i == 6) {
                 number7.setText(bean.haoma.get(i));
                 shengxiao7.setText(bean.shengxiao.get(i));
                 daxiao7.setText(bean.daxiao.get(i));

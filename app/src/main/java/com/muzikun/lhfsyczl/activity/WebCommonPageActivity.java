@@ -7,10 +7,12 @@ import android.support.v7.widget.AppCompatTextView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import com.muzikun.lhfsyczl.R;
 import com.muzikun.lhfsyczl.base.BaseActivity;
@@ -146,6 +148,17 @@ public class WebCommonPageActivity extends BaseActivity {
     @Override
     protected void initData() {
 
+    }
+
+
+    // 设置回退
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()) {
+            webView.goBack();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     /**

@@ -21,6 +21,7 @@ import com.muzikun.lhfsyczl.net.HttpService;
 import com.muzikun.lhfsyczl.net.RxSchedulersHelper;
 import com.muzikun.lhfsyczl.net.RxSubscriber;
 import com.muzikun.lhfsyczl.util.LogUtils;
+import com.muzikun.lhfsyczl.util.ToastUtils;
 import com.muzikun.lhfsyczl.view.search.EditTextWithDel;
 import com.muzikun.lhfsyczl.view.search.PinyinComparator;
 import com.muzikun.lhfsyczl.view.search.PinyinUtils;
@@ -91,9 +92,14 @@ public class ColorPicFragment extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Intent intent = new Intent(mContext, ShowPicActivity.class);
-                intent.putExtra("url", SourceDateList.get(position).getThumb());
-                startActivity(intent);
+                if (SourceDateList!=null&&SourceDateList.size()>position){
+                    Intent intent = new Intent(mContext, ShowPicActivity.class);
+                    intent.putExtra("url", SourceDateList.get(position).getThumb());
+                    startActivity(intent);
+                }else{
+                    ToastUtils.show("请选择年份刷新数据后重试");
+                }
+
 
             }
         });

@@ -4,10 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.AppCompatTextView;
-import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.muzikun.lhfsyczl.R;
 import com.muzikun.lhfsyczl.adapter.HistoryRecyclerAdapter;
 import com.muzikun.lhfsyczl.base.BasePullRefreshFragment;
@@ -21,8 +22,6 @@ import com.muzikun.lhfsyczl.net.RxSchedulersHelper;
 import com.muzikun.lhfsyczl.net.RxSubscriber;
 import com.muzikun.lhfsyczl.util.LogUtils;
 import com.muzikun.lhfsyczl.util.SPUtil;
-import com.google.gson.Gson;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,13 +44,13 @@ public class HistoryItemFragment extends BasePullRefreshFragment {
     @BindView(R.id.empty_rl)
     RelativeLayout emptyRl;
 
-    List<XinshuiBean> data = new ArrayList<>();
-    HistoryRecyclerAdapter mAdapter;
+    private List<XinshuiBean> data = new ArrayList<>();
+    private HistoryRecyclerAdapter mAdapter;
 
-    int type;
-    String mobile;
+    private int type;
+    private String mobile;
 
-    boolean isFirst = true;
+    private boolean isFirst = true;
 
     @Override
     protected int getChildLayoutResId() {
@@ -137,13 +136,13 @@ public class HistoryItemFragment extends BasePullRefreshFragment {
                                 emptyRl.setVisibility(View.GONE);
                                 try {
                                     JSONArray array = new JSONArray(response.getData());
-
-                                    for (int i = 0; i < array.length(); i++) {
-                                        Gson gson = new Gson();
-                                        XinshuiBean bean = gson.fromJson(array.getJSONObject(i).toString(), XinshuiBean.class);
-                                        data.add(bean);
+                                    if (array != null && array.length() > 0) {
+                                        for (int i = 0; i < array.length(); i++) {
+                                            Gson gson = new Gson();
+                                            XinshuiBean bean = gson.fromJson(array.getJSONObject(i).toString(), XinshuiBean.class);
+                                            data.add(bean);
+                                        }
                                     }
-                                    Log.i(TAG, "data = " + data.toString());
 
                                     mAdapter.notifyDataSetChanged();
 

@@ -6,13 +6,39 @@
     android:gravity="center_vertical"
     android:orientation="vertical">
 
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/tvContent"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center_vertical"
-        android:paddingLeft="@dimen/dp10" />
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dp10"
+            android:text=""
+            android:textSize="@dimen/sp14" />
+
+        <View
+            android:layout_width="@dimen/dp1"
+            android:layout_height="@dimen/dp30"
+            android:background="@color/grayLine" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvContent1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dp10"
+            android:text=""
+            android:textSize="@dimen/sp14" />
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"

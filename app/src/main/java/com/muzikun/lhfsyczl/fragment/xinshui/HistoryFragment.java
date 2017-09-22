@@ -27,9 +27,9 @@ public class HistoryFragment extends BaseFragment {
     @BindView(R.id.history_viewpager)
     ViewPager historyViewpager;
 
-    List<BaseFragment> fragments = new ArrayList<>();
+    private List<BaseFragment> fragments = new ArrayList<>();
 
-    String mobile;
+    private String mobile;
 
     @Override
     protected int getLayoutResId() {

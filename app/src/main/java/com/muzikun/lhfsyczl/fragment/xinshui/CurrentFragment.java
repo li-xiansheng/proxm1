@@ -7,7 +7,9 @@ import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.muzikun.lhfsyczl.R;
+import com.muzikun.lhfsyczl.activity.LoginActivity;
 import com.muzikun.lhfsyczl.adapter.CurrentRecyclerAdapter;
 import com.muzikun.lhfsyczl.base.BasePullRefreshFragment;
 import com.muzikun.lhfsyczl.bean.CurrentRecommendBean;
@@ -20,7 +22,7 @@ import com.muzikun.lhfsyczl.net.RxSchedulersHelper;
 import com.muzikun.lhfsyczl.net.RxSubscriber;
 import com.muzikun.lhfsyczl.util.LogUtils;
 import com.muzikun.lhfsyczl.util.SPUtil;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.muzikun.lhfsyczl.util.ToastUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,17 +40,17 @@ import butterknife.BindView;
 
 public class CurrentFragment extends BasePullRefreshFragment {
 
-//    @BindView(R.id.recyclerView)
+    //    @BindView(R.id.recyclerView)
 //    RecyclerView recyclerView;
     @BindView(R.id.tvMsg)
     AppCompatTextView tvMsg;
     @BindView(R.id.empty_rl)
     RelativeLayout emptyRl;
 
-    List<CurrentRecommendBean> data = new ArrayList<>();
-    CurrentRecyclerAdapter mAdapter;
+    private List<CurrentRecommendBean> data = new ArrayList<>();
+    private CurrentRecyclerAdapter mAdapter;
 
-    String username;
+    private String username;
 
     private boolean isFirst = true;//是否第一次加载
 
@@ -101,8 +103,14 @@ public class CurrentFragment extends BasePullRefreshFragment {
 
     private void getCurrentRecommend() {
         SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
+        boolean isLogin=sp.getBoolean(UserDB.isLogin,false);
+        if (!isLogin){
+            ToastUtils.show("未登录,请先登录");
+            mActivity.jumpToActivity(LoginActivity.class,true);
+            return;
+        }
         String tel = sp.getString(UserDB.TEL, "");
-        Map<String, String> map = new HashMap<>();
+         Map<String, String> map = new HashMap<>();
         map.put("username", username);
         map.put("myusername", tel);
         HttpService httpService = HttpRequest.provideClientApi();
@@ -116,37 +124,36 @@ public class CurrentFragment extends BasePullRefreshFragment {
 
                     @Override
                     public void _onNext(int status, BaseResponse2Entity<String> response) {
-                        LogUtils.i(TAG, "getCurrentRecommend ---->" + response.getData());
                         if (response.getFlag() == 1) {
-                            if (response.getData() != null){
+                            if (response.getData() != null) {
                                 emptyRl.setVisibility(View.GONE);
                                 try {
                                     JSONObject object = new JSONObject(response.getData());
                                     JSONObject danshuangObject = object.optJSONObject("danshuang");
-                                    if (danshuangObject != null){
+                                    if (danshuangObject != null) {
                                         CurrentRecommendBean bean = new CurrentRecommendBean();
                                         bean.leixing = "单双";
-                                        parseObject(danshuangObject,bean);
+                                        parseObject(danshuangObject, bean);
                                     }
                                     JSONObject daxiaoObject = object.optJSONObject("daxiao");
-                                    if (daxiaoObject != null){
+                                    if (daxiaoObject != null) {
                                         CurrentRecommendBean bean = new CurrentRecommendBean();
                                         bean.leixing = "大小";
-                                        parseObject(daxiaoObject,bean);
+                                        parseObject(daxiaoObject, bean);
                                     }
 
                                     JSONObject haomaObject = object.optJSONObject("haoma");
-                                    if (haomaObject != null){
+                                    if (haomaObject != null) {
                                         CurrentRecommendBean bean = new CurrentRecommendBean();
                                         bean.leixing = "号码";
-                                        parseObject(haomaObject,bean);
+                                        parseObject(haomaObject, bean);
 
                                     }
                                     JSONObject shengxiaoObject = object.optJSONObject("shengxiao");
-                                    if (shengxiaoObject != null){
+                                    if (shengxiaoObject != null) {
                                         CurrentRecommendBean bean = new CurrentRecommendBean();
                                         bean.leixing = "生肖";
-                                        parseObject(shengxiaoObject,bean);
+                                        parseObject(shengxiaoObject, bean);
 
                                     }
                                     mAdapter.notifyDataSetChanged();
@@ -154,7 +161,7 @@ public class CurrentFragment extends BasePullRefreshFragment {
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-                            }else {
+                            } else {
                                 tvMsg.setText("暂时还没数据...");
                                 emptyRl.setVisibility(View.VISIBLE);
                             }
@@ -186,7 +193,7 @@ public class CurrentFragment extends BasePullRefreshFragment {
 
     }
 
-    private void parseObject(JSONObject object,CurrentRecommendBean bean) throws JSONException {
+    private void parseObject(JSONObject object, CurrentRecommendBean bean) throws JSONException {
         bean.fail = object.getString("fail");
         bean.liangsheng = object.getString("liansheng");
         bean.total = object.getString("total");
@@ -196,6 +203,8 @@ public class CurrentFragment extends BasePullRefreshFragment {
         bean.points = object.getJSONObject("xinshui").getString("points");
         bean.desc = object.getJSONObject("xinshui").getString("desc");
         bean.readnum = object.getJSONObject("xinshui").getString("readnum");
+        bean.username = object.getJSONObject("xinshui").getString("username");
+        bean.is_read = object.getString("is_read");
         data.add(bean);
     }
 

@@ -24,6 +24,7 @@ import com.muzikun.lhfsyczl.util.LogUtils;
 import com.muzikun.lhfsyczl.util.SPUtil;
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.muzikun.lhfsyczl.util.ToastUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,8 +47,8 @@ public class AttentionActivity extends BasePullRefreshActivity {
     @BindView(R.id.tvMsg)
     AppCompatTextView tvMsg;
 
-    AttentionRecyclerAdapter mAdapter;
-    List<AttentionBean> data = new ArrayList<>();
+    private AttentionRecyclerAdapter mAdapter;
+    private List<AttentionBean> data = new ArrayList<>();
 
     private boolean isFirst = true;//是否第一次加载
 
@@ -130,25 +131,23 @@ public class AttentionActivity extends BasePullRefreshActivity {
                             Log.i(TAG, "getAttentionData ---->" + response.getData());
                             try {
                                 JSONArray array = new JSONArray(response.getData());
-                                if (array.length() < 1) {
-                                    tvMsg.setText("还没关注任何人...");
-                                    emptyRl.setVisibility(View.VISIBLE);
-
-                                } else {
+                                if (array==null&&array.length()>0){
                                     emptyRl.setVisibility(View.GONE);
                                     Gson gson = new Gson();
                                     for (int i = 0; i < array.length(); i++) {
                                         AttentionBean bean = gson.fromJson(array.getJSONObject(i).toString(), AttentionBean.class);
                                         data.add(bean);
                                     }
-                                    mAdapter.notifyDataSetChanged();
-
+                                }  else {
+                                    tvMsg.setText("还没关注任何人...");
+                                    emptyRl.setVisibility(View.VISIBLE);
                                 }
+                                mAdapter.notifyDataSetChanged();
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         } else {
-
+                            ToastUtils.show(response.getErrmsg()+"");
                         }
                     }
 

@@ -202,6 +202,9 @@ public class OpenLotteryLiveEntity {
         private String qishu;
         private String content;
         private String status;
+        //自扩展字段，显示获取数据后，合并数据
+        private String combine;
+        private String combine1;
 
         public String getCatname() {
             return catname;
@@ -233,6 +236,22 @@ public class OpenLotteryLiveEntity {
 
         public void setStatus(String status) {
             this.status = status;
+        }
+
+        public String getCombine() {
+            return combine;
+        }
+
+        public void setCombine(String combine) {
+            this.combine = combine;
+        }
+
+        public String getCombine1() {
+            return combine1;
+        }
+
+        public void setCombine1(String combine1) {
+            this.combine1 = combine1;
         }
     }
 }

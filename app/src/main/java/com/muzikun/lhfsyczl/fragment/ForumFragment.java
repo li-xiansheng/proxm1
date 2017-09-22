@@ -54,7 +54,6 @@ public class ForumFragment extends BasePullRefreshFragment {
     RadioGroup radioGroup;
     @BindView(R.id.ivSendArticle)
     SelectedLayerImageView ivSendArticle;
-    Unbinder unbinder;
 
 
     private List<ForumEntity> mList;
@@ -105,14 +104,14 @@ public class ForumFragment extends BasePullRefreshFragment {
         mBaseRecycleViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                if (mList != null && mList.size() > 0) {
+                if (mList != null && mList.size() > position) {
                     ForumEntity forumEntity = mList.get(position);
                     Bundle bundle = new Bundle();
                     bundle.putString("id", forumEntity.getId());
                     ((BaseActivity) mActivity).jumpToActivity(ForumDetailActivity.class, bundle, false);
 
                 } else {
-                    ToastUtils.show("刷新数据……\n请重试");
+                    ToastUtils.show("刷新数据后，请重试");
                     if (mPullToRefreshRecyclerView != null) {
                         mPullToRefreshRecyclerView.setRefreshing(true);//没有刷新，则执行下拉刷新UI
                     }
@@ -153,10 +152,17 @@ public class ForumFragment extends BasePullRefreshFragment {
      * 获取论坛信息
      */
     private void getForumInfo() {
-        int checkedId = radioGroup.getCheckedRadioButtonId();
+        int checkedId = 0;
+        if (radioGroup != null) {//后台收集信息报null了，故加了判断，系统回收了
+            checkedId = radioGroup.getCheckedRadioButtonId();
+        } else {
+            ToastUtils.show("数据丢失,请重新进入");
+            return;
+        }
 
         String type = "1";
         switch (checkedId) {
+
             case R.id.rbDefault:
                 type = "1";
                 break;

@@ -57,12 +57,12 @@ public class SalaryActivity extends BaseActivity {
     SelectedLayerTextView tvAttention;
 
 
-    String nickname;
-    String avatar;
-    String mobile;
+    private String nickname;
+    private String avatar;
+    private String mobile;
 
-    CurrentFragment currentFragment;
-    HistoryFragment historyFragment;
+    private CurrentFragment currentFragment;
+    private HistoryFragment historyFragment;
 
     @Override
     protected int getLayoutResId() {
@@ -210,6 +210,13 @@ public class SalaryActivity extends BaseActivity {
     public void onViewClicked(View v) {
         switch (v.getId()) {
             case R.id.tvAttention:
+                SPUtil sp = new SPUtil(mContext, Constants.USER_TABLE);
+                boolean isLogin = sp.getBoolean(UserDB.isLogin, false);
+                if (!isLogin) {
+                    jumpToActivity(LoginActivity.class, false);
+                    return;
+                }
+
                 String text = tvAttention.getText().toString();
                 if ("关注".equals(text)) {
                     //关注
@@ -245,8 +252,8 @@ public class SalaryActivity extends BaseActivity {
                         if (response.getFlag() == 1) {
                             ToastUtils.show("已取消关注");
                             tvAttention.setText("关注");
-                        }else{
-                            ToastUtils.show(response.getErrmsg()+"");
+                        } else {
+                            ToastUtils.show(response.getErrmsg() + "");
                         }
                     }
 
@@ -276,8 +283,8 @@ public class SalaryActivity extends BaseActivity {
                         if (response.getFlag() == 1) {
                             ToastUtils.show("已关注");
                             tvAttention.setText("取消关注");
-                        }else{
-                            ToastUtils.show(response.getErrmsg()+"");
+                        } else {
+                            ToastUtils.show(response.getErrmsg() + "");
                         }
                     }
 

@@ -348,33 +348,28 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                     switch (v.getId()) {
                         case R.id.tvWeixin:
                             sendWebInfoToWeiXin(true);
-                            shareDialog.dismiss();
-                            shareDialog = null;
+                            closeShareDialog();
                             break;
                         case R.id.tvWeixinFriend:
                             sendWebInfoToWeiXin(false);
-                            shareDialog.dismiss();
-                            shareDialog = null;
+                            closeShareDialog();
                             break;
                         case R.id.tvQQ:
                             if (mTencent == null) {
                                 mTencent = Tencent.createInstance(Constants.QQ_APP_ID, getApplicationContext());
                             }
                             shareQQ();
-                            shareDialog.dismiss();
-                            shareDialog = null;
+                            closeShareDialog();
                             break;
                         case R.id.tvQQspace:
                             if (mTencent == null) {
                                 mTencent = Tencent.createInstance(Constants.QQ_APP_ID, getApplicationContext());
                             }
                             shareQQSpace();
-                            shareDialog.dismiss();
-                            shareDialog = null;
+                            closeShareDialog();
                             break;
                         case R.id.tvCancel:
-                            shareDialog.dismiss();
-                            shareDialog = null;
+                            closeShareDialog();
                             break;
                     }
                 }
@@ -392,6 +387,13 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     }
 
+
+    private void closeShareDialog(){
+        if (shareDialog!=null){
+            shareDialog.dismiss();
+            shareDialog = null;
+        }
+    }
 
     /**
      *
